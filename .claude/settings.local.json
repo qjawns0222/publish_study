@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(copy \"C:\\Users\\c\\Desktop\\퍼블리싱\\training-sets\\S001\\C-answer.html\" \"C:\\Users\\c\\Desktop\\퍼블리싱\\training-sets-react\\public\\S001\")"
+      "Bash(copy \"C:\\Users\\c\\Desktop\\퍼블리싱\\training-sets\\S001\\C-answer.html\" \"C:\\Users\\c\\Desktop\\퍼블리싱\\training-sets-react\\public\\S001\")",
+      "Bash(node -e:*)"
     ],
     "deny": [],
     "ask": []

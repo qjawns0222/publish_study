@@ -57,8 +57,14 @@
       flex: 1;
     }
 
+    /* 링크 hover 효과 */
+    header nav a {
+      transition: var(--transition);
+    }
+
     header nav a:hover {
       text-decoration: underline;
+      opacity: 0.8;
     }
 
   </style>
@@ -77,7 +83,7 @@
     </nav>
   </header>
 
-  <main style="padding: var(--spacing-6); max-width: 800px; margin: 0 auto;">
+  <main style="padding: var(--spacing-6); max-width: 1200px; margin: 0 auto;">
     <h2>메인 콘텐츠</h2>
     <p>이곳에 주요 콘텐츠가 들어갑니다. Header, Main, Footer로 구성된 기본 3단 레이아웃입니다.</p>
     <p style="margin-top: 16px; line-height: 1.6;">시맨틱 HTML을 사용하여 구조를 명확하게 표현했습니다.</p>

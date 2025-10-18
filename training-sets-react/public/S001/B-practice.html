@@ -69,15 +69,21 @@
     header>.header-title{
         color: var(--color-white);
     }
-    header>.header_menu{
+    header>.header-menu{
 
         display: flex;
 
     }
-    header>.header_menu>.header_sub{
-        margin: 0 16px;
+    header>.header-menu>.header-sub{
+        margin: 0  var(--spacing-2);
         color: var(--color-white);
         text-decoration: none;
+        transition: var(--transition);
+    }
+
+    header>.header-menu>.header-sub:hover{
+       opacity: 0.8;
+        text-decoration: underline;
     }
     /*main*/
     main{
@@ -86,7 +92,7 @@
         justify-content: center;
         flex: 1;
     }
-    main>.main_box{
+    main>.main-box{
         display: flex;
         flex-direction: column;
         width: fit-content;
@@ -130,18 +136,18 @@
 <body>
 <header>
     <h1 class="header-title">웹사이트 헤더</h1>
-    <nav class="header_menu">
-        <a href="#" class="header_sub">홈</a>
-        <a href="#" class="header_sub">소개</a>
-        <a href="#" class="header_sub">연락처</a>
+    <nav class="header-menu">
+        <a href="#" class="header-sub">홈</a>
+        <a href="#" class="header-sub">소개</a>
+        <a href="#" class="header-sub">연락처</a>
     </nav>
 </header>
 <!--중간 메인 콘텐츠 부분-->
 <main>
-    <div class="main_box">
-    <h2 class="main_title">메인 콘텐츠</h2>
-    <p class="main_content">이곳에 주요 콘텐츠가 들어갑니다. Header, Main, Footer로 구성된 기본 3단 레이아웃입니다.</p>
-    <p class="main_content">시맨틱 HTML을 사용하여 구조를 명확하게 표현했습니다.</p>
+    <div class="main-box">
+    <h2 class="main-title">메인 콘텐츠</h2>
+    <p class="main-content">이곳에 주요 콘텐츠가 들어갑니다. Header, Main, Footer로 구성된 기본 3단 레이아웃입니다.</p>
+    <p class="main-content">시맨틱 HTML을 사용하여 구조를 명확하게 표현했습니다.</p>
     </div>
 </main>
 <!--젤밑 푸터-->

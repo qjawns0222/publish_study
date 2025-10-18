@@ -326,6 +326,30 @@ ${categoryGuide.requirements.map(req => `        <li>${req}</li>`).join('\n')}
         <li>색상은 CSS 변수로 정의하여 일관성 유지</li>
         <li>8px 간격 시스템 준수</li>
       </ul>
+
+      <h3>🎨 인터랙션 상세 요구사항</h3>
+      <div style="background: #E0F2FE; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 12px;">
+        <p style="margin-bottom: 12px;"><strong>클릭 가능한 요소 (링크, 버튼) hover 효과</strong></p>
+        <ul style="margin-left: 20px;">
+          <li>마우스 올리면 밑줄 또는 배경색 변화</li>
+          <li>투명도 조정 (<code>opacity: 0.8</code>) 또는 색상 변경</li>
+          <li>부드러운 전환 효과 (<code>transition: 0.3s ease</code>)</li>
+          <li>선택적으로 약간 위로 이동 (<code>transform: translateY(-2px)</code>)</li>
+        </ul>
+        <pre style="background: #fff; padding: 12px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem;"><code>/* 링크 hover 예시 */
+a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+  transition: 0.3s ease;
+}
+
+/* 버튼 hover 예시 */
+.btn:hover {
+  background: #3730a3;
+  transform: translateY(-2px);
+  transition: 0.3s ease;
+}</code></pre>
+      </div>
     </section>
 
     <section class="guide-section">
@@ -401,7 +425,7 @@ const answerTemplates = {
     </nav>
   </header>
 
-  <main style="padding: var(--spacing-6); max-width: 1200px; margin: 0 auto;">
+  <main style="padding: var(--spacing-6); max-width: 800px; margin: 0 auto;">
     <h2>메인 콘텐츠</h2>
     <p>이곳에 주요 콘텐츠가 들어갑니다. Header, Main, Footer로 구성된 기본 3단 레이아웃입니다.</p>
     <p style="margin-top: 16px; line-height: 1.6;">시맨틱 HTML을 사용하여 구조를 명확하게 표현했습니다.</p>
@@ -422,8 +446,14 @@ const answerTemplates = {
       flex: 1;
     }
 
+    /* 링크 hover 효과 */
+    header nav a {
+      transition: var(--transition);
+    }
+
     header nav a:hover {
       text-decoration: underline;
+      opacity: 0.8;
     }`
   },
   'S002': {
