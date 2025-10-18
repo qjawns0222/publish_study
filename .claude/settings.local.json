@@ -1,15 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(mkdir:*)",
-      "Bash(node generate-examples.js:*)",
-      "Bash(npm create:*)",
-      "Bash(npm install)",
-      "Bash(npm install:*)",
-      "Bash(npm run dev:*)",
-      "Bash(mklink:*)",
-      "Bash(robocopy:*)",
-      "Bash(xcopy:*)"
+      "Bash(copy \"C:\\Users\\c\\Desktop\\퍼블리싱\\training-sets\\S001\\C-answer.html\" \"C:\\Users\\c\\Desktop\\퍼블리싱\\training-sets-react\\public\\S001\")"
     ],
     "deny": [],
     "ask": []

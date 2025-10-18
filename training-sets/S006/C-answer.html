@@ -46,6 +46,64 @@
        완성 예시 CSS
        ======================================== */
 
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: var(--spacing-6);
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .button-group {
+      display: flex;
+      gap: var(--spacing-2);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 32px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #3730a3;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--color-secondary);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #059669;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--color-primary);
+      color: white;
+    }
 
   </style>
 </head>
@@ -54,17 +112,22 @@
        완성 예시 HTML
        ======================================== -->
 
-  <div style="padding: var(--spacing-6); text-align: center;">
-    <h2>기본 버튼 스타일</h2>
-    <p>Primary, Secondary, Outline 버튼 디자인</p>
-    <p style="margin-top: 24px; color: var(--color-gray);">이 예제의 완성 코드는 아직 준비 중입니다.</p>
-    <p style="margin-top: 16px;">가이드의 요구사항을 참고하여 직접 구현해보세요! 💪</p>
+  <div class="container">
+    <h1 style="text-align: center; margin-bottom: 32px;">기본 버튼 스타일</h1>
+    <div class="button-group">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-secondary">Secondary</button>
+      <button class="btn btn-outline">Outline</button>
+    </div>
   </div>
 
-  <!-- 안내 배너 -->
-  <div style="position: fixed; top: 0; left: 0; right: 0; background: #10B981; color: white; padding: 12px; text-align: center; font-size: 0.875rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 9999;">
-    ✅ 이것은 <strong>S006</strong>의 완성된 예시입니다.
-    <a href="B-practice.html" style="color: white; text-decoration: underline; margin-left: 16px;">실습 파일로 가기 →</a>
+  <!-- 안내 배너 (하단 고정) -->
+  <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
+    <strong>✅ S006 완성 예시</strong>
+    <div style="margin-top: 8px;">
+      <a href="A-guide.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block; margin-right: 8px;">← 가이드</a>
+      <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
+    </div>
   </div>
 
   <script>

@@ -7,6 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { generateDefaultAnswerByCategory } = require('./generate-answer-templates');
 
 // 예제 데이터 (examples-data.js와 동일)
 const examplesData = [
@@ -472,21 +473,303 @@ const answerTemplates = {
       background: #3730a3;
       transform: translateY(-2px);
     }`
+  },
+  'S003': {
+    html: `
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>사이드바</h2>
+      <nav>
+        <ul>
+          <li><a href="#">메뉴 1</a></li>
+          <li><a href="#">메뉴 2</a></li>
+          <li><a href="#">메뉴 3</a></li>
+          <li><a href="#">메뉴 4</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <main class="content">
+      <h1>메인 콘텐츠</h1>
+      <p>Grid를 사용한 2단 컬럼 레이아웃입니다.</p>
+      <p style="margin-top: 16px;">Sidebar와 Content 영역이 나란히 배치되어 있습니다.</p>
+    </main>
+  </div>`,
+    css: `
+    .layout {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      min-height: 100vh;
+      gap: 0;
+    }
+
+    .sidebar {
+      background: var(--color-dark);
+      color: white;
+      padding: var(--spacing-4);
+    }
+
+    .sidebar h2 {
+      margin-bottom: var(--spacing-3);
+      font-size: 1.5rem;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar li {
+      margin-bottom: var(--spacing-2);
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .sidebar a:hover {
+      color: var(--color-accent);
+    }
+
+    .content {
+      padding: var(--spacing-6);
+      background: white;
+    }
+
+    .content h1 {
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-3);
+    }`
+  },
+  'S004': {
+    html: `
+  <header class="header">
+    <div class="container">
+      <div class="logo">MyBrand</div>
+      <nav class="nav">
+        <a href="#">홈</a>
+        <a href="#">서비스</a>
+        <a href="#">소개</a>
+        <a href="#">연락처</a>
+      </nav>
+    </div>
+  </header>
+  <main style="padding: 48px 24px; text-align: center;">
+    <h1>반응형 헤더 예시</h1>
+    <p>화면 크기를 조절해보세요!</p>
+  </main>`,
+    css: `
+    .header {
+      background: var(--color-primary);
+      color: white;
+      padding: var(--spacing-2) 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav {
+      display: flex;
+      gap: var(--spacing-3);
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .nav a:hover {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        gap: var(--spacing-2);
+      }
+
+      .nav {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-1);
+      }
+    }`
+  },
+  'S005': {
+    html: `
+  <div class="container">
+    <h1 style="text-align: center; margin-bottom: 32px; color: var(--color-dark);">카드 그리드</h1>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h3>카드 1</h3>
+        <p>Grid 레이아웃으로 구성된 카드입니다.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💻</div>
+        <h3>카드 2</h3>
+        <p>반응형으로 배치됩니다.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h3>카드 3</h3>
+        <p>일관된 간격을 유지합니다.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <h3>카드 4</h3>
+        <p>Grid gap으로 간격 조정</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⭐</div>
+        <h3>카드 5</h3>
+        <p>hover 효과가 있습니다.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <h3>카드 6</h3>
+        <p>그림자로 입체감 표현</p>
+      </div>
+    </div>
+  </div>`,
+    css: `
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--spacing-6);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-3);
+    }
+
+    .card {
+      background: white;
+      padding: var(--spacing-4);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: var(--spacing-2);
+    }
+
+    .card h3 {
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-1);
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }`
+  },
+  'S006': {
+    html: `
+  <div class="container">
+    <h1 style="text-align: center; margin-bottom: 32px;">기본 버튼 스타일</h1>
+    <div class="button-group">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-secondary">Secondary</button>
+      <button class="btn btn-outline">Outline</button>
+    </div>
+  </div>`,
+    css: `
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: var(--spacing-6);
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .button-group {
+      display: flex;
+      gap: var(--spacing-2);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 32px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #3730a3;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--color-secondary);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #059669;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--color-primary);
+      color: white;
+    }`
   }
 };
 
 // C-answer.html 템플릿 생성
 function generateAnswerHTML(example) {
-  const answer = answerTemplates[example.id] || {
-    html: `
-  <div style="padding: var(--spacing-6); text-align: center;">
-    <h2>${example.title}</h2>
-    <p>${example.desc}</p>
-    <p style="margin-top: 24px; color: var(--color-gray);">이 예제의 완성 코드는 아직 준비 중입니다.</p>
-    <p style="margin-top: 16px;">가이드의 요구사항을 참고하여 직접 구현해보세요! 💪</p>
-  </div>`,
-    css: ''
-  };
+  // 미리 정의된 답이 있으면 사용, 없으면 카테고리 기반 자동 생성
+  const answer = answerTemplates[example.id] || generateDefaultAnswerByCategory(example);
 
   return `<!DOCTYPE html>
 <html lang="ko">
@@ -545,10 +828,13 @@ ${answer.css}
        ======================================== -->
 ${answer.html}
 
-  <!-- 안내 배너 -->
-  <div style="position: fixed; top: 0; left: 0; right: 0; background: #10B981; color: white; padding: 12px; text-align: center; font-size: 0.875rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 9999;">
-    ✅ 이것은 <strong>${example.id}</strong>의 완성된 예시입니다.
-    <a href="B-practice.html" style="color: white; text-decoration: underline; margin-left: 16px;">실습 파일로 가기 →</a>
+  <!-- 안내 배너 (하단 고정) -->
+  <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
+    <strong>✅ ${example.id} 완성 예시</strong>
+    <div style="margin-top: 8px;">
+      <a href="A-guide.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block; margin-right: 8px;">← 가이드</a>
+      <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
+    </div>
   </div>
 
   <script>

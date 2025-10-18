@@ -46,6 +46,14 @@
        완성 예시 CSS
        ======================================== */
 
+    .container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-4);
+      background: var(--color-light);
+    }
 
   </style>
 </head>
@@ -54,17 +62,21 @@
        완성 예시 HTML
        ======================================== -->
 
-  <div style="padding: var(--spacing-6); text-align: center;">
-    <h2>프로필 카드</h2>
-    <p>이미지, 이름, 설명이 포함된 프로필 카드</p>
-    <p style="margin-top: 24px; color: var(--color-gray);">이 예제의 완성 코드는 아직 준비 중입니다.</p>
-    <p style="margin-top: 16px;">가이드의 요구사항을 참고하여 직접 구현해보세요! 💪</p>
+  <div class="container">
+    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
+      <h2 style="color: var(--color-primary);">프로필 카드</h2>
+      <p style="margin-top: var(--spacing-2);">이미지, 이름, 설명이 포함된 프로필 카드</p>
+      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
+    </div>
   </div>
 
-  <!-- 안내 배너 -->
-  <div style="position: fixed; top: 0; left: 0; right: 0; background: #10B981; color: white; padding: 12px; text-align: center; font-size: 0.875rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 9999;">
-    ✅ 이것은 <strong>S007</strong>의 완성된 예시입니다.
-    <a href="B-practice.html" style="color: white; text-decoration: underline; margin-left: 16px;">실습 파일로 가기 →</a>
+  <!-- 안내 배너 (하단 고정) -->
+  <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
+    <strong>✅ S007 완성 예시</strong>
+    <div style="margin-top: 8px;">
+      <a href="A-guide.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block; margin-right: 8px;">← 가이드</a>
+      <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
+    </div>
   </div>
 
   <script>

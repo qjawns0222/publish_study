@@ -46,6 +46,51 @@
        완성 예시 CSS
        ======================================== */
 
+    .layout {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      min-height: 100vh;
+      gap: 0;
+    }
+
+    .sidebar {
+      background: var(--color-dark);
+      color: white;
+      padding: var(--spacing-4);
+    }
+
+    .sidebar h2 {
+      margin-bottom: var(--spacing-3);
+      font-size: 1.5rem;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar li {
+      margin-bottom: var(--spacing-2);
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .sidebar a:hover {
+      color: var(--color-accent);
+    }
+
+    .content {
+      padding: var(--spacing-6);
+      background: white;
+    }
+
+    .content h1 {
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-3);
+    }
 
   </style>
 </head>
@@ -54,17 +99,32 @@
        완성 예시 HTML
        ======================================== -->
 
-  <div style="padding: var(--spacing-6); text-align: center;">
-    <h2>2단 컬럼 레이아웃</h2>
-    <p>Sidebar와 Content 영역을 Grid로 구성</p>
-    <p style="margin-top: 24px; color: var(--color-gray);">이 예제의 완성 코드는 아직 준비 중입니다.</p>
-    <p style="margin-top: 16px;">가이드의 요구사항을 참고하여 직접 구현해보세요! 💪</p>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>사이드바</h2>
+      <nav>
+        <ul>
+          <li><a href="#">메뉴 1</a></li>
+          <li><a href="#">메뉴 2</a></li>
+          <li><a href="#">메뉴 3</a></li>
+          <li><a href="#">메뉴 4</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <main class="content">
+      <h1>메인 콘텐츠</h1>
+      <p>Grid를 사용한 2단 컬럼 레이아웃입니다.</p>
+      <p style="margin-top: 16px;">Sidebar와 Content 영역이 나란히 배치되어 있습니다.</p>
+    </main>
   </div>
 
-  <!-- 안내 배너 -->
-  <div style="position: fixed; top: 0; left: 0; right: 0; background: #10B981; color: white; padding: 12px; text-align: center; font-size: 0.875rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 9999;">
-    ✅ 이것은 <strong>S003</strong>의 완성된 예시입니다.
-    <a href="B-practice.html" style="color: white; text-decoration: underline; margin-left: 16px;">실습 파일로 가기 →</a>
+  <!-- 안내 배너 (하단 고정) -->
+  <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
+    <strong>✅ S003 완성 예시</strong>
+    <div style="margin-top: 8px;">
+      <a href="A-guide.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block; margin-right: 8px;">← 가이드</a>
+      <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
+    </div>
   </div>
 
   <script>

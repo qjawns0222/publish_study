@@ -45,14 +45,72 @@
       --radius: 8px;
       --transition: 0.3s ease;
     }
+    html{
+        height: 100%;
+    }
+    body{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
 
     /* 2. 레이아웃 스타일 */
+    header{
+        background-color: var(--color-primary);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: var(--spacing-3);
+
+    }
+    header>.header-title{
+        color: var(--color-white);
+    }
+    header>.header_menu{
+
+        display: flex;
+
+    }
+    header>.header_menu>.header_sub{
+        margin: 0 16px;
+        color: var(--color-white);
+        text-decoration: none;
+    }
+    /*main*/
+    main{
+        padding: var(--spacing-6);
+        display: flex;
+        justify-content: center;
+        flex: 1;
+    }
+    main>.main_box{
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+    }
+    /*아랫부분*/
+    footer{
+        padding: var(--spacing-4);
+        margin-top: var(--spacing-6);
+        background-color: var(--color-dark);
+
+    }
+
+
+
     /* TODO: 메인 레이아웃 구성 */
 
 
     /* 3. 컴포넌트 스타일 */
     /* TODO: 주요 컴포넌트 디자인 */
-
+    footer>p{
+        color: var(--color-white);
+        width: fit-content;
+        margin: 0 auto;
+    }
 
     /* 4. 타이포그래피 */
     /* TODO: 텍스트 스타일 */
@@ -70,6 +128,24 @@
   </style>
 </head>
 <body>
+<header>
+    <h1 class="header-title">웹사이트 헤더</h1>
+    <nav class="header_menu">
+        <a href="#" class="header_sub">홈</a>
+        <a href="#" class="header_sub">소개</a>
+        <a href="#" class="header_sub">연락처</a>
+    </nav>
+</header>
+<!--중간 메인 콘텐츠 부분-->
+<main>
+    <div class="main_box">
+    <h2 class="main_title">메인 콘텐츠</h2>
+    <p class="main_content">이곳에 주요 콘텐츠가 들어갑니다. Header, Main, Footer로 구성된 기본 3단 레이아웃입니다.</p>
+    <p class="main_content">시맨틱 HTML을 사용하여 구조를 명확하게 표현했습니다.</p>
+    </div>
+</main>
+<!--젤밑 푸터-->
+<footer><p>© 2024 웹 퍼블리싱 훈련. All rights reserved.</p></footer>
   <!-- ========================================
        여기에 HTML을 작성하세요
        ======================================== -->
