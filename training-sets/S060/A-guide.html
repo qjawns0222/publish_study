@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S060 - 포트폴리오 갤러리 | 가이드</title>
+  <link rel="stylesheet" href="../assets/css/common.css">
+</head>
+<body>
+  <div class="guide-container">
+    <header class="guide-header">
+      <span class="set-id">S060</span>
+      <h1>🎨 포트폴리오 갤러리</h1>
+      <p>필터링 기능이 있는 포트폴리오</p>
+      <p style="margin-top: 8px; opacity: 0.9;">🚀 중급 | 복합적인 레이아웃과 JavaScript 활용</p>
+    </header>
+
+    <section class="guide-section">
+      <h2>📋 목표</h2>
+      <p>필터링 기능이 있는 포트폴리오</p>
+      <p style="margin-top: 12px;">여러 개념을 조합하고 인터랙션을 추가합니다.</p>
+    </section>
+
+    <section class="guide-section">
+      <h2>🖼️ 완성 예시 미리보기</h2>
+      <p>아래는 이번 예제의 완성된 모습입니다. 이 구조를 참고하여 코드를 작성해보세요!</p>
+      
+    <div style="font-family: monospace; background: #F3F4F6; padding: 24px; border-radius: 8px; margin: 16px 0;">
+      <pre style="margin: 0; line-height: 1.8; color: #222;">
+┌──────────────────────────────┐
+│     [배경 이미지/그래픽]      │
+│                              │
+│        메인 타이틀            │
+│         설명 문구             │
+│                              │
+│      [ CTA 버튼 ]             │
+└──────────────────────────────┘
+      </pre>
+    </div>
+      <div style="background: #FFF9E6; border-left: 4px solid #FF9800; padding: 16px; border-radius: 4px; margin-top: 16px;">
+        <strong>💡 참고:</strong> 완성된 정답 코드는 <code>C-answer.html</code> 파일에서 확인할 수 있습니다.<br>
+        먼저 스스로 도전해보고, 막힐 때만 참고하세요!
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <h2>🎯 주요 학습 포인트</h2>
+      <ul>
+        <li>시각적 계층</li>
+        <li>색상과 타이포그래피</li>
+        <li>이미지 처리</li>
+        <li>공간 활용</li>
+      </ul>
+    </section>
+
+    <section class="guide-section">
+      <h2>📐 퍼블리싱 요구사항</h2>
+      <h3>기본 요구사항</h3>
+      <ul>
+        <li>명확한 시각적 계층 구조</li>
+        <li>일관된 색상 팔레트 사용</li>
+        <li>타이포그래피 스케일 적용</li>
+        <li>이미지 최적화 (object-fit, aspect-ratio)</li>
+      </ul>
+
+      <h3>추가 요구사항</h3>
+      <ul>
+        <li>모든 인터랙티브 요소에 적절한 hover 효과 적용</li>
+        <li>transition은 0.3s ease 기본값 사용</li>
+        <li>색상은 CSS 변수로 정의하여 일관성 유지</li>
+        <li>8px 간격 시스템 준수</li>
+      </ul>
+    </section>
+
+    <section class="guide-section">
+      <h2>🎨 스타일 가이드</h2>
+
+      <h3>색상 팔레트</h3>
+      <div class="color-palette">
+        <div class="color-swatch" style="background: #4F46E5;">#4F46E5</div>
+        <div class="color-swatch" style="background: #10B981;">#10B981</div>
+        <div class="color-swatch" style="background: #FF9800;">#FF9800</div>
+        <div class="color-swatch" style="background: #FFFFFF; border: 2px solid #E5E7EB;">#FFFFFF</div>
+        <div class="color-swatch" style="background: #F3F4F6; color: #222;">#F3F4F6</div>
+        <div class="color-swatch" style="background: #222222; color: #FFF;">#222222</div>
+      </div>
+
+      <h3>타이포그래피</h3>
+      <ul>
+        <li>폰트: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif</li>
+        <li>제목 크기: 2.5rem (large), 2rem (medium), 1.5rem (small)</li>
+        <li>본문 크기: 1rem (기본), 0.875rem (작게)</li>
+        <li>행간: 1.6 (본문), 1.2 (제목)</li>
+      </ul>
+
+      <h3>간격 시스템 (8px scale)</h3>
+      <ul>
+        <li>8px, 16px, 24px, 32px, 40px, 48px</li>
+        <li>요소 간 간격은 위 값들을 조합하여 사용</li>
+      </ul>
+    </section>
+
+    <section class="guide-section">
+      <h2>💡 구현 힌트</h2>
+      <ul>
+        <li>먼저 HTML 구조를 시맨틱하게 작성하세요</li>
+        <li>CSS는 레이아웃 → 타이포그래피 → 색상 → 인터랙션 순서로 작성하세요</li>
+        <li>JavaScript가 필요한 경우, 이벤트 리스너를 명확히 분리하세요</li>
+        <li>크롬 개발자 도구로 요소를 검사하며 조정하세요</li>
+        <li>모바일 반응형을 고려하세요 (필요시 미디어 쿼리 사용)</li>
+      </ul>
+    </section>
+
+    <section class="guide-section">
+      <h2>✅ 완성 체크리스트</h2>
+      <ul>
+        <li>□ HTML 구조가 시맨틱하고 명확한가?</li>
+        <li>□ CSS 클래스명이 의미있고 일관적인가?</li>
+        <li>□ 레이아웃이 의도한 대로 배치되었는가?</li>
+        <li>□ 모든 인터랙션이 부드럽게 작동하는가?</li>
+        <li>□ 색상과 타이포그래피가 일관적인가?</li>
+        <li>□ 코드가 깔끔하고 주석이 적절한가?</li>
+      </ul>
+    </section>
+
+    <div class="button-group">
+      <a href="../index.html" class="btn btn-secondary">← 목록으로</a>
+      <a href="B-practice.html" class="btn btn-primary">실습 시작하기 →</a>
+    </div>
+  </div>
+</body>
+</html>

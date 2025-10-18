@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S001 - 기본 3단 레이아웃 | 완성 예시</title>
+  <style>
+    /* 기본 리셋 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: #222;
+    }
+
+    /* CSS 변수 정의 */
+    :root {
+      /* 색상 */
+      --color-primary: #4F46E5;
+      --color-secondary: #10B981;
+      --color-accent: #FF9800;
+      --color-dark: #222222;
+      --color-gray: #6B7280;
+      --color-light: #F3F4F6;
+      --color-white: #FFFFFF;
+
+      /* 간격 (8px scale) */
+      --spacing-1: 8px;
+      --spacing-2: 16px;
+      --spacing-3: 24px;
+      --spacing-4: 32px;
+      --spacing-5: 40px;
+      --spacing-6: 48px;
+
+      /* 기타 */
+      --radius: 8px;
+      --transition: 0.3s ease;
+    }
+
+    /* ========================================
+       완성 예시 CSS
+       ======================================== */
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    header nav a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- ========================================
+       완성 예시 HTML
+       ======================================== -->
+
+  <header style="background: var(--color-primary); color: white; padding: var(--spacing-3); text-align: center;">
+    <h1>웹사이트 헤더</h1>
+    <nav>
+      <a href="#" style="color: white; margin: 0 16px; text-decoration: none;">홈</a>
+      <a href="#" style="color: white; margin: 0 16px; text-decoration: none;">소개</a>
+      <a href="#" style="color: white; margin: 0 16px; text-decoration: none;">연락처</a>
+    </nav>
+  </header>
+
+  <main style="padding: var(--spacing-6); max-width: 1200px; margin: 0 auto;">
+    <h2>메인 콘텐츠</h2>
+    <p>이곳에 주요 콘텐츠가 들어갑니다. Header, Main, Footer로 구성된 기본 3단 레이아웃입니다.</p>
+    <p style="margin-top: 16px; line-height: 1.6;">시맨틱 HTML을 사용하여 구조를 명확하게 표현했습니다.</p>
+  </main>
+
+  <footer style="background: var(--color-dark); color: white; padding: var(--spacing-4); text-align: center; margin-top: var(--spacing-6);">
+    <p>&copy; 2024 웹 퍼블리싱 훈련. All rights reserved.</p>
+  </footer>
+
+  <!-- 안내 배너 -->
+  <div style="position: fixed; top: 0; left: 0; right: 0; background: #10B981; color: white; padding: 12px; text-align: center; font-size: 0.875rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 9999;">
+    ✅ 이것은 <strong>S001</strong>의 완성된 예시입니다.
+    <a href="B-practice.html" style="color: white; text-decoration: underline; margin-left: 16px;">실습 파일로 가기 →</a>
+  </div>
+
+  <script>
+    // ========================================
+    // 완성 예시 JavaScript (필요시)
+    // ========================================
+
+    console.log('✅ S001 - 기본 3단 레이아웃 완성 예시');
+  </script>
+</body>
+</html>

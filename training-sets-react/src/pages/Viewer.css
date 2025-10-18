@@ -1,0 +1,91 @@
+.viewer-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.viewer-header {
+  background: white;
+  border-bottom: 2px solid var(--color-gray-200);
+  padding: 16px 24px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  flex-shrink: 0;
+}
+
+.viewer-nav {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 16px;
+}
+
+.viewer-nav h2 {
+  flex: 1;
+  font-size: 1.25rem;
+  color: var(--color-dark);
+}
+
+/* 탭 네비게이션 */
+.viewer-tabs {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+  border-bottom: 2px solid var(--color-gray-200);
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-gray);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+  position: relative;
+  bottom: -2px;
+}
+
+.tab-btn:hover {
+  color: var(--color-primary);
+  background: var(--color-light);
+}
+
+.tab-btn.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+  font-weight: 600;
+}
+
+.viewer-frame {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: white;
+  overflow: auto;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 24px;
+}
+
+.error h2 {
+  color: var(--color-dark);
+  font-size: 2rem;
+}

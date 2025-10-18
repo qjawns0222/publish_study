@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S002 - 중앙 정렬 카드 | 완성 예시</title>
+  <style>
+    /* 기본 리셋 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: #222;
+    }
+
+    /* CSS 변수 정의 */
+    :root {
+      /* 색상 */
+      --color-primary: #4F46E5;
+      --color-secondary: #10B981;
+      --color-accent: #FF9800;
+      --color-dark: #222222;
+      --color-gray: #6B7280;
+      --color-light: #F3F4F6;
+      --color-white: #FFFFFF;
+
+      /* 간격 (8px scale) */
+      --spacing-1: 8px;
+      --spacing-2: 16px;
+      --spacing-3: 24px;
+      --spacing-4: 32px;
+      --spacing-5: 40px;
+      --spacing-6: 48px;
+
+      /* 기타 */
+      --radius: 8px;
+      --transition: 0.3s ease;
+    }
+
+    /* ========================================
+       완성 예시 CSS
+       ======================================== */
+
+    .card-container {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--color-light);
+    }
+
+    .card {
+      background: white;
+      padding: var(--spacing-5);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .card h2 {
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-2);
+    }
+
+    .btn {
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .btn:hover {
+      background: #3730a3;
+      transform: translateY(-2px);
+    }
+
+  </style>
+</head>
+<body>
+  <!-- ========================================
+       완성 예시 HTML
+       ======================================== -->
+
+  <div class="card-container">
+    <div class="card">
+      <h2>중앙 정렬 카드</h2>
+      <p>Flexbox를 사용하여 화면 중앙에 배치된 카드입니다.</p>
+      <button class="btn">자세히 보기</button>
+    </div>
+  </div>
+
+  <!-- 안내 배너 -->
+  <div style="position: fixed; top: 0; left: 0; right: 0; background: #10B981; color: white; padding: 12px; text-align: center; font-size: 0.875rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 9999;">
+    ✅ 이것은 <strong>S002</strong>의 완성된 예시입니다.
+    <a href="B-practice.html" style="color: white; text-decoration: underline; margin-left: 16px;">실습 파일로 가기 →</a>
+  </div>
+
+  <script>
+    // ========================================
+    // 완성 예시 JavaScript (필요시)
+    // ========================================
+
+    console.log('✅ S002 - 중앙 정렬 카드 완성 예시');
+  </script>
+</body>
+</html>

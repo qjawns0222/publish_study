@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>퍼블리싱 훈련 예제 100선</title>
+  <link rel="stylesheet" href="assets/css/common.css">
+  <style>
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      border-radius: 16px;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      opacity: 0.95;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--color-primary);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      color: var(--color-gray-700);
+      font-size: 1rem;
+    }
+
+    .category-section {
+      margin-bottom: 48px;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 3px solid var(--color-primary);
+    }
+
+    .category-icon {
+      font-size: 2rem;
+    }
+
+    .category-title {
+      font-size: 1.75rem;
+      color: var(--color-dark);
+      font-weight: 700;
+    }
+
+    .example-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .example-card {
+      background: white;
+      border: 2px solid var(--color-gray-200);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .example-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--color-primary);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+
+    .example-card:hover {
+      border-color: var(--color-primary);
+      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.15);
+    }
+
+    .example-card:hover::before {
+      transform: scaleY(1);
+    }
+
+    .example-id {
+      display: inline-block;
+      background: var(--color-gray-100);
+      color: var(--color-primary);
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      margin-bottom: 12px;
+    }
+
+    .example-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-dark);
+      margin-bottom: 8px;
+    }
+
+    .example-desc {
+      color: var(--color-gray-700);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .difficulty-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .difficulty-beginner {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+
+    .difficulty-intermediate {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+
+    .difficulty-advanced {
+      background: #FEE2E2;
+      color: #991B1B;
+    }
+
+    .example-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .link-btn {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .link-guide {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    .link-guide:hover {
+      background: #4338CA;
+      transform: translateY(-2px);
+    }
+
+    .link-practice {
+      background: var(--color-gray-200);
+      color: var(--color-dark);
+    }
+
+    .link-practice:hover {
+      background: var(--color-gray-300);
+      transform: translateY(-2px);
+    }
+
+    .filter-bar {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 20px;
+      border: 2px solid var(--color-gray-300);
+      background: white;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    .filter-btn.active {
+      background: var(--color-primary);
+      color: white;
+      border-color: var(--color-primary);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <h1>퍼블리싱 훈련 예제 100선</h1>
+      <p>HTML5, CSS3, Vanilla JavaScript로 마스터하는 UI 퍼블리싱</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number">100</div>
+        <div class="stat-label">훈련 예제</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">30</div>
+        <div class="stat-label">초급 레벨</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">40</div>
+        <div class="stat-label">중급 레벨</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">30</div>
+        <div class="stat-label">고급 레벨</div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">전체보기</button>
+        <button class="filter-btn" data-filter="beginner">초급</button>
+        <button class="filter-btn" data-filter="intermediate">중급</button>
+        <button class="filter-btn" data-filter="advanced">고급</button>
+        <button class="filter-btn" data-filter="layout">레이아웃</button>
+        <button class="filter-btn" data-filter="component">컴포넌트</button>
+        <button class="filter-btn" data-filter="form">폼</button>
+        <button class="filter-btn" data-filter="visual">비주얼</button>
+        <button class="filter-btn" data-filter="animation">애니메이션</button>
+      </div>
+    </div>
+
+    <!-- 초급 예제 (S001-S030) -->
+    <section class="category-section" data-category="beginner">
+      <div class="category-header">
+        <span class="category-icon">🌱</span>
+        <h2 class="category-title">초급 예제 (S001-S030)</h2>
+      </div>
+      <div class="example-grid" id="beginner-examples"></div>
+    </section>
+
+    <!-- 중급 예제 (S031-S070) -->
+    <section class="category-section" data-category="intermediate">
+      <div class="category-header">
+        <span class="category-icon">🚀</span>
+        <h2 class="category-title">중급 예제 (S031-S070)</h2>
+      </div>
+      <div class="example-grid" id="intermediate-examples"></div>
+    </section>
+
+    <!-- 고급 예제 (S071-S100) -->
+    <section class="category-section" data-category="advanced">
+      <div class="category-header">
+        <span class="category-icon">⚡</span>
+        <h2 class="category-title">고급 예제 (S071-S100)</h2>
+      </div>
+      <div class="example-grid" id="advanced-examples"></div>
+    </section>
+  </div>
+
+  <script src="assets/js/examples-data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
