@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S006 - 기본 버튼 스타일 | 완성 예시</title>
+  <style>
+    /* 기본 리셋 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: #222;
+    }
+
+    /* CSS 변수 정의 */
+    :root {
+      /* 색상 */
+      --color-primary: #4F46E5;
+      --color-secondary: #10B981;
+      --color-accent: #FF9800;
+      --color-dark: #222222;
+      --color-gray: #6B7280;
+      --color-light: #F3F4F6;
+      --color-white: #FFFFFF;
+
+      /* 간격 (8px scale) */
+      --spacing-1: 8px;
+      --spacing-2: 16px;
+      --spacing-3: 24px;
+      --spacing-4: 32px;
+      --spacing-5: 40px;
+      --spacing-6: 48px;
+
+      /* 기타 */
+      --radius: 8px;
+      --transition: 0.3s ease;
+    }
+
+    /* ========================================
+       완성 예시 CSS
+       ======================================== */
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: var(--spacing-6);
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .button-group {
+      display: flex;
+      gap: var(--spacing-2);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 32px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #3730a3;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--color-secondary);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #059669;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--color-primary);
+      color: white;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- ========================================
+       완성 예시 HTML
+       ======================================== -->
+
+  <div class="container">
+    <h1 style="text-align: center; margin-bottom: 32px;">기본 버튼 스타일</h1>
+    <div class="button-group">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-secondary">Secondary</button>
+      <button class="btn btn-outline">Outline</button>
+    </div>
+  </div>
+
+  <!-- 안내 배너 (하단 고정) -->
+  <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
+    <strong>✅ S006 완성 예시</strong>
+    <div style="margin-top: 8px;">
+      <a href="A-guide.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block; margin-right: 8px;">← 가이드</a>
+      <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
+    </div>
+  </div>
+
+  <script>
+    // ========================================
+    // 완성 예시 JavaScript (필요시)
+    // ========================================
+
+    console.log('✅ S006 - 기본 버튼 스타일 완성 예시');
+  </script>
+</body>
+</html>

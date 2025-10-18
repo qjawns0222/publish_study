@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S018 - 상품 카드 | 완성 예시</title>
+  <style>
+    /* 기본 리셋 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: #222;
+    }
+
+    /* CSS 변수 정의 */
+    :root {
+      /* 색상 */
+      --color-primary: #4F46E5;
+      --color-secondary: #10B981;
+      --color-accent: #FF9800;
+      --color-dark: #222222;
+      --color-gray: #6B7280;
+      --color-light: #F3F4F6;
+      --color-white: #FFFFFF;
+
+      /* 간격 (8px scale) */
+      --spacing-1: 8px;
+      --spacing-2: 16px;
+      --spacing-3: 24px;
+      --spacing-4: 32px;
+      --spacing-5: 40px;
+      --spacing-6: 48px;
+
+      /* 기타 */
+      --radius: 8px;
+      --transition: 0.3s ease;
+    }
+
+    /* ========================================
+       완성 예시 CSS
+       ======================================== */
+
+    body {
+      margin: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- ========================================
+       완성 예시 HTML
+       ======================================== -->
+
+  <div class="visual-section" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); min-height: 100vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: var(--spacing-6);">
+    <div>
+      <h1 style="font-size: 3rem; margin-bottom: var(--spacing-3);">상품 카드</h1>
+      <p style="font-size: 1.25rem; margin-bottom: var(--spacing-4);">이미지, 제목, 가격이 있는 상품 카드</p>
+      <button style="background: white; color: var(--color-primary); padding: 16px 32px; border: none; border-radius: var(--radius); font-size: 1.1rem; cursor: pointer;">더 알아보기</button>
+    </div>
+  </div>
+
+  <!-- 안내 배너 (하단 고정) -->
+  <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
+    <strong>✅ S018 완성 예시</strong>
+    <div style="margin-top: 8px;">
+      <a href="A-guide.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block; margin-right: 8px;">← 가이드</a>
+      <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
+    </div>
+  </div>
+
+  <script>
+    // ========================================
+    // 완성 예시 JavaScript (필요시)
+    // ========================================
+
+    console.log('✅ S018 - 상품 카드 완성 예시');
+  </script>
+</body>
+</html>
