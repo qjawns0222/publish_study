@@ -52,104 +52,151 @@
     <section class="guide-section">
       <h2>🎯 주요 학습 포인트</h2>
       <ul>
-        <li>시맨틱 HTML 구조</li>
-        <li>Flexbox 또는 Grid 레이아웃</li>
-        <li>반응형 디자인</li>
-        <li>요소 정렬과 배치</li>
+        <li><strong>Masonry 레이아웃</strong> (Pinterest 스타일)</li>
+        <li>CSS Grid의 <code>grid-auto-flow: dense</code></li>
+        <li><code>grid-row: span</code>으로 높이 다르게</li>
+        <li>불규칙한 카드 배치</li>
       </ul>
     </section>
 
     <section class="guide-section">
       <h2>📐 퍼블리싱 요구사항</h2>
-      <h3>기본 요구사항</h3>
+
+      <h3>HTML 구조</h3>
       <ul>
-        <li>시맨틱 태그 사용 (header, main, section, aside, footer 등)</li>
-        <li>CSS Flexbox 또는 Grid로 레이아웃 구성</li>
-        <li>요소 간 일관된 간격 유지 (8px scale)</li>
-        <li>적절한 패딩과 마진 적용</li>
+        <li>Container <code>&lt;div class="masonry"&gt;</code></li>
+        <li>12개의 카드, 각각 다른 높이 클래스</li>
+        <li>카드에 이미지 + 텍스트</li>
       </ul>
 
-      <h3>추가 요구사항</h3>
+      <h3>CSS 레이아웃</h3>
       <ul>
-        <li>모든 인터랙티브 요소에 적절한 hover 효과 적용</li>
-        <li>transition은 0.3s ease 기본값 사용</li>
-        <li>색상은 CSS 변수로 정의하여 일관성 유지</li>
-        <li>8px 간격 시스템 준수</li>
+        <li><strong>Container:</strong> <code>display: grid; grid-template-columns: repeat(3, 1fr);</code></li>
+        <li><strong>Auto rows:</strong> <code>grid-auto-rows: 100px;</code></li>
+        <li><strong>카드 높이:</strong> <code>grid-row: span 2/3/4</code>로 다양하게</li>
+        <li><strong>Gap:</strong> 16px</li>
       </ul>
+
+      <h3>스타일링 세부사항</h3>
+      <ul>
+        <li>카드: 배경 흰색, 둥근 모서리, 그림자</li>
+        <li>이미지: object-fit: cover, 전체 너비</li>
+        <li>카드 클래스: .tall (span 3), .medium (span 2), .short (span 1)</li>
+        <li>Grid auto-flow: dense로 빈 공간 채우기</li>
+      </ul>
+
+
+
 
       <h3>🎨 인터랙션 상세 요구사항</h3>
       <div style="background: #E0F2FE; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 12px;">
-        <p style="margin-bottom: 12px;"><strong>클릭 가능한 요소 (링크, 버튼) hover 효과</strong></p>
-        <ul style="margin-left: 20px;">
-          <li>마우스 올리면 밑줄 또는 배경색 변화</li>
-          <li>투명도 조정 (<code>opacity: 0.8</code>) 또는 색상 변경</li>
-          <li>부드러운 전환 효과 (<code>transition: 0.3s ease</code>)</li>
-          <li>선택적으로 약간 위로 이동 (<code>transform: translateY(-2px)</code>)</li>
-        </ul>
-        <pre style="background: #fff; padding: 12px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem;"><code>/* 링크 hover 예시 */
-a:hover {
-  text-decoration: underline;
-  opacity: 0.8;
-  transition: 0.3s ease;
-}
+        <p style="margin-bottom: 12px;"><strong>⚠️ 이 예제에서 반드시 hover 효과를 적용해야 할 요소:</strong></p>
 
-/* 버튼 hover 예시 */
-.btn:hover {
-  background: #3730a3;
-  transform: translateY(-2px);
-  transition: 0.3s ease;
+        <h4 style="margin-top: 16px; color: #0369a1;">📌 인터랙션 대상</h4>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>아티클 카드</strong> (<code>.article-card</code>): 위로 이동, 그림자 강화</li>
+          <li><strong>더보기 링크</strong> (<code>.read-more</code>): 색상 변경, 화살표 이동</li>
+        </ul>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">💻 구현 코드</h4>
+        <pre style="background: #fff; padding: 16px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem; overflow-x: auto;"><code>.article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+.read-more:hover {
+  color: var(--color-primary);
+}
+.read-more:hover::after {
+  transform: translateX(5px);
+}</code></pre>
+
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; padding: 12px; border-radius: 4px; margin-top: 16px;">
+          <strong>💡 팁:</strong> 위 요소들에 <code>transition: 0.3s ease</code>를 먼저 설정한 후 hover 효과를 적용하세요!
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <h2>🎨 스타일 가이드 (이 예제 전용)</h2>
+
+      <h3>색상 팔레트</h3>
+      <ul>
+        <li><strong>Container 배경:</strong> <code>#F3F4F6</code> - Light Gray</li>
+        <li><strong>카드 배경:</strong> <code>#FFFFFF</code> - White</li>
+      </ul>
+
+      <h3>타이포그래피</h3>
+      <ul>
+        <li><strong>카드 제목:</strong> 1rem, 굵게</li>
+        <li><strong>카드 설명:</strong> 0.875rem, #666</li>
+      </ul>
+
+      <h3>간격</h3>
+      <ul>
+        <li><strong>Grid gap:</strong> 16px</li>
+        <li><strong>Auto rows:</strong> 100px</li>
+        <li><strong>카드 패딩:</strong> 16px</li>
+      </ul>
+    </section>
+
+    <section class="guide-section">
+      <h2>💡 단계별 구현 가이드</h2>
+
+      <h3>1단계: Masonry Grid</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>.masonry {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 100px;
+  grid-auto-flow: dense;
+  gap: 16px;
+  padding: 24px;
+  background: #F3F4F6;
+}</code></pre>
+      </div>
+
+      <h3>2단계: 카드 높이 변형</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+.card.short { grid-row: span 2; }
+.card.medium { grid-row: span 3; }
+.card.tall { grid-row: span 4; }</code></pre>
+      </div>
+
+      <h3>3단계: 카드 내용</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>.card img {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+}
+.card-content {
+  padding: 16px;
+}
+.card h3 {
+  margin-bottom: 8px;
+}
+.card p {
+  font-size: 0.875rem;
+  color: #666;
 }</code></pre>
       </div>
     </section>
 
     <section class="guide-section">
-      <h2>🎨 스타일 가이드</h2>
-
-      <h3>색상 팔레트</h3>
-      <div class="color-palette">
-        <div class="color-swatch" style="background: #4F46E5;">#4F46E5</div>
-        <div class="color-swatch" style="background: #10B981;">#10B981</div>
-        <div class="color-swatch" style="background: #FF9800;">#FF9800</div>
-        <div class="color-swatch" style="background: #FFFFFF; border: 2px solid #E5E7EB;">#FFFFFF</div>
-        <div class="color-swatch" style="background: #F3F4F6; color: #222;">#F3F4F6</div>
-        <div class="color-swatch" style="background: #222222; color: #FFF;">#222222</div>
-      </div>
-
-      <h3>타이포그래피</h3>
-      <ul>
-        <li>폰트: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif</li>
-        <li>제목 크기: 2.5rem (large), 2rem (medium), 1.5rem (small)</li>
-        <li>본문 크기: 1rem (기본), 0.875rem (작게)</li>
-        <li>행간: 1.6 (본문), 1.2 (제목)</li>
-      </ul>
-
-      <h3>간격 시스템 (8px scale)</h3>
-      <ul>
-        <li>8px, 16px, 24px, 32px, 40px, 48px</li>
-        <li>요소 간 간격은 위 값들을 조합하여 사용</li>
-      </ul>
-    </section>
-
-    <section class="guide-section">
-      <h2>💡 구현 힌트</h2>
-      <ul>
-        <li>먼저 HTML 구조를 시맨틱하게 작성하세요</li>
-        <li>CSS는 레이아웃 → 타이포그래피 → 색상 → 인터랙션 순서로 작성하세요</li>
-        <li>JavaScript가 필요한 경우, 이벤트 리스너를 명확히 분리하세요</li>
-        <li>크롬 개발자 도구로 요소를 검사하며 조정하세요</li>
-        <li>모바일 반응형을 고려하세요 (필요시 미디어 쿼리 사용)</li>
-      </ul>
-    </section>
-
-    <section class="guide-section">
       <h2>✅ 완성 체크리스트</h2>
       <ul>
-        <li>□ HTML 구조가 시맨틱하고 명확한가?</li>
-        <li>□ CSS 클래스명이 의미있고 일관적인가?</li>
-        <li>□ 레이아웃이 의도한 대로 배치되었는가?</li>
-        <li>□ 모든 인터랙션이 부드럽게 작동하는가?</li>
-        <li>□ 색상과 타이포그래피가 일관적인가?</li>
-        <li>□ 코드가 깔끔하고 주석이 적절한가?</li>
+        <li>□ Grid가 3열로 설정되어 있나요?</li>
+        <li>□ grid-auto-rows가 100px인가요?</li>
+        <li>□ grid-auto-flow: dense가 있나요?</li>
+        <li>□ 카드들이 다른 높이를 가지나요?</li>
+        <li>□ 빈 공간이 자동으로 채워지나요?</li>
+        <li>□ 이미지가 카드에 맞게 조정되나요?</li>
       </ul>
     </section>
 

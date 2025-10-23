@@ -45,21 +45,31 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.typing-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #F9FAFB;
+}
 
-    .animated-element {
-      animation: fadeInUp 1s ease;
-    }
+.typing-text {
+  font-size: 2rem;
+  font-family: 'Courier New', monospace;
+  color: #222;
+}
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.cursor {
+  font-size: 2rem;
+  color: #4F46E5;
+  animation: blink 0.7s infinite;
+  margin-left: 4px;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
 
   </style>
 </head>
@@ -67,13 +77,10 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="animation-demo" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--color-light);">
-    <div class="animated-element" style="background: var(--color-primary); color: white; padding: var(--spacing-5); border-radius: var(--radius); text-align: center;">
-      <h2>타이핑 효과</h2>
-      <p style="margin-top: var(--spacing-2);">텍스트가 타이핑되는 듯한 애니메이션</p>
-    </div>
-  </div>
+<div class="typing-container">
+  <h1 class="typing-text" id="typingText"></h1>
+  <span class="cursor">|</span>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -88,6 +95,50 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const text = "안녕하세요, 웹 퍼블리싱 훈련입니다!";
+const typingText = document.getElementById('typingText');
+let index = 0;
+
+function typeWriter() {
+  if (index < text.length) {
+    typingText.textContent += text.charAt(index);
+    index++;
+    setTimeout(typeWriter, 100); // 100ms 간격
+  }
+}
+
+typeWriter();
+
+// 여러 문장 순환 (선택사항)
+/*
+const texts = [
+  "안녕하세요!",
+  "웹 퍼블리싱 훈련입니다.",
+  "타이핑 효과를 만들어봅시다."
+];
+let textIndex = 0;
+
+function typeText() {
+  const currentText = texts[textIndex];
+  let charIndex = 0;
+
+  const typing = setInterval(() => {
+    if (charIndex < currentText.length) {
+      typingText.textContent += currentText.charAt(charIndex);
+      charIndex++;
+    } else {
+      clearInterval(typing);
+      setTimeout(() => {
+        typingText.textContent = '';
+        textIndex = (textIndex + 1) % texts.length;
+        typeText();
+      }, 2000);
+    }
+  }, 100);
+}
+
+typeText();
+*/
 
     console.log('✅ S070 - 타이핑 효과 완성 예시');
   </script>

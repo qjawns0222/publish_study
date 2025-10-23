@@ -45,10 +45,50 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-
-    body {
-      margin: 0;
-    }
+.pricing-table {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.pricing-card {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: 0.3s;
+}
+.pricing-card.featured {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(79,70,229,0.3);
+  position: relative;
+}
+.badge {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: #FF9800;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+}
+.price {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 20px 0;
+}
+@media (max-width: 768px) {
+  .pricing-table {
+    grid-template-columns: 1fr;
+  }
+  .pricing-card.featured {
+    transform: none;
+  }
+}
 
   </style>
 </head>
@@ -56,14 +96,41 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="visual-section" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); min-height: 100vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: var(--spacing-6);">
-    <div>
-      <h1 style="font-size: 3rem; margin-bottom: var(--spacing-3);">가격 표 (Pricing Table)</h1>
-      <p style="font-size: 1.25rem; margin-bottom: var(--spacing-4);">3단 가격 플랜 비교 테이블</p>
-      <button style="background: white; color: var(--color-primary); padding: 16px 32px; border: none; border-radius: var(--radius); font-size: 1.1rem; cursor: pointer;">더 알아보기</button>
-    </div>
+<div class="pricing-table">
+  <div class="pricing-card">
+    <h3>Basic</h3>
+    <div class="price">$9<span>/월</span></div>
+    <ul class="features">
+      <li>✓ 기능 1</li>
+      <li>✓ 기능 2</li>
+      <li>✗ 기능 3</li>
+    </ul>
+    <button class="btn-basic">선택하기</button>
   </div>
+
+  <div class="pricing-card featured">
+    <span class="badge">인기</span>
+    <h3>Pro</h3>
+    <div class="price">$29<span>/월</span></div>
+    <ul class="features">
+      <li>✓ 모든 Basic 기능</li>
+      <li>✓ 기능 3</li>
+      <li>✓ 기능 4</li>
+    </ul>
+    <button class="btn-pro">선택하기</button>
+  </div>
+
+  <div class="pricing-card">
+    <h3>Enterprise</h3>
+    <div class="price">$99<span>/월</span></div>
+    <ul class="features">
+      <li>✓ 모든 Pro 기능</li>
+      <li>✓ 우선 지원</li>
+      <li>✓ 커스텀 설정</li>
+    </ul>
+    <button class="btn-enterprise">문의하기</button>
+  </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -78,6 +145,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S057 - 가격 표 (Pricing Table) 완성 예시');
   </script>

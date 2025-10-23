@@ -45,21 +45,30 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
 
-    .animated-element {
-      animation: fadeInUp 1s ease;
-    }
+    .pulse-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #F3F4F6;
+}
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    .pulse {
+  width: 100px;
+  height: 100px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  animation: pulse 1.5s ease-in-out infinite alternate;
+}
 
   </style>
 </head>
@@ -67,13 +76,9 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="animation-demo" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--color-light);">
-    <div class="animated-element" style="background: var(--color-primary); color: white; padding: var(--spacing-5); border-radius: var(--radius); text-align: center;">
-      <h2>펄스 효과</h2>
-      <p style="margin-top: var(--spacing-2);">주기적으로 크기가 변하는 펄스 애니메이션</p>
-    </div>
-  </div>
+<div class="pulse-container">
+  <div class="pulse"></div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -88,6 +93,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S025 - 펄스 효과 완성 예시');
   </script>

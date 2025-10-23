@@ -45,15 +45,17 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+.tab-btn {
+  padding: 12px 24px;
+  background: #F3F4F6;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.tab-btn.active {
+  border-bottom-color: #4F46E5;
+}
 
   </style>
 </head>
@@ -61,14 +63,18 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">탭 인터페이스</h2>
-      <p style="margin-top: var(--spacing-2);">클릭 시 컨텐츠가 전환되는 탭</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
-    </div>
+<div class="tabs">
+  <div class="tab-buttons">
+    <button class="tab-btn active" data-tab="0">Tab 1</button>
+    <button class="tab-btn" data-tab="1">Tab 2</button>
+    <button class="tab-btn" data-tab="2">Tab 3</button>
   </div>
+  <div class="tab-contents">
+    <div class="tab-panel active">콘텐츠 1</div>
+    <div class="tab-panel">콘텐츠 2</div>
+    <div class="tab-panel">콘텐츠 3</div>
+  </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +89,20 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabPanels = document.querySelectorAll('.tab-panel');
+
+tabBtns.forEach((btn, index) => {
+  btn.addEventListener('click', () => {
+    // 모든 active 제거
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabPanels.forEach(p => p.classList.remove('active'));
+
+    // 선택된 탭 활성화
+    btn.classList.add('active');
+    tabPanels[index].classList.add('active');
+  });
+});
 
     console.log('✅ S036 - 탭 인터페이스 완성 예시');
   </script>

@@ -22,82 +22,188 @@
     </section>
 
     <section class="guide-section">
+      <h2>🖼️ 완성 예시 미리보기</h2>
+      <p>아래는 이번 예제의 완성된 모습입니다. 이 구조를 참고하여 코드를 작성해보세요!</p>
+      
+    <div style="font-family: monospace; background: #F3F4F6; padding: 24px; border-radius: 8px; margin: 16px 0;">
+      <pre style="margin: 0; line-height: 1.8; color: #222;">
+┌──────────────────────┐
+│   Component 영역     │
+│  ┌────────────────┐  │
+│  │   Icon/Image   │  │
+│  └────────────────┘  │
+│      제목 영역        │
+│     설명 텍스트       │
+│  [ 버튼 또는 액션 ]   │
+└──────────────────────┘
+      </pre>
+    </div>
+      <div style="background: #FFF9E6; border-left: 4px solid #FF9800; padding: 16px; border-radius: 4px; margin-top: 16px;">
+        <strong>💡 참고:</strong> 완성된 정답 코드는 <code>C-answer.html</code> 파일에서 확인할 수 있습니다.<br>
+        먼저 스스로 도전해보고, 막힐 때만 참고하세요!
+      </div>
+    </section>
+
+    <section class="guide-section">
       <h2>🎯 주요 학습 포인트</h2>
       <ul>
-        <li>컴포넌트 구조화</li>
-        <li>재사용 가능한 디자인</li>
-        <li>상태 표현</li>
-        <li>인터랙션</li>
+        <li><strong>SVG 아이콘</strong>을 버튼에 통합하는 방법</li>
+        <li>Flexbox로 아이콘과 텍스트 정렬 (<code>display: flex; align-items: center;</code>)</li>
+        <li><code>gap</code> 속성으로 아이콘-텍스트 간격 조정</li>
+        <li>아이콘 전용 버튼과 아이콘+텍스트 버튼 구분</li>
       </ul>
     </section>
 
     <section class="guide-section">
       <h2>📐 퍼블리싱 요구사항</h2>
-      <h3>기본 요구사항</h3>
+
+      <h3>HTML 구조</h3>
       <ul>
-        <li>BEM 네이밍 또는 의미있는 클래스명 사용</li>
-        <li>컴포넌트 내부 요소들의 관계 명확히 표현</li>
-        <li>호버, 액티브 등 다양한 상태 스타일 정의</li>
-        <li>일관된 디자인 토큰 사용</li>
+        <li>3가지 아이콘 버튼 생성 (다운로드, 좋아요, 공유)</li>
+        <li>각 버튼에 SVG 아이콘 + 텍스트 포함</li>
+        <li>SVG는 <code>&lt;svg&gt;</code> 태그 직접 사용 또는 이모지로 대체</li>
+        <li>아이콘 전용 버튼 1개 추가 (텍스트 없이 아이콘만)</li>
       </ul>
 
-      <h3>추가 요구사항</h3>
+      <h3>CSS 레이아웃</h3>
       <ul>
-        <li>모든 인터랙티브 요소에 적절한 hover 효과 적용</li>
-        <li>transition은 0.3s ease 기본값 사용</li>
-        <li>색상은 CSS 변수로 정의하여 일관성 유지</li>
-        <li>8px 간격 시스템 준수</li>
+        <li><strong>버튼:</strong> <code>display: flex; align-items: center; gap: 8px;</code></li>
+        <li><strong>버튼:</strong> 패딩 12px 20px, 배경 Primary 색상</li>
+        <li><strong>아이콘:</strong> 크기 20px × 20px</li>
+        <li><strong>아이콘 전용 버튼:</strong> 정사각형 (40px × 40px), 중앙 정렬</li>
       </ul>
+
+      <h3>스타일링 세부사항</h3>
+      <ul>
+        <li>버튼 hover: 배경색 진하게, 그림자 추가</li>
+        <li>아이콘 색상: 흰색 (버튼 배경에 맞춰)</li>
+        <li>버튼 둥근 모서리: 8px</li>
+        <li>아이콘 전용 버튼: border-radius: 50% (원형)</li>
+      </ul>
+
+
+
+
+      <h3>🎨 인터랙션 상세 요구사항</h3>
+      <div style="background: #E0F2FE; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 12px;">
+        <p style="margin-bottom: 12px;"><strong>⚠️ 이 예제에서 반드시 hover 효과를 적용해야 할 요소:</strong></p>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">📌 인터랙션 대상</h4>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>아이콘 버튼</strong> (<code>.icon-btn</code>): 배경색 변경, 회전 효과</li>
+        </ul>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">💻 구현 코드</h4>
+        <pre style="background: #fff; padding: 16px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem; overflow-x: auto;"><code>.icon-btn {
+  transition: 0.3s ease;
+}
+.icon-btn:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: rotate(15deg);
+}</code></pre>
+
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; padding: 12px; border-radius: 4px; margin-top: 16px;">
+          <strong>💡 팁:</strong> 위 요소들에 <code>transition: 0.3s ease</code>를 먼저 설정한 후 hover 효과를 적용하세요!
+        </div>
+      </div>
     </section>
 
     <section class="guide-section">
-      <h2>🎨 스타일 가이드</h2>
+      <h2>🎨 스타일 가이드 (이 예제 전용)</h2>
 
       <h3>색상 팔레트</h3>
-      <div class="color-palette">
-        <div class="color-swatch" style="background: #4F46E5;">#4F46E5</div>
-        <div class="color-swatch" style="background: #10B981;">#10B981</div>
-        <div class="color-swatch" style="background: #FF9800;">#FF9800</div>
-        <div class="color-swatch" style="background: #FFFFFF; border: 2px solid #E5E7EB;">#FFFFFF</div>
-        <div class="color-swatch" style="background: #F3F4F6; color: #222;">#F3F4F6</div>
-        <div class="color-swatch" style="background: #222222; color: #FFF;">#222222</div>
-      </div>
+      <ul>
+        <li><strong>버튼 배경:</strong> <code>#4F46E5</code> - Primary</li>
+        <li><strong>버튼 hover:</strong> <code>#3730a3</code> - Dark Indigo</li>
+        <li><strong>아이콘/텍스트:</strong> <code>#FFFFFF</code> - White</li>
+      </ul>
 
       <h3>타이포그래피</h3>
       <ul>
-        <li>폰트: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif</li>
-        <li>제목 크기: 2.5rem (large), 2rem (medium), 1.5rem (small)</li>
-        <li>본문 크기: 1rem (기본), 0.875rem (작게)</li>
-        <li>행간: 1.6 (본문), 1.2 (제목)</li>
+        <li><strong>버튼 텍스트:</strong> 1rem, 중간 굵기 (font-weight: 500)</li>
       </ul>
 
-      <h3>간격 시스템 (8px scale)</h3>
+      <h3>간격</h3>
       <ul>
-        <li>8px, 16px, 24px, 32px, 40px, 48px</li>
-        <li>요소 간 간격은 위 값들을 조합하여 사용</li>
+        <li><strong>버튼 패딩:</strong> 12px 20px</li>
+        <li><strong>아이콘-텍스트 간격 (gap):</strong> 8px</li>
+        <li><strong>아이콘 크기:</strong> 20px × 20px</li>
+        <li><strong>아이콘 전용 버튼 크기:</strong> 40px × 40px</li>
       </ul>
     </section>
 
     <section class="guide-section">
-      <h2>💡 구현 힌트</h2>
-      <ul>
-        <li>먼저 HTML 구조를 시맨틱하게 작성하세요</li>
-        <li>CSS는 레이아웃 → 타이포그래피 → 색상 → 인터랙션 순서로 작성하세요</li>
-        <li>JavaScript가 필요한 경우, 이벤트 리스너를 명확히 분리하세요</li>
-        <li>크롬 개발자 도구로 요소를 검사하며 조정하세요</li>
-        <li>모바일 반응형을 고려하세요 (필요시 미디어 쿼리 사용)</li>
-      </ul>
+      <h2>💡 단계별 구현 가이드</h2>
+
+      <h3>1단계: HTML 구조</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>&lt;div class="button-group"&gt;
+  &lt;button class="icon-btn"&gt;
+    &lt;svg width="20" height="20"&gt;&lt;!-- SVG 코드 --&gt;&lt;/svg&gt;
+    &lt;span&gt;다운로드&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="icon-btn"&gt;
+    &lt;svg width="20" height="20"&gt;&lt;!-- SVG 코드 --&gt;&lt;/svg&gt;
+    &lt;span&gt;좋아요&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="icon-only-btn"&gt;
+    &lt;svg width="20" height="20"&gt;&lt;!-- SVG 코드 --&gt;&lt;/svg&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+
+      <h3>2단계: 아이콘 버튼 스타일</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>.icon-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.icon-btn:hover {
+  background: #3730a3;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}</code></pre>
+      </div>
+
+      <h3>3단계: 아이콘 전용 버튼</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>.icon-only-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.icon-only-btn:hover {
+  background: #3730a3;
+}</code></pre>
+      </div>
     </section>
 
     <section class="guide-section">
       <h2>✅ 완성 체크리스트</h2>
       <ul>
-        <li>□ HTML 구조가 시맨틱하고 명확한가?</li>
-        <li>□ CSS 클래스명이 의미있고 일관적인가?</li>
-        <li>□ 레이아웃이 의도한 대로 배치되었는가?</li>
-        <li>□ 모든 인터랙션이 부드럽게 작동하는가?</li>
-        <li>□ 색상과 타이포그래피가 일관적인가?</li>
-        <li>□ 코드가 깔끔하고 주석이 적절한가?</li>
+        <li>□ 버튼이 Flexbox로 설정되어 있나요?</li>
+        <li>□ 아이콘과 텍스트가 <code>gap: 8px</code>로 간격이 있나요?</li>
+        <li>□ 아이콘 크기가 20px × 20px인가요?</li>
+        <li>□ 버튼 배경이 Primary 색상(#4F46E5)인가요?</li>
+        <li>□ 버튼 hover 시 배경색이 진해지나요?</li>
+        <li>□ 아이콘 전용 버튼이 원형(border-radius: 50%)인가요?</li>
+        <li>□ 아이콘 전용 버튼 크기가 40px × 40px인가요?</li>
+        <li>□ 아이콘과 텍스트가 수직 중앙 정렬되어 있나요?</li>
       </ul>
     </section>
 

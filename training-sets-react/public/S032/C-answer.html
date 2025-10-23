@@ -45,11 +45,35 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.container {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header header"
+    "left main right"
+    "footer footer footer";
+  min-height: 100vh;
+}
 
-    body {
-      margin: 0;
-      background: var(--color-light);
-    }
+    header { grid-area: header; }
+.left-sidebar { grid-area: left; }
+main { grid-area: main; }
+.right-sidebar { grid-area: right; }
+footer { grid-area: footer; }
+
+header, footer {
+  background: var(--color-primary);
+  color: white;
+  padding: 24px;
+}
+.left-sidebar, .right-sidebar {
+  background: #F3F4F6;
+  padding: 24px;
+}
+main {
+  padding: 48px;
+}
 
   </style>
 </head>
@@ -57,16 +81,10 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="layout-example">
-    <header style="background: var(--color-primary); color: white; padding: var(--spacing-3); text-align: center;">
-      <h2>Holy Grail 레이아웃</h2>
-    </header>
-    <main style="padding: var(--spacing-6); max-width: 1200px; margin: 0 auto;">
-      <p>헤더, 푸터, 좌우 사이드바, 메인 영역 구조</p>
-      <p style="margin-top: 16px;">이 예제는 레이아웃 구조를 연습합니다.</p>
-    </main>
-  </div>
+<div class="container">
+  <div class="left-sidebar"></div>
+  <div class="right-sidebar"></div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -81,6 +99,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S032 - Holy Grail 레이아웃 완성 예시');
   </script>

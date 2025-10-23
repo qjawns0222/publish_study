@@ -46,14 +46,6 @@
        완성 예시 CSS
        ======================================== */
 
-    .form-container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
 
   </style>
 </head>
@@ -61,21 +53,14 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="form-container">
-    <form style="background: white; padding: var(--spacing-5); border-radius: var(--radius); max-width: 500px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-      <h2 style="color: var(--color-dark); margin-bottom: var(--spacing-3);">서명 패드</h2>
-      <div style="margin-bottom: var(--spacing-3);">
-        <label style="display: block; margin-bottom: 8px; font-weight: 500;">이름</label>
-        <input type="text" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--radius);" placeholder="이름을 입력하세요">
-      </div>
-      <div style="margin-bottom: var(--spacing-3);">
-        <label style="display: block; margin-bottom: 8px; font-weight: 500;">이메일</label>
-        <input type="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--radius);" placeholder="email@example.com">
-      </div>
-      <button type="submit" style="width: 100%; background: var(--color-primary); color: white; padding: 12px; border: none; border-radius: var(--radius); cursor: pointer; font-size: 1rem;">제출하기</button>
-    </form>
+<div class="signature-pad">
+  <canvas id="signatureCanvas" width="500" height="300"></canvas>
+  <div class="controls">
+    <button onclick="clearSignature()">지우기</button>
+    <button onclick="saveSignature()">저장</button>
   </div>
+  <img id="savedSignature" style="display: none;">
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -90,6 +75,105 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const canvas = document.getElementById('signatureCanvas');
+const ctx = canvas.getContext('2d');
+
+let isDrawing = false;
+let lastX = 0;
+let lastY = 0;
+
+// 캔버스 배경
+ctx.fillStyle = 'white';
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+// 선 스타일
+ctx.strokeStyle = '#000';
+ctx.lineWidth = 2;
+ctx.lineCap = 'round';
+ctx.lineJoin = 'round';
+
+// 마우스 이벤트
+canvas.addEventListener('mousedown', startDrawing);
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', stopDrawing);
+canvas.addEventListener('mouseout', stopDrawing);
+
+// 터치 이벤트
+canvas.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  const touch = e.touches[0];
+  const rect = canvas.getBoundingClientRect();
+  lastX = touch.clientX - rect.left;
+  lastY = touch.clientY - rect.top;
+  isDrawing = true;
+});
+
+canvas.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  if (!isDrawing) return;
+
+  const touch = e.touches[0];
+  const rect = canvas.getBoundingClientRect();
+  const x = touch.clientX - rect.left;
+  const y = touch.clientY - rect.top;
+
+  ctx.beginPath();
+  ctx.moveTo(lastX, lastY);
+  ctx.lineTo(x, y);
+  ctx.stroke();
+
+  lastX = x;
+  lastY = y;
+});
+
+canvas.addEventListener('touchend', () => {
+  isDrawing = false;
+});
+
+function startDrawing(e) {
+  isDrawing = true;
+  const rect = canvas.getBoundingClientRect();
+  lastX = e.clientX - rect.left;
+  lastY = e.clientY - rect.top;
+}
+
+function draw(e) {
+  if (!isDrawing) return;
+
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  ctx.beginPath();
+  ctx.moveTo(lastX, lastY);
+  ctx.lineTo(x, y);
+  ctx.stroke();
+
+  lastX = x;
+  lastY = y;
+}
+
+function stopDrawing() {
+  isDrawing = false;
+}
+
+function clearSignature() {
+  ctx.fillStyle = 'white';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function saveSignature() {
+  const dataURL = canvas.toDataURL('image/png');
+  const img = document.getElementById('savedSignature');
+  img.src = dataURL;
+  img.style.display = 'block';
+
+  // 다운로드 링크 생성
+  const link = document.createElement('a');
+  link.download = 'signature.png';
+  link.href = dataURL;
+  link.click();
+}
 
     console.log('✅ S090 - 서명 패드 완성 예시');
   </script>

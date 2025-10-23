@@ -45,15 +45,36 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+.card-flip {
+  perspective: 1000px;
+  width: 300px;
+  height: 400px;
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+.card-flip:hover .card-inner {
+  transform: rotateY(180deg);
+}
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  padding: 32px;
+}
+.card-front {
+  background: #4F46E5;
+}
+.card-back {
+  background: #10B981;
+  transform: rotateY(180deg);
+}
 
   </style>
 </head>
@@ -61,14 +82,18 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">카드 플립</h2>
-      <p style="margin-top: var(--spacing-2);">Hover 시 뒤집히는 카드</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
+<div class="card-flip">
+  <div class="card-inner">
+    <div class="card-front">
+      <h3>앞면</h3>
+      <p>Hover me!</p>
+    </div>
+    <div class="card-back">
+      <h3>뒷면</h3>
+      <p>뒷면 내용입니다.</p>
     </div>
   </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +108,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S043 - 카드 플립 완성 예시');
   </script>

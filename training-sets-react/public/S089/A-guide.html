@@ -22,82 +22,203 @@
     </section>
 
     <section class="guide-section">
+      <h2>🖼️ 완성 예시 미리보기</h2>
+      <p>아래는 이번 예제의 완성된 모습입니다. 이 구조를 참고하여 코드를 작성해보세요!</p>
+      
+    <div style="font-family: monospace; background: #F3F4F6; padding: 24px; border-radius: 8px; margin: 16px 0;">
+      <pre style="margin: 0; line-height: 1.8; color: #222;">
+┌────────────────────────┐
+│      폼 제목/설명       │
+├────────────────────────┤
+│ Label: [Input Field]   │
+│ Label: [Input Field]   │
+│ Label: [Select/Radio]  │
+├────────────────────────┤
+│    [제출 버튼]          │
+└────────────────────────┘
+      </pre>
+    </div>
+      <div style="background: #FFF9E6; border-left: 4px solid #FF9800; padding: 16px; border-radius: 4px; margin-top: 16px;">
+        <strong>💡 참고:</strong> 완성된 정답 코드는 <code>C-answer.html</code> 파일에서 확인할 수 있습니다.<br>
+        먼저 스스로 도전해보고, 막힐 때만 참고하세요!
+      </div>
+    </section>
+
+    <section class="guide-section">
       <h2>🎯 주요 학습 포인트</h2>
       <ul>
-        <li>폼 구조</li>
-        <li>입력 검증</li>
-        <li>사용자 피드백</li>
-        <li>접근성</li>
+        <li><strong>폼 빌더</strong></li>
+        <li><strong>동적 필드 추가</strong></li>
+        <li>JSON 데이터 구조</li>
+        <li>드래그 앤 드롭 (선택사항)</li>
       </ul>
     </section>
 
     <section class="guide-section">
       <h2>📐 퍼블리싱 요구사항</h2>
-      <h3>기본 요구사항</h3>
+
+      <h3>HTML 구조</h3>
       <ul>
-        <li>label과 input의 올바른 연결 (for, id)</li>
-        <li>적절한 input type 사용</li>
-        <li>폼 검증 상태 표시 (success, error)</li>
-        <li>placeholder와 도움말 텍스트 제공</li>
+        <li>필드 타입 선택 (텍스트, 이메일, 체크박스 등)</li>
+        <li>필드 추가 버튼</li>
+        <li>미리보기 영역</li>
+        <li>폼 데이터 출력</li>
       </ul>
 
-      <h3>추가 요구사항</h3>
+      <h3>CSS 레이아웃</h3>
       <ul>
-        <li>모든 인터랙티브 요소에 적절한 hover 효과 적용</li>
-        <li>transition은 0.3s ease 기본값 사용</li>
-        <li>색상은 CSS 변수로 정의하여 일관성 유지</li>
-        <li>8px 간격 시스템 준수</li>
+        <li><strong>필드 목록:</strong> 카드 스타일</li>
+        <li><strong>삭제 버튼:</strong> 각 필드마다</li>
       </ul>
+
+      <h3>스타일링 세부사항</h3>
+      <ul>
+        <li>필드 추가 시 동적으로 DOM 생성</li>
+        <li>각 필드 설정 (라벨, placeholder, 필수 여부)</li>
+        <li>필드 순서 변경 (드래그)</li>
+        <li>JSON으로 폼 구조 저장</li>
+      </ul>
+
+
+
+
+      <h3>🎨 인터랙션 상세 요구사항</h3>
+      <div style="background: #E0F2FE; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 12px;">
+        <p style="margin-bottom: 12px;"><strong>⚠️ 이 예제에서 반드시 hover 효과를 적용해야 할 요소:</strong></p>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">📌 인터랙션 대상</h4>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>필드 추가 버튼</strong> (<code>.add-field-btn</code>): 배경색 변경</li>
+          <li><strong>필드 항목</strong> (<code>.field-item</code>): 테두리 강조</li>
+        </ul>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">💻 구현 코드</h4>
+        <pre style="background: #fff; padding: 16px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem; overflow-x: auto;"><code>.add-field-btn:hover {
+  background: var(--color-primary);
+  color: white;
+}
+.field-item:hover {
+  border-color: var(--color-primary);
+}</code></pre>
+
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; padding: 12px; border-radius: 4px; margin-top: 16px;">
+          <strong>💡 팁:</strong> 위 요소들에 <code>transition: 0.3s ease</code>를 먼저 설정한 후 hover 효과를 적용하세요!
+        </div>
+      </div>
     </section>
 
     <section class="guide-section">
-      <h2>🎨 스타일 가이드</h2>
+      <h2>🎨 스타일 가이드 (이 예제 전용)</h2>
 
       <h3>색상 팔레트</h3>
-      <div class="color-palette">
-        <div class="color-swatch" style="background: #4F46E5;">#4F46E5</div>
-        <div class="color-swatch" style="background: #10B981;">#10B981</div>
-        <div class="color-swatch" style="background: #FF9800;">#FF9800</div>
-        <div class="color-swatch" style="background: #FFFFFF; border: 2px solid #E5E7EB;">#FFFFFF</div>
-        <div class="color-swatch" style="background: #F3F4F6; color: #222;">#F3F4F6</div>
-        <div class="color-swatch" style="background: #222222; color: #FFF;">#222222</div>
-      </div>
+      <ul>
+        <li><strong>필드 배경:</strong> <code>#FFFFFF</code> - White</li>
+        <li><strong>추가 버튼:</strong> <code>#4F46E5</code> - Primary</li>
+        <li><strong>삭제 버튼:</strong> <code>#EF4444</code> - Red</li>
+      </ul>
 
       <h3>타이포그래피</h3>
       <ul>
-        <li>폰트: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif</li>
-        <li>제목 크기: 2.5rem (large), 2rem (medium), 1.5rem (small)</li>
-        <li>본문 크기: 1rem (기본), 0.875rem (작게)</li>
-        <li>행간: 1.6 (본문), 1.2 (제목)</li>
+
       </ul>
 
-      <h3>간격 시스템 (8px scale)</h3>
+      <h3>간격</h3>
       <ul>
-        <li>8px, 16px, 24px, 32px, 40px, 48px</li>
-        <li>요소 간 간격은 위 값들을 조합하여 사용</li>
+        <li><strong>필드 간격:</strong> 16px</li>
       </ul>
     </section>
 
     <section class="guide-section">
-      <h2>💡 구현 힌트</h2>
-      <ul>
-        <li>먼저 HTML 구조를 시맨틱하게 작성하세요</li>
-        <li>CSS는 레이아웃 → 타이포그래피 → 색상 → 인터랙션 순서로 작성하세요</li>
-        <li>JavaScript가 필요한 경우, 이벤트 리스너를 명확히 분리하세요</li>
-        <li>크롬 개발자 도구로 요소를 검사하며 조정하세요</li>
-        <li>모바일 반응형을 고려하세요 (필요시 미디어 쿼리 사용)</li>
-      </ul>
+      <h2>💡 단계별 구현 가이드</h2>
+
+      <h3>1단계: HTML</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>&lt;div class="form-builder"&gt;
+  &lt;div class="builder-controls"&gt;
+    &lt;select id="fieldType"&gt;
+      &lt;option value="text"&gt;텍스트&lt;/option&gt;
+      &lt;option value="email"&gt;이메일&lt;/option&gt;
+      &lt;option value="number"&gt;숫자&lt;/option&gt;
+      &lt;option value="textarea"&gt;긴 텍스트&lt;/option&gt;
+      &lt;option value="checkbox"&gt;체크박스&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;button onclick="addField()"&gt;필드 추가&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-preview" id="formPreview"&gt;&lt;/div&gt;
+
+  &lt;button onclick="exportForm()"&gt;JSON 출력&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+
+      <h3>2단계: JavaScript</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>let fields = [];
+let fieldIdCounter = 0;
+
+function addField() {
+  const type = document.getElementById('fieldType').value;
+  const label = prompt('필드 라벨:') || '새 필드';
+
+  const field = {
+    id: fieldIdCounter++,
+    type: type,
+    label: label,
+    required: confirm('필수 입력 필드인가요?')
+  };
+
+  fields.push(field);
+  renderForm();
+}
+
+function removeField(id) {
+  fields = fields.filter(f =&gt; f.id !== id);
+  renderForm();
+}
+
+function renderForm() {
+  const preview = document.getElementById('formPreview');
+
+  preview.innerHTML = fields.map(field =&gt; `
+    &lt;div class="form-field" data-id="${field.id}"&gt;
+      &lt;label&gt;
+        ${field.label}
+        ${field.required ? '&lt;span style="color: red"&gt;*&lt;/span&gt;' : ''}
+      &lt;/label&gt;
+      ${renderInput(field)}
+      &lt;button onclick="removeField(${field.id})" class="delete-btn"&gt;삭제&lt;/button&gt;
+    &lt;/div&gt;
+  `).join('');
+}
+
+function renderInput(field) {
+  switch(field.type) {
+    case 'textarea':
+      return `&lt;textarea placeholder="${field.label}" ${field.required ? 'required' : ''}&gt;&lt;/textarea&gt;`;
+    case 'checkbox':
+      return `&lt;input type="checkbox" ${field.required ? 'required' : ''}&gt;`;
+    default:
+      return `&lt;input type="${field.type}" placeholder="${field.label}" ${field.required ? 'required' : ''}&gt;`;
+  }
+}
+
+function exportForm() {
+  const json = JSON.stringify(fields, null, 2);
+  alert(json);
+  console.log(json);
+}</code></pre>
+      </div>
     </section>
 
     <section class="guide-section">
       <h2>✅ 완성 체크리스트</h2>
       <ul>
-        <li>□ HTML 구조가 시맨틱하고 명확한가?</li>
-        <li>□ CSS 클래스명이 의미있고 일관적인가?</li>
-        <li>□ 레이아웃이 의도한 대로 배치되었는가?</li>
-        <li>□ 모든 인터랙션이 부드럽게 작동하는가?</li>
-        <li>□ 색상과 타이포그래피가 일관적인가?</li>
-        <li>□ 코드가 깔끔하고 주석이 적절한가?</li>
+        <li>□ 필드를 동적으로 추가할 수 있나요?</li>
+        <li>□ 다양한 필드 타입이 지원되나요?</li>
+        <li>□ 필드 삭제가 되나요?</li>
+        <li>□ 필수 입력 표시가 있나요?</li>
+        <li>□ JSON으로 출력이 되나요?</li>
+        <li>□ 미리보기가 정확한가요?</li>
       </ul>
     </section>
 

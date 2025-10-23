@@ -43,104 +43,150 @@
     <section class="guide-section">
       <h2>🎯 주요 학습 포인트</h2>
       <ul>
-        <li>CSS 애니메이션</li>
-        <li>Transition</li>
-        <li>Transform</li>
-        <li>성능 최적화</li>
+        <li><strong>모핑 효과</strong> (Morphing)</li>
+        <li><strong>SVG path 변형</strong></li>
+        <li><strong>transition</strong></li>
+        <li>d 속성 애니메이션</li>
       </ul>
     </section>
 
     <section class="guide-section">
       <h2>📐 퍼블리싱 요구사항</h2>
-      <h3>기본 요구사항</h3>
+
+      <h3>HTML 구조</h3>
       <ul>
-        <li>CSS transition 또는 animation 사용</li>
-        <li>적절한 duration과 easing 함수</li>
-        <li>transform과 opacity만 애니메이션 (성능)</li>
-        <li>접근성 고려 (prefers-reduced-motion)</li>
+        <li>svg 태그</li>
+        <li>path 요소 (변형될 도형)</li>
       </ul>
 
-      <h3>추가 요구사항</h3>
+      <h3>CSS 레이아웃</h3>
       <ul>
-        <li>모든 인터랙티브 요소에 적절한 hover 효과 적용</li>
-        <li>transition은 0.3s ease 기본값 사용</li>
-        <li>색상은 CSS 변수로 정의하여 일관성 유지</li>
-        <li>8px 간격 시스템 준수</li>
+        <li><strong>transition:</strong> d 속성 (CSS 또는 JS)</li>
       </ul>
+
+      <h3>스타일링 세부사항</h3>
+      <ul>
+        <li>여러 도형의 path d 값 준비</li>
+        <li>클릭 시 d 속성 변경</li>
+        <li>CSS transition 또는 Web Animations API</li>
+        <li>원 → 사각형 → 별 등</li>
+      </ul>
+
+
+
 
       <h3>🎨 인터랙션 상세 요구사항</h3>
       <div style="background: #E0F2FE; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 12px;">
-        <p style="margin-bottom: 12px;"><strong>클릭 가능한 요소 (링크, 버튼) hover 효과</strong></p>
-        <ul style="margin-left: 20px;">
-          <li>마우스 올리면 밑줄 또는 배경색 변화</li>
-          <li>투명도 조정 (<code>opacity: 0.8</code>) 또는 색상 변경</li>
-          <li>부드러운 전환 효과 (<code>transition: 0.3s ease</code>)</li>
-          <li>선택적으로 약간 위로 이동 (<code>transform: translateY(-2px)</code>)</li>
+        <p style="margin-bottom: 12px;"><strong>⚠️ 이 예제에서 반드시 hover 효과를 적용해야 할 요소:</strong></p>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">📌 인터랙션 대상</h4>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>모핑 도형</strong> (<code>.morph-shape</code>): 도형 변형</li>
         </ul>
-        <pre style="background: #fff; padding: 12px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem;"><code>/* 링크 hover 예시 */
-a:hover {
-  text-decoration: underline;
-  opacity: 0.8;
-  transition: 0.3s ease;
+
+        <h4 style="margin-top: 16px; color: #0369a1;">💻 구현 코드</h4>
+        <pre style="background: #fff; padding: 16px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem; overflow-x: auto;"><code>.morph-shape {
+  animation: morph 5s ease infinite;
+}
+@keyframes morph {
+  0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
+  50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+  75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
+}</code></pre>
+
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; padding: 12px; border-radius: 4px; margin-top: 16px;">
+          <strong>💡 팁:</strong> 위 요소들에 <code>transition: 0.3s ease</code>를 먼저 설정한 후 hover 효과를 적용하세요!
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <h2>🎨 스타일 가이드 (이 예제 전용)</h2>
+
+      <h3>색상 팔레트</h3>
+      <ul>
+        <li><strong>fill:</strong> <code>#4F46E5</code> - Primary</li>
+      </ul>
+
+      <h3>타이포그래피</h3>
+      <ul>
+
+      </ul>
+
+      <h3>간격</h3>
+      <ul>
+
+      </ul>
+    </section>
+
+    <section class="guide-section">
+      <h2>💡 단계별 구현 가이드</h2>
+
+      <h3>1단계: HTML</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>&lt;svg width="400" height="400" viewBox="0 0 400 400"&gt;
+  &lt;path id="morphPath" d="M 200,100 A 100,100 0 1,1 199.9,100" fill="#4F46E5"&gt;&lt;/path&gt;
+&lt;/svg&gt;
+&lt;button onclick="morphToSquare()"&gt;사각형&lt;/button&gt;
+&lt;button onclick="morphToCircle()"&gt;원&lt;/button&gt;
+&lt;button onclick="morphToStar()"&gt;별&lt;/button&gt;</code></pre>
+      </div>
+
+      <h3>2단계: JavaScript</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>const path = document.getElementById('morphPath');
+
+const shapes = {
+  circle: 'M 200,100 A 100,100 0 1,1 199.9,100',
+  square: 'M 100,100 L 300,100 L 300,300 L 100,300 Z',
+  star: 'M 200,100 L 220,180 L 300,180 L 235,230 L 260,310 L 200,260 L 140,310 L 165,230 L 100,180 L 180,180 Z'
+};
+
+function morphTo(shape) {
+  path.style.transition = 'd 0.5s ease';
+  path.setAttribute('d', shapes[shape]);
 }
 
-/* 버튼 hover 예시 */
-.btn:hover {
-  background: #3730a3;
-  transform: translateY(-2px);
-  transition: 0.3s ease;
+function morphToCircle() {
+  morphTo('circle');
+}
+
+function morphToSquare() {
+  morphTo('square');
+}
+
+function morphToStar() {
+  morphTo('star');
+}
+
+// CSS로 d 전환 (일부 브라우저만 지원)
+// 또는 Web Animations API 사용
+function morphWithAnimation(newPath) {
+  path.animate([
+    { d: path.getAttribute('d') },
+    { d: newPath }
+  ], {
+    duration: 500,
+    easing: 'ease',
+    fill: 'forwards'
+  });
+
+  setTimeout(() =&gt; {
+    path.setAttribute('d', newPath);
+  }, 500);
 }</code></pre>
       </div>
     </section>
 
     <section class="guide-section">
-      <h2>🎨 스타일 가이드</h2>
-
-      <h3>색상 팔레트</h3>
-      <div class="color-palette">
-        <div class="color-swatch" style="background: #4F46E5;">#4F46E5</div>
-        <div class="color-swatch" style="background: #10B981;">#10B981</div>
-        <div class="color-swatch" style="background: #FF9800;">#FF9800</div>
-        <div class="color-swatch" style="background: #FFFFFF; border: 2px solid #E5E7EB;">#FFFFFF</div>
-        <div class="color-swatch" style="background: #F3F4F6; color: #222;">#F3F4F6</div>
-        <div class="color-swatch" style="background: #222222; color: #FFF;">#222222</div>
-      </div>
-
-      <h3>타이포그래피</h3>
-      <ul>
-        <li>폰트: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif</li>
-        <li>제목 크기: 2.5rem (large), 2rem (medium), 1.5rem (small)</li>
-        <li>본문 크기: 1rem (기본), 0.875rem (작게)</li>
-        <li>행간: 1.6 (본문), 1.2 (제목)</li>
-      </ul>
-
-      <h3>간격 시스템 (8px scale)</h3>
-      <ul>
-        <li>8px, 16px, 24px, 32px, 40px, 48px</li>
-        <li>요소 간 간격은 위 값들을 조합하여 사용</li>
-      </ul>
-    </section>
-
-    <section class="guide-section">
-      <h2>💡 구현 힌트</h2>
-      <ul>
-        <li>먼저 HTML 구조를 시맨틱하게 작성하세요</li>
-        <li>CSS는 레이아웃 → 타이포그래피 → 색상 → 인터랙션 순서로 작성하세요</li>
-        <li>JavaScript가 필요한 경우, 이벤트 리스너를 명확히 분리하세요</li>
-        <li>크롬 개발자 도구로 요소를 검사하며 조정하세요</li>
-        <li>모바일 반응형을 고려하세요 (필요시 미디어 쿼리 사용)</li>
-      </ul>
-    </section>
-
-    <section class="guide-section">
       <h2>✅ 완성 체크리스트</h2>
       <ul>
-        <li>□ HTML 구조가 시맨틱하고 명확한가?</li>
-        <li>□ CSS 클래스명이 의미있고 일관적인가?</li>
-        <li>□ 레이아웃이 의도한 대로 배치되었는가?</li>
-        <li>□ 모든 인터랙션이 부드럽게 작동하는가?</li>
-        <li>□ 색상과 타이포그래피가 일관적인가?</li>
-        <li>□ 코드가 깔끔하고 주석이 적절한가?</li>
+        <li>□ 도형이 다른 도형으로 변하나요?</li>
+        <li>□ 변형이 부드러운가요?</li>
+        <li>□ 여러 도형 간 전환이 가능한가요?</li>
+        <li>□ SVG path가 올바르게 그려지나요?</li>
+        <li>□ 버튼 클릭 시 즉시 반응하나요?</li>
       </ul>
     </section>
 

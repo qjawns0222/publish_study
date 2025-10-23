@@ -46,14 +46,6 @@
        완성 예시 CSS
        ======================================== */
 
-    .form-container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
 
   </style>
 </head>
@@ -61,21 +53,10 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="form-container">
-    <form style="background: white; padding: var(--spacing-5); border-radius: var(--radius); max-width: 500px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-      <h2 style="color: var(--color-dark); margin-bottom: var(--spacing-3);">자동완성 검색</h2>
-      <div style="margin-bottom: var(--spacing-3);">
-        <label style="display: block; margin-bottom: 8px; font-weight: 500;">이름</label>
-        <input type="text" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--radius);" placeholder="이름을 입력하세요">
-      </div>
-      <div style="margin-bottom: var(--spacing-3);">
-        <label style="display: block; margin-bottom: 8px; font-weight: 500;">이메일</label>
-        <input type="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--radius);" placeholder="email@example.com">
-      </div>
-      <button type="submit" style="width: 100%; background: var(--color-primary); color: white; padding: 12px; border: none; border-radius: var(--radius); cursor: pointer; font-size: 1rem;">제출하기</button>
-    </form>
-  </div>
+<div class="autocomplete-search">
+  <input type="text" id="searchInput" placeholder="검색어를 입력하세요">
+  <ul class="suggestions" id="suggestions"></ul>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -90,6 +71,89 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const searchInput = document.getElementById('searchInput');
+const suggestions = document.getElementById('suggestions');
+
+const data = [
+  '자바스크립트', '자바', '파이썬', '타입스크립트',
+  'React', 'Vue', 'Angular', 'Node.js',
+  'HTML', 'CSS', 'Sass', 'Tailwind CSS'
+];
+
+let debounceTimer;
+let selectedIndex = -1;
+
+searchInput.addEventListener('input', (e) => {
+  clearTimeout(debounceTimer);
+
+  debounceTimer = setTimeout(() => {
+    const query = e.target.value.toLowerCase();
+
+    if (!query) {
+      suggestions.innerHTML = '';
+      suggestions.style.display = 'none';
+      return;
+    }
+
+    const filtered = data.filter(item =>
+      item.toLowerCase().includes(query)
+    );
+
+    if (filtered.length === 0) {
+      suggestions.innerHTML = '<li class="no-results">결과 없음</li>';
+      suggestions.style.display = 'block';
+      return;
+    }
+
+    suggestions.innerHTML = filtered.map(item =>
+      `<li class="suggestion-item">${item}</li>`
+    ).join('');
+    suggestions.style.display = 'block';
+    selectedIndex = -1;
+
+    // 클릭 이벤트
+    document.querySelectorAll('.suggestion-item').forEach((item, i) => {
+      item.addEventListener('click', () => {
+        searchInput.value = item.textContent;
+        suggestions.innerHTML = '';
+        suggestions.style.display = 'none';
+      });
+    });
+  }, 300);
+});
+
+// 키보드 네비게이션
+searchInput.addEventListener('keydown', (e) => {
+  const items = suggestions.querySelectorAll('.suggestion-item');
+
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
+    updateSelection(items);
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    selectedIndex = Math.max(selectedIndex - 1, -1);
+    updateSelection(items);
+  } else if (e.key === 'Enter' && selectedIndex >= 0) {
+    e.preventDefault();
+    searchInput.value = items[selectedIndex].textContent;
+    suggestions.innerHTML = '';
+    suggestions.style.display = 'none';
+  }
+});
+
+function updateSelection(items) {
+  items.forEach((item, i) => {
+    item.classList.toggle('selected', i === selectedIndex);
+  });
+}
+
+// 외부 클릭 시 닫기
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.autocomplete-search')) {
+    suggestions.style.display = 'none';
+  }
+});
 
     console.log('✅ S088 - 자동완성 검색 완성 예시');
   </script>

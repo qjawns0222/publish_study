@@ -45,10 +45,36 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.map-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
 
-    body {
-      margin: 0;
-    }
+svg path {
+  cursor: pointer;
+  transition: fill 0.3s;
+}
+
+svg path:hover {
+  fill: #4F46E5;
+}
+
+svg path.selected {
+  fill: #10B981;
+}
+
+.tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  pointer-events: none;
+  display: none;
+  z-index: 10;
+}
 
   </style>
 </head>
@@ -56,14 +82,14 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="visual-section" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); min-height: 100vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: var(--spacing-6);">
-    <div>
-      <h1 style="font-size: 3rem; margin-bottom: var(--spacing-3);">인터랙티브 지도</h1>
-      <p style="font-size: 1.25rem; margin-bottom: var(--spacing-4);">SVG로 구현한 클릭 가능한 지도</p>
-      <button style="background: white; color: var(--color-primary); padding: 16px 32px; border: none; border-radius: var(--radius); font-size: 1.1rem; cursor: pointer;">더 알아보기</button>
-    </div>
-  </div>
+<div class="map-container">
+  <svg id="mapSvg" viewBox="0 0 800 600">
+    <path id="region1" d="M 100,100 L 200,100 L 200,200 L 100,200 Z" fill="#D1D5DB" stroke="#FFF" stroke-width="2" data-name="서울"></path>
+    <path id="region2" d="M 220,100 L 320,100 L 320,200 L 220,200 Z" fill="#D1D5DB" stroke="#FFF" stroke-width="2" data-name="경기"></path>
+    <!-- 더 많은 지역 -->
+  </svg>
+  <div class="tooltip" id="tooltip"></div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -78,6 +104,33 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const paths = document.querySelectorAll('svg path');
+const tooltip = document.getElementById('tooltip');
+
+paths.forEach(path => {
+  path.addEventListener('mouseenter', (e) => {
+    const name = e.target.dataset.name;
+    tooltip.textContent = name;
+    tooltip.style.display = 'block';
+  });
+
+  path.addEventListener('mousemove', (e) => {
+    tooltip.style.left = e.pageX + 10 + 'px';
+    tooltip.style.top = e.pageY + 10 + 'px';
+  });
+
+  path.addEventListener('mouseleave', () => {
+    tooltip.style.display = 'none';
+  });
+
+  path.addEventListener('click', (e) => {
+    paths.forEach(p => p.classList.remove('selected'));
+    e.target.classList.add('selected');
+
+    const name = e.target.dataset.name;
+    alert(`${name} 지역이 선택되었습니다`);
+  });
+});
 
     console.log('✅ S093 - 인터랙티브 지도 완성 예시');
   </script>

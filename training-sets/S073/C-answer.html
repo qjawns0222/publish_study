@@ -45,11 +45,55 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
 
-    body {
-      margin: 0;
-      background: var(--color-light);
-    }
+.grid-overlay.active {
+  opacity: 1;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 24px;
+}
+
+.grid-column {
+  background: rgba(79, 70, 229, 0.1);
+  border-left: 1px solid rgba(79, 70, 229, 0.3);
+  border-right: 1px solid rgba(79, 70, 229, 0.3);
+}
+
+.grid-toggle {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  background: #4F46E5;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 10000;
+  transition: 0.3s;
+}
+
+.grid-toggle:hover {
+  background: #4338CA;
+}
 
   </style>
 </head>
@@ -57,16 +101,30 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
+<button class="grid-toggle" id="gridToggle">그리드 표시</button>
 
-  <div class="layout-example">
-    <header style="background: var(--color-primary); color: white; padding: var(--spacing-3); text-align: center;">
-      <h2>그리드 라인 오버레이</h2>
-    </header>
-    <main style="padding: var(--spacing-6); max-width: 1200px; margin: 0 auto;">
-      <p>디자인 그리드가 보이는 레이아웃</p>
-      <p style="margin-top: 16px;">이 예제는 레이아웃 구조를 연습합니다.</p>
-    </main>
+<div class="grid-overlay" id="gridOverlay">
+  <div class="grid-container">
+    <div class="grid-column"></div>
+    <div class="grid-column"></div>
+    <div class="grid-column"></div>
+    <div class="grid-column"></div>
+    <div class="grid-column"></div>
+    <div class="grid-column"></div>
+    <div class="grid-column"></div>
+    <div class="grid-column"></div>
+    <div class="grid-column"></div>
+    <div class="grid-column"></div>
+    <div class="grid-column"></div>
+    <div class="grid-column"></div>
   </div>
+</div>
+
+<!-- 실제 콘텐츠 -->
+<main class="content">
+  <h1>디자인 그리드 예제</h1>
+  <p>그리드 버튼을 눌러 가이드를 확인하세요</p>
+</main>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -81,6 +139,22 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const gridToggle = document.getElementById('gridToggle');
+const gridOverlay = document.getElementById('gridOverlay');
+let isGridVisible = false;
+
+gridToggle.addEventListener('click', () => {
+  isGridVisible = !isGridVisible;
+  gridOverlay.classList.toggle('active', isGridVisible);
+  gridToggle.textContent = isGridVisible ? '그리드 숨기기' : '그리드 표시';
+});
+
+// 키보드 단축키 (선택사항: G 키)
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'g' || e.key === 'G') {
+    gridToggle.click();
+  }
+});
 
     console.log('✅ S073 - 그리드 라인 오버레이 완성 예시');
   </script>

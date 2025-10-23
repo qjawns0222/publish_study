@@ -45,10 +45,48 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-
-    body {
-      margin: 0;
-    }
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.team-card {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: 0.3s;
+}
+.team-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+.role {
+  color: #6B7280;
+  font-size: 0.875rem;
+  margin: 8px 0;
+}
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
   </style>
 </head>
@@ -56,14 +94,19 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="visual-section" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); min-height: 100vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: var(--spacing-6);">
-    <div>
-      <h1 style="font-size: 3rem; margin-bottom: var(--spacing-3);">팀 멤버 소개</h1>
-      <p style="font-size: 1.25rem; margin-bottom: var(--spacing-4);">팀원 프로필 카드 갤러리</p>
-      <button style="background: white; color: var(--color-primary); padding: 16px 32px; border: none; border-radius: var(--radius); font-size: 1.1rem; cursor: pointer;">더 알아보기</button>
+<div class="team-grid">
+  <div class="team-card">
+    <img src="member1.jpg" alt="홍길동" class="profile-img">
+    <h3>홍길동</h3>
+    <p class="role">CEO & Founder</p>
+    <p class="bio">10년 경력의 비즈니스 리더</p>
+    <div class="social-links">
+      <a href="#"><i class="icon-twitter"></i></a>
+      <a href="#"><i class="icon-linkedin"></i></a>
     </div>
   </div>
+  <!-- 추가 멤버들 -->
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -78,6 +121,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S058 - 팀 멤버 소개 완성 예시');
   </script>

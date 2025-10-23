@@ -45,10 +45,55 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+<section class="hero">
+  <div class="hero-content">
+    <h1>당신의 비즈니스를 성장시키세요</h1>
+    <p>최고의 솔루션으로 빠르고 효율적인 성과를 만드세요</p>
+    <div class="cta-buttons">
+      <button class="btn-primary">시작하기</button>
+      <button class="btn-secondary">더 알아보기</button>
+    </div>
+  </div>
+</section>
 
-    body {
-      margin: 0;
-    }
+    <section class="features">
+  <h2>주요 기능</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="icon">🚀</div>
+      <h3>빠른 속도</h3>
+      <p>최적화된 성능으로 빠른 결과를 제공합니다.</p>
+    </div>
+    <!-- 추가 카드들 -->
+  </div>
+</section>
+
+    .hero {
+  min-height: 600px;
+  background: linear-gradient(135deg, #4F46E5, #10B981);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 80px 20px;
+}
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media (max-width: 768px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
   </style>
 </head>
@@ -56,14 +101,9 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="visual-section" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); min-height: 100vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: var(--spacing-6);">
-    <div>
-      <h1 style="font-size: 3rem; margin-bottom: var(--spacing-3);">랜딩 페이지</h1>
-      <p style="font-size: 1.25rem; margin-bottom: var(--spacing-4);">히어로, 기능 소개, CTA가 있는 랜딩 페이지</p>
-      <button style="background: white; color: var(--color-primary); padding: 16px 32px; border: none; border-radius: var(--radius); font-size: 1.1rem; cursor: pointer;">더 알아보기</button>
-    </div>
-  </div>
+<div class="hero">
+  <div class="feature-grid"></div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -78,6 +118,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S056 - 랜딩 페이지 완성 예시');
   </script>

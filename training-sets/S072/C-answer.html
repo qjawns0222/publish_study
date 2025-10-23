@@ -45,11 +45,76 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.split-container {
+  display: flex;
+  height: 100vh;
+}
 
-    body {
-      margin: 0;
-      background: var(--color-light);
-    }
+.split-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: flex 0.5s ease;
+  color: white;
+  text-align: center;
+}
+
+.split-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 0;
+}
+
+.left {
+  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+}
+
+.right {
+  background: linear-gradient(135deg, #10B981, #059669);
+}
+
+.panel-content {
+  position: relative;
+  z-index: 1;
+  padding: 48px;
+}
+
+.split-panel:hover {
+  flex: 2;
+}
+
+.split-panel h2 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.split-panel p {
+  font-size: 1.25rem;
+  margin-bottom: 24px;
+}
+
+.split-panel button {
+  background: white;
+  color: #222;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.split-panel button:hover {
+  transform: scale(1.05);
+}
 
   </style>
 </head>
@@ -57,16 +122,22 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="layout-example">
-    <header style="background: var(--color-primary); color: white; padding: var(--spacing-3); text-align: center;">
-      <h2>분할 화면 레이아웃</h2>
-    </header>
-    <main style="padding: var(--spacing-6); max-width: 1200px; margin: 0 auto;">
-      <p>좌우 분할 인터랙티브 레이아웃</p>
-      <p style="margin-top: 16px;">이 예제는 레이아웃 구조를 연습합니다.</p>
-    </main>
+<div class="split-container">
+  <div class="split-panel left">
+    <div class="panel-content">
+      <h2>왼쪽 패널</h2>
+      <p>마우스를 올려보세요</p>
+      <button>더 알아보기</button>
+    </div>
   </div>
+  <div class="split-panel right">
+    <div class="panel-content">
+      <h2>오른쪽 패널</h2>
+      <p>확장 효과를 경험하세요</p>
+      <button>더 알아보기</button>
+    </div>
+  </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -81,6 +152,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S072 - 분할 화면 레이아웃 완성 예시');
   </script>

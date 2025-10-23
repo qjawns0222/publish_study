@@ -15,7 +15,8 @@ Both projects share the same example data structure and design system.
 
 ### Training Sets (Vanilla)
 ```bash
-# Generate all 100 example folders with A-guide.html and B-practice.html files
+# Generate all 100 example folders with A-guide.html, B-practice.html, and C-answer.html files
+# This now automatically uses custom-guide-data-full.js for enhanced guides
 cd training-sets
 node generate-examples.js
 
@@ -49,18 +50,23 @@ npm run lint
 
 The vanilla project is a static HTML/CSS/JS learning platform:
 
-- **generate-examples.js** - Node.js script that auto-generates all 100 example folders
+- **generate-examples.js** - Node.js script that auto-generates all 100 example folders (now integrated with custom guide data)
+- **generate-answer-templates.js** - Helper module that generates default answer templates by category
+- **custom-guide-data-full.js** - Rich, example-specific guide data with detailed requirements, step-by-step implementations, and custom checklists for all 100 examples
 - **assets/js/examples-data.js** - Single source of truth for all 100 examples (array of objects)
 - **assets/js/main.js** - Main JavaScript for index.html filtering and display
 - **assets/css/common.css** - Shared styles across guide pages
 - **S001/ through S100/** - Auto-generated folders, each containing:
-  - **A-guide.html** - Learning guide with requirements, style guide, and checklist
+  - **A-guide.html** - Learning guide with requirements, style guide, and checklist (enhanced with custom data)
   - **B-practice.html** - Practice file with starter template and hints
+  - **C-answer.html** - Complete working solution with full HTML/CSS/JS implementation
 
 **Key Pattern**: The examples are NOT manually created. They're generated from `examplesData` array in `generate-examples.js`. To add/modify examples:
 1. Edit the `examplesData` array in `generate-examples.js`
-2. Run `node generate-examples.js` to regenerate all files
-3. The script uses templates (`generateGuideHTML` and `generatePracticeHTML` functions) to create consistent structure
+2. (Optional) Add detailed custom guide data for the example in `custom-guide-data-full.js`
+3. Run `node generate-examples.js` to regenerate all files
+4. The script uses templates (`generateGuideHTML`, `generatePracticeHTML`, and `generateAnswerHTML` functions) to create consistent structure
+5. Answer templates: S001-S006 have custom implementations in `answerTemplates` object; all others use category-based defaults from `generate-answer-templates.js`
 
 ### React Project Structure (training-sets-react/)
 
@@ -100,9 +106,11 @@ Both projects use the same example data structure:
 ```
 
 **Important**: If you modify examples data:
-- Update **both** `training-sets/assets/js/examples-data.js` AND `training-sets/generate-examples.js`
+- Update **both** `training-sets/assets/js/examples-data.js` AND `training-sets/generate-examples.js` (the `examplesData` array at the top)
 - Update `training-sets-react/src/data/examplesData.js` to keep them in sync
-- Regenerate vanilla examples: `cd training-sets && node generate-examples.js`
+- Note: `training-sets-react/public/generate-examples.js` is a misplaced copy - it should not be there and can be safely removed
+- For enhanced guides: Add or modify entries in `custom-guide-data-full.js` with detailed requirements, implementation steps, and checklists
+- Regenerate vanilla examples: `cd training-sets && node generate-examples.js` (automatically uses custom guide data)
 
 ## Design System
 
@@ -165,11 +173,58 @@ Use multiples of 8px: `8px, 16px, 24px, 32px, 40px, 48px`
 
 ### Modifying Example Templates
 
-The generation script has two template functions:
-- `generateGuideHTML(example)` - Creates A-guide.html with requirements and checklists
+The generation script has three template functions in `generate-examples.js`:
+- `generateGuideHTML(example)` - Creates A-guide.html with requirements and checklists (automatically uses custom-guide-data-full.js if available)
 - `generatePracticeHTML(example)` - Creates B-practice.html with starter code
+- `generateAnswerHTML(example)` - Creates C-answer.html with complete solution
 
-To modify all future generated examples, edit these functions in `generate-examples.js`.
+To modify all future generated examples, edit these functions. For answer templates:
+- Custom answers for specific examples: Add to the `answerTemplates` object in `generate-examples.js` (currently S001-S006)
+- Default category-based answers: Modify `generateDefaultAnswerByCategory()` in `generate-answer-templates.js`
+
+### Custom Guide Data System
+
+**custom-guide-data-full.js** provides rich, example-specific guide data for all 100 examples:
+- **learningPoints** - Detailed learning objectives for each example
+- **requirements.html** - Specific HTML structure requirements
+- **requirements.css** - CSS layout and styling requirements
+- **requirements.details** - Additional styling details
+- **styles** - Example-specific color palette, typography, and spacing specifications
+- **implementation** - Step-by-step code examples with explanations
+- **checklist** - Comprehensive completion checklist items
+
+**Integration**: The `generateGuideHTML()` function automatically checks for custom data for each example. If found, it uses the custom data; otherwise, it falls back to category-based templates. This provides a seamless blend of detailed custom guides where available and consistent baseline guides for all examples.
+
+## File Generation Architecture
+
+The vanilla project uses a sophisticated template-based generation system:
+
+### Unified Generation System (generate-examples.js)
+The script now uses a hybrid approach that combines the best of both worlds:
+- Uses `examplesData` array for example metadata
+- Automatically integrates `custom-guide-data-full.js` for enhanced guides where available
+- Falls back to category/difficulty-based templates when custom data is absent
+- Custom answer templates for S001-S006 in `answerTemplates` object
+- Default category-based answers for remaining examples
+
+### Generation Flow
+1. **Data Sources**:
+   - `examplesData` array in `generate-examples.js` (lines 13-116) defines all 100 examples
+   - `customGuideData` from `custom-guide-data-full.js` provides detailed guide content for all 100 examples
+2. **Category Metadata**: `categoryGuides` object defines focus areas and requirements per category
+3. **Difficulty Metadata**: `difficultyLevels` object defines complexity levels
+4. **Layout Diagrams**: `layoutDiagrams` object provides ASCII art diagrams per category
+5. **Template Generation**: Three functions create HTML files:
+   - `generateGuideHTML()` - Checks for custom guide data first, then falls back to category templates. Creates comprehensive learning guides with step-by-step implementation
+   - `generatePracticeHTML()` - Creates practice files with CSS variable setup and TODO comments
+   - `generateAnswerHTML()` - Uses either custom templates (answerTemplates object) or category defaults
+6. **File Writing**: `generateExample()` function creates folders and writes all 3 HTML files
+
+### Answer Template Strategy
+- **Custom Templates** (S001-S006): Fully hand-crafted solutions in `answerTemplates` object
+- **Category Defaults** (S007-S100): Auto-generated from `generateDefaultAnswerByCategory()` in `generate-answer-templates.js`
+- Each category (layout/component/form/visual/animation) has a default template structure
+- Default templates include CSS variables, basic styling, and a green success banner
 
 ## Technology Stack
 

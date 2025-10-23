@@ -45,10 +45,58 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-
-    body {
-      margin: 0;
-    }
+.testimonials-slider {
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+.slider-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+.testimonial-slide {
+  min-width: 100%;
+  padding: 60px;
+  text-align: center;
+  background: #F9FAFB;
+  border-radius: 12px;
+}
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+.quote {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #374151;
+  margin: 20px 0;
+}
+.quote::before {
+  content: '"';
+  font-size: 3rem;
+  color: #4F46E5;
+}
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #D1D5DB;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.dot.active {
+  background: #4F46E5;
+  transform: scale(1.2);
+}
 
   </style>
 </head>
@@ -56,14 +104,18 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="visual-section" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); min-height: 100vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: var(--spacing-6);">
-    <div>
-      <h1 style="font-size: 3rem; margin-bottom: var(--spacing-3);">고객 후기 슬라이더</h1>
-      <p style="font-size: 1.25rem; margin-bottom: var(--spacing-4);">자동 재생되는 리뷰 슬라이더</p>
-      <button style="background: white; color: var(--color-primary); padding: 16px 32px; border: none; border-radius: var(--radius); font-size: 1.1rem; cursor: pointer;">더 알아보기</button>
+<div class="testimonials-slider">
+  <div class="slider-track" id="sliderTrack">
+    <div class="testimonial-slide">
+      <img src="avatar1.jpg" class="avatar">
+      <p class="quote">"정말 훌륭한 서비스입니다!"</p>
+      <h4>홍길동</h4>
+      <p class="role">CEO, ABC Company</p>
     </div>
+    <!-- 추가 슬라이드들 -->
   </div>
+  <div class="dots" id="dots"></div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -78,6 +130,52 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+let currentSlide = 0;
+const slides = document.querySelectorAll('.testimonial-slide');
+const track = document.getElementById('sliderTrack');
+const dotsContainer = document.getElementById('dots');
+let autoplayInterval;
+
+// Dots 생성
+slides.forEach((_, i) => {
+  const dot = document.createElement('span');
+  dot.className = 'dot';
+  dot.onclick = () => goToSlide(i);
+  dotsContainer.appendChild(dot);
+});
+
+const dots = document.querySelectorAll('.dot');
+
+function goToSlide(index) {
+  currentSlide = index;
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentSlide);
+  });
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  goToSlide(currentSlide);
+}
+
+// 자동 재생 시작
+function startAutoplay() {
+  autoplayInterval = setInterval(nextSlide, 5000);
+}
+
+// Hover 시 일시정지
+document.querySelector('.testimonials-slider').addEventListener('mouseenter', () => {
+  clearInterval(autoplayInterval);
+});
+
+document.querySelector('.testimonials-slider').addEventListener('mouseleave', () => {
+  startAutoplay();
+});
+
+goToSlide(0);
+startAutoplay();
 
     console.log('✅ S065 - 고객 후기 슬라이더 완성 예시');
   </script>

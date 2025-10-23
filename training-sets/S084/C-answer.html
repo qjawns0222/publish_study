@@ -45,15 +45,37 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.code-editor {
+  display: flex;
+  background: #1E293B;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 14px;
+}
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+.line-numbers {
+  background: #0F172A;
+  color: #64748B;
+  padding: 16px 8px;
+  text-align: right;
+  user-select: none;
+  min-width: 40px;
+  line-height: 1.5;
+}
+
+#codeInput {
+  flex: 1;
+  background: #1E293B;
+  color: #E2E8F0;
+  border: none;
+  outline: none;
+  padding: 16px;
+  resize: none;
+  line-height: 1.5;
+  font-family: inherit;
+  font-size: inherit;
+}
 
   </style>
 </head>
@@ -61,14 +83,10 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">코드 에디터 UI</h2>
-      <p style="margin-top: var(--spacing-2);">신택스 하이라이팅이 있는 에디터</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
-    </div>
-  </div>
+<div class="code-editor">
+  <div class="line-numbers" id="lineNumbers"></div>
+  <textarea id="codeInput" spellcheck="false"></textarea>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +101,32 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const codeInput = document.getElementById('codeInput');
+const lineNumbers = document.getElementById('lineNumbers');
+
+function updateLineNumbers() {
+  const lines = codeInput.value.split('\n').length;
+  lineNumbers.innerHTML = Array.from({ length: lines }, (_, i) => i + 1).join('\n');
+}
+
+codeInput.addEventListener('input', updateLineNumbers);
+codeInput.addEventListener('scroll', () => {
+  lineNumbers.scrollTop = codeInput.scrollTop;
+});
+
+// 탭 키 지원
+codeInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    const start = codeInput.selectionStart;
+    const end = codeInput.selectionEnd;
+    codeInput.value = codeInput.value.substring(0, start) + '  ' + codeInput.value.substring(end);
+    codeInput.selectionStart = codeInput.selectionEnd = start + 2;
+    updateLineNumbers();
+  }
+});
+
+updateLineNumbers();
 
     console.log('✅ S084 - 코드 에디터 UI 완성 예시');
   </script>

@@ -45,11 +45,86 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.circular-menu {
+  position: fixed;
+  bottom: 48px;
+  right: 48px;
+}
 
-    body {
-      margin: 0;
-      background: var(--color-light);
-    }
+.menu-toggle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #4F46E5;
+  color: white;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 10;
+}
+
+.menu-toggle.active {
+  transform: rotate(45deg);
+}
+
+.menu-items {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.menu-item {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #10B981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: scale(0);
+  bottom: 5px;
+  right: 5px;
+}
+
+.menu-items.active .menu-item {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 원형 배치 (5개 기준) */
+.menu-items.active .menu-item:nth-child(1) {
+  transform: rotate(0deg) translateY(-120px) rotate(0deg);
+  transition-delay: 0.05s;
+}
+.menu-items.active .menu-item:nth-child(2) {
+  transform: rotate(72deg) translateY(-120px) rotate(-72deg);
+  transition-delay: 0.1s;
+}
+.menu-items.active .menu-item:nth-child(3) {
+  transform: rotate(144deg) translateY(-120px) rotate(-144deg);
+  transition-delay: 0.15s;
+}
+.menu-items.active .menu-item:nth-child(4) {
+  transform: rotate(216deg) translateY(-120px) rotate(-216deg);
+  transition-delay: 0.2s;
+}
+.menu-items.active .menu-item:nth-child(5) {
+  transform: rotate(288deg) translateY(-120px) rotate(-288deg);
+  transition-delay: 0.25s;
+}
+
+.menu-item:hover {
+  transform: scale(1.1) !important;
+  background: #059669;
+}
 
   </style>
 </head>
@@ -57,16 +132,16 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="layout-example">
-    <header style="background: var(--color-primary); color: white; padding: var(--spacing-3); text-align: center;">
-      <h2>이모션 네비게이션</h2>
-    </header>
-    <main style="padding: var(--spacing-6); max-width: 1200px; margin: 0 auto;">
-      <p>창의적인 네비게이션 패턴</p>
-      <p style="margin-top: 16px;">이 예제는 레이아웃 구조를 연습합니다.</p>
-    </main>
-  </div>
+<div class="circular-menu">
+  <button class="menu-toggle" id="menuToggle">+</button>
+  <nav class="menu-items" id="menuItems">
+    <a href="#" class="menu-item" style="--i: 0">🏠</a>
+    <a href="#" class="menu-item" style="--i: 1">👤</a>
+    <a href="#" class="menu-item" style="--i: 2">⚙️</a>
+    <a href="#" class="menu-item" style="--i: 3">📧</a>
+    <a href="#" class="menu-item" style="--i: 4">❤️</a>
+  </nav>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -81,6 +156,21 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const menuToggle = document.getElementById('menuToggle');
+const menuItems = document.getElementById('menuItems');
+
+menuToggle.addEventListener('click', () => {
+  menuToggle.classList.toggle('active');
+  menuItems.classList.toggle('active');
+});
+
+// 외부 클릭 시 메뉴 닫기
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.circular-menu')) {
+    menuToggle.classList.remove('active');
+    menuItems.classList.remove('active');
+  }
+});
 
     console.log('✅ S075 - 이모션 네비게이션 완성 예시');
   </script>

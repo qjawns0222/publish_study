@@ -22,82 +22,167 @@
     </section>
 
     <section class="guide-section">
+      <h2>🖼️ 완성 예시 미리보기</h2>
+      <p>아래는 이번 예제의 완성된 모습입니다. 이 구조를 참고하여 코드를 작성해보세요!</p>
+      
+    <div style="font-family: monospace; background: #F3F4F6; padding: 24px; border-radius: 8px; margin: 16px 0;">
+      <pre style="margin: 0; line-height: 1.8; color: #222;">
+┌─────────────────────────────────────┐
+│           HEADER (헤더)              │
+│   로고, 네비게이션, 메뉴 등          │
+└─────────────────────────────────────┘
+┌─────────────────────────────────────┐
+│                                     │
+│           MAIN (메인 영역)           │
+│        실제 콘텐츠가 들어감          │
+│                                     │
+└─────────────────────────────────────┘
+┌─────────────────────────────────────┐
+│          FOOTER (푸터)               │
+│   저작권, 링크, 소셜 미디어 등       │
+└─────────────────────────────────────┘
+      </pre>
+    </div>
+      <div style="background: #FFF9E6; border-left: 4px solid #FF9800; padding: 16px; border-radius: 4px; margin-top: 16px;">
+        <strong>💡 참고:</strong> 완성된 정답 코드는 <code>C-answer.html</code> 파일에서 확인할 수 있습니다.<br>
+        먼저 스스로 도전해보고, 막힐 때만 참고하세요!
+      </div>
+    </section>
+
+    <section class="guide-section">
       <h2>🎯 주요 학습 포인트</h2>
       <ul>
-        <li>시맨틱 HTML 구조</li>
-        <li>Flexbox 또는 Grid 레이아웃</li>
-        <li>반응형 디자인</li>
-        <li>요소 정렬과 배치</li>
+        <li><strong>Holy Grail 레이아웃</strong> (5구역 레이아웃)</li>
+        <li>Header, Footer, 좌우 Sidebar, Main 영역 구성</li>
+        <li>Grid로 복잡한 레이아웃 간단하게 구현</li>
+        <li>각 영역의 역할과 콘텐츠 배치</li>
       </ul>
     </section>
 
     <section class="guide-section">
       <h2>📐 퍼블리싱 요구사항</h2>
-      <h3>기본 요구사항</h3>
+
+      <h3>HTML 구조</h3>
       <ul>
-        <li>시맨틱 태그 사용 (header, main, section, aside, footer 등)</li>
-        <li>CSS Flexbox 또는 Grid로 레이아웃 구성</li>
-        <li>요소 간 일관된 간격 유지 (8px scale)</li>
-        <li>적절한 패딩과 마진 적용</li>
+        <li>Container 안에 5개 영역 (header, left-sidebar, main, right-sidebar, footer)</li>
+        <li>각 영역을 시맨틱 태그로 마크업</li>
+        <li>Main 영역에 실제 콘텐츠</li>
       </ul>
 
-      <h3>추가 요구사항</h3>
+      <h3>CSS 레이아웃</h3>
       <ul>
-        <li>모든 인터랙티브 요소에 적절한 hover 효과 적용</li>
-        <li>transition은 0.3s ease 기본값 사용</li>
-        <li>색상은 CSS 변수로 정의하여 일관성 유지</li>
-        <li>8px 간격 시스템 준수</li>
+        <li><strong>Container:</strong> Grid, 3열 (200px 1fr 200px)</li>
+        <li><strong>Grid areas:</strong> header/footer는 전체 너비 차지</li>
+        <li><strong>최소 높이:</strong> 100vh</li>
+        <li><strong>각 영역:</strong> 배경색, 패딩, 테두리</li>
       </ul>
+
+      <h3>스타일링 세부사항</h3>
+      <ul>
+        <li>Header/Footer: 전체 너비, Primary 배경</li>
+        <li>Left Sidebar: 200px, Light Gray 배경</li>
+        <li>Right Sidebar: 200px, Light Gray 배경</li>
+        <li>Main: 남는 공간, White 배경</li>
+      </ul>
+
+
+
+
+      <h3>🎨 인터랙션 상세 요구사항</h3>
+      <div style="background: #E0F2FE; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 12px;">
+        <p style="margin-bottom: 12px;"><strong>⚠️ 이 예제에서 반드시 hover 효과를 적용해야 할 요소:</strong></p>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">📌 인터랙션 대상</h4>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>좌측 사이드바 링크</strong> (<code>.left-sidebar a</code>): 배경색 변경</li>
+          <li><strong>우측 사이드바 링크</strong> (<code>.right-sidebar a</code>): 배경색 변경</li>
+        </ul>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">💻 구현 코드</h4>
+        <pre style="background: #fff; padding: 16px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem; overflow-x: auto;"><code>.left-sidebar a:hover, .right-sidebar a:hover {
+  background: rgba(79, 70, 229, 0.08);
+  padding-left: 20px;
+}</code></pre>
+
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; padding: 12px; border-radius: 4px; margin-top: 16px;">
+          <strong>💡 팁:</strong> 위 요소들에 <code>transition: 0.3s ease</code>를 먼저 설정한 후 hover 효과를 적용하세요!
+        </div>
+      </div>
     </section>
 
     <section class="guide-section">
-      <h2>🎨 스타일 가이드</h2>
+      <h2>🎨 스타일 가이드 (이 예제 전용)</h2>
 
       <h3>색상 팔레트</h3>
-      <div class="color-palette">
-        <div class="color-swatch" style="background: #4F46E5;">#4F46E5</div>
-        <div class="color-swatch" style="background: #10B981;">#10B981</div>
-        <div class="color-swatch" style="background: #FF9800;">#FF9800</div>
-        <div class="color-swatch" style="background: #FFFFFF; border: 2px solid #E5E7EB;">#FFFFFF</div>
-        <div class="color-swatch" style="background: #F3F4F6; color: #222;">#F3F4F6</div>
-        <div class="color-swatch" style="background: #222222; color: #FFF;">#222222</div>
-      </div>
+      <ul>
+        <li><strong>Header/Footer:</strong> <code>#4F46E5</code> - Primary</li>
+        <li><strong>Sidebar:</strong> <code>#F3F4F6</code> - Light Gray</li>
+        <li><strong>Main:</strong> <code>#FFFFFF</code> - White</li>
+      </ul>
 
       <h3>타이포그래피</h3>
       <ul>
-        <li>폰트: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif</li>
-        <li>제목 크기: 2.5rem (large), 2rem (medium), 1.5rem (small)</li>
-        <li>본문 크기: 1rem (기본), 0.875rem (작게)</li>
-        <li>행간: 1.6 (본문), 1.2 (제목)</li>
+        <li><strong>Header 제목:</strong> 1.5rem, 굵게, 흰색</li>
+        <li><strong>Sidebar 제목:</strong> 1rem, 굵게</li>
       </ul>
 
-      <h3>간격 시스템 (8px scale)</h3>
+      <h3>간격</h3>
       <ul>
-        <li>8px, 16px, 24px, 32px, 40px, 48px</li>
-        <li>요소 간 간격은 위 값들을 조합하여 사용</li>
+        <li><strong>Sidebar 너비:</strong> 200px</li>
+        <li><strong>Header/Footer 높이:</strong> 60px</li>
+        <li><strong>패딩:</strong> 24px</li>
       </ul>
     </section>
 
     <section class="guide-section">
-      <h2>💡 구현 힌트</h2>
-      <ul>
-        <li>먼저 HTML 구조를 시맨틱하게 작성하세요</li>
-        <li>CSS는 레이아웃 → 타이포그래피 → 색상 → 인터랙션 순서로 작성하세요</li>
-        <li>JavaScript가 필요한 경우, 이벤트 리스너를 명확히 분리하세요</li>
-        <li>크롬 개발자 도구로 요소를 검사하며 조정하세요</li>
-        <li>모바일 반응형을 고려하세요 (필요시 미디어 쿼리 사용)</li>
-      </ul>
+      <h2>💡 단계별 구현 가이드</h2>
+
+      <h3>1단계: Grid 구조</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>.container {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header header"
+    "left main right"
+    "footer footer footer";
+  min-height: 100vh;
+}</code></pre>
+      </div>
+
+      <h3>2단계: 영역 할당</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>header { grid-area: header; }
+.left-sidebar { grid-area: left; }
+main { grid-area: main; }
+.right-sidebar { grid-area: right; }
+footer { grid-area: footer; }
+
+header, footer {
+  background: var(--color-primary);
+  color: white;
+  padding: 24px;
+}
+.left-sidebar, .right-sidebar {
+  background: #F3F4F6;
+  padding: 24px;
+}
+main {
+  padding: 48px;
+}</code></pre>
+      </div>
     </section>
 
     <section class="guide-section">
       <h2>✅ 완성 체크리스트</h2>
       <ul>
-        <li>□ HTML 구조가 시맨틱하고 명확한가?</li>
-        <li>□ CSS 클래스명이 의미있고 일관적인가?</li>
-        <li>□ 레이아웃이 의도한 대로 배치되었는가?</li>
-        <li>□ 모든 인터랙션이 부드럽게 작동하는가?</li>
-        <li>□ 색상과 타이포그래피가 일관적인가?</li>
-        <li>□ 코드가 깔끔하고 주석이 적절한가?</li>
+        <li>□ Grid Template Areas가 올바르게 설정되었나요?</li>
+        <li>□ Header와 Footer가 3열 모두 차지하나요?</li>
+        <li>□ 좌우 Sidebar가 각각 200px인가요?</li>
+        <li>□ Main이 중앙의 남는 공간을 차지하나요?</li>
+        <li>□ 전체 높이가 최소 100vh인가요?</li>
+        <li>□ 각 영역이 올바른 배경색을 가지나요?</li>
       </ul>
     </section>
 

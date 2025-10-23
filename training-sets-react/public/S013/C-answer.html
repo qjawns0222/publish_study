@@ -45,15 +45,43 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.search-box {
+  position: relative;
+  max-width: 500px;
+  width: 100%;
+}
 
-    .form-container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+    .search-box input {
+  width: 100%;
+  height: 48px;
+  padding-left: 40px;
+  padding-right: 16px;
+  border: 1px solid #E5E7EB;
+  border-radius: 24px;
+  font-size: 1rem;
+  transition: 0.3s ease;
+}
+.search-box input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+    .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  color: #999;
+  pointer-events: none;
+}
 
   </style>
 </head>
@@ -61,21 +89,12 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="form-container">
-    <form style="background: white; padding: var(--spacing-5); border-radius: var(--radius); max-width: 500px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-      <h2 style="color: var(--color-dark); margin-bottom: var(--spacing-3);">검색창</h2>
-      <div style="margin-bottom: var(--spacing-3);">
-        <label style="display: block; margin-bottom: 8px; font-weight: 500;">이름</label>
-        <input type="text" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--radius);" placeholder="이름을 입력하세요">
-      </div>
-      <div style="margin-bottom: var(--spacing-3);">
-        <label style="display: block; margin-bottom: 8px; font-weight: 500;">이메일</label>
-        <input type="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--radius);" placeholder="email@example.com">
-      </div>
-      <button type="submit" style="width: 100%; background: var(--color-primary); color: white; padding: 12px; border: none; border-radius: var(--radius); cursor: pointer; font-size: 1rem;">제출하기</button>
-    </form>
+<div class="search-container">
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="search" placeholder="검색어를 입력하세요">
   </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -90,6 +109,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S013 - 검색창 완성 예시');
   </script>

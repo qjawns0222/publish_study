@@ -45,15 +45,44 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.basic-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 32px;
+  background: white;
+}
+label {
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
 
-    .form-container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+    input, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: 0.3s ease;
+}
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+    button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 12px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+}
 
   </style>
 </head>
@@ -61,21 +90,18 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
+<form class="basic-form">
+  <label for="name">이름</label>
+  <input type="text" id="name" placeholder="홍길동">
 
-  <div class="form-container">
-    <form style="background: white; padding: var(--spacing-5); border-radius: var(--radius); max-width: 500px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-      <h2 style="color: var(--color-dark); margin-bottom: var(--spacing-3);">기본 입력 폼</h2>
-      <div style="margin-bottom: var(--spacing-3);">
-        <label style="display: block; margin-bottom: 8px; font-weight: 500;">이름</label>
-        <input type="text" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--radius);" placeholder="이름을 입력하세요">
-      </div>
-      <div style="margin-bottom: var(--spacing-3);">
-        <label style="display: block; margin-bottom: 8px; font-weight: 500;">이메일</label>
-        <input type="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--radius);" placeholder="email@example.com">
-      </div>
-      <button type="submit" style="width: 100%; background: var(--color-primary); color: white; padding: 12px; border: none; border-radius: var(--radius); cursor: pointer; font-size: 1rem;">제출하기</button>
-    </form>
-  </div>
+  <label for="email">이메일</label>
+  <input type="email" id="email" placeholder="example@email.com">
+
+  <label for="message">메시지</label>
+  <textarea id="message" rows="4"></textarea>
+
+  <button type="submit">제출하기</button>
+</form>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -90,6 +116,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S011 - 기본 입력 폼 완성 예시');
   </script>

@@ -45,15 +45,29 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-
-    .form-container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+.upload-area {
+  border: 2px dashed #D1D5DB;
+  border-radius: 12px;
+  padding: 48px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.upload-area.drag-over {
+  background: #E0E7FF;
+  border-color: #4F46E5;
+}
+.file-list {
+  margin-top: 20px;
+}
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  background: #F3F4F6;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
 
   </style>
 </head>
@@ -61,21 +75,14 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="form-container">
-    <form style="background: white; padding: var(--spacing-5); border-radius: var(--radius); max-width: 500px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-      <h2 style="color: var(--color-dark); margin-bottom: var(--spacing-3);">파일 업로드</h2>
-      <div style="margin-bottom: var(--spacing-3);">
-        <label style="display: block; margin-bottom: 8px; font-weight: 500;">이름</label>
-        <input type="text" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--radius);" placeholder="이름을 입력하세요">
-      </div>
-      <div style="margin-bottom: var(--spacing-3);">
-        <label style="display: block; margin-bottom: 8px; font-weight: 500;">이메일</label>
-        <input type="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--radius);" placeholder="email@example.com">
-      </div>
-      <button type="submit" style="width: 100%; background: var(--color-primary); color: white; padding: 12px; border: none; border-radius: var(--radius); cursor: pointer; font-size: 1rem;">제출하기</button>
-    </form>
+<div class="upload-container">
+  <div class="upload-area" id="uploadArea">
+    <input type="file" id="fileInput" multiple hidden>
+    <p>파일을 드래그하거나 클릭하여 업로드</p>
+    <button onclick="document.getElementById('fileInput').click()">파일 선택</button>
   </div>
+  <div class="file-list" id="fileList"></div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -90,6 +97,37 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const uploadArea = document.getElementById('uploadArea');
+const fileInput = document.getElementById('fileInput');
+
+uploadArea.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  uploadArea.classList.add('drag-over');
+});
+
+uploadArea.addEventListener('dragleave', () => {
+  uploadArea.classList.remove('drag-over');
+});
+
+uploadArea.addEventListener('drop', (e) => {
+  e.preventDefault();
+  uploadArea.classList.remove('drag-over');
+  const files = e.dataTransfer.files;
+  handleFiles(files);
+});
+
+uploadArea.addEventListener('click', () => {
+  fileInput.click();
+});
+
+fileInput.addEventListener('change', (e) => {
+  handleFiles(e.target.files);
+});
+
+function handleFiles(files) {
+  // 파일 처리 로직
+  console.log('Files uploaded:', files);
+}
 
     console.log('✅ S047 - 파일 업로드 완성 예시');
   </script>

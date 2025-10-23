@@ -46,20 +46,6 @@
        완성 예시 CSS
        ======================================== */
 
-    .animated-element {
-      animation: fadeInUp 1s ease;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
 
   </style>
 </head>
@@ -67,13 +53,12 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="animation-demo" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--color-light);">
-    <div class="animated-element" style="background: var(--color-primary); color: white; padding: var(--spacing-5); border-radius: var(--radius); text-align: center;">
-      <h2>모핑 효과</h2>
-      <p style="margin-top: var(--spacing-2);">도형이 변형되는 모핑 애니메이션</p>
-    </div>
-  </div>
+<svg width="400" height="400" viewBox="0 0 400 400">
+  <path id="morphPath" d="M 200,100 A 100,100 0 1,1 199.9,100" fill="#4F46E5"></path>
+</svg>
+<button onclick="morphToSquare()">사각형</button>
+<button onclick="morphToCircle()">원</button>
+<button onclick="morphToStar()">별</button>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -88,6 +73,47 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const path = document.getElementById('morphPath');
+
+const shapes = {
+  circle: 'M 200,100 A 100,100 0 1,1 199.9,100',
+  square: 'M 100,100 L 300,100 L 300,300 L 100,300 Z',
+  star: 'M 200,100 L 220,180 L 300,180 L 235,230 L 260,310 L 200,260 L 140,310 L 165,230 L 100,180 L 180,180 Z'
+};
+
+function morphTo(shape) {
+  path.style.transition = 'd 0.5s ease';
+  path.setAttribute('d', shapes[shape]);
+}
+
+function morphToCircle() {
+  morphTo('circle');
+}
+
+function morphToSquare() {
+  morphTo('square');
+}
+
+function morphToStar() {
+  morphTo('star');
+}
+
+// CSS로 d 전환 (일부 브라우저만 지원)
+// 또는 Web Animations API 사용
+function morphWithAnimation(newPath) {
+  path.animate([
+    { d: path.getAttribute('d') },
+    { d: newPath }
+  ], {
+    duration: 500,
+    easing: 'ease',
+    fill: 'forwards'
+  });
+
+  setTimeout(() => {
+    path.setAttribute('d', newPath);
+  }, 500);
+}
 
     console.log('✅ S099 - 모핑 효과 완성 예시');
   </script>

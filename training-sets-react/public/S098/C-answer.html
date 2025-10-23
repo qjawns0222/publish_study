@@ -45,21 +45,66 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.pages {
+  position: relative;
+  min-height: 100vh;
+}
 
-    .animated-element {
-      animation: fadeInUp 1s ease;
-    }
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.5s ease;
+}
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.page.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.page.exit {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+#page1 { background: #4F46E5; }
+#page2 { background: #10B981; }
+#page3 { background: #F59E0B; }
+
+.page-nav {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 12px 24px;
+  border-radius: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 100;
+  display: flex;
+  gap: 16px;
+}
+
+.page-nav a {
+  color: #222;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.page-nav a:hover {
+  background: #F3F4F6;
+}
 
   </style>
 </head>
@@ -67,13 +112,26 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
+<nav class="page-nav">
+  <a href="#" data-page="page1">페이지 1</a>
+  <a href="#" data-page="page2">페이지 2</a>
+  <a href="#" data-page="page3">페이지 3</a>
+</nav>
 
-  <div class="animation-demo" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--color-light);">
-    <div class="animated-element" style="background: var(--color-primary); color: white; padding: var(--spacing-5); border-radius: var(--radius); text-align: center;">
-      <h2>페이지 전환 효과</h2>
-      <p style="margin-top: var(--spacing-2);">부드러운 페이지 전환 애니메이션</p>
-    </div>
+<div class="pages">
+  <div class="page active" id="page1">
+    <h1>페이지 1</h1>
+    <p>첫 번째 페이지입니다</p>
   </div>
+  <div class="page" id="page2">
+    <h1>페이지 2</h1>
+    <p>두 번째 페이지입니다</p>
+  </div>
+  <div class="page" id="page3">
+    <h1>페이지 3</h1>
+    <p>세 번째 페이지입니다</p>
+  </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -88,6 +146,30 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const navLinks = document.querySelectorAll('.page-nav a');
+const pages = document.querySelectorAll('.page');
+
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = link.dataset.page;
+    const targetPage = document.getElementById(targetId);
+
+    // 현재 active 페이지 찾기
+    const currentPage = document.querySelector('.page.active');
+
+    if (currentPage === targetPage) return;
+
+    // 전환 애니메이션
+    currentPage.classList.add('exit');
+    currentPage.classList.remove('active');
+
+    setTimeout(() => {
+      currentPage.classList.remove('exit');
+      targetPage.classList.add('active');
+    }, 500);
+  });
+});
 
     console.log('✅ S098 - 페이지 전환 효과 완성 예시');
   </script>

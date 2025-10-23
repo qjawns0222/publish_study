@@ -46,14 +46,6 @@
        완성 예시 CSS
        ======================================== */
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
 
   </style>
 </head>
@@ -61,14 +53,14 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">이미지 크롭 도구</h2>
-      <p style="margin-top: var(--spacing-2);">이미지를 자르는 인터랙티브 도구</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
-    </div>
+<div class="image-cropper">
+  <div class="crop-container" id="cropContainer">
+    <img id="sourceImage" src="image.jpg">
+    <div class="crop-area" id="cropArea"></div>
   </div>
+  <button id="cropButton">크롭하기</button>
+  <canvas id="resultCanvas"></canvas>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +75,66 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const container = document.getElementById('cropContainer');
+const cropArea = document.getElementById('cropArea');
+const sourceImage = document.getElementById('sourceImage');
+const resultCanvas = document.getElementById('resultCanvas');
+const ctx = resultCanvas.getContext('2d');
+
+let isDragging = false;
+let startX, startY;
+
+container.addEventListener('mousedown', (e) => {
+  const rect = container.getBoundingClientRect();
+  startX = e.clientX - rect.left;
+  startY = e.clientY - rect.top;
+
+  cropArea.style.left = startX + 'px';
+  cropArea.style.top = startY + 'px';
+  cropArea.style.width = '0px';
+  cropArea.style.height = '0px';
+  cropArea.style.display = 'block';
+
+  isDragging = true;
+});
+
+container.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+
+  const rect = container.getBoundingClientRect();
+  const currentX = e.clientX - rect.left;
+  const currentY = e.clientY - rect.top;
+
+  const width = currentX - startX;
+  const height = currentY - startY;
+
+  cropArea.style.width = Math.abs(width) + 'px';
+  cropArea.style.height = Math.abs(height) + 'px';
+  cropArea.style.left = (width < 0 ? currentX : startX) + 'px';
+  cropArea.style.top = (height < 0 ? currentY : startY) + 'px';
+});
+
+container.addEventListener('mouseup', () => {
+  isDragging = false;
+});
+
+document.getElementById('cropButton').addEventListener('click', () => {
+  const cropRect = cropArea.getBoundingClientRect();
+  const imgRect = sourceImage.getBoundingClientRect();
+
+  const scaleX = sourceImage.naturalWidth / imgRect.width;
+  const scaleY = sourceImage.naturalHeight / imgRect.height;
+
+  const cropX = (cropRect.left - imgRect.left) * scaleX;
+  const cropY = (cropRect.top - imgRect.top) * scaleY;
+  const cropWidth = cropRect.width * scaleX;
+  const cropHeight = cropRect.height * scaleY;
+
+  resultCanvas.width = cropWidth;
+  resultCanvas.height = cropHeight;
+
+  ctx.drawImage(sourceImage, cropX, cropY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
+});
 
     console.log('✅ S085 - 이미지 크롭 도구 완성 예시');
   </script>

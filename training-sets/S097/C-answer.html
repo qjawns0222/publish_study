@@ -45,21 +45,17 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+@keyframes drawPath {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
 
-    .animated-element {
-      animation: fadeInUp 1s ease;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+#animatedPath {
+  stroke-dasharray: 1000; /* 경로 길이 */
+  stroke-dashoffset: 1000;
+  animation: drawPath 3s ease forwards;
+}
 
   </style>
 </head>
@@ -67,13 +63,16 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="animation-demo" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--color-light);">
-    <div class="animated-element" style="background: var(--color-primary); color: white; padding: var(--spacing-5); border-radius: var(--radius); text-align: center;">
-      <h2>SVG 패스 애니메이션</h2>
-      <p style="margin-top: var(--spacing-2);">SVG 경로를 따라 그려지는 애니메이션</p>
-    </div>
-  </div>
+<svg id="pathSvg" width="600" height="400" viewBox="0 0 600 400">
+  <path id="animatedPath"
+        d="M 50,200 Q 150,50 250,200 T 450,200 L 550,100"
+        fill="none"
+        stroke="#4F46E5"
+        stroke-width="4"
+        stroke-linecap="round">
+  </path>
+</svg>
+<button onclick="animatePath()">애니메이션 시작</button>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -88,6 +87,25 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const path = document.getElementById('animatedPath');
+const length = path.getTotalLength();
+
+// 초기 설정
+path.style.strokeDasharray = length;
+path.style.strokeDashoffset = length;
+
+function animatePath() {
+  path.style.transition = 'none';
+  path.style.strokeDashoffset = length;
+
+  setTimeout(() => {
+    path.style.transition = 'stroke-dashoffset 3s ease';
+    path.style.strokeDashoffset = '0';
+  }, 10);
+}
+
+// 자동 시작
+setTimeout(animatePath, 500);
 
     console.log('✅ S097 - SVG 패스 애니메이션 완성 예시');
   </script>

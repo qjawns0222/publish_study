@@ -46,14 +46,6 @@
        완성 예시 CSS
        ======================================== */
 
-    .form-container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
 
   </style>
 </head>
@@ -61,21 +53,19 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="form-container">
-    <form style="background: white; padding: var(--spacing-5); border-radius: var(--radius); max-width: 500px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-      <h2 style="color: var(--color-dark); margin-bottom: var(--spacing-3);">위지윅 에디터</h2>
-      <div style="margin-bottom: var(--spacing-3);">
-        <label style="display: block; margin-bottom: 8px; font-weight: 500;">이름</label>
-        <input type="text" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--radius);" placeholder="이름을 입력하세요">
-      </div>
-      <div style="margin-bottom: var(--spacing-3);">
-        <label style="display: block; margin-bottom: 8px; font-weight: 500;">이메일</label>
-        <input type="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--radius);" placeholder="email@example.com">
-      </div>
-      <button type="submit" style="width: 100%; background: var(--color-primary); color: white; padding: 12px; border: none; border-radius: var(--radius); cursor: pointer; font-size: 1rem;">제출하기</button>
-    </form>
+<div class="wysiwyg-editor">
+  <div class="toolbar">
+    <button onclick="format('bold')" title="굵게"><b>B</b></button>
+    <button onclick="format('italic')" title="기울임"><i>I</i></button>
+    <button onclick="format('underline')" title="밑줄"><u>U</u></button>
+    <button onclick="format('insertUnorderedList')" title="목록">•</button>
+    <button onclick="format('insertOrderedList')" title="번호 목록">1.</button>
+    <button onclick="createLink()" title="링크">🔗</button>
   </div>
+  <div class="editor-area" id="editor" contenteditable="true">
+    <p>여기에 텍스트를 입력하세요...</p>
+  </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -90,6 +80,41 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+function format(command, value = null) {
+  document.execCommand(command, false, value);
+  document.getElementById('editor').focus();
+}
+
+function createLink() {
+  const url = prompt('링크 URL을 입력하세요:');
+  if (url) {
+    format('createLink', url);
+  }
+}
+
+// 텍스트 색상
+function changeColor() {
+  const color = prompt('색상 코드를 입력하세요 (예: #FF0000):');
+  if (color) {
+    format('foreColor', color);
+  }
+}
+
+// 현재 포맷 상태 감지
+document.getElementById('editor').addEventListener('mouseup', updateToolbar);
+document.getElementById('editor').addEventListener('keyup', updateToolbar);
+
+function updateToolbar() {
+  const commands = ['bold', 'italic', 'underline'];
+  commands.forEach(cmd => {
+    const isActive = document.queryCommandState(cmd);
+    const button = document.querySelector(`button[onclick="format('${cmd}')"]`);
+    if (button) {
+      button.style.background = isActive ? '#4F46E5' : '';
+      button.style.color = isActive ? 'white' : '';
+    }
+  });
+}
 
     console.log('✅ S087 - 위지윅 에디터 완성 예시');
   </script>

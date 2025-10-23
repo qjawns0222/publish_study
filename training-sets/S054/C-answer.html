@@ -46,14 +46,6 @@
        완성 예시 CSS
        ======================================== */
 
-    .form-container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
 
   </style>
 </head>
@@ -61,21 +53,15 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="form-container">
-    <form style="background: white; padding: var(--spacing-5); border-radius: var(--radius); max-width: 500px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-      <h2 style="color: var(--color-dark); margin-bottom: var(--spacing-3);">날짜 선택기</h2>
-      <div style="margin-bottom: var(--spacing-3);">
-        <label style="display: block; margin-bottom: 8px; font-weight: 500;">이름</label>
-        <input type="text" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--radius);" placeholder="이름을 입력하세요">
-      </div>
-      <div style="margin-bottom: var(--spacing-3);">
-        <label style="display: block; margin-bottom: 8px; font-weight: 500;">이메일</label>
-        <input type="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--radius);" placeholder="email@example.com">
-      </div>
-      <button type="submit" style="width: 100%; background: var(--color-primary); color: white; padding: 12px; border: none; border-radius: var(--radius); cursor: pointer; font-size: 1rem;">제출하기</button>
-    </form>
+<div class="datepicker">
+  <div class="calendar-header">
+    <button id="prevMonth">&lt;</button>
+    <span id="currentMonth"></span>
+    <button id="nextMonth">&gt;</button>
   </div>
+  <div class="calendar-grid" id="calendar"></div>
+  <div class="selected-date" id="selectedDate">날짜를 선택하세요</div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -90,6 +76,58 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+let currentDate = new Date();
+let selectedDate = null;
+
+function renderCalendar() {
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
+
+  document.getElementById('currentMonth').textContent =
+    `${year}년 ${month + 1}월`;
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  let html = '<div class="weekdays">';
+  ['일', '월', '화', '수', '목', '금', '토'].forEach(day => {
+    html += `<div>${day}</div>`;
+  });
+  html += '</div><div class="days">';
+
+  for (let i = 0; i < firstDay; i++) {
+    html += '<div class="empty"></div>';
+  }
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const date = new Date(year, month, day);
+    const isToday = date.toDateString() === new Date().toDateString();
+    html += `<div class="day ${isToday ? 'today' : ''}"
+      onclick="selectDate(${year}, ${month}, ${day})">${day}</div>`;
+  }
+
+  html += '</div>';
+  document.getElementById('calendar').innerHTML = html;
+}
+
+function selectDate(year, month, day) {
+  selectedDate = new Date(year, month, day);
+  document.getElementById('selectedDate').textContent =
+    selectedDate.toLocaleDateString('ko-KR');
+  renderCalendar();
+}
+
+document.getElementById('prevMonth').onclick = () => {
+  currentDate.setMonth(currentDate.getMonth() - 1);
+  renderCalendar();
+};
+
+document.getElementById('nextMonth').onclick = () => {
+  currentDate.setMonth(currentDate.getMonth() + 1);
+  renderCalendar();
+};
+
+renderCalendar();
 
     console.log('✅ S054 - 날짜 선택기 완성 예시');
   </script>

@@ -45,10 +45,104 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.material-page {
+  font-family: 'Roboto', sans-serif;
+  background: #F5F5F5;
+  min-height: 100vh;
+}
 
-    body {
-      margin: 0;
-    }
+.app-bar {
+  background: #6200EE;
+  color: white;
+  padding: 16px 24px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+/* Elevation */
+.elevation-2 {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.elevation-6 {
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15), 0 12px 24px rgba(0,0,0,0.15);
+}
+
+/* Button */
+.btn-primary {
+  background: #6200EE;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background: #3700B3;
+}
+
+/* Ripple 효과 */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* FAB */
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #03DAC6;
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.fab:hover {
+  background: #018786;
+  transform: scale(1.1);
+}
 
   </style>
 </head>
@@ -56,14 +150,27 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
+<div class="material-page">
+  <header class="app-bar">
+    <h1>Material Design</h1>
+  </header>
 
-  <div class="visual-section" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); min-height: 100vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: var(--spacing-6);">
-    <div>
-      <h1 style="font-size: 3rem; margin-bottom: var(--spacing-3);">머티리얼 디자인 UI</h1>
-      <p style="font-size: 1.25rem; margin-bottom: var(--spacing-4);">Material Design 스타일 전체 페이지</p>
-      <button style="background: white; color: var(--color-primary); padding: 16px 32px; border: none; border-radius: var(--radius); font-size: 1.1rem; cursor: pointer;">더 알아보기</button>
+  <main class="content">
+    <div class="card elevation-2">
+      <h2>카드 1</h2>
+      <p>Material Design 스타일 카드입니다</p>
+      <button class="btn-primary ripple">확인</button>
     </div>
-  </div>
+
+    <div class="card elevation-2">
+      <h2>카드 2</h2>
+      <p>Elevation과 Ripple 효과를 확인하세요</p>
+      <button class="btn-primary ripple">확인</button>
+    </div>
+  </main>
+
+  <button class="fab elevation-6">+</button>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -78,6 +185,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S094 - 머티리얼 디자인 UI 완성 예시');
   </script>

@@ -45,10 +45,51 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
 
-    body {
-      margin: 0;
-    }
+    .hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+    .hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: white;
+}
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 24px;
+}
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+.cta-btn {
+  padding: 16px 32px;
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+}
 
   </style>
 </head>
@@ -56,14 +97,13 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="visual-section" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); min-height: 100vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: var(--spacing-6);">
-    <div>
-      <h1 style="font-size: 3rem; margin-bottom: var(--spacing-3);">히어로 섹션</h1>
-      <p style="font-size: 1.25rem; margin-bottom: var(--spacing-4);">배경 이미지와 타이틀이 있는 히어로 영역</p>
-      <button style="background: white; color: var(--color-primary); padding: 16px 32px; border: none; border-radius: var(--radius); font-size: 1.1rem; cursor: pointer;">더 알아보기</button>
-    </div>
+<section class="hero">
+  <div class="hero-content">
+    <h1>웹 퍼블리싱의 시작</h1>
+    <p>누구나 배울 수 있는 HTML, CSS, JavaScript</p>
+    <button class="cta-btn">시작하기</button>
   </div>
+</section>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -78,6 +118,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S016 - 히어로 섹션 완성 예시');
   </script>

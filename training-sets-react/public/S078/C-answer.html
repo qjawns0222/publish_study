@@ -45,15 +45,52 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.virtual-scroll-container {
+  height: 600px;
+  overflow-y: scroll;
+  border: 2px solid #E5E7EB;
+  border-radius: 8px;
+  position: relative;
+  background: white;
+}
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+.virtual-scroll-spacer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* 높이는 JS로 동적 설정 */
+}
+
+.virtual-scroll-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.virtual-item {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  border-bottom: 1px solid #E5E7EB;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.virtual-item:nth-child(even) {
+  background: #F9FAFB;
+}
+
+.stats {
+  margin-top: 24px;
+  padding: 16px;
+  background: #EEF2FF;
+  border-radius: 8px;
+  text-align: center;
+}
 
   </style>
 </head>
@@ -61,14 +98,15 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
+<div class="virtual-scroll-container" id="container">
+  <div class="virtual-scroll-spacer" id="spacer"></div>
+  <div class="virtual-scroll-content" id="content"></div>
+</div>
 
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">가상 스크롤</h2>
-      <p style="margin-top: var(--spacing-2);">대용량 데이터의 가상화 스크롤</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
-    </div>
-  </div>
+<div class="stats">
+  <p>총 아이템: <span id="totalItems">10000</span></p>
+  <p>렌더링된 아이템: <span id="renderedItems">0</span></p>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +121,55 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const TOTAL_ITEMS = 10000;
+const ITEM_HEIGHT = 50;
+const CONTAINER_HEIGHT = 600;
+const BUFFER = 5; // 추가 렌더링 버퍼
+
+const container = document.getElementById('container');
+const spacer = document.getElementById('spacer');
+const content = document.getElementById('content');
+
+// 전체 높이 설정
+spacer.style.height = `${TOTAL_ITEMS * ITEM_HEIGHT}px`;
+
+let ticking = false;
+
+function renderVisibleItems() {
+  const scrollTop = container.scrollTop;
+  const visibleStart = Math.floor(scrollTop / ITEM_HEIGHT) - BUFFER;
+  const visibleEnd = Math.ceil((scrollTop + CONTAINER_HEIGHT) / ITEM_HEIGHT) + BUFFER;
+
+  const start = Math.max(0, visibleStart);
+  const end = Math.min(TOTAL_ITEMS, visibleEnd);
+
+  // 기존 아이템 제거
+  content.innerHTML = '';
+
+  // 보이는 아이템만 렌더링
+  for (let i = start; i < end; i++) {
+    const item = document.createElement('div');
+    item.className = 'virtual-item';
+    item.style.transform = `translateY(${i * ITEM_HEIGHT}px)`;
+    item.textContent = `아이템 #${i + 1} - 가상 스크롤 최적화`;
+    content.appendChild(item);
+  }
+
+  // 통계 업데이트
+  document.getElementById('renderedItems').textContent = end - start;
+
+  ticking = false;
+}
+
+container.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(renderVisibleItems);
+    ticking = true;
+  }
+});
+
+// 초기 렌더링
+renderVisibleItems();
 
     console.log('✅ S078 - 가상 스크롤 완성 예시');
   </script>

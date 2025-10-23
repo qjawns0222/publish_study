@@ -22,82 +22,186 @@
     </section>
 
     <section class="guide-section">
+      <h2>🖼️ 완성 예시 미리보기</h2>
+      <p>아래는 이번 예제의 완성된 모습입니다. 이 구조를 참고하여 코드를 작성해보세요!</p>
+      
+    <div style="font-family: monospace; background: #F3F4F6; padding: 24px; border-radius: 8px; margin: 16px 0;">
+      <pre style="margin: 0; line-height: 1.8; color: #222;">
+    초기 상태        →      애니메이션       →      최종 상태
+┌──────────┐           ┌──────────┐           ┌──────────┐
+│  요소A   │  ─────→   │  요소A   │  ─────→   │  요소A   │
+│ (시작)   │  (변화)    │ (진행중) │  (완료)    │ (끝)     │
+└──────────┘           └──────────┘           └──────────┘
+      </pre>
+    </div>
+      <div style="background: #FFF9E6; border-left: 4px solid #FF9800; padding: 16px; border-radius: 4px; margin-top: 16px;">
+        <strong>💡 참고:</strong> 완성된 정답 코드는 <code>C-answer.html</code> 파일에서 확인할 수 있습니다.<br>
+        먼저 스스로 도전해보고, 막힐 때만 참고하세요!
+      </div>
+    </section>
+
+    <section class="guide-section">
       <h2>🎯 주요 학습 포인트</h2>
       <ul>
-        <li>CSS 애니메이션</li>
-        <li>Transition</li>
-        <li>Transform</li>
-        <li>성능 최적화</li>
+        <li><strong>패럴랙스 스크롤</strong> (Parallax Scrolling)</li>
+        <li><strong>배경과 전경</strong>의 다른 속도</li>
+        <li><strong>transform: translateY</strong> 활용</li>
+        <li>scroll 이벤트와 성능 최적화</li>
       </ul>
     </section>
 
     <section class="guide-section">
       <h2>📐 퍼블리싱 요구사항</h2>
-      <h3>기본 요구사항</h3>
+
+      <h3>HTML 구조</h3>
       <ul>
-        <li>CSS transition 또는 animation 사용</li>
-        <li>적절한 duration과 easing 함수</li>
-        <li>transform과 opacity만 애니메이션 (성능)</li>
-        <li>접근성 고려 (prefers-reduced-motion)</li>
+        <li>배경 레이어 (느리게 움직임)</li>
+        <li>전경 콘텐츠 (빠르게 움직임)</li>
+        <li>여러 섹션으로 구성</li>
       </ul>
 
-      <h3>추가 요구사항</h3>
+      <h3>CSS 레이아웃</h3>
       <ul>
-        <li>모든 인터랙티브 요소에 적절한 hover 효과 적용</li>
-        <li>transition은 0.3s ease 기본값 사용</li>
-        <li>색상은 CSS 변수로 정의하여 일관성 유지</li>
-        <li>8px 간격 시스템 준수</li>
+        <li><strong>배경:</strong> background-attachment: fixed 또는 transform</li>
+        <li><strong>레이어:</strong> position: absolute/relative</li>
+        <li><strong>z-index:</strong> 레이어 순서 정의</li>
       </ul>
+
+      <h3>스타일링 세부사항</h3>
+      <ul>
+        <li>scroll 이벤트로 scrollY 값 가져오기</li>
+        <li>배경: scrollY * 0.5 (느리게)</li>
+        <li>전경: scrollY * 1.2 (빠르게)</li>
+        <li>requestAnimationFrame으로 최적화</li>
+      </ul>
+
+
+
+
+      <h3>🎨 인터랙션 상세 요구사항</h3>
+      <div style="background: #E0F2FE; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 12px;">
+        <p style="margin-bottom: 12px;"><strong>⚠️ 이 예제에서 반드시 hover 효과를 적용해야 할 요소:</strong></p>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">📌 인터랙션 대상</h4>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>패럴랙스 레이어</strong> (<code>.parallax-layer</code>): 스크롤에 따른 이동</li>
+        </ul>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">💻 구현 코드</h4>
+        <pre style="background: #fff; padding: 16px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem; overflow-x: auto;"><code>.parallax-layer {
+  transition: transform 0.3s ease;
+}
+/* JavaScript로 스크롤 위치에 따라 transform 조정 */</code></pre>
+
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; padding: 12px; border-radius: 4px; margin-top: 16px;">
+          <strong>💡 팁:</strong> 위 요소들에 <code>transition: 0.3s ease</code>를 먼저 설정한 후 hover 효과를 적용하세요!
+        </div>
+      </div>
     </section>
 
     <section class="guide-section">
-      <h2>🎨 스타일 가이드</h2>
+      <h2>🎨 스타일 가이드 (이 예제 전용)</h2>
 
       <h3>색상 팔레트</h3>
-      <div class="color-palette">
-        <div class="color-swatch" style="background: #4F46E5;">#4F46E5</div>
-        <div class="color-swatch" style="background: #10B981;">#10B981</div>
-        <div class="color-swatch" style="background: #FF9800;">#FF9800</div>
-        <div class="color-swatch" style="background: #FFFFFF; border: 2px solid #E5E7EB;">#FFFFFF</div>
-        <div class="color-swatch" style="background: #F3F4F6; color: #222;">#F3F4F6</div>
-        <div class="color-swatch" style="background: #222222; color: #FFF;">#222222</div>
-      </div>
+      <ul>
+        <li><strong>배경 그라디언트:</strong> <code>linear-gradient(#1E3A8A, #3B82F6)</code> - Blue gradient</li>
+        <li><strong>오버레이:</strong> <code>rgba(0,0,0,0.3)</code> - Dark overlay</li>
+        <li><strong>텍스트:</strong> <code>#FFFFFF</code> - White</li>
+      </ul>
 
       <h3>타이포그래피</h3>
       <ul>
-        <li>폰트: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif</li>
-        <li>제목 크기: 2.5rem (large), 2rem (medium), 1.5rem (small)</li>
-        <li>본문 크기: 1rem (기본), 0.875rem (작게)</li>
-        <li>행간: 1.6 (본문), 1.2 (제목)</li>
+        <li><strong>제목:</strong> 3rem, 굵게, 흰색</li>
+        <li><strong>부제목:</strong> 1.5rem, 흰색</li>
       </ul>
 
-      <h3>간격 시스템 (8px scale)</h3>
+      <h3>간격</h3>
       <ul>
-        <li>8px, 16px, 24px, 32px, 40px, 48px</li>
-        <li>요소 간 간격은 위 값들을 조합하여 사용</li>
+        <li><strong>섹션 높이:</strong> 100vh</li>
+        <li><strong>배경 이미지 높이:</strong> 120vh</li>
       </ul>
     </section>
 
     <section class="guide-section">
-      <h2>💡 구현 힌트</h2>
-      <ul>
-        <li>먼저 HTML 구조를 시맨틱하게 작성하세요</li>
-        <li>CSS는 레이아웃 → 타이포그래피 → 색상 → 인터랙션 순서로 작성하세요</li>
-        <li>JavaScript가 필요한 경우, 이벤트 리스너를 명확히 분리하세요</li>
-        <li>크롬 개발자 도구로 요소를 검사하며 조정하세요</li>
-        <li>모바일 반응형을 고려하세요 (필요시 미디어 쿼리 사용)</li>
-      </ul>
+      <h2>💡 단계별 구현 가이드</h2>
+
+      <h3>1단계: HTML 구조</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>&lt;div class="parallax-container"&gt;
+  &lt;div class="parallax-bg" id="parallaxBg"&gt;&lt;/div&gt;
+  &lt;div class="parallax-content"&gt;
+    &lt;h1&gt;패럴랙스 스크롤 효과&lt;/h1&gt;
+    &lt;p&gt;배경이 천천히 움직입니다&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;section class="content-section"&gt;
+  &lt;h2&gt;다음 섹션&lt;/h2&gt;
+  &lt;p&gt;일반 콘텐츠&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+      </div>
+
+      <h3>2단계: CSS 레이아웃</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>.parallax-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.parallax-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120vh;
+  background: linear-gradient(to bottom, #1E3A8A, #3B82F6);
+  z-index: -1;
+}
+
+.parallax-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: white;
+  text-align: center;
+}</code></pre>
+      </div>
+
+      <h3>3단계: JavaScript - Parallax 효과</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>const parallaxBg = document.getElementById('parallaxBg');
+let ticking = false;
+
+function updateParallax() {
+  const scrolled = window.scrollY;
+  const rate = scrolled * 0.5; // 배경은 절반 속도로
+
+  parallaxBg.style.transform = `translateY(${rate}px)`;
+  ticking = false;
+}
+
+window.addEventListener('scroll', () =&gt; {
+  if (!ticking) {
+    requestAnimationFrame(updateParallax);
+    ticking = true;
+  }
+});</code></pre>
+      </div>
     </section>
 
     <section class="guide-section">
       <h2>✅ 완성 체크리스트</h2>
       <ul>
-        <li>□ HTML 구조가 시맨틱하고 명확한가?</li>
-        <li>□ CSS 클래스명이 의미있고 일관적인가?</li>
-        <li>□ 레이아웃이 의도한 대로 배치되었는가?</li>
-        <li>□ 모든 인터랙션이 부드럽게 작동하는가?</li>
-        <li>□ 색상과 타이포그래피가 일관적인가?</li>
-        <li>□ 코드가 깔끔하고 주석이 적절한가?</li>
+        <li>□ 배경이 전경보다 느리게 움직이나요?</li>
+        <li>□ 스크롤이 부드럽게 작동하나요?</li>
+        <li>□ requestAnimationFrame으로 최적화했나요?</li>
+        <li>□ 패럴랙스 효과가 명확하게 보이나요?</li>
+        <li>□ 레이어의 z-index가 올바르게 설정되었나요?</li>
+        <li>□ 모바일에서도 정상 작동하나요?</li>
       </ul>
     </section>
 

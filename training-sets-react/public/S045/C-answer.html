@@ -45,15 +45,42 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+.timeline {
+  position: relative;
+  padding: 40px 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #E5E7EB;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 48px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #4F46E5;
+  border: 3px solid white;
+  box-shadow: 0 0 0 2px #4F46E5;
+}
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-left: auto;
+  margin-right: calc(50% + 30px);
+}
+.timeline-item:nth-child(even) .timeline-content {
+  margin-left: calc(50% + 30px);
+}
 
   </style>
 </head>
@@ -61,14 +88,22 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">타임라인</h2>
-      <p style="margin-top: var(--spacing-2);">시간 순서를 표시하는 타임라인 UI</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
+<div class="timeline">
+  <div class="timeline-item">
+    <div class="timeline-content">
+      <span class="date">2024.01</span>
+      <h3>이벤트 1</h3>
+      <p>설명 내용...</p>
     </div>
   </div>
+  <div class="timeline-item">
+    <div class="timeline-content">
+      <span class="date">2024.02</span>
+      <h3>이벤트 2</h3>
+      <p>설명 내용...</p>
+    </div>
+  </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +118,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S045 - 타임라인 완성 예시');
   </script>

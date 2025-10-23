@@ -45,15 +45,33 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: #F3F4F6;
+  border-radius: 8px;
+}
+.breadcrumb a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+    .breadcrumb a::after {
+  content: '/';
+  margin-left: 8px;
+  color: #999;
+}
+.breadcrumb span {
+  font-weight: bold;
+  font-size: 0.875rem;
+  color: #222;
+}
 
   </style>
 </head>
@@ -61,14 +79,12 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">브레드크럼</h2>
-      <p style="margin-top: var(--spacing-2);">페이지 경로를 표시하는 네비게이션</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
-    </div>
-  </div>
+<nav class="breadcrumb">
+  <a href="#">홈</a>
+  <a href="#">카테고리</a>
+  <a href="#">서브카테고리</a>
+  <span>현재 페이지</span>
+</nav>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +99,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S029 - 브레드크럼 완성 예시');
   </script>

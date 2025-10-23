@@ -45,10 +45,36 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.palette {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 48px;
+  background: #F3F4F6;
+}
 
-    body {
-      margin: 0;
-    }
+    .color-card {
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+    .color-box {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 16px;
+  border-radius: 12px;
+}
+.color-name {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+.color-hex {
+  font-size: 0.875rem;
+  color: #666;
+}
 
   </style>
 </head>
@@ -56,14 +82,19 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="visual-section" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); min-height: 100vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: var(--spacing-6);">
-    <div>
-      <h1 style="font-size: 3rem; margin-bottom: var(--spacing-3);">컬러 팔레트</h1>
-      <p style="font-size: 1.25rem; margin-bottom: var(--spacing-4);">브랜드 컬러를 표시하는 팔레트 UI</p>
-      <button style="background: white; color: var(--color-primary); padding: 16px 32px; border: none; border-radius: var(--radius); font-size: 1.1rem; cursor: pointer;">더 알아보기</button>
-    </div>
+<div class="palette">
+  <div class="color-card">
+    <div class="color-box" style="background: #4F46E5;"></div>
+    <p class="color-name">Primary</p>
+    <p class="color-hex">#4F46E5</p>
   </div>
+  <div class="color-card">
+    <div class="color-box" style="background: #10B981;"></div>
+    <p class="color-name">Secondary</p>
+    <p class="color-hex">#10B981</p>
+  </div>
+  <!-- 4개 더 반복 -->
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -78,6 +109,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S020 - 컬러 팔레트 완성 예시');
   </script>

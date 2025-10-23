@@ -45,10 +45,37 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.product-card {
+  max-width: 300px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
 
-    body {
-      margin: 0;
-    }
+    .product-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+    .card-content {
+  padding: 16px;
+}
+.card-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+.price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}
 
   </style>
 </head>
@@ -56,14 +83,13 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="visual-section" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); min-height: 100vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: var(--spacing-6);">
-    <div>
-      <h1 style="font-size: 3rem; margin-bottom: var(--spacing-3);">상품 카드</h1>
-      <p style="font-size: 1.25rem; margin-bottom: var(--spacing-4);">이미지, 제목, 가격이 있는 상품 카드</p>
-      <button style="background: white; color: var(--color-primary); padding: 16px 32px; border: none; border-radius: var(--radius); font-size: 1.1rem; cursor: pointer;">더 알아보기</button>
-    </div>
+<div class="product-card">
+  <img src="https://via.placeholder.com/400x300" alt="상품">
+  <div class="card-content">
+    <h3>상품명</h3>
+    <p class="price">₩29,900</p>
   </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -78,6 +104,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S018 - 상품 카드 완성 예시');
   </script>

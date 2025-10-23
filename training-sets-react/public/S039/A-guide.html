@@ -22,82 +22,201 @@
     </section>
 
     <section class="guide-section">
+      <h2>🖼️ 완성 예시 미리보기</h2>
+      <p>아래는 이번 예제의 완성된 모습입니다. 이 구조를 참고하여 코드를 작성해보세요!</p>
+      
+    <div style="font-family: monospace; background: #F3F4F6; padding: 24px; border-radius: 8px; margin: 16px 0;">
+      <pre style="margin: 0; line-height: 1.8; color: #222;">
+┌──────────────────────┐
+│   Component 영역     │
+│  ┌────────────────┐  │
+│  │   Icon/Image   │  │
+│  └────────────────┘  │
+│      제목 영역        │
+│     설명 텍스트       │
+│  [ 버튼 또는 액션 ]   │
+└──────────────────────┘
+      </pre>
+    </div>
+      <div style="background: #FFF9E6; border-left: 4px solid #FF9800; padding: 16px; border-radius: 4px; margin-top: 16px;">
+        <strong>💡 참고:</strong> 완성된 정답 코드는 <code>C-answer.html</code> 파일에서 확인할 수 있습니다.<br>
+        먼저 스스로 도전해보고, 막힐 때만 참고하세요!
+      </div>
+    </section>
+
+    <section class="guide-section">
       <h2>🎯 주요 학습 포인트</h2>
       <ul>
-        <li>컴포넌트 구조화</li>
-        <li>재사용 가능한 디자인</li>
-        <li>상태 표현</li>
-        <li>인터랙션</li>
+        <li><strong>모달 팝업</strong> 구조</li>
+        <li><strong>오버레이</strong>로 배경 어둡게</li>
+        <li>JavaScript로 모달 <strong>열기/닫기</strong></li>
+        <li><strong>ESC 키</strong>와 오버레이 클릭으로 닫기</li>
       </ul>
     </section>
 
     <section class="guide-section">
       <h2>📐 퍼블리싱 요구사항</h2>
-      <h3>기본 요구사항</h3>
+
+      <h3>HTML 구조</h3>
       <ul>
-        <li>BEM 네이밍 또는 의미있는 클래스명 사용</li>
-        <li>컴포넌트 내부 요소들의 관계 명확히 표현</li>
-        <li>호버, 액티브 등 다양한 상태 스타일 정의</li>
-        <li>일관된 디자인 토큰 사용</li>
+        <li>모달 트리거 버튼</li>
+        <li><code>&lt;div class="modal-overlay"&gt;</code> 배경</li>
+        <li><code>&lt;div class="modal"&gt;</code> 모달 컨테이너</li>
+        <li>모달 내부: 헤더, 본문, 푸터 (닫기 버튼)</li>
       </ul>
 
-      <h3>추가 요구사항</h3>
+      <h3>CSS 레이아웃</h3>
       <ul>
-        <li>모든 인터랙티브 요소에 적절한 hover 효과 적용</li>
-        <li>transition은 0.3s ease 기본값 사용</li>
-        <li>색상은 CSS 변수로 정의하여 일관성 유지</li>
-        <li>8px 간격 시스템 준수</li>
+        <li><strong>오버레이:</strong> position: fixed, 전체 화면, rgba 배경</li>
+        <li><strong>모달:</strong> position: fixed, 중앙 정렬</li>
+        <li><strong>기본 상태:</strong> display: none</li>
+        <li><strong>Open 상태:</strong> display: flex</li>
       </ul>
+
+      <h3>스타일링 세부사항</h3>
+      <ul>
+        <li>JavaScript: 버튼 클릭 시 모달 표시</li>
+        <li>오버레이 클릭 또는 닫기 버튼으로 닫기</li>
+        <li>ESC 키로 닫기</li>
+        <li>모달 열릴 때 body 스크롤 방지</li>
+      </ul>
+
+
+
+
+      <h3>🎨 인터랙션 상세 요구사항</h3>
+      <div style="background: #E0F2FE; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 12px;">
+        <p style="margin-bottom: 12px;"><strong>⚠️ 이 예제에서 반드시 hover 효과를 적용해야 할 요소:</strong></p>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">📌 인터랙션 대상</h4>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>모달 열기 버튼</strong> (<code>.open-modal</code>): 배경색 변경, 위로 이동</li>
+          <li><strong>닫기 버튼</strong> (<code>.close-btn</code>): 회전, 색상 변경</li>
+        </ul>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">💻 구현 코드</h4>
+        <pre style="background: #fff; padding: 16px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem; overflow-x: auto;"><code>.open-modal:hover {
+  background: #3730a3;
+  transform: translateY(-2px);
+}
+.close-btn:hover {
+  transform: rotate(90deg);
+  color: var(--color-accent);
+}</code></pre>
+
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; padding: 12px; border-radius: 4px; margin-top: 16px;">
+          <strong>💡 팁:</strong> 위 요소들에 <code>transition: 0.3s ease</code>를 먼저 설정한 후 hover 효과를 적용하세요!
+        </div>
+      </div>
     </section>
 
     <section class="guide-section">
-      <h2>🎨 스타일 가이드</h2>
+      <h2>🎨 스타일 가이드 (이 예제 전용)</h2>
 
       <h3>색상 팔레트</h3>
-      <div class="color-palette">
-        <div class="color-swatch" style="background: #4F46E5;">#4F46E5</div>
-        <div class="color-swatch" style="background: #10B981;">#10B981</div>
-        <div class="color-swatch" style="background: #FF9800;">#FF9800</div>
-        <div class="color-swatch" style="background: #FFFFFF; border: 2px solid #E5E7EB;">#FFFFFF</div>
-        <div class="color-swatch" style="background: #F3F4F6; color: #222;">#F3F4F6</div>
-        <div class="color-swatch" style="background: #222222; color: #FFF;">#222222</div>
-      </div>
+      <ul>
+        <li><strong>오버레이:</strong> <code>rgba(0,0,0,0.5)</code> - Semi-transparent black</li>
+        <li><strong>모달 배경:</strong> <code>#FFFFFF</code> - White</li>
+        <li><strong>Primary 버튼:</strong> <code>#4F46E5</code> - Primary</li>
+        <li><strong>Close 버튼:</strong> <code>#EF4444</code> - Red</li>
+      </ul>
 
       <h3>타이포그래피</h3>
       <ul>
-        <li>폰트: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif</li>
-        <li>제목 크기: 2.5rem (large), 2rem (medium), 1.5rem (small)</li>
-        <li>본문 크기: 1rem (기본), 0.875rem (작게)</li>
-        <li>행간: 1.6 (본문), 1.2 (제목)</li>
+        <li><strong>모달 제목:</strong> 1.5rem, 굵게</li>
+        <li><strong>모달 본문:</strong> 1rem</li>
       </ul>
 
-      <h3>간격 시스템 (8px scale)</h3>
+      <h3>간격</h3>
       <ul>
-        <li>8px, 16px, 24px, 32px, 40px, 48px</li>
-        <li>요소 간 간격은 위 값들을 조합하여 사용</li>
+        <li><strong>모달 너비:</strong> 최대 500px</li>
+        <li><strong>모달 패딩:</strong> 32px</li>
+        <li><strong>Border radius:</strong> 12px</li>
       </ul>
     </section>
 
     <section class="guide-section">
-      <h2>💡 구현 힌트</h2>
-      <ul>
-        <li>먼저 HTML 구조를 시맨틱하게 작성하세요</li>
-        <li>CSS는 레이아웃 → 타이포그래피 → 색상 → 인터랙션 순서로 작성하세요</li>
-        <li>JavaScript가 필요한 경우, 이벤트 리스너를 명확히 분리하세요</li>
-        <li>크롬 개발자 도구로 요소를 검사하며 조정하세요</li>
-        <li>모바일 반응형을 고려하세요 (필요시 미디어 쿼리 사용)</li>
-      </ul>
+      <h2>💡 단계별 구현 가이드</h2>
+
+      <h3>1단계: HTML 구조</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>&lt;button id="openModal"&gt;모달 열기&lt;/button&gt;
+
+&lt;div class="modal-overlay" id="modalOverlay"&gt;
+  &lt;div class="modal"&gt;
+    &lt;div class="modal-header"&gt;
+      &lt;h2&gt;모달 제목&lt;/h2&gt;
+      &lt;button class="close-btn"&gt;&times;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-body"&gt;
+      &lt;p&gt;모달 콘텐츠...&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-footer"&gt;
+      &lt;button class="btn-primary"&gt;확인&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+
+      <h3>2단계: CSS 스타일</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-overlay.open {
+  display: flex;
+}
+.modal {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  max-width: 500px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}</code></pre>
+      </div>
+
+      <h3>3단계: JavaScript</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>const openBtn = document.getElementById('openModal');
+const overlay = document.getElementById('modalOverlay');
+const closeBtn = document.querySelector('.close-btn');
+
+openBtn.addEventListener('click', () =&gt; {
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+
+closeBtn.addEventListener('click', () =&gt; {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+});
+
+overlay.addEventListener('click', (e) =&gt; {
+  if (e.target === overlay) {
+    overlay.classList.remove('open');
+  }
+});</code></pre>
+      </div>
     </section>
 
     <section class="guide-section">
       <h2>✅ 완성 체크리스트</h2>
       <ul>
-        <li>□ HTML 구조가 시맨틱하고 명확한가?</li>
-        <li>□ CSS 클래스명이 의미있고 일관적인가?</li>
-        <li>□ 레이아웃이 의도한 대로 배치되었는가?</li>
-        <li>□ 모든 인터랙션이 부드럽게 작동하는가?</li>
-        <li>□ 색상과 타이포그래피가 일관적인가?</li>
-        <li>□ 코드가 깔끔하고 주석이 적절한가?</li>
+        <li>□ 버튼 클릭 시 모달이 나타나나요?</li>
+        <li>□ 오버레이가 배경을 어둡게 만드나요?</li>
+        <li>□ 모달이 화면 중앙에 위치하나요?</li>
+        <li>□ 닫기 버튼으로 모달이 닫히나요?</li>
+        <li>□ 오버레이 클릭으로 모달이 닫히나요?</li>
+        <li>□ 모달 열릴 때 body 스크롤이 방지되나요?</li>
       </ul>
     </section>
 

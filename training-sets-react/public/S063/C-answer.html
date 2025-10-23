@@ -46,9 +46,6 @@
        완성 예시 CSS
        ======================================== */
 
-    body {
-      margin: 0;
-    }
 
   </style>
 </head>
@@ -56,14 +53,53 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="visual-section" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); min-height: 100vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: var(--spacing-6);">
-    <div>
-      <h1 style="font-size: 3rem; margin-bottom: var(--spacing-3);">상품 상세 페이지</h1>
-      <p style="font-size: 1.25rem; margin-bottom: var(--spacing-4);">이미지, 설명, 옵션이 있는 상품 페이지</p>
-      <button style="background: white; color: var(--color-primary); padding: 16px 32px; border: none; border-radius: var(--radius); font-size: 1.1rem; cursor: pointer;">더 알아보기</button>
+<div class="product-detail">
+  <div class="product-images">
+    <img src="main.jpg" id="mainImage" class="main-image">
+    <div class="thumbnails">
+      <img src="thumb1.jpg" class="thumb active" onclick="changeImage(this)">
+      <img src="thumb2.jpg" class="thumb" onclick="changeImage(this)">
+      <img src="thumb3.jpg" class="thumb" onclick="changeImage(this)">
     </div>
   </div>
+
+  <div class="product-info">
+    <h1>프리미엄 스마트워치</h1>
+    <div class="price">
+      <span class="original">₩199,000</span>
+      <span class="sale">₩149,000</span>
+      <span class="discount">25% OFF</span>
+    </div>
+    <p class="description">최신 기술이 적용된 스마트워치...</p>
+
+    <div class="options">
+      <label>색상</label>
+      <div class="color-options">
+        <div class="color-option" style="background: #000" data-color="black"></div>
+        <div class="color-option" style="background: #fff" data-color="white"></div>
+      </div>
+
+      <label>사이즈</label>
+      <select class="size-select">
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+      </select>
+
+      <label>수량</label>
+      <div class="quantity">
+        <button onclick="changeQuantity(-1)">-</button>
+        <span id="quantity">1</span>
+        <button onclick="changeQuantity(1)">+</button>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button class="btn-cart">장바구니</button>
+      <button class="btn-buy">바로 구매</button>
+    </div>
+  </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -78,6 +114,18 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+let quantity = 1;
+
+function changeImage(thumb) {
+  document.getElementById('mainImage').src = thumb.src.replace('thumb', 'main');
+  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+}
+
+function changeQuantity(delta) {
+  quantity = Math.max(1, quantity + delta);
+  document.getElementById('quantity').textContent = quantity;
+}
 
     console.log('✅ S063 - 상품 상세 페이지 완성 예시');
   </script>

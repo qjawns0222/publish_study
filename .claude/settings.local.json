@@ -1,8 +1,19 @@
 {
   "permissions": {
     "allow": [
-      "Bash(copy \"C:\\Users\\c\\Desktop\\퍼블리싱\\training-sets\\S001\\C-answer.html\" \"C:\\Users\\c\\Desktop\\퍼블리싱\\training-sets-react\\public\\S001\")",
-      "Bash(node -e:*)"
+      "Bash(for i in {001..100})",
+      "Bash(do cp -r \"training-sets/S$i\"/* \"training-sets-react/public/S$i/\")",
+      "Bash(done)",
+      "Bash(npm run dev)",
+      "Bash(node generate-custom-guides.js:*)",
+      "Bash(node generate-examples.js:*)",
+      "Bash(for i in S001 S010 S025 S050 S075 S100)",
+      "Bash(do echo \"=== $i ===\")",
+      "Bash(do cp -r \"S$i\"/* \"../training-sets-react/public/S$i/\")",
+      "Bash(node verify-all-examples.js:*)",
+      "Bash(node:*)",
+      "Bash(for:*)",
+      "Bash(do echo \"=== $id ===\")"
     ],
     "deny": [],
     "ask": []

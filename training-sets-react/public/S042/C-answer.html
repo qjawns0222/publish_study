@@ -45,15 +45,28 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+.pagination {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.page-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #F3F4F6;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.page-btn.active {
+  background: #4F46E5;
+  color: white;
+}
+.page-btn:disabled {
+  background: #D1D5DB;
+  cursor: not-allowed;
+}
 
   </style>
 </head>
@@ -61,14 +74,15 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">페이지네이션</h2>
-      <p style="margin-top: var(--spacing-2);">페이지 번호 네비게이션</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
-    </div>
-  </div>
+<div class="pagination">
+  <button class="page-btn" id="prevBtn">&lt;</button>
+  <button class="page-btn active">1</button>
+  <button class="page-btn">2</button>
+  <button class="page-btn">3</button>
+  <button class="page-btn">4</button>
+  <button class="page-btn">5</button>
+  <button class="page-btn" id="nextBtn">&gt;</button>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +97,26 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+let currentPage = 1;
+const totalPages = 5;
+const pageBtns = document.querySelectorAll('.page-btn:not(#prevBtn):not(#nextBtn)');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+function updatePagination() {
+  pageBtns.forEach((btn, index) => {
+    btn.classList.toggle('active', index + 1 === currentPage);
+  });
+  prevBtn.disabled = currentPage === 1;
+  nextBtn.disabled = currentPage === totalPages;
+}
+
+pageBtns.forEach((btn, index) => {
+  btn.addEventListener('click', () => {
+    currentPage = index + 1;
+    updatePagination();
+  });
+});
 
     console.log('✅ S042 - 페이지네이션 완성 예시');
   </script>

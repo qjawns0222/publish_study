@@ -45,15 +45,21 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+.carousel {
+  position: relative;
+  overflow: hidden;
+}
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+.slide {
+  flex: 0 0 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
   </style>
 </head>
@@ -61,14 +67,20 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">캐러셀 슬라이더</h2>
-      <p style="margin-top: var(--spacing-2);">좌우 버튼으로 이동하는 이미지 슬라이더</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
-    </div>
+<div class="carousel">
+  <div class="carousel-track">
+    <div class="slide">슬라이드 1</div>
+    <div class="slide">슬라이드 2</div>
+    <div class="slide">슬라이드 3</div>
   </div>
+  <button class="carousel-btn prev">&lt;</button>
+  <button class="carousel-btn next">&gt;</button>
+  <div class="carousel-dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +95,29 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+let currentIndex = 0;
+const track = document.querySelector('.carousel-track');
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+
+function updateCarousel() {
+  const offset = -currentIndex * 100;
+  track.style.transform = `translateX(${offset}%)`;
+
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentIndex);
+  });
+}
+
+document.querySelector('.prev').addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  updateCarousel();
+});
+
+document.querySelector('.next').addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % slides.length;
+  updateCarousel();
+});
 
     console.log('✅ S040 - 캐러셀 슬라이더 완성 예시');
   </script>

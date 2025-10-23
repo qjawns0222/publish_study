@@ -45,10 +45,73 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.neuro-container {
+  background: #E0E5EC;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 48px;
+}
 
-    body {
-      margin: 0;
-    }
+.neuro-card {
+  background: #E0E5EC;
+  padding: 48px;
+  border-radius: 24px;
+  box-shadow:
+    -8px -8px 16px rgba(255, 255, 255, 0.7),
+    8px 8px 16px rgba(0, 0, 0, 0.15);
+  color: #4A5568;
+  text-align: center;
+}
+
+.neuro-button {
+  background: #E0E5EC;
+  color: #4A5568;
+  border: none;
+  padding: 16px 48px;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow:
+    -8px -8px 16px rgba(255, 255, 255, 0.7),
+    8px 8px 16px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
+}
+
+.neuro-button:hover {
+  box-shadow:
+    -4px -4px 8px rgba(255, 255, 255, 0.7),
+    4px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.neuro-button:active,
+.neuro-button.pressed {
+  box-shadow:
+    inset -4px -4px 8px rgba(255, 255, 255, 0.7),
+    inset 4px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.neuro-input {
+  background: #E0E5EC;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 16px;
+  font-size: 1rem;
+  color: #4A5568;
+  box-shadow:
+    inset -4px -4px 8px rgba(255, 255, 255, 0.7),
+    inset 4px 4px 8px rgba(0, 0, 0, 0.15);
+  outline: none;
+  width: 300px;
+}
+
+.neuro-input::placeholder {
+  color: #A0AEC0;
+}
 
   </style>
 </head>
@@ -56,14 +119,17 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="visual-section" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); min-height: 100vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: var(--spacing-6);">
-    <div>
-      <h1 style="font-size: 3rem; margin-bottom: var(--spacing-3);">뉴모피즘 UI</h1>
-      <p style="font-size: 1.25rem; margin-bottom: var(--spacing-4);">Neumorphism 스타일 컴포넌트 세트</p>
-      <button style="background: white; color: var(--color-primary); padding: 16px 32px; border: none; border-radius: var(--radius); font-size: 1.1rem; cursor: pointer;">더 알아보기</button>
-    </div>
+<div class="neuro-container">
+  <div class="neuro-card">
+    <h2>뉴모피즘 카드</h2>
+    <p>소프트한 그림자 효과</p>
   </div>
+
+  <button class="neuro-button">버튼</button>
+  <button class="neuro-button pressed">Pressed</button>
+
+  <input type="text" class="neuro-input" placeholder="입력 필드">
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -78,6 +144,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S095 - 뉴모피즘 UI 완성 예시');
   </script>

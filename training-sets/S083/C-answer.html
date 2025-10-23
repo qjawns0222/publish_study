@@ -46,14 +46,6 @@
        완성 예시 CSS
        ======================================== */
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
 
   </style>
 </head>
@@ -61,14 +53,10 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">차트 컴포넌트</h2>
-      <p style="margin-top: var(--spacing-2);">Canvas로 그리는 간단한 차트</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
-    </div>
-  </div>
+<div class="chart-container">
+  <canvas id="myChart" width="600" height="400"></canvas>
+  <div class="legend" id="legend"></div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +71,55 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const canvas = document.getElementById('myChart');
+const ctx = canvas.getContext('2d');
+
+const data = [
+  { label: '1월', value: 65, color: '#4F46E5' },
+  { label: '2월', value: 59, color: '#10B981' },
+  { label: '3월', value: 80, color: '#F59E0B' },
+  { label: '4월', value: 81, color: '#EF4444' },
+  { label: '5월', value: 56, color: '#8B5CF6' }
+];
+
+const padding = 40;
+const chartWidth = canvas.width - padding * 2;
+const chartHeight = canvas.height - padding * 2;
+const barWidth = chartWidth / data.length - 10;
+const maxValue = Math.max(...data.map(d => d.value));
+
+// 배경
+ctx.fillStyle = '#F9FAFB';
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+// 막대 그리기
+data.forEach((item, i) => {
+  const x = padding + i * (barWidth + 10);
+  const barHeight = (item.value / maxValue) * chartHeight;
+  const y = canvas.height - padding - barHeight;
+
+  // 막대
+  ctx.fillStyle = item.color;
+  ctx.fillRect(x, y, barWidth, barHeight);
+
+  // 라벨
+  ctx.fillStyle = '#222';
+  ctx.font = '12px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(item.label, x + barWidth / 2, canvas.height - padding + 20);
+
+  // 값
+  ctx.fillText(item.value, x + barWidth / 2, y - 10);
+});
+
+// 축
+ctx.strokeStyle = '#D1D5DB';
+ctx.lineWidth = 2;
+ctx.beginPath();
+ctx.moveTo(padding, padding);
+ctx.lineTo(padding, canvas.height - padding);
+ctx.lineTo(canvas.width - padding, canvas.height - padding);
+ctx.stroke();
 
     console.log('✅ S083 - 차트 컴포넌트 완성 예시');
   </script>

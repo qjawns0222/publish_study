@@ -45,21 +45,34 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
 
-    .animated-element {
-      animation: fadeInUp 1s ease;
-    }
+.stat-card {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.stat-number {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #4F46E5;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: #6B7280;
+}
 
   </style>
 </head>
@@ -67,13 +80,20 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="animation-demo" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--color-light);">
-    <div class="animated-element" style="background: var(--color-primary); color: white; padding: var(--spacing-5); border-radius: var(--radius); text-align: center;">
-      <h2>카운터 애니메이션</h2>
-      <p style="margin-top: var(--spacing-2);">숫자가 증가하는 카운팅 효과</p>
-    </div>
+<div class="stats-container">
+  <div class="stat-card">
+    <div class="stat-number" data-target="1000">0</div>
+    <p class="stat-label">프로젝트</p>
   </div>
+  <div class="stat-card">
+    <div class="stat-number" data-target="500">0</div>
+    <p class="stat-label">고객</p>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number" data-target="50">0</div>
+    <p class="stat-label">팀원</p>
+  </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -88,6 +108,35 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+function animateCounter(element, target, duration = 2000) {
+  const start = 0;
+  const increment = target / (duration / 16); // 60fps
+  let current = start;
+
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    element.textContent = Math.floor(current);
+  }, 16);
+}
+
+// Intersection Observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const target = parseInt(entry.target.dataset.target);
+      animateCounter(entry.target, target);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-number').forEach(stat => {
+  observer.observe(stat);
+});
 
     console.log('✅ S069 - 카운터 애니메이션 완성 예시');
   </script>

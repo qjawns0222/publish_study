@@ -43,104 +43,183 @@
     <section class="guide-section">
       <h2>🎯 주요 학습 포인트</h2>
       <ul>
-        <li>CSS 애니메이션</li>
-        <li>Transition</li>
-        <li>Transform</li>
-        <li>성능 최적화</li>
+        <li><strong>카운터 애니메이션</strong> (Number Counting)</li>
+        <li><strong>setInterval</strong>로 숫자 증가</li>
+        <li><strong>Intersection Observer</strong>로 트리거</li>
+        <li>목표값까지 부드럽게 증가</li>
       </ul>
     </section>
 
     <section class="guide-section">
       <h2>📐 퍼블리싱 요구사항</h2>
-      <h3>기본 요구사항</h3>
+
+      <h3>HTML 구조</h3>
       <ul>
-        <li>CSS transition 또는 animation 사용</li>
-        <li>적절한 duration과 easing 함수</li>
-        <li>transform과 opacity만 애니메이션 (성능)</li>
-        <li>접근성 고려 (prefers-reduced-motion)</li>
+        <li>3-4개의 통계 카드</li>
+        <li>각 카드: 숫자, 라벨, 아이콘</li>
+        <li>data-target 속성에 목표값 저장</li>
       </ul>
 
-      <h3>추가 요구사항</h3>
+      <h3>CSS 레이아웃</h3>
       <ul>
-        <li>모든 인터랙티브 요소에 적절한 hover 효과 적용</li>
-        <li>transition은 0.3s ease 기본값 사용</li>
-        <li>색상은 CSS 변수로 정의하여 일관성 유지</li>
-        <li>8px 간격 시스템 준수</li>
+        <li><strong>카드:</strong> 중앙 정렬, 패딩</li>
+        <li><strong>숫자:</strong> 큰 폰트 (3rem), 굵게</li>
+        <li><strong>라벨:</strong> 작은 폰트, 회색</li>
+        <li><strong>그리드:</strong> 3-4열 배치</li>
       </ul>
+
+      <h3>스타일링 세부사항</h3>
+      <ul>
+        <li>Intersection Observer로 뷰포트 진입 감지</li>
+        <li>setInterval로 숫자 증가 (duration: 2s)</li>
+        <li>목표값 도달 시 clearInterval</li>
+        <li>한 번만 실행되도록 unobserve</li>
+      </ul>
+
+
+
 
       <h3>🎨 인터랙션 상세 요구사항</h3>
       <div style="background: #E0F2FE; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 12px;">
-        <p style="margin-bottom: 12px;"><strong>클릭 가능한 요소 (링크, 버튼) hover 효과</strong></p>
-        <ul style="margin-left: 20px;">
-          <li>마우스 올리면 밑줄 또는 배경색 변화</li>
-          <li>투명도 조정 (<code>opacity: 0.8</code>) 또는 색상 변경</li>
-          <li>부드러운 전환 효과 (<code>transition: 0.3s ease</code>)</li>
-          <li>선택적으로 약간 위로 이동 (<code>transform: translateY(-2px)</code>)</li>
-        </ul>
-        <pre style="background: #fff; padding: 12px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem;"><code>/* 링크 hover 예시 */
-a:hover {
-  text-decoration: underline;
-  opacity: 0.8;
-  transition: 0.3s ease;
-}
+        <p style="margin-bottom: 12px;"><strong>⚠️ 이 예제에서 반드시 hover 효과를 적용해야 할 요소:</strong></p>
 
-/* 버튼 hover 예시 */
-.btn:hover {
-  background: #3730a3;
-  transform: translateY(-2px);
-  transition: 0.3s ease;
-}</code></pre>
+        <h4 style="margin-top: 16px; color: #0369a1;">📌 인터랙션 대상</h4>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>카운터 숫자</strong> (<code>.counter</code>): 숫자 증가 애니메이션</li>
+        </ul>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">💻 구현 코드</h4>
+        <pre style="background: #fff; padding: 16px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem; overflow-x: auto;"><code>.counter {
+  animation: countUp 2s ease;
+}
+/* JavaScript로 숫자 카운팅 구현 */</code></pre>
+
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; padding: 12px; border-radius: 4px; margin-top: 16px;">
+          <strong>💡 팁:</strong> 위 요소들에 <code>transition: 0.3s ease</code>를 먼저 설정한 후 hover 효과를 적용하세요!
+        </div>
       </div>
     </section>
 
     <section class="guide-section">
-      <h2>🎨 스타일 가이드</h2>
+      <h2>🎨 스타일 가이드 (이 예제 전용)</h2>
 
       <h3>색상 팔레트</h3>
-      <div class="color-palette">
-        <div class="color-swatch" style="background: #4F46E5;">#4F46E5</div>
-        <div class="color-swatch" style="background: #10B981;">#10B981</div>
-        <div class="color-swatch" style="background: #FF9800;">#FF9800</div>
-        <div class="color-swatch" style="background: #FFFFFF; border: 2px solid #E5E7EB;">#FFFFFF</div>
-        <div class="color-swatch" style="background: #F3F4F6; color: #222;">#F3F4F6</div>
-        <div class="color-swatch" style="background: #222222; color: #FFF;">#222222</div>
-      </div>
+      <ul>
+        <li><strong>숫자 색상:</strong> <code>#4F46E5</code> - Primary</li>
+        <li><strong>라벨 색상:</strong> <code>#6B7280</code> - Gray</li>
+        <li><strong>카드 배경:</strong> <code>#FFFFFF</code> - White</li>
+      </ul>
 
       <h3>타이포그래피</h3>
       <ul>
-        <li>폰트: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif</li>
-        <li>제목 크기: 2.5rem (large), 2rem (medium), 1.5rem (small)</li>
-        <li>본문 크기: 1rem (기본), 0.875rem (작게)</li>
-        <li>행간: 1.6 (본문), 1.2 (제목)</li>
+        <li><strong>숫자:</strong> 3rem, 굵게, Primary</li>
+        <li><strong>라벨:</strong> 1rem, 회색</li>
+        <li><strong>+ 기호:</strong> 3rem, Primary</li>
       </ul>
 
-      <h3>간격 시스템 (8px scale)</h3>
+      <h3>간격</h3>
       <ul>
-        <li>8px, 16px, 24px, 32px, 40px, 48px</li>
-        <li>요소 간 간격은 위 값들을 조합하여 사용</li>
+        <li><strong>카드 패딩:</strong> 40px</li>
+        <li><strong>카드 간격:</strong> 24px</li>
       </ul>
     </section>
 
     <section class="guide-section">
-      <h2>💡 구현 힌트</h2>
-      <ul>
-        <li>먼저 HTML 구조를 시맨틱하게 작성하세요</li>
-        <li>CSS는 레이아웃 → 타이포그래피 → 색상 → 인터랙션 순서로 작성하세요</li>
-        <li>JavaScript가 필요한 경우, 이벤트 리스너를 명확히 분리하세요</li>
-        <li>크롬 개발자 도구로 요소를 검사하며 조정하세요</li>
-        <li>모바일 반응형을 고려하세요 (필요시 미디어 쿼리 사용)</li>
-      </ul>
+      <h2>💡 단계별 구현 가이드</h2>
+
+      <h3>1단계: HTML 구조</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>&lt;div class="stats-container"&gt;
+  &lt;div class="stat-card"&gt;
+    &lt;div class="stat-number" data-target="1000"&gt;0&lt;/div&gt;
+    &lt;p class="stat-label"&gt;프로젝트&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="stat-card"&gt;
+    &lt;div class="stat-number" data-target="500"&gt;0&lt;/div&gt;
+    &lt;p class="stat-label"&gt;고객&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="stat-card"&gt;
+    &lt;div class="stat-number" data-target="50"&gt;0&lt;/div&gt;
+    &lt;p class="stat-label"&gt;팀원&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+
+      <h3>2단계: CSS 스타일</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>.stats-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+
+.stat-card {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #4F46E5;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: #6B7280;
+}</code></pre>
+      </div>
+
+      <h3>3단계: JavaScript - Counter</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>function animateCounter(element, target, duration = 2000) {
+  const start = 0;
+  const increment = target / (duration / 16); // 60fps
+  let current = start;
+
+  const timer = setInterval(() =&gt; {
+    current += increment;
+    if (current &gt;= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    element.textContent = Math.floor(current);
+  }, 16);
+}
+
+// Intersection Observer
+const observer = new IntersectionObserver((entries) =&gt; {
+  entries.forEach(entry =&gt; {
+    if (entry.isIntersecting) {
+      const target = parseInt(entry.target.dataset.target);
+      animateCounter(entry.target, target);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-number').forEach(stat =&gt; {
+  observer.observe(stat);
+});</code></pre>
+      </div>
     </section>
 
     <section class="guide-section">
       <h2>✅ 완성 체크리스트</h2>
       <ul>
-        <li>□ HTML 구조가 시맨틱하고 명확한가?</li>
-        <li>□ CSS 클래스명이 의미있고 일관적인가?</li>
-        <li>□ 레이아웃이 의도한 대로 배치되었는가?</li>
-        <li>□ 모든 인터랙션이 부드럽게 작동하는가?</li>
-        <li>□ 색상과 타이포그래피가 일관적인가?</li>
-        <li>□ 코드가 깔끔하고 주석이 적절한가?</li>
+        <li>□ 숫자가 0에서 목표값까지 증가하나요?</li>
+        <li>□ 애니메이션이 부드럽게 작동하나요?</li>
+        <li>□ Intersection Observer로 트리거되나요?</li>
+        <li>□ 목표값에 정확히 도달하나요?</li>
+        <li>□ 한 번만 실행되고 멈추나요?</li>
+        <li>□ 여러 카드가 동시에 카운팅되나요?</li>
       </ul>
     </section>
 

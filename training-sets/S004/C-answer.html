@@ -45,55 +45,39 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 0 48px;
+  background: white;
+  border-bottom: 1px solid #E5E7EB;
+}
 
-    .header {
-      background: var(--color-primary);
-      color: white;
-      padding: var(--spacing-2) 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 var(--spacing-3);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    .nav {
-      display: flex;
-      gap: var(--spacing-3);
-    }
-
-    .nav a {
-      color: white;
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .nav a:hover {
-      opacity: 0.8;
-    }
+    nav {
+  display: flex;
+  gap: 24px;
+}
+nav a {
+  color: #222;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+nav a:hover {
+  color: var(--color-primary);
+}
 
     @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-        gap: var(--spacing-2);
-      }
-
-      .nav {
-        flex-direction: column;
-        text-align: center;
-        gap: var(--spacing-1);
-      }
-    }
+  header {
+    padding: 0 24px;
+  }
+  nav {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
 
   </style>
 </head>
@@ -101,22 +85,16 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <header class="header">
-    <div class="container">
-      <div class="logo">MyBrand</div>
-      <nav class="nav">
-        <a href="#">홈</a>
-        <a href="#">서비스</a>
-        <a href="#">소개</a>
-        <a href="#">연락처</a>
-      </nav>
-    </div>
-  </header>
-  <main style="padding: 48px 24px; text-align: center;">
-    <h1>반응형 헤더 예시</h1>
-    <p>화면 크기를 조절해보세요!</p>
-  </main>
+<header>
+  <div class="logo">MyLogo</div>
+  <nav>
+    <a href="#">홈</a>
+    <a href="#">소개</a>
+    <a href="#">서비스</a>
+    <a href="#">블로그</a>
+    <a href="#">연락처</a>
+  </nav>
+</header>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -131,6 +109,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S004 - 반응형 헤더 완성 예시');
   </script>

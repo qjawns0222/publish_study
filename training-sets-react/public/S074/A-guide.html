@@ -22,82 +22,245 @@
     </section>
 
     <section class="guide-section">
+      <h2>🖼️ 완성 예시 미리보기</h2>
+      <p>아래는 이번 예제의 완성된 모습입니다. 이 구조를 참고하여 코드를 작성해보세요!</p>
+      
+    <div style="font-family: monospace; background: #F3F4F6; padding: 24px; border-radius: 8px; margin: 16px 0;">
+      <pre style="margin: 0; line-height: 1.8; color: #222;">
+┌─────────────────────────────────────┐
+│           HEADER (헤더)              │
+│   로고, 네비게이션, 메뉴 등          │
+└─────────────────────────────────────┘
+┌─────────────────────────────────────┐
+│                                     │
+│           MAIN (메인 영역)           │
+│        실제 콘텐츠가 들어감          │
+│                                     │
+└─────────────────────────────────────┘
+┌─────────────────────────────────────┐
+│          FOOTER (푸터)               │
+│   저작권, 링크, 소셜 미디어 등       │
+└─────────────────────────────────────┘
+      </pre>
+    </div>
+      <div style="background: #FFF9E6; border-left: 4px solid #FF9800; padding: 16px; border-radius: 4px; margin-top: 16px;">
+        <strong>💡 참고:</strong> 완성된 정답 코드는 <code>C-answer.html</code> 파일에서 확인할 수 있습니다.<br>
+        먼저 스스로 도전해보고, 막힐 때만 참고하세요!
+      </div>
+    </section>
+
+    <section class="guide-section">
       <h2>🎯 주요 학습 포인트</h2>
       <ul>
-        <li>시맨틱 HTML 구조</li>
-        <li>Flexbox 또는 Grid 레이아웃</li>
-        <li>반응형 디자인</li>
-        <li>요소 정렬과 배치</li>
+        <li><strong>반응형 대시보드</strong> 레이아웃</li>
+        <li><strong>CSS Grid</strong> 복잡한 배치</li>
+        <li><strong>미디어 쿼리</strong>로 모바일 대응</li>
+        <li>사이드바 + 메인 콘텐츠</li>
       </ul>
     </section>
 
     <section class="guide-section">
       <h2>📐 퍼블리싱 요구사항</h2>
-      <h3>기본 요구사항</h3>
+
+      <h3>HTML 구조</h3>
       <ul>
-        <li>시맨틱 태그 사용 (header, main, section, aside, footer 등)</li>
-        <li>CSS Flexbox 또는 Grid로 레이아웃 구성</li>
-        <li>요소 간 일관된 간격 유지 (8px scale)</li>
-        <li>적절한 패딩과 마진 적용</li>
+        <li>사이드바 네비게이션</li>
+        <li>헤더 (검색, 알림, 프로필)</li>
+        <li>대시보드 카드들 (통계, 차트 등)</li>
+        <li>푸터 (선택사항)</li>
       </ul>
 
-      <h3>추가 요구사항</h3>
+      <h3>CSS 레이아웃</h3>
       <ul>
-        <li>모든 인터랙티브 요소에 적절한 hover 효과 적용</li>
-        <li>transition은 0.3s ease 기본값 사용</li>
-        <li>색상은 CSS 변수로 정의하여 일관성 유지</li>
-        <li>8px 간격 시스템 준수</li>
+        <li><strong>Grid:</strong> grid-template-areas</li>
+        <li><strong>사이드바:</strong> 고정 너비 (250px)</li>
+        <li><strong>메인:</strong> 유연한 너비 (1fr)</li>
+        <li><strong>반응형:</strong> 768px 이하 사이드바 숨김</li>
       </ul>
+
+      <h3>스타일링 세부사항</h3>
+      <ul>
+        <li>grid-template-areas로 레이아웃 정의</li>
+        <li>사이드바: 네비게이션 메뉴</li>
+        <li>헤더: 상단 고정</li>
+        <li>모바일: 햄버거 메뉴로 사이드바 토글</li>
+      </ul>
+
+
+
+
+      <h3>🎨 인터랙션 상세 요구사항</h3>
+      <div style="background: #E0F2FE; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 12px;">
+        <p style="margin-bottom: 12px;"><strong>⚠️ 이 예제에서 반드시 hover 효과를 적용해야 할 요소:</strong></p>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">📌 인터랙션 대상</h4>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>위젯</strong> (<code>.dashboard-widget</code>): 그림자 강화, 테두리 강조</li>
+          <li><strong>사이드 메뉴</strong> (<code>.side-menu-item</code>): 배경색 변경, 좌측 바</li>
+        </ul>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">💻 구현 코드</h4>
+        <pre style="background: #fff; padding: 16px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem; overflow-x: auto;"><code>.dashboard-widget:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  border-color: var(--color-primary);
+}
+.side-menu-item:hover {
+  background: rgba(79, 70, 229, 0.1);
+  border-left: 4px solid var(--color-primary);
+}</code></pre>
+
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; padding: 12px; border-radius: 4px; margin-top: 16px;">
+          <strong>💡 팁:</strong> 위 요소들에 <code>transition: 0.3s ease</code>를 먼저 설정한 후 hover 효과를 적용하세요!
+        </div>
+      </div>
     </section>
 
     <section class="guide-section">
-      <h2>🎨 스타일 가이드</h2>
+      <h2>🎨 스타일 가이드 (이 예제 전용)</h2>
 
       <h3>색상 팔레트</h3>
-      <div class="color-palette">
-        <div class="color-swatch" style="background: #4F46E5;">#4F46E5</div>
-        <div class="color-swatch" style="background: #10B981;">#10B981</div>
-        <div class="color-swatch" style="background: #FF9800;">#FF9800</div>
-        <div class="color-swatch" style="background: #FFFFFF; border: 2px solid #E5E7EB;">#FFFFFF</div>
-        <div class="color-swatch" style="background: #F3F4F6; color: #222;">#F3F4F6</div>
-        <div class="color-swatch" style="background: #222222; color: #FFF;">#222222</div>
-      </div>
+      <ul>
+        <li><strong>사이드바 배경:</strong> <code>#1F2937</code> - Dark gray</li>
+        <li><strong>헤더 배경:</strong> <code>#FFFFFF</code> - White</li>
+        <li><strong>메인 배경:</strong> <code>#F9FAFB</code> - Light gray</li>
+        <li><strong>카드 배경:</strong> <code>#FFFFFF</code> - White</li>
+      </ul>
 
       <h3>타이포그래피</h3>
       <ul>
-        <li>폰트: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif</li>
-        <li>제목 크기: 2.5rem (large), 2rem (medium), 1.5rem (small)</li>
-        <li>본문 크기: 1rem (기본), 0.875rem (작게)</li>
-        <li>행간: 1.6 (본문), 1.2 (제목)</li>
+        <li><strong>사이드바 메뉴:</strong> 0.875rem, 흰색</li>
+        <li><strong>카드 제목:</strong> 1.25rem, 굵게</li>
+        <li><strong>통계 숫자:</strong> 2rem, 굵게, Primary</li>
       </ul>
 
-      <h3>간격 시스템 (8px scale)</h3>
+      <h3>간격</h3>
       <ul>
-        <li>8px, 16px, 24px, 32px, 40px, 48px</li>
-        <li>요소 간 간격은 위 값들을 조합하여 사용</li>
+        <li><strong>사이드바 너비:</strong> 250px</li>
+        <li><strong>헤더 높이:</strong> 64px</li>
+        <li><strong>카드 패딩:</strong> 24px</li>
       </ul>
     </section>
 
     <section class="guide-section">
-      <h2>💡 구현 힌트</h2>
-      <ul>
-        <li>먼저 HTML 구조를 시맨틱하게 작성하세요</li>
-        <li>CSS는 레이아웃 → 타이포그래피 → 색상 → 인터랙션 순서로 작성하세요</li>
-        <li>JavaScript가 필요한 경우, 이벤트 리스너를 명확히 분리하세요</li>
-        <li>크롬 개발자 도구로 요소를 검사하며 조정하세요</li>
-        <li>모바일 반응형을 고려하세요 (필요시 미디어 쿼리 사용)</li>
-      </ul>
+      <h2>💡 단계별 구현 가이드</h2>
+
+      <h3>1단계: HTML 구조</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>&lt;div class="dashboard"&gt;
+  &lt;aside class="sidebar"&gt;
+    &lt;h2&gt;대시보드&lt;/h2&gt;
+    &lt;nav&gt;
+      &lt;a href="#" class="active"&gt;홈&lt;/a&gt;
+      &lt;a href="#"&gt;통계&lt;/a&gt;
+      &lt;a href="#"&gt;설정&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/aside&gt;
+
+  &lt;header class="header"&gt;
+    &lt;input type="search" placeholder="검색..."&gt;
+    &lt;div class="header-actions"&gt;
+      &lt;button&gt;🔔&lt;/button&gt;
+      &lt;div class="profile"&gt;프로필&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+
+  &lt;main class="main-content"&gt;
+    &lt;div class="dashboard-grid"&gt;
+      &lt;div class="stat-card"&gt;
+        &lt;h3&gt;총 방문자&lt;/h3&gt;
+        &lt;p class="stat-number"&gt;12,345&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="stat-card"&gt;
+        &lt;h3&gt;매출&lt;/h3&gt;
+        &lt;p class="stat-number"&gt;$45,678&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;!-- 추가 카드들 --&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+
+      <h3>2단계: CSS - Grid Layout</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>.dashboard {
+  display: grid;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 64px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background: #1F2937;
+  color: white;
+  padding: 24px;
+}
+
+.header {
+  grid-area: header;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.main-content {
+  grid-area: main;
+  background: #F9FAFB;
+  padding: 24px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.stat-card {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4F46E5;
+  margin-top: 8px;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-areas:
+      "header"
+      "main";
+    grid-template-columns: 1fr;
+    grid-template-rows: 64px 1fr;
+  }
+
+  .sidebar {
+    display: none; /* 모바일에서 숨김 */
+  }
+}</code></pre>
+      </div>
     </section>
 
     <section class="guide-section">
       <h2>✅ 완성 체크리스트</h2>
       <ul>
-        <li>□ HTML 구조가 시맨틱하고 명확한가?</li>
-        <li>□ CSS 클래스명이 의미있고 일관적인가?</li>
-        <li>□ 레이아웃이 의도한 대로 배치되었는가?</li>
-        <li>□ 모든 인터랙션이 부드럽게 작동하는가?</li>
-        <li>□ 색상과 타이포그래피가 일관적인가?</li>
-        <li>□ 코드가 깔끔하고 주석이 적절한가?</li>
+        <li>□ grid-template-areas가 올바르게 설정되었나요?</li>
+        <li>□ 사이드바가 250px 고정 너비인가요?</li>
+        <li>□ 헤더가 상단에 고정되어 있나요?</li>
+        <li>□ 대시보드 카드들이 그리드로 배치되었나요?</li>
+        <li>□ 모바일에서 사이드바가 숨겨지나요?</li>
+        <li>□ 카드들이 반응형으로 재배치되나요?</li>
       </ul>
     </section>
 

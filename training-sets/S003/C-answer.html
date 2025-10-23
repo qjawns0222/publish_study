@@ -45,52 +45,35 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-
-    .layout {
-      display: grid;
-      grid-template-columns: 250px 1fr;
-      min-height: 100vh;
-      gap: 0;
-    }
+.container {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  min-height: 100vh;
+}
 
     .sidebar {
-      background: var(--color-dark);
-      color: white;
-      padding: var(--spacing-4);
-    }
+  background: #F3F4F6;
+  padding: 24px;
+}
+.sidebar a {
+  display: block;
+  padding: 12px;
+  margin-bottom: 8px;
+  color: #222;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+.sidebar a:hover {
+  background: rgba(79, 70, 229, 0.1);
+  color: var(--color-accent);
+  border-left: 3px solid var(--color-accent);
+  padding-left: 20px;
+}
 
-    .sidebar h2 {
-      margin-bottom: var(--spacing-3);
-      font-size: 1.5rem;
-    }
-
-    .sidebar ul {
-      list-style: none;
-    }
-
-    .sidebar li {
-      margin-bottom: var(--spacing-2);
-    }
-
-    .sidebar a {
-      color: white;
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .sidebar a:hover {
-      color: var(--color-accent);
-    }
-
-    .content {
-      padding: var(--spacing-6);
-      background: white;
-    }
-
-    .content h1 {
-      color: var(--color-primary);
-      margin-bottom: var(--spacing-3);
-    }
+    main {
+  padding: 48px;
+  max-width: 800px;
+}
 
   </style>
 </head>
@@ -98,25 +81,19 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="layout">
-    <aside class="sidebar">
-      <h2>사이드바</h2>
-      <nav>
-        <ul>
-          <li><a href="#">메뉴 1</a></li>
-          <li><a href="#">메뉴 2</a></li>
-          <li><a href="#">메뉴 3</a></li>
-          <li><a href="#">메뉴 4</a></li>
-        </ul>
-      </nav>
-    </aside>
-    <main class="content">
-      <h1>메인 콘텐츠</h1>
-      <p>Grid를 사용한 2단 컬럼 레이아웃입니다.</p>
-      <p style="margin-top: 16px;">Sidebar와 Content 영역이 나란히 배치되어 있습니다.</p>
-    </main>
-  </div>
+<div class="container">
+  <aside class="sidebar">
+    <nav>
+      <a href="#">메뉴 1</a>
+      <a href="#">메뉴 2</a>
+      <a href="#">메뉴 3</a>
+    </nav>
+  </aside>
+  <main>
+    <h1>메인 콘텐츠</h1>
+    <p>내용...</p>
+  </main>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -131,6 +108,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S003 - 2단 컬럼 레이아웃 완성 예시');
   </script>

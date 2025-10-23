@@ -45,21 +45,36 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.interactive-bg {
+  width: 100vw;
+  height: 100vh;
+  background: #0A0E27;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
 
-    .animated-element {
-      animation: fadeInUp 1s ease;
-    }
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: white;
+  text-align: center;
+}
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.content h1 {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.content p {
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
 
   </style>
 </head>
@@ -67,13 +82,12 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="animation-demo" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--color-light);">
-    <div class="animated-element" style="background: var(--color-primary); color: white; padding: var(--spacing-5); border-radius: var(--radius); text-align: center;">
-      <h2>인터랙티브 배경</h2>
-      <p style="margin-top: var(--spacing-2);">마우스에 반응하는 동적 배경</p>
-    </div>
+<div class="interactive-bg" id="interactiveBg">
+  <div class="content">
+    <h1>마우스를 움직여보세요</h1>
+    <p>배경이 따라 움직입니다</p>
   </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -88,6 +102,54 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const bg = document.getElementById('interactiveBg');
+
+bg.addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth) * 100;
+  const y = (e.clientY / window.innerHeight) * 100;
+
+  bg.style.background = `
+    radial-gradient(circle at ${x}% ${y}%,
+      rgba(79, 70, 229, 0.3) 0%,
+      transparent 50%),
+    radial-gradient(circle at ${100 - x}% ${100 - y}%,
+      rgba(16, 185, 129, 0.3) 0%,
+      transparent 50%),
+    #0A0E27
+  `;
+});
+
+// 마우스 움직임에 따른 파티클 효과 (선택사항)
+bg.addEventListener('mousemove', (e) => {
+  const particle = document.createElement('div');
+  particle.style.position = 'absolute';
+  particle.style.left = e.clientX + 'px';
+  particle.style.top = e.clientY + 'px';
+  particle.style.width = '5px';
+  particle.style.height = '5px';
+  particle.style.background = 'rgba(255, 255, 255, 0.5)';
+  particle.style.borderRadius = '50%';
+  particle.style.pointerEvents = 'none';
+  particle.style.animation = 'fadeOut 1s forwards';
+
+  bg.appendChild(particle);
+
+  setTimeout(() => {
+    particle.remove();
+  }, 1000);
+});
+
+// 페이드 아웃 애니메이션
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+      transform: scale(2);
+    }
+  }
+`;
+document.head.appendChild(style);
 
     console.log('✅ S100 - 인터랙티브 배경 완성 예시');
   </script>

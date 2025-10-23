@@ -45,15 +45,38 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.icon-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.icon-btn:hover {
+  background: #3730a3;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+    .icon-only-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.icon-only-btn:hover {
+  background: #3730a3;
+}
 
   </style>
 </head>
@@ -61,14 +84,19 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">아이콘 버튼</h2>
-      <p style="margin-top: var(--spacing-2);">SVG 아이콘이 포함된 버튼 세트</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
-    </div>
-  </div>
+<div class="button-group">
+  <button class="icon-btn">
+    <svg width="20" height="20"><!-- SVG 코드 --></svg>
+    <span>다운로드</span>
+  </button>
+  <button class="icon-btn">
+    <svg width="20" height="20"><!-- SVG 코드 --></svg>
+    <span>좋아요</span>
+  </button>
+  <button class="icon-only-btn">
+    <svg width="20" height="20"><!-- SVG 코드 --></svg>
+  </button>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +111,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S009 - 아이콘 버튼 완성 예시');
   </script>

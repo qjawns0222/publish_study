@@ -45,15 +45,78 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 24px;
+  min-height: 100vh;
+  background: #F3F4F6;
+}
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+.column {
+  background: #E5E7EB;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.column-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.column[data-status="todo"] .column-title { background: #FEE2E2; color: #DC2626; }
+.column[data-status="doing"] .column-title { background: #FEF3C7; color: #D97706; }
+.column[data-status="done"] .column-title { background: #D1FAE5; color: #059669; }
+
+.cards-container {
+  min-height: 200px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.cards-container.drag-over {
+  background: rgba(79, 70, 229, 0.1);
+  border: 2px dashed #4F46E5;
+}
+
+.card {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: move;
+  transition: opacity 0.3s;
+}
+
+.card.dragging {
+  opacity: 0.5;
+}
+
+.card h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 0.875rem;
+  color: #6B7280;
+  margin-bottom: 12px;
+}
+
+.tag {
+  display: inline-block;
+  background: #EEF2FF;
+  color: #4F46E5;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+}
 
   </style>
 </head>
@@ -61,14 +124,29 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">드래그 앤 드롭 보드</h2>
-      <p style="margin-top: var(--spacing-2);">Kanban 스타일 드래그 보드</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
+<div class="kanban-board">
+  <div class="column" data-status="todo">
+    <h2 class="column-title">TODO</h2>
+    <div class="cards-container" id="todoCards">
+      <div class="card" draggable="true">
+        <h3>작업 1</h3>
+        <p>작업 설명입니다</p>
+        <span class="tag">중요</span>
+      </div>
+      <!-- 더 많은 카드 -->
     </div>
   </div>
+
+  <div class="column" data-status="doing">
+    <h2 class="column-title">DOING</h2>
+    <div class="cards-container" id="doingCards"></div>
+  </div>
+
+  <div class="column" data-status="done">
+    <h2 class="column-title">DONE</h2>
+    <div class="cards-container" id="doneCards"></div>
+  </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +161,43 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+let draggedCard = null;
+
+// 모든 카드에 이벤트 리스너
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('dragstart', (e) => {
+    draggedCard = card;
+    card.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  });
+
+  card.addEventListener('dragend', () => {
+    card.classList.remove('dragging');
+  });
+});
+
+// 모든 컨테이너에 drop 영역 설정
+document.querySelectorAll('.cards-container').forEach(container => {
+  container.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    container.classList.add('drag-over');
+  });
+
+  container.addEventListener('dragleave', () => {
+    container.classList.remove('drag-over');
+  });
+
+  container.addEventListener('drop', (e) => {
+    e.preventDefault();
+    container.classList.remove('drag-over');
+
+    if (draggedCard) {
+      container.appendChild(draggedCard);
+      draggedCard = null;
+    }
+  });
+});
 
     console.log('✅ S076 - 드래그 앤 드롭 보드 완성 예시');
   </script>

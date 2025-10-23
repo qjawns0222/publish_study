@@ -45,11 +45,37 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.snap-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
 
-    body {
-      margin: 0;
-      background: var(--color-light);
-    }
+.snap-section {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  color: white;
+  text-align: center;
+}
+
+.section1 { background: #4F46E5; }
+.section2 { background: #10B981; }
+.section3 { background: #FF9800; }
+
+.snap-section h1 {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.snap-section p {
+  font-size: 1.5rem;
+}
 
   </style>
 </head>
@@ -57,16 +83,20 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="layout-example">
-    <header style="background: var(--color-primary); color: white; padding: var(--spacing-3); text-align: center;">
-      <h2>풀스크린 섹션 스크롤</h2>
-    </header>
-    <main style="padding: var(--spacing-6); max-width: 1200px; margin: 0 auto;">
-      <p>섹션별 풀스크린 스냅 스크롤</p>
-      <p style="margin-top: 16px;">이 예제는 레이아웃 구조를 연습합니다.</p>
-    </main>
-  </div>
+<div class="snap-container">
+  <section class="snap-section section1">
+    <h1>첫 번째 섹션</h1>
+    <p>풀스크린 스냅 스크롤</p>
+  </section>
+  <section class="snap-section section2">
+    <h1>두 번째 섹션</h1>
+    <p>자동으로 섹션에 맞춰집니다</p>
+  </section>
+  <section class="snap-section section3">
+    <h1>세 번째 섹션</h1>
+    <p>부드러운 스크롤 경험</p>
+  </section>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -81,6 +111,19 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+// 현재 섹션 표시 (선택사항)
+const container = document.querySelector('.snap-container');
+const sections = document.querySelectorAll('.snap-section');
+
+container.addEventListener('scroll', () => {
+  const scrollPos = container.scrollTop;
+  const sectionHeight = window.innerHeight;
+  const currentSection = Math.round(scrollPos / sectionHeight);
+
+  console.log('Current section:', currentSection + 1);
+
+  // 인디케이터 업데이트 로직
+});
 
     console.log('✅ S071 - 풀스크린 섹션 스크롤 완성 예시');
   </script>

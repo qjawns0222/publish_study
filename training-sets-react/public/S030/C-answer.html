@@ -45,15 +45,33 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+    .tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #E5E7EB;
+  border-radius: 16px;
+  font-size: 0.875rem;
+}
+.tag-remove {
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.tag-remove:hover {
+  color: var(--color-primary);
+}
 
   </style>
 </head>
@@ -61,14 +79,20 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">태그 목록</h2>
-      <p style="margin-top: var(--spacing-2);">클릭 가능한 태그 칩 리스트</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
-    </div>
-  </div>
+<div class="tags">
+  <span class="tag">
+    HTML
+    <button class="tag-remove">×</button>
+  </span>
+  <span class="tag">
+    CSS
+    <button class="tag-remove">×</button>
+  </span>
+  <span class="tag">
+    JavaScript
+    <button class="tag-remove">×</button>
+  </span>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +107,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S030 - 태그 목록 완성 예시');
   </script>

@@ -45,15 +45,71 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.context-area {
+  min-height: 400px;
+  background: #F9FAFB;
+  border: 2px dashed #D1D5DB;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #6B7280;
+  cursor: context-menu;
+}
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+.context-menu {
+  position: fixed;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 8px;
+  min-width: 200px;
+  display: none;
+  z-index: 1000;
+  transform-origin: top left;
+}
+
+.context-menu.active {
+  display: block;
+  animation: menuAppear 0.15s ease;
+}
+
+@keyframes menuAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background 0.15s;
+}
+
+.menu-item:hover {
+  background: #F3F4F6;
+}
+
+.menu-item .icon {
+  font-size: 1rem;
+}
+
+.menu-divider {
+  height: 1px;
+  background: #E5E7EB;
+  margin: 8px 0;
+}
 
   </style>
 </head>
@@ -61,14 +117,29 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
+<div class="context-area" id="contextArea">
+  <p>이 영역에서 우클릭하세요</p>
+</div>
 
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">컨텍스트 메뉴</h2>
-      <p style="margin-top: var(--spacing-2);">우클릭 시 나타나는 커스텀 메뉴</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
-    </div>
+<div class="context-menu" id="contextMenu">
+  <div class="menu-item" data-action="copy">
+    <span class="icon">📋</span>
+    <span>복사</span>
   </div>
+  <div class="menu-item" data-action="paste">
+    <span class="icon">📄</span>
+    <span>붙여넣기</span>
+  </div>
+  <div class="menu-divider"></div>
+  <div class="menu-item" data-action="delete">
+    <span class="icon">🗑️</span>
+    <span>삭제</span>
+  </div>
+  <div class="menu-item" data-action="rename">
+    <span class="icon">✏️</span>
+    <span>이름 변경</span>
+  </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +154,72 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const contextArea = document.getElementById('contextArea');
+const contextMenu = document.getElementById('contextMenu');
+
+// 우클릭 이벤트
+contextArea.addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+
+  const { clientX, clientY } = e;
+
+  // 메뉴 표시
+  contextMenu.classList.add('active');
+
+  // 위치 계산
+  const menuWidth = contextMenu.offsetWidth;
+  const menuHeight = contextMenu.offsetHeight;
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+
+  // 화면 밖으로 나가지 않도록 조정
+  let x = clientX;
+  let y = clientY;
+
+  if (x + menuWidth > windowWidth) {
+    x = windowWidth - menuWidth - 10;
+  }
+
+  if (y + menuHeight > windowHeight) {
+    y = windowHeight - menuHeight - 10;
+  }
+
+  contextMenu.style.left = `${x}px`;
+  contextMenu.style.top = `${y}px`;
+});
+
+// 메뉴 아이템 클릭
+document.querySelectorAll('.menu-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const action = item.dataset.action;
+    console.log(`Action: ${action}`);
+
+    // 실제 동작 구현
+    switch(action) {
+      case 'copy':
+        alert('복사되었습니다');
+        break;
+      case 'paste':
+        alert('붙여넣기');
+        break;
+      case 'delete':
+        alert('삭제되었습니다');
+        break;
+      case 'rename':
+        alert('이름 변경');
+        break;
+    }
+
+    contextMenu.classList.remove('active');
+  });
+});
+
+// 외부 클릭 시 메뉴 닫기
+document.addEventListener('click', (e) => {
+  if (!contextMenu.contains(e.target)) {
+    contextMenu.classList.remove('active');
+  }
+});
 
     console.log('✅ S080 - 컨텍스트 메뉴 완성 예시');
   </script>

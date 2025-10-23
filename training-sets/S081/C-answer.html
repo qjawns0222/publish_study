@@ -45,15 +45,50 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.tree {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+.tree-item {
+  margin: 4px 0;
+}
+
+.tree-toggle {
+  display: inline-block;
+  width: 16px;
+  cursor: pointer;
+  transition: transform 0.3s;
+  user-select: none;
+}
+
+.tree-toggle.open {
+  transform: rotate(90deg);
+}
+
+.tree-label {
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.tree-label:hover {
+  background: #F3F4F6;
+}
+
+.tree-children {
+  list-style: none;
+  padding-left: 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.tree-children.open {
+  max-height: 1000px;
+}
 
   </style>
 </head>
@@ -61,14 +96,26 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">트리 뷰</h2>
-      <p style="margin-top: var(--spacing-2);">폴더 구조처럼 펼쳐지는 트리 메뉴</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
-    </div>
-  </div>
+<ul class="tree">
+  <li class="tree-item">
+    <span class="tree-toggle">▶</span>
+    <span class="tree-label">📁 폴더 1</span>
+    <ul class="tree-children">
+      <li class="tree-item">
+        <span class="tree-label">📄 파일 1.txt</span>
+      </li>
+      <li class="tree-item">
+        <span class="tree-toggle">▶</span>
+        <span class="tree-label">📁 하위 폴더</span>
+        <ul class="tree-children">
+          <li class="tree-item">
+            <span class="tree-label">📄 파일 2.txt</span>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +130,19 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+document.querySelectorAll('.tree-toggle').forEach(toggle => {
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+
+    const item = toggle.closest('.tree-item');
+    const children = item.querySelector('.tree-children');
+
+    if (children) {
+      toggle.classList.toggle('open');
+      children.classList.toggle('open');
+    }
+  });
+});
 
     console.log('✅ S081 - 트리 뷰 완성 예시');
   </script>

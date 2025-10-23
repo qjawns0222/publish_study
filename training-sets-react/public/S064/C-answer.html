@@ -45,10 +45,51 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-
-    body {
-      margin: 0;
-    }
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.faq-item {
+  margin-bottom: 8px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #F9FAFB;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 1.125rem;
+  transition: 0.3s;
+}
+.faq-question:hover {
+  background: #F3F4F6;
+}
+.icon {
+  color: #4F46E5;
+  transition: 0.3s;
+}
+.faq-item.open .icon {
+  transform: rotate(180deg);
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.faq-item.open .faq-answer {
+  max-height: 500px;
+}
+.faq-answer p {
+  padding: 20px;
+  margin: 0;
+}
 
   </style>
 </head>
@@ -56,14 +97,21 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="visual-section" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); min-height: 100vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: var(--spacing-6);">
-    <div>
-      <h1 style="font-size: 3rem; margin-bottom: var(--spacing-3);">FAQ 섹션</h1>
-      <p style="font-size: 1.25rem; margin-bottom: var(--spacing-4);">자주 묻는 질문 아코디언 리스트</p>
-      <button style="background: white; color: var(--color-primary); padding: 16px 32px; border: none; border-radius: var(--radius); font-size: 1.1rem; cursor: pointer;">더 알아보기</button>
+<div class="faq-section">
+  <h2>자주 묻는 질문</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-question">
+        <span>배송은 얼마나 걸리나요?</span>
+        <span class="icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>일반적으로 주문 후 2-3일 내에 배송됩니다.</p>
+      </div>
     </div>
+    <!-- 추가 FAQ 아이템들 -->
   </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -78,6 +126,24 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+  question.addEventListener('click', () => {
+    const item = question.parentElement;
+    const isOpen = item.classList.contains('open');
+
+    // 모든 아이템 닫기 (single-open 모드)
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+    });
+
+    // 클릭된 아이템 토글
+    if (!isOpen) {
+      item.classList.add('open');
+    }
+  });
+});
 
     console.log('✅ S064 - FAQ 섹션 완성 예시');
   </script>

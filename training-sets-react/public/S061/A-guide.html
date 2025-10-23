@@ -22,82 +22,217 @@
     </section>
 
     <section class="guide-section">
+      <h2>🖼️ 완성 예시 미리보기</h2>
+      <p>아래는 이번 예제의 완성된 모습입니다. 이 구조를 참고하여 코드를 작성해보세요!</p>
+      
+    <div style="font-family: monospace; background: #F3F4F6; padding: 24px; border-radius: 8px; margin: 16px 0;">
+      <pre style="margin: 0; line-height: 1.8; color: #222;">
+┌──────────────────────────────┐
+│     [배경 이미지/그래픽]      │
+│                              │
+│        메인 타이틀            │
+│         설명 문구             │
+│                              │
+│      [ CTA 버튼 ]             │
+└──────────────────────────────┘
+      </pre>
+    </div>
+      <div style="background: #FFF9E6; border-left: 4px solid #FF9800; padding: 16px; border-radius: 4px; margin-top: 16px;">
+        <strong>💡 참고:</strong> 완성된 정답 코드는 <code>C-answer.html</code> 파일에서 확인할 수 있습니다.<br>
+        먼저 스스로 도전해보고, 막힐 때만 참고하세요!
+      </div>
+    </section>
+
+    <section class="guide-section">
       <h2>🎯 주요 학습 포인트</h2>
       <ul>
-        <li>시각적 계층</li>
-        <li>색상과 타이포그래피</li>
-        <li>이미지 처리</li>
-        <li>공간 활용</li>
+        <li><strong>블로그 카드</strong> 레이아웃</li>
+        <li><strong>썸네일 + 콘텐츠</strong> 구조</li>
+        <li>날짜, 카테고리 메타데이터</li>
+        <li>Grid 또는 List 형태</li>
       </ul>
     </section>
 
     <section class="guide-section">
       <h2>📐 퍼블리싱 요구사항</h2>
-      <h3>기본 요구사항</h3>
+
+      <h3>HTML 구조</h3>
       <ul>
-        <li>명확한 시각적 계층 구조</li>
-        <li>일관된 색상 팔레트 사용</li>
-        <li>타이포그래피 스케일 적용</li>
-        <li>이미지 최적화 (object-fit, aspect-ratio)</li>
+        <li>4-6개의 블로그 카드</li>
+        <li>각 카드: 썸네일, 제목, 요약, 날짜, 카테고리</li>
+        <li>"더 보기" 버튼</li>
+        <li>Hover 효과</li>
       </ul>
 
-      <h3>추가 요구사항</h3>
+      <h3>CSS 레이아웃</h3>
       <ul>
-        <li>모든 인터랙티브 요소에 적절한 hover 효과 적용</li>
-        <li>transition은 0.3s ease 기본값 사용</li>
-        <li>색상은 CSS 변수로 정의하여 일관성 유지</li>
-        <li>8px 간격 시스템 준수</li>
+        <li><strong>그리드:</strong> 2열 또는 3열</li>
+        <li><strong>썸네일:</strong> aspect-ratio 16:9</li>
+        <li><strong>카드:</strong> 그림자, border-radius</li>
+        <li><strong>Hover:</strong> 그림자 강화, 이미지 확대</li>
       </ul>
+
+      <h3>스타일링 세부사항</h3>
+      <ul>
+        <li>썸네일: object-fit: cover</li>
+        <li>메타: 날짜 + 카테고리 배지</li>
+        <li>요약: 2-3줄로 제한 (ellipsis)</li>
+        <li>Read more 링크/버튼</li>
+      </ul>
+
+
+
+
+      <h3>🎨 인터랙션 상세 요구사항</h3>
+      <div style="background: #E0F2FE; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 12px;">
+        <p style="margin-bottom: 12px;"><strong>⚠️ 이 예제에서 반드시 hover 효과를 적용해야 할 요소:</strong></p>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">📌 인터랙션 대상</h4>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>블로그 카드</strong> (<code>.blog-card</code>): 위로 이동, 그림자 강화</li>
+          <li><strong>더보기 버튼</strong> (<code>.read-more</code>): 화살표 이동</li>
+        </ul>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">💻 구현 코드</h4>
+        <pre style="background: #fff; padding: 16px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem; overflow-x: auto;"><code>.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+.read-more:hover::after {
+  transform: translateX(5px);
+}</code></pre>
+
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; padding: 12px; border-radius: 4px; margin-top: 16px;">
+          <strong>💡 팁:</strong> 위 요소들에 <code>transition: 0.3s ease</code>를 먼저 설정한 후 hover 효과를 적용하세요!
+        </div>
+      </div>
     </section>
 
     <section class="guide-section">
-      <h2>🎨 스타일 가이드</h2>
+      <h2>🎨 스타일 가이드 (이 예제 전용)</h2>
 
       <h3>색상 팔레트</h3>
-      <div class="color-palette">
-        <div class="color-swatch" style="background: #4F46E5;">#4F46E5</div>
-        <div class="color-swatch" style="background: #10B981;">#10B981</div>
-        <div class="color-swatch" style="background: #FF9800;">#FF9800</div>
-        <div class="color-swatch" style="background: #FFFFFF; border: 2px solid #E5E7EB;">#FFFFFF</div>
-        <div class="color-swatch" style="background: #F3F4F6; color: #222;">#F3F4F6</div>
-        <div class="color-swatch" style="background: #222222; color: #FFF;">#222222</div>
-      </div>
+      <ul>
+        <li><strong>카드 배경:</strong> <code>#FFFFFF</code> - White</li>
+        <li><strong>카테고리 배지:</strong> <code>#4F46E5</code> - Primary</li>
+        <li><strong>날짜 텍스트:</strong> <code>#6B7280</code> - Gray</li>
+        <li><strong>Read more:</strong> <code>#4F46E5</code> - Primary</li>
+      </ul>
 
       <h3>타이포그래피</h3>
       <ul>
-        <li>폰트: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif</li>
-        <li>제목 크기: 2.5rem (large), 2rem (medium), 1.5rem (small)</li>
-        <li>본문 크기: 1rem (기본), 0.875rem (작게)</li>
-        <li>행간: 1.6 (본문), 1.2 (제목)</li>
+        <li><strong>제목:</strong> 1.25rem, 굵게</li>
+        <li><strong>요약:</strong> 1rem, line-height 1.6</li>
+        <li><strong>날짜:</strong> 0.875rem, 회색</li>
       </ul>
 
-      <h3>간격 시스템 (8px scale)</h3>
+      <h3>간격</h3>
       <ul>
-        <li>8px, 16px, 24px, 32px, 40px, 48px</li>
-        <li>요소 간 간격은 위 값들을 조합하여 사용</li>
+        <li><strong>카드 패딩:</strong> 0 (이미지), 20px (콘텐츠)</li>
+        <li><strong>카드 간격:</strong> 32px</li>
       </ul>
     </section>
 
     <section class="guide-section">
-      <h2>💡 구현 힌트</h2>
-      <ul>
-        <li>먼저 HTML 구조를 시맨틱하게 작성하세요</li>
-        <li>CSS는 레이아웃 → 타이포그래피 → 색상 → 인터랙션 순서로 작성하세요</li>
-        <li>JavaScript가 필요한 경우, 이벤트 리스너를 명확히 분리하세요</li>
-        <li>크롬 개발자 도구로 요소를 검사하며 조정하세요</li>
-        <li>모바일 반응형을 고려하세요 (필요시 미디어 쿼리 사용)</li>
-      </ul>
+      <h2>💡 단계별 구현 가이드</h2>
+
+      <h3>1단계: HTML 구조</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>&lt;div class="blog-grid"&gt;
+  &lt;article class="blog-card"&gt;
+    &lt;img src="thumbnail.jpg" alt="블로그 제목" class="blog-thumbnail"&gt;
+    &lt;div class="blog-content"&gt;
+      &lt;div class="blog-meta"&gt;
+        &lt;span class="category"&gt;기술&lt;/span&gt;
+        &lt;span class="date"&gt;2024.10.21&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;h3 class="blog-title"&gt;블로그 포스트 제목&lt;/h3&gt;
+      &lt;p class="blog-excerpt"&gt;요약 내용이 여기에 표시됩니다. 2-3줄로 제한...&lt;/p&gt;
+      &lt;a href="#" class="read-more"&gt;더 보기 →&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+  &lt;!-- 추가 카드들 --&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+
+      <h3>2단계: CSS 스타일</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.blog-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+.blog-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+}
+.blog-thumbnail {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  transition: 0.3s;
+}
+.blog-card:hover .blog-thumbnail {
+  transform: scale(1.05);
+}
+.blog-content {
+  padding: 20px;
+}
+.blog-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.category {
+  background: #4F46E5;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+}
+.date {
+  color: #6B7280;
+  font-size: 0.875rem;
+}
+.blog-excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.read-more {
+  color: #4F46E5;
+  text-decoration: none;
+  font-weight: 600;
+}
+@media (max-width: 768px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+      </div>
     </section>
 
     <section class="guide-section">
       <h2>✅ 완성 체크리스트</h2>
       <ul>
-        <li>□ HTML 구조가 시맨틱하고 명확한가?</li>
-        <li>□ CSS 클래스명이 의미있고 일관적인가?</li>
-        <li>□ 레이아웃이 의도한 대로 배치되었는가?</li>
-        <li>□ 모든 인터랙션이 부드럽게 작동하는가?</li>
-        <li>□ 색상과 타이포그래피가 일관적인가?</li>
-        <li>□ 코드가 깔끔하고 주석이 적절한가?</li>
+        <li>□ 블로그 카드가 그리드로 배치되었나요?</li>
+        <li>□ 썸네일이 적절한 비율인가요?</li>
+        <li>□ 카테고리 배지가 표시되나요?</li>
+        <li>□ 요약이 2-3줄로 제한되나요?</li>
+        <li>□ Hover 시 카드가 위로 이동하나요?</li>
+        <li>□ "더 보기" 링크가 있나요?</li>
       </ul>
     </section>
 

@@ -46,14 +46,6 @@
        완성 예시 CSS
        ======================================== */
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
 
   </style>
 </head>
@@ -61,14 +53,24 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
+<div class="table-container">
+  <input type="text" id="searchInput" placeholder="검색...">
 
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">데이터 테이블</h2>
-      <p style="margin-top: var(--spacing-2);">정렬, 필터, 페이징이 있는 테이블</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
-    </div>
-  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th data-column="name">이름 ▲</th>
+        <th data-column="email">이메일 ▲</th>
+        <th data-column="role">역할 ▲</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <!-- 데이터 행들 -->
+    </tbody>
+  </table>
+
+  <div class="pagination" id="pagination"></div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +85,89 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const data = [
+  { name: '홍길동', email: 'hong@example.com', role: '개발자' },
+  { name: '김철수', email: 'kim@example.com', role: '디자이너' },
+  // 더 많은 데이터...
+];
+
+let currentPage = 1;
+let itemsPerPage = 10;
+let currentSort = { column: 'name', order: 'asc' };
+let filteredData = [...data];
+
+// 정렬
+function sortData(column) {
+  if (currentSort.column === column) {
+    currentSort.order = currentSort.order === 'asc' ? 'desc' : 'asc';
+  } else {
+    currentSort.column = column;
+    currentSort.order = 'asc';
+  }
+
+  filteredData.sort((a, b) => {
+    const aVal = a[column];
+    const bVal = b[column];
+
+    if (currentSort.order === 'asc') {
+      return aVal > bVal ? 1 : -1;
+    } else {
+      return aVal < bVal ? 1 : -1;
+    }
+  });
+
+  renderTable();
+}
+
+// 검색 필터
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  const query = e.target.value.toLowerCase();
+  filteredData = data.filter(item =>
+    Object.values(item).some(val =>
+      val.toLowerCase().includes(query)
+    )
+  );
+  currentPage = 1;
+  renderTable();
+});
+
+// 테이블 렌더링
+function renderTable() {
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = filteredData.slice(start, end);
+
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = pageData.map(item => `
+    <tr>
+      <td>${item.name}</td>
+      <td>${item.email}</td>
+      <td>${item.role}</td>
+    </tr>
+  `).join('');
+
+  renderPagination();
+}
+
+// 페이지네이션
+function renderPagination() {
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const pagination = document.getElementById('pagination');
+
+  pagination.innerHTML = '';
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement('button');
+    btn.textContent = i;
+    btn.className = i === currentPage ? 'active' : '';
+    btn.onclick = () => {
+      currentPage = i;
+      renderTable();
+    };
+    pagination.appendChild(btn);
+  }
+}
+
+renderTable();
 
     console.log('✅ S082 - 데이터 테이블 완성 예시');
   </script>

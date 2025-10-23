@@ -45,15 +45,29 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.progress {
+  position: relative;
+  max-width: 600px;
+  height: 24px;
+  background: #E5E7EB;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+    .progress-fill {
+  height: 100%;
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.5s ease;
+}
+.progress-fill span {
+  color: white;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
 
   </style>
 </head>
@@ -61,14 +75,21 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">프로그레스 바</h2>
-      <p style="margin-top: var(--spacing-2);">진행률을 표시하는 바</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
-    </div>
+<div class="progress">
+  <div class="progress-fill" style="width: 30%;">
+    <span>30%</span>
   </div>
+</div>
+<div class="progress">
+  <div class="progress-fill" style="width: 60%;">
+    <span>60%</span>
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-fill" style="width: 90%;">
+    <span>90%</span>
+  </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +104,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S027 - 프로그레스 바 완성 예시');
   </script>

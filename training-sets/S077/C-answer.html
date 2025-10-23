@@ -45,15 +45,72 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.infinite-scroll {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  background: #F9FAFB;
+  min-height: 100vh;
+}
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.item {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.item h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+.item p {
+  color: #6B7280;
+  line-height: 1.6;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  display: none;
+}
+
+.loading.active {
+  display: block;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #E5E7EB;
+  border-top-color: #4F46E5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.sentinel {
+  height: 1px;
+}
 
   </style>
 </head>
@@ -61,14 +118,23 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">무한 스크롤</h2>
-      <p style="margin-top: var(--spacing-2);">자동 로딩되는 무한 스크롤 리스트</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
+<div class="infinite-scroll">
+  <div class="items-grid" id="itemsGrid">
+    <!-- 초기 아이템들 -->
+    <div class="item">
+      <h3>아이템 1</h3>
+      <p>설명입니다</p>
     </div>
+    <!-- 더 많은 아이템 -->
   </div>
+
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p>로딩 중...</p>
+  </div>
+
+  <div class="sentinel" id="sentinel"></div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +149,52 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+let page = 1;
+let isLoading = false;
+
+const itemsGrid = document.getElementById('itemsGrid');
+const loading = document.getElementById('loading');
+const sentinel = document.getElementById('sentinel');
+
+function loadMoreItems() {
+  if (isLoading) return;
+
+  isLoading = true;
+  loading.classList.add('active');
+
+  // 로딩 시뮬레이션 (실제로는 API 호출)
+  setTimeout(() => {
+    page++;
+
+    // 10개의 새 아이템 추가
+    for (let i = 1; i <= 10; i++) {
+      const itemNum = (page - 1) * 10 + i;
+      const item = document.createElement('div');
+      item.className = 'item';
+      item.innerHTML = `
+        <h3>아이템 ${itemNum}</h3>
+        <p>페이지 ${page}에서 로드된 아이템입니다. 스크롤을 계속하면 더 많은 아이템이 로드됩니다.</p>
+      `;
+      itemsGrid.appendChild(item);
+    }
+
+    loading.classList.remove('active');
+    isLoading = false;
+  }, 1000);
+}
+
+// Intersection Observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      loadMoreItems();
+    }
+  });
+}, {
+  rootMargin: '200px' // 200px 전에 미리 로드
+});
+
+observer.observe(sentinel);
 
     console.log('✅ S077 - 무한 스크롤 완성 예시');
   </script>

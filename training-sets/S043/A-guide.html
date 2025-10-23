@@ -47,104 +47,150 @@
     <section class="guide-section">
       <h2>🎯 주요 학습 포인트</h2>
       <ul>
-        <li>컴포넌트 구조화</li>
-        <li>재사용 가능한 디자인</li>
-        <li>상태 표현</li>
-        <li>인터랙션</li>
+        <li><strong>3D 카드 플립</strong> 효과</li>
+        <li><strong>transform rotateY</strong> 사용</li>
+        <li><strong>backface-visibility</strong>로 뒷면 숨김</li>
+        <li>Hover 시 카드 뒤집기</li>
       </ul>
     </section>
 
     <section class="guide-section">
       <h2>📐 퍼블리싱 요구사항</h2>
-      <h3>기본 요구사항</h3>
+
+      <h3>HTML 구조</h3>
       <ul>
-        <li>BEM 네이밍 또는 의미있는 클래스명 사용</li>
-        <li>컴포넌트 내부 요소들의 관계 명확히 표현</li>
-        <li>호버, 액티브 등 다양한 상태 스타일 정의</li>
-        <li>일관된 디자인 토큰 사용</li>
+        <li><code>&lt;div class="card-flip"&gt;</code> 컨테이너</li>
+        <li><code>&lt;div class="card-inner"&gt;</code> 회전 요소</li>
+        <li><code>&lt;div class="card-front"&gt;</code> 앞면</li>
+        <li><code>&lt;div class="card-back"&gt;</code> 뒷면</li>
       </ul>
 
-      <h3>추가 요구사항</h3>
+      <h3>CSS 레이아웃</h3>
       <ul>
-        <li>모든 인터랙티브 요소에 적절한 hover 효과 적용</li>
-        <li>transition은 0.3s ease 기본값 사용</li>
-        <li>색상은 CSS 변수로 정의하여 일관성 유지</li>
-        <li>8px 간격 시스템 준수</li>
+        <li><strong>Inner:</strong> transform-style: preserve-3d</li>
+        <li><strong>Front/Back:</strong> position: absolute, backface-visibility: hidden</li>
+        <li><strong>Back:</strong> transform: rotateY(180deg)</li>
+        <li><strong>Hover:</strong> Inner transform: rotateY(180deg)</li>
       </ul>
+
+      <h3>스타일링 세부사항</h3>
+      <ul>
+        <li>Transition: transform 0.6s ease</li>
+        <li>앞면: 이미지 + 제목</li>
+        <li>뒷면: 설명 텍스트</li>
+        <li>Perspective 효과로 3D 깊이 표현</li>
+      </ul>
+
+
+
 
       <h3>🎨 인터랙션 상세 요구사항</h3>
       <div style="background: #E0F2FE; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 12px;">
-        <p style="margin-bottom: 12px;"><strong>클릭 가능한 요소 (링크, 버튼) hover 효과</strong></p>
-        <ul style="margin-left: 20px;">
-          <li>마우스 올리면 밑줄 또는 배경색 변화</li>
-          <li>투명도 조정 (<code>opacity: 0.8</code>) 또는 색상 변경</li>
-          <li>부드러운 전환 효과 (<code>transition: 0.3s ease</code>)</li>
-          <li>선택적으로 약간 위로 이동 (<code>transform: translateY(-2px)</code>)</li>
-        </ul>
-        <pre style="background: #fff; padding: 12px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem;"><code>/* 링크 hover 예시 */
-a:hover {
-  text-decoration: underline;
-  opacity: 0.8;
-  transition: 0.3s ease;
-}
+        <p style="margin-bottom: 12px;"><strong>⚠️ 이 예제에서 반드시 hover 효과를 적용해야 할 요소:</strong></p>
 
-/* 버튼 hover 예시 */
-.btn:hover {
-  background: #3730a3;
-  transform: translateY(-2px);
-  transition: 0.3s ease;
+        <h4 style="margin-top: 16px; color: #0369a1;">📌 인터랙션 대상</h4>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>플립 카드</strong> (<code>.flip-card</code>): 180도 회전 (3D)</li>
+        </ul>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">💻 구현 코드</h4>
+        <pre style="background: #fff; padding: 16px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem; overflow-x: auto;"><code>.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}</code></pre>
+
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; padding: 12px; border-radius: 4px; margin-top: 16px;">
+          <strong>💡 팁:</strong> 위 요소들에 <code>transition: 0.3s ease</code>를 먼저 설정한 후 hover 효과를 적용하세요!
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <h2>🎨 스타일 가이드 (이 예제 전용)</h2>
+
+      <h3>색상 팔레트</h3>
+      <ul>
+        <li><strong>앞면 배경:</strong> <code>#4F46E5</code> - Primary</li>
+        <li><strong>뒷면 배경:</strong> <code>#10B981</code> - Secondary</li>
+        <li><strong>텍스트:</strong> <code>#FFFFFF</code> - White</li>
+      </ul>
+
+      <h3>타이포그래피</h3>
+      <ul>
+        <li><strong>앞면 제목:</strong> 1.5rem, 굵게</li>
+        <li><strong>뒷면 설명:</strong> 1rem</li>
+      </ul>
+
+      <h3>간격</h3>
+      <ul>
+        <li><strong>카드 크기:</strong> 300px × 400px</li>
+        <li><strong>카드 패딩:</strong> 32px</li>
+        <li><strong>Border radius:</strong> 12px</li>
+      </ul>
+    </section>
+
+    <section class="guide-section">
+      <h2>💡 단계별 구현 가이드</h2>
+
+      <h3>1단계: HTML 구조</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>&lt;div class="card-flip"&gt;
+  &lt;div class="card-inner"&gt;
+    &lt;div class="card-front"&gt;
+      &lt;h3&gt;앞면&lt;/h3&gt;
+      &lt;p&gt;Hover me!&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="card-back"&gt;
+      &lt;h3&gt;뒷면&lt;/h3&gt;
+      &lt;p&gt;뒷면 내용입니다.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+
+      <h3>2단계: CSS 3D Transform</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>.card-flip {
+  perspective: 1000px;
+  width: 300px;
+  height: 400px;
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+.card-flip:hover .card-inner {
+  transform: rotateY(180deg);
+}
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  padding: 32px;
+}
+.card-front {
+  background: #4F46E5;
+}
+.card-back {
+  background: #10B981;
+  transform: rotateY(180deg);
 }</code></pre>
       </div>
     </section>
 
     <section class="guide-section">
-      <h2>🎨 스타일 가이드</h2>
-
-      <h3>색상 팔레트</h3>
-      <div class="color-palette">
-        <div class="color-swatch" style="background: #4F46E5;">#4F46E5</div>
-        <div class="color-swatch" style="background: #10B981;">#10B981</div>
-        <div class="color-swatch" style="background: #FF9800;">#FF9800</div>
-        <div class="color-swatch" style="background: #FFFFFF; border: 2px solid #E5E7EB;">#FFFFFF</div>
-        <div class="color-swatch" style="background: #F3F4F6; color: #222;">#F3F4F6</div>
-        <div class="color-swatch" style="background: #222222; color: #FFF;">#222222</div>
-      </div>
-
-      <h3>타이포그래피</h3>
-      <ul>
-        <li>폰트: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif</li>
-        <li>제목 크기: 2.5rem (large), 2rem (medium), 1.5rem (small)</li>
-        <li>본문 크기: 1rem (기본), 0.875rem (작게)</li>
-        <li>행간: 1.6 (본문), 1.2 (제목)</li>
-      </ul>
-
-      <h3>간격 시스템 (8px scale)</h3>
-      <ul>
-        <li>8px, 16px, 24px, 32px, 40px, 48px</li>
-        <li>요소 간 간격은 위 값들을 조합하여 사용</li>
-      </ul>
-    </section>
-
-    <section class="guide-section">
-      <h2>💡 구현 힌트</h2>
-      <ul>
-        <li>먼저 HTML 구조를 시맨틱하게 작성하세요</li>
-        <li>CSS는 레이아웃 → 타이포그래피 → 색상 → 인터랙션 순서로 작성하세요</li>
-        <li>JavaScript가 필요한 경우, 이벤트 리스너를 명확히 분리하세요</li>
-        <li>크롬 개발자 도구로 요소를 검사하며 조정하세요</li>
-        <li>모바일 반응형을 고려하세요 (필요시 미디어 쿼리 사용)</li>
-      </ul>
-    </section>
-
-    <section class="guide-section">
       <h2>✅ 완성 체크리스트</h2>
       <ul>
-        <li>□ HTML 구조가 시맨틱하고 명확한가?</li>
-        <li>□ CSS 클래스명이 의미있고 일관적인가?</li>
-        <li>□ 레이아웃이 의도한 대로 배치되었는가?</li>
-        <li>□ 모든 인터랙션이 부드럽게 작동하는가?</li>
-        <li>□ 색상과 타이포그래피가 일관적인가?</li>
-        <li>□ 코드가 깔끔하고 주석이 적절한가?</li>
+        <li>□ Hover 시 카드가 뒤집히나요?</li>
+        <li>□ 뒤집힐 때 뒷면이 보이나요?</li>
+        <li>□ 부드러운 3D 회전 애니메이션이 있나요?</li>
+        <li>□ 앞면과 뒷면이 겹쳐 보이지 않나요?</li>
+        <li>□ Perspective 효과가 적용되었나요?</li>
+        <li>□ 카드 크기가 고정되어 있나요?</li>
       </ul>
     </section>
 

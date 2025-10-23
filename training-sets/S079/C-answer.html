@@ -45,15 +45,60 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.resizable-container {
+  display: flex;
+  height: 100vh;
+}
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+.panel {
+  padding: 24px;
+  overflow: auto;
+}
+
+.left-panel {
+  width: 50%;
+  background: #F9FAFB;
+  min-width: 200px;
+  max-width: 80%;
+}
+
+.right-panel {
+  flex: 1;
+  background: white;
+}
+
+.resize-handle {
+  width: 8px;
+  background: #E5E7EB;
+  cursor: col-resize;
+  transition: background 0.3s;
+  position: relative;
+}
+
+.resize-handle:hover {
+  background: #4F46E5;
+}
+
+.resize-handle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3px;
+  height: 40px;
+  background: white;
+  border-radius: 2px;
+}
+
+.resizable-container.resizing {
+  cursor: col-resize;
+  user-select: none;
+}
+
+.resizable-container.resizing .panel {
+  pointer-events: none;
+}
 
   </style>
 </head>
@@ -61,14 +106,19 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">리사이즈 가능 패널</h2>
-      <p style="margin-top: var(--spacing-2);">크기를 조정할 수 있는 분할 패널</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
-    </div>
+<div class="resizable-container">
+  <div class="panel left-panel" id="leftPanel">
+    <h2>왼쪽 패널</h2>
+    <p>크기를 조절할 수 있습니다</p>
   </div>
+
+  <div class="resize-handle" id="resizeHandle"></div>
+
+  <div class="panel right-panel" id="rightPanel">
+    <h2>오른쪽 패널</h2>
+    <p>가운데 핸들을 드래그하세요</p>
+  </div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +133,39 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const container = document.querySelector('.resizable-container');
+const leftPanel = document.getElementById('leftPanel');
+const rightPanel = document.getElementById('rightPanel');
+const resizeHandle = document.getElementById('resizeHandle');
+
+let isResizing = false;
+
+resizeHandle.addEventListener('mousedown', (e) => {
+  isResizing = true;
+  container.classList.add('resizing');
+});
+
+document.addEventListener('mousemove', (e) => {
+  if (!isResizing) return;
+
+  const containerRect = container.getBoundingClientRect();
+  const newLeftWidth = e.clientX - containerRect.left;
+
+  // 최소/최대 너비 체크
+  const minWidth = 200;
+  const maxWidth = containerRect.width * 0.8;
+
+  if (newLeftWidth >= minWidth && newLeftWidth <= maxWidth) {
+    leftPanel.style.width = `${newLeftWidth}px`;
+  }
+});
+
+document.addEventListener('mouseup', () => {
+  if (isResizing) {
+    isResizing = false;
+    container.classList.remove('resizing');
+  }
+});
 
     console.log('✅ S079 - 리사이즈 가능 패널 완성 예시');
   </script>

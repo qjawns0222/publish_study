@@ -45,15 +45,17 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-4);
-      background: var(--color-light);
-    }
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.accordion-item.open .accordion-content {
+  max-height: 500px;
+}
+.accordion-item.open .icon {
+  transform: rotate(180deg);
+}
 
   </style>
 </head>
@@ -61,14 +63,18 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="container">
-    <div class="component" style="background: white; padding: var(--spacing-5); border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; text-align: center;">
-      <h2 style="color: var(--color-primary);">아코디언 메뉴</h2>
-      <p style="margin-top: var(--spacing-2);">접고 펼칠 수 있는 아코디언</p>
-      <button style="background: var(--color-primary); color: white; padding: 12px 24px; border: none; border-radius: var(--radius); margin-top: var(--spacing-3); cursor: pointer;">버튼 예시</button>
+<div class="accordion">
+  <div class="accordion-item">
+    <button class="accordion-header">
+      <span>섹션 1</span>
+      <span class="icon">▼</span>
+    </button>
+    <div class="accordion-content">
+      <p>콘텐츠 내용...</p>
     </div>
   </div>
+  <!-- 추가 아이템들 -->
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -83,6 +89,14 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const headers = document.querySelectorAll('.accordion-header');
+
+headers.forEach(header => {
+  header.addEventListener('click', () => {
+    const item = header.parentElement;
+    item.classList.toggle('open');
+  });
+});
 
     console.log('✅ S037 - 아코디언 메뉴 완성 예시');
   </script>

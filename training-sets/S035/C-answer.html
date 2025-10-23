@@ -45,11 +45,34 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+/* 스크롤바 숨김 (선택사항) */
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
 
-    body {
-      margin: 0;
-      background: var(--color-light);
-    }
+    .section {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  color: white;
+  text-align: center;
+}
+
+    .section:nth-child(1) { background: #4F46E5; }
+.section:nth-child(2) { background: #10B981; }
+.section:nth-child(3) { background: #FF9800; }
+.section:nth-child(4) { background: #EF4444; }
+.section:nth-child(5) { background: #8B5CF6; }
 
   </style>
 </head>
@@ -57,16 +80,9 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="layout-example">
-    <header style="background: var(--color-primary); color: white; padding: var(--spacing-3); text-align: center;">
-      <h2>스티키 사이드바</h2>
-    </header>
-    <main style="padding: var(--spacing-6); max-width: 1200px; margin: 0 auto;">
-      <p>스크롤 시 고정되는 사이드바</p>
-      <p style="margin-top: 16px;">이 예제는 레이아웃 구조를 연습합니다.</p>
-    </main>
-  </div>
+<div class="scroll-container">
+  <div class="section"></div>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -81,6 +97,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S035 - 스티키 사이드바 완성 예시');
   </script>

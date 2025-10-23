@@ -8,6 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const { generateDefaultAnswerByCategory } = require('./generate-answer-templates');
+const customGuideData = require('./custom-guide-data-full');
 
 // 예제 데이터 (examples-data.js와 동일)
 const examplesData = [
@@ -266,11 +267,1512 @@ const layoutDiagrams = {
     </div>`
 };
 
+// 예제별 맞춤 인터랙션 가이드 생성
+function generateInteractionGuide(example) {
+  // 예제별 인터랙션 대상과 코드를 정의
+  const interactionGuides = {
+    // ===== 초급 예제 (S001-S030) =====
+
+    // S001: 기본 3단 레이아웃
+    'S001': {
+      targets: [
+        { name: 'Header 네비게이션 링크', selector: 'header nav a', effects: ['밑줄 표시', '투명도 80%'] }
+      ],
+      code: `header nav a {
+  transition: 0.3s ease;
+}
+header nav a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}`
+    },
+
+    // S002: 중앙 정렬 카드
+    'S002': {
+      targets: [
+        { name: '카드 내부 버튼', selector: '.btn', effects: ['배경색 진하게', '위로 이동', '그림자 강화'] }
+      ],
+      code: `.btn {
+  transition: 0.3s ease;
+}
+.btn:hover {
+  background: #3730a3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}`
+    },
+
+    // S003: 2단 컬럼 레이아웃
+    'S003': {
+      targets: [
+        { name: 'Sidebar 메뉴 링크', selector: '.sidebar a', effects: ['색상 변경', '밑줄 없음'] }
+      ],
+      code: `.sidebar a {
+  transition: 0.3s ease;
+}
+.sidebar a:hover {
+  color: var(--color-accent);
+}`
+    },
+
+    // S004: 반응형 헤더
+    'S004': {
+      targets: [
+        { name: 'Navigation 링크', selector: '.nav a', effects: ['투명도 80%'] }
+      ],
+      code: `.nav a {
+  transition: 0.3s ease;
+}
+.nav a:hover {
+  opacity: 0.8;
+}`
+    },
+
+    // S005: 카드 그리드
+    'S005': {
+      targets: [
+        { name: '그리드 카드', selector: '.card', effects: ['위로 이동', '그림자 강화'] }
+      ],
+      code: `.card {
+  transition: 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}`
+    },
+
+    // S006: 기본 버튼 스타일
+    'S006': {
+      targets: [
+        { name: 'Primary 버튼', selector: '.btn-primary', effects: ['배경색 진하게', '위로 이동'] },
+        { name: 'Secondary 버튼', selector: '.btn-secondary', effects: ['배경색 진하게', '위로 이동'] },
+        { name: 'Outline 버튼', selector: '.btn-outline', effects: ['배경 채우기', '텍스트 흰색'] }
+      ],
+      code: `.btn-primary:hover {
+  background: #3730a3;
+  transform: translateY(-2px);
+}
+.btn-secondary:hover {
+  background: #059669;
+  transform: translateY(-2px);
+}
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: white;
+}`
+    },
+
+    // S007: 프로필 카드
+    'S007': {
+      targets: [
+        { name: '프로필 카드', selector: '.profile-card', effects: ['위로 이동', '그림자 강화'] }
+      ],
+      code: `.profile-card {
+  transition: 0.3s ease;
+}
+.profile-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}`
+    },
+
+    // S008: 알림 배지
+    'S008': {
+      targets: [
+        { name: '배지', selector: '.badge', effects: ['확대', '그림자 추가'] }
+      ],
+      code: `.badge {
+  transition: 0.3s ease;
+}
+.badge:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}`
+    },
+
+    // S009: 아이콘 버튼
+    'S009': {
+      targets: [
+        { name: '아이콘 버튼', selector: '.icon-btn', effects: ['배경색 변경', '회전 효과'] }
+      ],
+      code: `.icon-btn {
+  transition: 0.3s ease;
+}
+.icon-btn:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: rotate(15deg);
+}`
+    },
+
+    // S010: 간단한 네비게이션 바
+    'S010': {
+      targets: [
+        { name: 'Navigation 메뉴 항목', selector: '.nav-item', effects: ['하단 밑줄', '색상 변경'] }
+      ],
+      code: `.nav-item {
+  transition: 0.3s ease;
+  position: relative;
+}
+.nav-item:hover {
+  color: var(--color-primary);
+}
+.nav-item:hover::after {
+  width: 100%;
+}`
+    },
+
+    // S011: 기본 입력 폼
+    'S011': {
+      targets: [
+        { name: 'Input 필드', selector: 'input', effects: ['테두리 색상 변경 (focus)'] },
+        { name: '제출 버튼', selector: '.submit-btn', effects: ['배경색 진하게'] }
+      ],
+      code: `input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+.submit-btn:hover {
+  background: #3730a3;
+}`
+    },
+
+    // S012: 로그인 폼
+    'S012': {
+      targets: [
+        { name: 'Input 필드', selector: 'input', effects: ['테두리 강조 (focus)'] },
+        { name: '로그인 버튼', selector: '.login-btn', effects: ['배경색 진하게', '위로 이동'] }
+      ],
+      code: `input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+.login-btn:hover {
+  background: #3730a3;
+  transform: translateY(-2px);
+}`
+    },
+
+    // S013: 검색창
+    'S013': {
+      targets: [
+        { name: '검색 Input', selector: '.search-input', effects: ['테두리 강조', '그림자 추가'] },
+        { name: '검색 버튼', selector: '.search-btn', effects: ['배경색 변경'] }
+      ],
+      code: `.search-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.15);
+}
+.search-btn:hover {
+  background: #3730a3;
+}`
+    },
+
+    // S014: 체크박스와 라디오
+    'S014': {
+      targets: [
+        { name: '커스텀 체크박스', selector: '.checkbox', effects: ['테두리 강조 (hover)'] },
+        { name: '커스텀 라디오', selector: '.radio', effects: ['테두리 강조 (hover)'] }
+      ],
+      code: `.checkbox:hover, .radio:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}`
+    },
+
+    // S015: 선택 박스
+    'S015': {
+      targets: [
+        { name: 'Select 박스', selector: 'select', effects: ['테두리 강조 (focus)'] }
+      ],
+      code: `select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}`
+    },
+
+    // S016: 히어로 섹션
+    'S016': {
+      targets: [
+        { name: 'CTA 버튼', selector: '.cta-btn', effects: ['배경색 진하게', '확대'] }
+      ],
+      code: `.cta-btn {
+  transition: 0.3s ease;
+}
+.cta-btn:hover {
+  background: #3730a3;
+  transform: scale(1.05);
+}`
+    },
+
+    // S017: 이미지 갤러리
+    'S017': {
+      targets: [
+        { name: '갤러리 이미지', selector: '.gallery-img', effects: ['확대', '밝기 조정'] }
+      ],
+      code: `.gallery-img {
+  transition: 0.3s ease;
+}
+.gallery-img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}`
+    },
+
+    // S018: 상품 카드
+    'S018': {
+      targets: [
+        { name: '상품 카드', selector: '.product-card', effects: ['위로 이동', '그림자 강화'] },
+        { name: '구매 버튼', selector: '.buy-btn', effects: ['배경색 변경'] }
+      ],
+      code: `.product-card {
+  transition: 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+.buy-btn:hover {
+  background: var(--color-secondary);
+}`
+    },
+
+    // S019: 푸터 디자인
+    'S019': {
+      targets: [
+        { name: '푸터 링크', selector: 'footer a', effects: ['색상 변경', '밑줄'] }
+      ],
+      code: `footer a {
+  transition: 0.3s ease;
+}
+footer a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}`
+    },
+
+    // S020: 컬러 팔레트
+    'S020': {
+      targets: [
+        { name: '컬러 칩', selector: '.color-chip', effects: ['확대', '그림자'] }
+      ],
+      code: `.color-chip {
+  transition: 0.3s ease;
+}
+.color-chip:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}`
+    },
+
+    // S021: 호버 효과 버튼
+    'S021': {
+      targets: [
+        { name: '버튼', selector: '.hover-btn', effects: ['색상 변경', '그림자 확대', '위로 이동'] }
+      ],
+      code: `.hover-btn {
+  transition: all 0.3s ease;
+}
+.hover-btn:hover {
+  background: var(--color-secondary);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+  transform: translateY(-4px);
+}`
+    },
+
+    // S022: 페이드 인 카드
+    'S022': {
+      targets: [
+        { name: '카드', selector: '.fade-card', effects: ['투명도 변화 (애니메이션)'] }
+      ],
+      code: `.fade-card {
+  animation: fadeIn 1s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}`
+    },
+
+    // S023: 로딩 스피너
+    'S023': {
+      targets: [
+        { name: '스피너', selector: '.spinner', effects: ['회전 애니메이션'] }
+      ],
+      code: `.spinner {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}`
+    },
+
+    // S024: 슬라이드 인 메뉴
+    'S024': {
+      targets: [
+        { name: '메뉴 토글 버튼', selector: '.menu-toggle', effects: ['배경색 변경'] },
+        { name: '메뉴 항목', selector: '.menu-item', effects: ['배경색 변경 (hover)'] }
+      ],
+      code: `.menu-toggle:hover {
+  background: var(--color-primary);
+}
+.menu-item:hover {
+  background: rgba(79, 70, 229, 0.1);
+}`
+    },
+
+    // S025: 펄스 효과
+    'S025': {
+      targets: [
+        { name: '펄스 요소', selector: '.pulse', effects: ['크기 변화 (애니메이션)'] }
+      ],
+      code: `.pulse {
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}`
+    },
+
+    // S026: 테이블 스타일링
+    'S026': {
+      targets: [
+        { name: '테이블 행', selector: 'tbody tr', effects: ['배경색 변경'] }
+      ],
+      code: `tbody tr {
+  transition: 0.3s ease;
+}
+tbody tr:hover {
+  background: rgba(79, 70, 229, 0.05);
+}`
+    },
+
+    // S027: 프로그레스 바
+    'S027': {
+      targets: [
+        { name: '프로그레스 바', selector: '.progress-bar', effects: ['그림자 강화'] }
+      ],
+      code: `.progress-bar:hover {
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}`
+    },
+
+    // S028: 툴팁
+    'S028': {
+      targets: [
+        { name: '툴팁 트리거', selector: '.tooltip-trigger', effects: ['색상 변경', '툴팁 표시'] }
+      ],
+      code: `.tooltip-trigger:hover {
+  color: var(--color-primary);
+}
+.tooltip-trigger:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}`
+    },
+
+    // S029: 브레드크럼
+    'S029': {
+      targets: [
+        { name: '브레드크럼 링크', selector: '.breadcrumb a', effects: ['색상 변경', '밑줄'] }
+      ],
+      code: `.breadcrumb a {
+  transition: 0.3s ease;
+}
+.breadcrumb a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}`
+    },
+
+    // S030: 태그 목록
+    'S030': {
+      targets: [
+        { name: '태그', selector: '.tag', effects: ['배경색 변경', '확대'] }
+      ],
+      code: `.tag {
+  transition: 0.3s ease;
+}
+.tag:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: scale(1.05);
+}`
+    },
+
+    // ===== 중급 예제 (S031-S070) =====
+
+    // S031: 대시보드 레이아웃
+    'S031': {
+      targets: [
+        { name: 'Sidebar 메뉴', selector: '.sidebar-menu a', effects: ['배경색 변경', '좌측 테두리'] },
+        { name: '위젯 카드', selector: '.widget', effects: ['그림자 강화'] }
+      ],
+      code: `.sidebar-menu a:hover {
+  background: rgba(79, 70, 229, 0.1);
+  border-left: 4px solid var(--color-primary);
+}
+.widget:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}`
+    },
+
+    // S032: Holy Grail 레이아웃
+    'S032': {
+      targets: [
+        { name: '좌측 사이드바 링크', selector: '.left-sidebar a', effects: ['배경색 변경'] },
+        { name: '우측 사이드바 링크', selector: '.right-sidebar a', effects: ['배경색 변경'] }
+      ],
+      code: `.left-sidebar a:hover, .right-sidebar a:hover {
+  background: rgba(79, 70, 229, 0.08);
+  padding-left: 20px;
+}`
+    },
+
+    // S033: 매거진 레이아웃
+    'S033': {
+      targets: [
+        { name: '아티클 카드', selector: '.article-card', effects: ['위로 이동', '그림자 강화'] },
+        { name: '더보기 링크', selector: '.read-more', effects: ['색상 변경', '화살표 이동'] }
+      ],
+      code: `.article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+.read-more:hover {
+  color: var(--color-primary);
+}
+.read-more:hover::after {
+  transform: translateX(5px);
+}`
+    },
+
+    // S034: Masonry 그리드
+    'S034': {
+      targets: [
+        { name: 'Masonry 아이템', selector: '.masonry-item', effects: ['확대', '그림자'] }
+      ],
+      code: `.masonry-item {
+  transition: 0.3s ease;
+}
+.masonry-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  z-index: 10;
+}`
+    },
+
+    // S035: 스티키 사이드바
+    'S035': {
+      targets: [
+        { name: '사이드바 링크', selector: '.sticky-sidebar a', effects: ['배경색 변경', '좌측 바'] }
+      ],
+      code: `.sticky-sidebar a {
+  transition: 0.3s ease;
+}
+.sticky-sidebar a:hover {
+  background: rgba(79, 70, 229, 0.1);
+  border-left: 3px solid var(--color-primary);
+  padding-left: 20px;
+}`
+    },
+
+    // S036: 탭 인터페이스
+    'S036': {
+      targets: [
+        { name: '탭 버튼', selector: '.tab-btn', effects: ['배경색 변경', '하단 밑줄'] }
+      ],
+      code: `.tab-btn {
+  transition: 0.3s ease;
+}
+.tab-btn:hover {
+  background: rgba(79, 70, 229, 0.1);
+}
+.tab-btn.active {
+  border-bottom: 3px solid var(--color-primary);
+}`
+    },
+
+    // S037: 아코디언 메뉴
+    'S037': {
+      targets: [
+        { name: '아코디언 헤더', selector: '.accordion-header', effects: ['배경색 변경'] }
+      ],
+      code: `.accordion-header {
+  transition: 0.3s ease;
+}
+.accordion-header:hover {
+  background: rgba(79, 70, 229, 0.08);
+}`
+    },
+
+    // S038: 드롭다운 메뉴
+    'S038': {
+      targets: [
+        { name: '메뉴 항목', selector: '.menu-item', effects: ['배경색 변경'] },
+        { name: '서브메뉴 항목', selector: '.submenu-item', effects: ['배경색 변경', '들여쓰기'] }
+      ],
+      code: `.menu-item:hover {
+  background: rgba(79, 70, 229, 0.1);
+}
+.submenu-item:hover {
+  background: rgba(79, 70, 229, 0.15);
+  padding-left: 24px;
+}`
+    },
+
+    // S039: 모달 팝업
+    'S039': {
+      targets: [
+        { name: '모달 열기 버튼', selector: '.open-modal', effects: ['배경색 변경', '위로 이동'] },
+        { name: '닫기 버튼', selector: '.close-btn', effects: ['회전', '색상 변경'] }
+      ],
+      code: `.open-modal:hover {
+  background: #3730a3;
+  transform: translateY(-2px);
+}
+.close-btn:hover {
+  transform: rotate(90deg);
+  color: var(--color-accent);
+}`
+    },
+
+    // S040: 캐러셀 슬라이더
+    'S040': {
+      targets: [
+        { name: '좌우 화살표 버튼', selector: '.arrow-btn', effects: ['배경색 변경', '확대'] },
+        { name: '인디케이터 점', selector: '.dot', effects: ['확대', '색상 변경'] }
+      ],
+      code: `.arrow-btn:hover {
+  background: rgba(79, 70, 229, 0.9);
+  transform: scale(1.1);
+}
+.dot:hover {
+  transform: scale(1.3);
+  background: var(--color-primary);
+}`
+    },
+
+    // S041: 토스트 알림
+    'S041': {
+      targets: [
+        { name: '토스트 닫기 버튼', selector: '.toast-close', effects: ['배경색 변경'] }
+      ],
+      code: `.toast-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}`
+    },
+
+    // S042: 페이지네이션
+    'S042': {
+      targets: [
+        { name: '페이지 번호', selector: '.page-num', effects: ['배경색 변경', '확대'] },
+        { name: '이전/다음 버튼', selector: '.page-arrow', effects: ['배경색 변경'] }
+      ],
+      code: `.page-num:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: scale(1.1);
+}
+.page-arrow:hover {
+  background: rgba(79, 70, 229, 0.1);
+}`
+    },
+
+    // S043: 카드 플립
+    'S043': {
+      targets: [
+        { name: '플립 카드', selector: '.flip-card', effects: ['180도 회전 (3D)'] }
+      ],
+      code: `.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}`
+    },
+
+    // S044: 멀티 스텝 인디케이터
+    'S044': {
+      targets: [
+        { name: '스텝 원', selector: '.step', effects: ['확대', '그림자'] }
+      ],
+      code: `.step:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}`
+    },
+
+    // S045: 타임라인
+    'S045': {
+      targets: [
+        { name: '타임라인 아이템', selector: '.timeline-item', effects: ['배경색 변경', '확대'] }
+      ],
+      code: `.timeline-item {
+  transition: 0.3s ease;
+}
+.timeline-item:hover {
+  background: rgba(79, 70, 229, 0.05);
+  transform: scale(1.02);
+}`
+    },
+
+    // S046: 회원가입 폼
+    'S046': {
+      targets: [
+        { name: 'Input 필드', selector: 'input', effects: ['테두리 강조 (focus)'] },
+        { name: '가입 버튼', selector: '.signup-btn', effects: ['배경색 변경', '위로 이동'] }
+      ],
+      code: `input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+.signup-btn:hover {
+  background: #3730a3;
+  transform: translateY(-2px);
+}`
+    },
+
+    // S047: 파일 업로드
+    'S047': {
+      targets: [
+        { name: '드롭 영역', selector: '.drop-zone', effects: ['테두리 강조', '배경색 변경'] }
+      ],
+      code: `.drop-zone:hover {
+  border-color: var(--color-primary);
+  background: rgba(79, 70, 229, 0.05);
+}`
+    },
+
+    // S048: 범위 슬라이더
+    'S048': {
+      targets: [
+        { name: 'Range 슬라이더', selector: 'input[type="range"]', effects: ['Thumb 확대'] }
+      ],
+      code: `input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}`
+    },
+
+    // S049: 토글 스위치
+    'S049': {
+      targets: [
+        { name: '토글 스위치', selector: '.toggle', effects: ['배경색 밝게'] }
+      ],
+      code: `.toggle:hover {
+  background: rgba(79, 70, 229, 0.7);
+}`
+    },
+
+    // S050: 별점 평가
+    'S050': {
+      targets: [
+        { name: '별 아이콘', selector: '.star', effects: ['색상 변경', '확대'] }
+      ],
+      code: `.star:hover {
+  color: var(--color-accent);
+  transform: scale(1.2);
+}`
+    },
+
+    // S051: 다단계 폼
+    'S051': {
+      targets: [
+        { name: '다음/이전 버튼', selector: '.step-btn', effects: ['배경색 변경'] },
+        { name: '스텝 인디케이터', selector: '.step-indicator', effects: ['확대'] }
+      ],
+      code: `.step-btn:hover {
+  background: #3730a3;
+}
+.step-indicator:hover {
+  transform: scale(1.1);
+}`
+    },
+
+    // S052: 실시간 검증 폼
+    'S052': {
+      targets: [
+        { name: 'Input 필드', selector: 'input', effects: ['테두리 색상 (유효성)'] }
+      ],
+      code: `input:focus {
+  border-color: var(--color-primary);
+}
+input.valid:focus {
+  border-color: var(--color-secondary);
+}
+input.invalid:focus {
+  border-color: #EF4444;
+}`
+    },
+
+    // S053: 태그 입력
+    'S053': {
+      targets: [
+        { name: '태그', selector: '.tag', effects: ['확대'] },
+        { name: '태그 삭제 버튼', selector: '.tag-remove', effects: ['배경색 변경'] }
+      ],
+      code: `.tag:hover {
+  transform: scale(1.05);
+}
+.tag-remove:hover {
+  background: #EF4444;
+}`
+    },
+
+    // S054: 날짜 선택기
+    'S054': {
+      targets: [
+        { name: '날짜 셀', selector: '.date-cell', effects: ['배경색 변경', '확대'] }
+      ],
+      code: `.date-cell:hover {
+  background: rgba(79, 70, 229, 0.1);
+  transform: scale(1.1);
+}`
+    },
+
+    // S055: 색상 선택기
+    'S055': {
+      targets: [
+        { name: '색상 칩', selector: '.color-option', effects: ['확대', '테두리 강조'] }
+      ],
+      code: `.color-option:hover {
+  transform: scale(1.15);
+  border: 3px solid #333;
+}`
+    },
+
+    // S056: 랜딩 페이지
+    'S056': {
+      targets: [
+        { name: 'CTA 버튼', selector: '.cta-btn', effects: ['배경색 변경', '확대'] },
+        { name: '기능 카드', selector: '.feature-card', effects: ['위로 이동', '그림자'] }
+      ],
+      code: `.cta-btn:hover {
+  background: #3730a3;
+  transform: scale(1.05);
+}
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}`
+    },
+
+    // S057: 가격 표
+    'S057': {
+      targets: [
+        { name: '가격 카드', selector: '.price-card', effects: ['위로 이동', '그림자 강화', '테두리 강조'] },
+        { name: '선택 버튼', selector: '.select-btn', effects: ['배경색 변경'] }
+      ],
+      code: `.price-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(79, 70, 229, 0.2);
+  border-color: var(--color-primary);
+}
+.select-btn:hover {
+  background: #3730a3;
+}`
+    },
+
+    // S058: 팀 멤버 소개
+    'S058': {
+      targets: [
+        { name: '멤버 카드', selector: '.member-card', effects: ['위로 이동', '이미지 확대'] },
+        { name: '소셜 아이콘', selector: '.social-icon', effects: ['색상 변경', '회전'] }
+      ],
+      code: `.member-card:hover {
+  transform: translateY(-4px);
+}
+.member-card:hover img {
+  transform: scale(1.05);
+}
+.social-icon:hover {
+  color: var(--color-primary);
+  transform: rotate(15deg);
+}`
+    },
+
+    // S059: 통계 대시보드
+    'S059': {
+      targets: [
+        { name: '통계 카드', selector: '.stat-card', effects: ['확대', '그림자 강화'] }
+      ],
+      code: `.stat-card {
+  transition: 0.3s ease;
+}
+.stat-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}`
+    },
+
+    // S060: 포트폴리오 갤러리
+    'S060': {
+      targets: [
+        { name: '필터 버튼', selector: '.filter-btn', effects: ['배경색 변경', '확대'] },
+        { name: '포트폴리오 아이템', selector: '.portfolio-item', effects: ['확대', '오버레이 표시'] }
+      ],
+      code: `.filter-btn:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: scale(1.05);
+}
+.portfolio-item:hover {
+  transform: scale(1.02);
+}
+.portfolio-item:hover .overlay {
+  opacity: 1;
+}`
+    },
+
+    // S061: 블로그 카드 목록
+    'S061': {
+      targets: [
+        { name: '블로그 카드', selector: '.blog-card', effects: ['위로 이동', '그림자 강화'] },
+        { name: '더보기 버튼', selector: '.read-more', effects: ['화살표 이동'] }
+      ],
+      code: `.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+.read-more:hover::after {
+  transform: translateX(5px);
+}`
+    },
+
+    // S062: 이벤트 배너
+    'S062': {
+      targets: [
+        { name: '배너', selector: '.event-banner', effects: ['확대', '밝기 증가'] },
+        { name: '참여하기 버튼', selector: '.join-btn', effects: ['배경색 변경', '펄스 효과'] }
+      ],
+      code: `.event-banner:hover {
+  transform: scale(1.02);
+  filter: brightness(1.05);
+}
+.join-btn:hover {
+  background: var(--color-accent);
+  animation: pulse 1s infinite;
+}`
+    },
+
+    // S063: 상품 상세 페이지
+    'S063': {
+      targets: [
+        { name: '썸네일 이미지', selector: '.thumbnail', effects: ['테두리 강조'] },
+        { name: '옵션 버튼', selector: '.option-btn', effects: ['배경색 변경', '테두리 강조'] },
+        { name: '장바구니 버튼', selector: '.cart-btn', effects: ['배경색 변경', '위로 이동'] }
+      ],
+      code: `.thumbnail:hover {
+  border-color: var(--color-primary);
+}
+.option-btn:hover {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+.cart-btn:hover {
+  background: #3730a3;
+  transform: translateY(-2px);
+}`
+    },
+
+    // S064: FAQ 섹션
+    'S064': {
+      targets: [
+        { name: 'FAQ 질문', selector: '.faq-question', effects: ['배경색 변경'] }
+      ],
+      code: `.faq-question {
+  transition: 0.3s ease;
+}
+.faq-question:hover {
+  background: rgba(79, 70, 229, 0.05);
+}`
+    },
+
+    // S065: 고객 후기 슬라이더
+    'S065': {
+      targets: [
+        { name: '후기 카드', selector: '.review-card', effects: ['확대'] },
+        { name: '화살표 버튼', selector: '.slider-arrow', effects: ['배경색 변경'] }
+      ],
+      code: `.review-card:hover {
+  transform: scale(1.02);
+}
+.slider-arrow:hover {
+  background: rgba(79, 70, 229, 0.9);
+}`
+    },
+
+    // S066: 스크롤 페이드 인
+    'S066': {
+      targets: [
+        { name: '페이드 요소', selector: '.fade-element', effects: ['투명도 변화 (스크롤)'] }
+      ],
+      code: `.fade-element {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 1s ease;
+}
+.fade-element.visible {
+  opacity: 1;
+  transform: translateY(0);
+}`
+    },
+
+    // S067: 패럴랙스 스크롤
+    'S067': {
+      targets: [
+        { name: '패럴랙스 레이어', selector: '.parallax-layer', effects: ['스크롤에 따른 이동'] }
+      ],
+      code: `.parallax-layer {
+  transition: transform 0.3s ease;
+}
+/* JavaScript로 스크롤 위치에 따라 transform 조정 */`
+    },
+
+    // S068: 메뉴 햄버거 애니메이션
+    'S068': {
+      targets: [
+        { name: '햄버거 버튼', selector: '.hamburger', effects: ['X자 변형 (클릭 시)'] }
+      ],
+      code: `.hamburger:hover {
+  background: rgba(79, 70, 229, 0.1);
+}
+.hamburger.active .line1 {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+.hamburger.active .line2 {
+  opacity: 0;
+}
+.hamburger.active .line3 {
+  transform: rotate(45deg) translate(-5px, -6px);
+}`
+    },
+
+    // S069: 카운터 애니메이션
+    'S069': {
+      targets: [
+        { name: '카운터 숫자', selector: '.counter', effects: ['숫자 증가 애니메이션'] }
+      ],
+      code: `.counter {
+  animation: countUp 2s ease;
+}
+/* JavaScript로 숫자 카운팅 구현 */`
+    },
+
+    // S070: 타이핑 효과
+    'S070': {
+      targets: [
+        { name: '타이핑 텍스트', selector: '.typing-text', effects: ['글자별 나타나기'] }
+      ],
+      code: `.typing-text {
+  border-right: 2px solid var(--color-primary);
+  animation: blink 0.7s infinite;
+}
+@keyframes blink {
+  50% { border-color: transparent; }
+}`
+    },
+
+    // ===== 고급 예제 (S071-S100) =====
+
+    // S071: 풀스크린 섹션 스크롤
+    'S071': {
+      targets: [
+        { name: '섹션', selector: '.section', effects: ['스냅 스크롤'] }
+      ],
+      code: `.section {
+  scroll-snap-align: start;
+  transition: 0.3s ease;
+}
+.section:hover {
+  background: rgba(255,255,255,0.05);
+}`
+    },
+
+    // S072: 분할 화면 레이아웃
+    'S072': {
+      targets: [
+        { name: '좌측 패널', selector: '.left-panel', effects: ['확대 (hover)'] },
+        { name: '우측 패널', selector: '.right-panel', effects: ['확대 (hover)'] }
+      ],
+      code: `.left-panel:hover, .right-panel:hover {
+  flex: 1.2;
+  filter: brightness(1.1);
+}`
+    },
+
+    // S073: 그리드 라인 오버레이
+    'S073': {
+      targets: [
+        { name: '그리드 토글 버튼', selector: '.grid-toggle', effects: ['배경색 변경'] }
+      ],
+      code: `.grid-toggle:hover {
+  background: var(--color-primary);
+  color: white;
+}`
+    },
+
+    // S074: 반응형 대시보드
+    'S074': {
+      targets: [
+        { name: '위젯', selector: '.dashboard-widget', effects: ['그림자 강화', '테두리 강조'] },
+        { name: '사이드 메뉴', selector: '.side-menu-item', effects: ['배경색 변경', '좌측 바'] }
+      ],
+      code: `.dashboard-widget:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  border-color: var(--color-primary);
+}
+.side-menu-item:hover {
+  background: rgba(79, 70, 229, 0.1);
+  border-left: 4px solid var(--color-primary);
+}`
+    },
+
+    // S075: 이모션 네비게이션
+    'S075': {
+      targets: [
+        { name: '네비게이션 아이템', selector: '.emotion-nav-item', effects: ['확대', '회전', '색상 변경'] }
+      ],
+      code: `.emotion-nav-item:hover {
+  transform: scale(1.2) rotate(5deg);
+  color: var(--color-accent);
+  background: rgba(255, 152, 0, 0.1);
+}`
+    },
+
+    // S076: 드래그 앤 드롭 보드
+    'S076': {
+      targets: [
+        { name: '보드 카드', selector: '.board-card', effects: ['그림자 강화 (dragging)'] },
+        { name: '드롭 영역', selector: '.drop-zone', effects: ['배경색 강조 (dragover)'] }
+      ],
+      code: `.board-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  cursor: grab;
+}
+.board-card.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+}
+.drop-zone.drag-over {
+  background: rgba(79, 70, 229, 0.1);
+  border: 2px dashed var(--color-primary);
+}`
+    },
+
+    // S077: 무한 스크롤
+    'S077': {
+      targets: [
+        { name: '리스트 아이템', selector: '.scroll-item', effects: ['배경색 변경'] },
+        { name: '로딩 스피너', selector: '.loader', effects: ['회전 애니메이션'] }
+      ],
+      code: `.scroll-item:hover {
+  background: rgba(79, 70, 229, 0.05);
+}
+.loader {
+  animation: spin 1s linear infinite;
+}`
+    },
+
+    // S078: 가상 스크롤
+    'S078': {
+      targets: [
+        { name: '가상 스크롤 아이템', selector: '.virtual-item', effects: ['배경색 변경'] }
+      ],
+      code: `.virtual-item:hover {
+  background: rgba(79, 70, 229, 0.05);
+}`
+    },
+
+    // S079: 리사이즈 가능 패널
+    'S079': {
+      targets: [
+        { name: '리사이저 핸들', selector: '.resizer', effects: ['배경색 강조'] }
+      ],
+      code: `.resizer:hover {
+  background: var(--color-primary);
+}`
+    },
+
+    // S080: 컨텍스트 메뉴
+    'S080': {
+      targets: [
+        { name: '컨텍스트 메뉴 아이템', selector: '.context-menu-item', effects: ['배경색 변경'] }
+      ],
+      code: `.context-menu-item:hover {
+  background: var(--color-primary);
+  color: white;
+}`
+    },
+
+    // S081: 트리 뷰
+    'S081': {
+      targets: [
+        { name: '트리 노드', selector: '.tree-node', effects: ['배경색 변경'] },
+        { name: '확장/축소 아이콘', selector: '.expand-icon', effects: ['회전'] }
+      ],
+      code: `.tree-node:hover {
+  background: rgba(79, 70, 229, 0.08);
+}
+.tree-node.expanded .expand-icon {
+  transform: rotate(90deg);
+}`
+    },
+
+    // S082: 데이터 테이블
+    'S082': {
+      targets: [
+        { name: '테이블 행', selector: 'tbody tr', effects: ['배경색 변경'] },
+        { name: '정렬 헤더', selector: '.sortable-header', effects: ['배경색 변경', '화살표 표시'] }
+      ],
+      code: `tbody tr:hover {
+  background: rgba(79, 70, 229, 0.05);
+}
+.sortable-header:hover {
+  background: rgba(79, 70, 229, 0.1);
+  cursor: pointer;
+}`
+    },
+
+    // S083: 차트 컴포넌트
+    'S083': {
+      targets: [
+        { name: '차트 바', selector: '.chart-bar', effects: ['확대', '그림자'] }
+      ],
+      code: `.chart-bar:hover {
+  transform: scaleY(1.05);
+  filter: brightness(1.1);
+  box-shadow: 0 -4px 12px rgba(79, 70, 229, 0.3);
+}`
+    },
+
+    // S084: 코드 에디터 UI
+    'S084': {
+      targets: [
+        { name: '툴바 버튼', selector: '.toolbar-btn', effects: ['배경색 변경'] }
+      ],
+      code: `.toolbar-btn:hover {
+  background: rgba(79, 70, 229, 0.1);
+}`
+    },
+
+    // S085: 이미지 크롭 도구
+    'S085': {
+      targets: [
+        { name: '크롭 핸들', selector: '.crop-handle', effects: ['확대', '배경색 변경'] }
+      ],
+      code: `.crop-handle:hover {
+  transform: scale(1.3);
+  background: var(--color-primary);
+}`
+    },
+
+    // S086: 결제 폼
+    'S086': {
+      targets: [
+        { name: 'Input 필드', selector: 'input', effects: ['테두리 강조 (focus)'] },
+        { name: '결제 버튼', selector: '.pay-btn', effects: ['배경색 변경', '위로 이동'] }
+      ],
+      code: `input:focus {
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+.pay-btn:hover {
+  background: #059669;
+  transform: translateY(-2px);
+}`
+    },
+
+    // S087: 위지윅 에디터
+    'S087': {
+      targets: [
+        { name: '포맷 버튼', selector: '.format-btn', effects: ['배경색 변경', '확대'] }
+      ],
+      code: `.format-btn:hover {
+  background: rgba(79, 70, 229, 0.1);
+  transform: scale(1.05);
+}`
+    },
+
+    // S088: 자동완성 검색
+    'S088': {
+      targets: [
+        { name: '검색 Input', selector: '.search-input', effects: ['테두리 강조'] },
+        { name: '자동완성 아이템', selector: '.autocomplete-item', effects: ['배경색 변경'] }
+      ],
+      code: `.search-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+.autocomplete-item:hover {
+  background: var(--color-primary);
+  color: white;
+}`
+    },
+
+    // S089: 폼 빌더
+    'S089': {
+      targets: [
+        { name: '필드 추가 버튼', selector: '.add-field-btn', effects: ['배경색 변경'] },
+        { name: '필드 항목', selector: '.field-item', effects: ['테두리 강조'] }
+      ],
+      code: `.add-field-btn:hover {
+  background: var(--color-primary);
+  color: white;
+}
+.field-item:hover {
+  border-color: var(--color-primary);
+}`
+    },
+
+    // S090: 서명 패드
+    'S090': {
+      targets: [
+        { name: '지우기 버튼', selector: '.clear-btn', effects: ['배경색 변경'] },
+        { name: '저장 버튼', selector: '.save-btn', effects: ['배경색 변경', '위로 이동'] }
+      ],
+      code: `.clear-btn:hover {
+  background: #EF4444;
+}
+.save-btn:hover {
+  background: #059669;
+  transform: translateY(-2px);
+}`
+    },
+
+    // S091: 비디오 랜딩 페이지
+    'S091': {
+      targets: [
+        { name: '재생/일시정지 버튼', selector: '.play-btn', effects: ['확대', '그림자'] },
+        { name: 'CTA 버튼', selector: '.cta-btn', effects: ['배경색 변경', '펄스'] }
+      ],
+      code: `.play-btn:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 16px rgba(255,255,255,0.5);
+}
+.cta-btn:hover {
+  background: var(--color-accent);
+  animation: pulse 1s infinite;
+}`
+    },
+
+    // S092: 3D 카드 효과
+    'S092': {
+      targets: [
+        { name: '3D 카드', selector: '.card-3d', effects: ['3D 회전 (마우스 위치)'] }
+      ],
+      code: `.card-3d:hover {
+  transform: perspective(1000px) rotateX(var(--rotateX)) rotateY(var(--rotateY));
+}
+/* JavaScript로 마우스 위치에 따라 회전 각도 조정 */`
+    },
+
+    // S093: 인터랙티브 지도
+    'S093': {
+      targets: [
+        { name: '지도 영역', selector: '.map-region', effects: ['색상 변경', '확대'] }
+      ],
+      code: `.map-region:hover {
+  fill: var(--color-primary);
+  transform: scale(1.05);
+  cursor: pointer;
+}`
+    },
+
+    // S094: 머티리얼 디자인 UI
+    'S094': {
+      targets: [
+        { name: 'FAB 버튼', selector: '.fab', effects: ['확대', '그림자 강화'] },
+        { name: '카드', selector: '.md-card', effects: ['그림자 변화'] }
+      ],
+      code: `.fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.4);
+}
+.md-card:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}`
+    },
+
+    // S095: 뉴모피즘 UI
+    'S095': {
+      targets: [
+        { name: '뉴모피즘 버튼', selector: '.neu-btn', effects: ['그림자 반전 (pressed)'] },
+        { name: '뉴모피즘 카드', selector: '.neu-card', effects: ['그림자 강화'] }
+      ],
+      code: `.neu-btn:hover {
+  box-shadow: inset 5px 5px 10px rgba(0,0,0,0.1),
+              inset -5px -5px 10px rgba(255,255,255,0.7);
+}
+.neu-card:hover {
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.15),
+              -10px -10px 20px rgba(255,255,255,0.7);
+}`
+    },
+
+    // S096: 파티클 배경
+    'S096': {
+      targets: [
+        { name: '파티클', selector: '.particle', effects: ['마우스 반응 이동'] }
+      ],
+      code: `.particle {
+  transition: transform 0.3s ease;
+}
+/* JavaScript로 마우스 위치에 따라 파티클 이동 */`
+    },
+
+    // S097: SVG 패스 애니메이션
+    'S097': {
+      targets: [
+        { name: 'SVG 패스', selector: 'path', effects: ['그리기 애니메이션'] }
+      ],
+      code: `path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 3s ease forwards;
+}
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}`
+    },
+
+    // S098: 페이지 전환 효과
+    'S098': {
+      targets: [
+        { name: '페이지', selector: '.page', effects: ['슬라이드 전환'] }
+      ],
+      code: `.page.exit {
+  animation: slideOut 0.5s ease;
+}
+.page.enter {
+  animation: slideIn 0.5s ease;
+}
+@keyframes slideOut {
+  to { transform: translateX(-100%); opacity: 0; }
+}
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}`
+    },
+
+    // S099: 모핑 효과
+    'S099': {
+      targets: [
+        { name: '모핑 도형', selector: '.morph-shape', effects: ['도형 변형'] }
+      ],
+      code: `.morph-shape {
+  animation: morph 5s ease infinite;
+}
+@keyframes morph {
+  0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
+  50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+  75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
+}`
+    },
+
+    // S100: 인터랙티브 배경
+    'S100': {
+      targets: [
+        { name: '배경 요소', selector: '.bg-element', effects: ['마우스 따라 이동', '색상 변화'] }
+      ],
+      code: `.bg-element {
+  transition: transform 0.3s ease, background 0.5s ease;
+}
+/* JavaScript로 마우스 위치에 따라 transform 및 색상 조정 */`
+    }
+  };
+
+  // 해당 예제의 가이드가 있으면 반환, 없으면 카테고리 기반 기본 가이드
+  if (interactionGuides[example.id]) {
+    const guide = interactionGuides[example.id];
+    return `
+      <h3>🎨 인터랙션 상세 요구사항</h3>
+      <div style="background: #E0F2FE; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 12px;">
+        <p style="margin-bottom: 12px;"><strong>⚠️ 이 예제에서 반드시 hover 효과를 적용해야 할 요소:</strong></p>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">📌 인터랙션 대상</h4>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+${guide.targets.map(target => `          <li><strong>${target.name}</strong> (<code>${target.selector}</code>): ${target.effects.join(', ')}</li>`).join('\n')}
+        </ul>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">💻 구현 코드</h4>
+        <pre style="background: #fff; padding: 16px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem; overflow-x: auto;"><code>${guide.code}</code></pre>
+
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; padding: 12px; border-radius: 4px; margin-top: 16px;">
+          <strong>💡 팁:</strong> 위 요소들에 <code>transition: 0.3s ease</code>를 먼저 설정한 후 hover 효과를 적용하세요!
+        </div>
+      </div>`;
+  }
+
+  // 기본 카테고리별 가이드 (예제별 가이드가 없는 경우)
+  const categoryDefaults = {
+    layout: {
+      targets: '헤더의 네비게이션 링크, 사이드바 메뉴 링크',
+      example: 'header nav a, .sidebar a'
+    },
+    component: {
+      targets: '버튼, 카드 (해당되는 경우)',
+      example: '.btn, .card'
+    },
+    form: {
+      targets: '입력 필드 (focus), 제출 버튼',
+      example: 'input:focus, .btn'
+    },
+    visual: {
+      targets: 'CTA 버튼, 이미지 (해당되는 경우)',
+      example: '.btn, img'
+    },
+    animation: {
+      targets: '모든 애니메이션 요소',
+      example: '.animated-element'
+    }
+  };
+
+  const defaultGuide = categoryDefaults[example.category] || categoryDefaults.component;
+
+  return `
+      <h3>🎨 인터랙션 상세 요구사항</h3>
+      <div style="background: #E0F2FE; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 12px;">
+        <p style="margin-bottom: 12px;"><strong>⚠️ 이 예제에서 hover/focus 효과를 적용할 대상:</strong></p>
+        <p style="margin-left: 20px; margin-bottom: 16px;"><strong>${defaultGuide.targets}</strong> (예: <code>${defaultGuide.example}</code>)</p>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">💻 기본 코드 패턴</h4>
+        <pre style="background: #fff; padding: 16px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem;"><code>/* 클릭 가능한 요소 */
+.element {
+  transition: 0.3s ease;
+}
+
+.element:hover {
+  /* 효과: 색상 변경, transform, 그림자 등 */
+}</code></pre>
+
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; padding: 12px; border-radius: 4px; margin-top: 16px;">
+          <strong>💡 참고:</strong> C-answer.html 파일에서 정확한 인터랙션 구현을 확인하세요!
+        </div>
+      </div>`;
+}
+
 // A-guide.html 템플릿 생성
 function generateGuideHTML(example) {
   const categoryGuide = categoryGuides[example.category];
   const difficultyInfo = difficultyLevels[example.difficulty];
   const diagram = layoutDiagrams[example.category] ? layoutDiagrams[example.category](example) : '';
+  const interactionGuide = generateInteractionGuide(example);
+
+  // custom-guide-data-full.js에서 맞춤형 데이터 가져오기
+  const customData = customGuideData[example.id];
+
+  // 맞춤형 데이터가 있으면 사용, 없으면 기본 데이터 사용
+  const learningPoints = customData?.learningPoints || categoryGuide.focusAreas;
+  const htmlReqs = customData?.requirements?.html || [];
+  const cssReqs = customData?.requirements?.css || [];
+  const detailReqs = customData?.requirements?.details || [];
+  const implementationSteps = customData?.implementation || [];
+  const checklist = customData?.checklist || [];
+  const stylesData = customData?.styles || null;
 
   return `<!DOCTYPE html>
 <html lang="ko">
@@ -308,12 +1810,29 @@ function generateGuideHTML(example) {
     <section class="guide-section">
       <h2>🎯 주요 학습 포인트</h2>
       <ul>
-${categoryGuide.focusAreas.map(area => `        <li>${area}</li>`).join('\n')}
+${Array.isArray(learningPoints) ? learningPoints.map(point => `        <li>${point}</li>`).join('\n') : ''}
       </ul>
     </section>
 
     <section class="guide-section">
       <h2>📐 퍼블리싱 요구사항</h2>
+
+      ${htmlReqs.length > 0 ? `<h3>HTML 구조</h3>
+      <ul>
+${htmlReqs.map(req => `        <li>${req}</li>`).join('\n')}
+      </ul>` : ''}
+
+      ${cssReqs.length > 0 ? `<h3>CSS 레이아웃</h3>
+      <ul>
+${cssReqs.map(req => `        <li>${req}</li>`).join('\n')}
+      </ul>` : ''}
+
+      ${detailReqs.length > 0 ? `<h3>스타일링 세부사항</h3>
+      <ul>
+${detailReqs.map(req => `        <li>${req}</li>`).join('\n')}
+      </ul>` : ''}
+
+${!customData ? `
       <h3>기본 요구사항</h3>
       <ul>
 ${categoryGuide.requirements.map(req => `        <li>${req}</li>`).join('\n')}
@@ -326,33 +1845,29 @@ ${categoryGuide.requirements.map(req => `        <li>${req}</li>`).join('\n')}
         <li>색상은 CSS 변수로 정의하여 일관성 유지</li>
         <li>8px 간격 시스템 준수</li>
       </ul>
+` : ''}
 
-      <h3>🎨 인터랙션 상세 요구사항</h3>
-      <div style="background: #E0F2FE; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 12px;">
-        <p style="margin-bottom: 12px;"><strong>클릭 가능한 요소 (링크, 버튼) hover 효과</strong></p>
-        <ul style="margin-left: 20px;">
-          <li>마우스 올리면 밑줄 또는 배경색 변화</li>
-          <li>투명도 조정 (<code>opacity: 0.8</code>) 또는 색상 변경</li>
-          <li>부드러운 전환 효과 (<code>transition: 0.3s ease</code>)</li>
-          <li>선택적으로 약간 위로 이동 (<code>transform: translateY(-2px)</code>)</li>
-        </ul>
-        <pre style="background: #fff; padding: 12px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem;"><code>/* 링크 hover 예시 */
-a:hover {
-  text-decoration: underline;
-  opacity: 0.8;
-  transition: 0.3s ease;
-}
-
-/* 버튼 hover 예시 */
-.btn:hover {
-  background: #3730a3;
-  transform: translateY(-2px);
-  transition: 0.3s ease;
-}</code></pre>
-      </div>
+${interactionGuide}
     </section>
 
-    <section class="guide-section">
+    ${stylesData ? `<section class="guide-section">
+      <h2>🎨 스타일 가이드 (이 예제 전용)</h2>
+
+      ${stylesData.colors ? `<h3>색상 팔레트</h3>
+      <ul>
+${stylesData.colors.map(color => `        <li><strong>${color.name}:</strong> <code>${color.value}</code> - ${color.desc}</li>`).join('\n')}
+      </ul>` : ''}
+
+      ${stylesData.typography ? `<h3>타이포그래피</h3>
+      <ul>
+${stylesData.typography.map(typo => `        <li><strong>${typo.element}:</strong> ${typo.style}</li>`).join('\n')}
+      </ul>` : ''}
+
+      ${stylesData.spacing ? `<h3>간격</h3>
+      <ul>
+${stylesData.spacing.map(space => `        <li><strong>${space.element}:</strong> ${space.value}</li>`).join('\n')}
+      </ul>` : ''}
+    </section>` : `<section class="guide-section">
       <h2>🎨 스타일 가이드</h2>
 
       <h3>색상 팔레트</h3>
@@ -378,9 +1893,24 @@ a:hover {
         <li>8px, 16px, 24px, 32px, 40px, 48px</li>
         <li>요소 간 간격은 위 값들을 조합하여 사용</li>
       </ul>
-    </section>
+    </section>`}
 
-    <section class="guide-section">
+    ${implementationSteps.length > 0 ? `<section class="guide-section">
+      <h2>💡 단계별 구현 가이드</h2>
+
+${implementationSteps.map(step => {
+  if (step.code) {
+    return `      <h3>${step.step}</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>${step.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
+      </div>`;
+  } else if (step.description) {
+    return `      <h3>${step.step}</h3>
+      <p style="margin-left: 20px; color: #666;">${step.description}</p>`;
+  }
+  return '';
+}).join('\n\n')}
+    </section>` : `<section class="guide-section">
       <h2>💡 구현 힌트</h2>
       <ul>
         <li>먼저 HTML 구조를 시맨틱하게 작성하세요</li>
@@ -389,17 +1919,17 @@ a:hover {
         <li>크롬 개발자 도구로 요소를 검사하며 조정하세요</li>
         <li>모바일 반응형을 고려하세요 (필요시 미디어 쿼리 사용)</li>
       </ul>
-    </section>
+    </section>`}
 
     <section class="guide-section">
       <h2>✅ 완성 체크리스트</h2>
       <ul>
-        <li>□ HTML 구조가 시맨틱하고 명확한가?</li>
+${checklist.length > 0 ? checklist.map(item => `        <li>□ ${item}</li>`).join('\n') : `        <li>□ HTML 구조가 시맨틱하고 명확한가?</li>
         <li>□ CSS 클래스명이 의미있고 일관적인가?</li>
         <li>□ 레이아웃이 의도한 대로 배치되었는가?</li>
         <li>□ 모든 인터랙션이 부드럽게 작동하는가?</li>
         <li>□ 색상과 타이포그래피가 일관적인가?</li>
-        <li>□ 코드가 깔끔하고 주석이 적절한가?</li>
+        <li>□ 코드가 깔끔하고 주석이 적절한가?</li>`}
       </ul>
     </section>
 
@@ -413,25 +1943,30 @@ a:hover {
 }
 
 // 예제별 완성 코드 (C-answer.html용)
-const answerTemplates = {
+// 모든 예제는 custom-guide-data-full.js의 implementation을 사용합니다
+const answerTemplates = {};
+
+// 아래는 더 이상 사용하지 않음 - custom-guide-data-full.js로 통합
+/*
+const answerTemplates_OLD = {
   'S001': {
     html: `
-  <header style="background: var(--color-primary); color: white; padding: var(--spacing-3); text-align: center;">
+  <header>
     <h1>웹사이트 헤더</h1>
     <nav>
-      <a href="#" style="color: white; margin: 0 16px; text-decoration: none;">홈</a>
-      <a href="#" style="color: white; margin: 0 16px; text-decoration: none;">소개</a>
-      <a href="#" style="color: white; margin: 0 16px; text-decoration: none;">연락처</a>
+      <a href="#">홈</a>
+      <a href="#">소개</a>
+      <a href="#">연락처</a>
     </nav>
   </header>
 
-  <main style="padding: var(--spacing-6); max-width: 800px; margin: 0 auto;">
+  <main>
     <h2>메인 콘텐츠</h2>
     <p>이곳에 주요 콘텐츠가 들어갑니다. Header, Main, Footer로 구성된 기본 3단 레이아웃입니다.</p>
-    <p style="margin-top: 16px; line-height: 1.6;">시맨틱 HTML을 사용하여 구조를 명확하게 표현했습니다.</p>
+    <p>시맨틱 HTML을 사용하여 구조를 명확하게 표현했습니다.</p>
   </main>
 
-  <footer style="background: var(--color-dark); color: white; padding: var(--spacing-4); text-align: center; margin-top: var(--spacing-6);">
+  <footer>
     <p>&copy; 2024 웹 퍼블리싱 훈련. All rights reserved.</p>
   </footer>`,
     css: `
@@ -442,18 +1977,65 @@ const answerTemplates = {
       flex-direction: column;
     }
 
-    main {
-      flex: 1;
+    header {
+      background: var(--color-primary);
+      color: white;
+      padding: var(--spacing-3);
+      text-align: center;
     }
 
-    /* 링크 hover 효과 */
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    header nav {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-2);
+    }
+
     header nav a {
+      color: white;
+      text-decoration: none;
+      padding: 0 var(--spacing-2);
       transition: var(--transition);
     }
 
     header nav a:hover {
       text-decoration: underline;
       opacity: 0.8;
+    }
+
+    main {
+      flex: 1;
+      padding: var(--spacing-6);
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    main h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: var(--spacing-2);
+    }
+
+    main p {
+      margin-top: var(--spacing-2);
+      line-height: 1.6;
+    }
+
+    footer {
+      background: var(--color-dark);
+      color: white;
+      padding: var(--spacing-4);
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.875rem;
     }`
   },
   'S002': {
@@ -795,11 +2377,77 @@ const answerTemplates = {
     }`
   }
 };
+*/
 
 // C-answer.html 템플릿 생성
 function generateAnswerHTML(example) {
-  // 미리 정의된 답이 있으면 사용, 없으면 카테고리 기반 자동 생성
-  const answer = answerTemplates[example.id] || generateDefaultAnswerByCategory(example);
+  // custom-guide-data-full.js에서 implementation 데이터 확인
+  const customData = customGuideData[example.id];
+
+  let answer;
+
+  // 1순위: 수동으로 정의된 answerTemplates (S001-S006 등)
+  if (answerTemplates[example.id]) {
+    answer = answerTemplates[example.id];
+  }
+  // 2순위: custom implementation 데이터가 있으면 조합해서 사용
+  else if (customData && customData.implementation && customData.implementation.length > 0) {
+    const htmlStep = customData.implementation.find(step => step.step.includes('HTML') && step.code);
+    const jsStep = customData.implementation.find(step => step.step.includes('JavaScript') && step.code);
+
+    // CSS 단계: HTML과 JavaScript가 아닌 모든 code가 있는 단계
+    const cssSteps = customData.implementation.filter(step =>
+      step.code &&
+      !step.step.includes('HTML') &&
+      !step.step.includes('JavaScript')
+    );
+
+    // HTML 단계가 있는 경우 (CSS 유무 상관없이)
+    if (htmlStep) {
+      const html = htmlStep.code;
+      const css = cssSteps.length > 0 ? cssSteps.map(step => step.code).join('\n\n    ') : '';
+      const js = jsStep ? jsStep.code : '';
+      answer = { html, css, js };
+    }
+    // HTML 단계가 없지만 CSS는 있고, requirements에 html 정보가 있는 경우
+    // requirements에서 기본 HTML 구조 생성
+    else if (!htmlStep && cssSteps.length > 0 && customData.requirements && customData.requirements.html) {
+      const css = cssSteps.map(step => step.code).join('\n\n    ');
+      const js = jsStep ? jsStep.code : '';
+
+      // CSS에서 모든 클래스명 추출 (반드시 문자로 시작)
+      const classMatches = css.matchAll(/\.([a-zA-Z][a-zA-Z0-9_-]*)/g);
+      const classes = [...new Set(Array.from(classMatches, m => m[1]))];
+
+      // "container", "wrapper" 등으로 끝나는 클래스를 컨테이너로, 나머지를 내부 요소로 판단
+      const containerClass = classes.find(c => c.includes('container') || c.includes('wrapper')) || classes[0];
+      const innerClasses = classes.filter(c =>
+        c !== containerClass &&
+        !c.includes('active') &&
+        !c.includes('hover') &&
+        !c.includes('placeholder') &&
+        !c.includes('disabled')
+      );
+
+      // 기본 HTML 구조 생성
+      if (innerClasses.length > 0) {
+        const innerElements = innerClasses.slice(0, 2).map(c => `  <div class="${c}"></div>`).join('\n');
+        html = `<div class="${containerClass}">\n${innerElements}\n</div>`;
+      } else {
+        html = `<div class="${containerClass}"></div>`;
+      }
+
+      answer = { html, css, js };
+    }
+    else {
+      // HTML도 CSS도 충분하지 않으면 기본 생성기 사용
+      answer = generateDefaultAnswerByCategory(example);
+    }
+  }
+  // 3순위: 카테고리 기반 자동 생성
+  else {
+    answer = generateDefaultAnswerByCategory(example);
+  }
 
   return `<!DOCTYPE html>
 <html lang="ko">
@@ -848,7 +2496,7 @@ function generateAnswerHTML(example) {
     /* ========================================
        완성 예시 CSS
        ======================================== */
-${answer.css}
+${answer.css || ''}
 
   </style>
 </head>
@@ -856,7 +2504,7 @@ ${answer.css}
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-${answer.html}
+${answer.html || ''}
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -871,6 +2519,7 @@ ${answer.html}
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+${answer.js ? answer.js : ''}
 
     console.log('✅ ${example.id} - ${example.title} 완성 예시');
   </script>

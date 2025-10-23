@@ -45,21 +45,26 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.btn {
+  padding: 12px 24px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
 
-    .animated-element {
-      animation: fadeInUp 1s ease;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    .btn-1:hover {
+  background: #3730a3;
+}
+.btn-2:hover {
+  transform: scale(1.1);
+}
+.btn-3:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
 
   </style>
 </head>
@@ -67,13 +72,11 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="animation-demo" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--color-light);">
-    <div class="animated-element" style="background: var(--color-primary); color: white; padding: var(--spacing-5); border-radius: var(--radius); text-align: center;">
-      <h2>호버 효과 버튼</h2>
-      <p style="margin-top: var(--spacing-2);">Hover 시 색상과 그림자가 변하는 버튼</p>
-    </div>
-  </div>
+<div class="button-group">
+  <button class="btn btn-1">색상 변경</button>
+  <button class="btn btn-2">크기 확대</button>
+  <button class="btn btn-3">떠오르기</button>
+</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -88,6 +91,7 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+
 
     console.log('✅ S021 - 호버 효과 버튼 완성 예시');
   </script>

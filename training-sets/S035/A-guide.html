@@ -52,104 +52,143 @@
     <section class="guide-section">
       <h2>🎯 주요 학습 포인트</h2>
       <ul>
-        <li>시맨틱 HTML 구조</li>
-        <li>Flexbox 또는 Grid 레이아웃</li>
-        <li>반응형 디자인</li>
-        <li>요소 정렬과 배치</li>
+        <li><strong>Full Page Scroll</strong> (섹션별 스크롤)</li>
+        <li><code>scroll-snap</code> 속성 사용</li>
+        <li>각 섹션이 화면 전체를 차지</li>
+        <li>부드러운 스크롤 스냅 효과</li>
       </ul>
     </section>
 
     <section class="guide-section">
       <h2>📐 퍼블리싱 요구사항</h2>
-      <h3>기본 요구사항</h3>
+
+      <h3>HTML 구조</h3>
       <ul>
-        <li>시맨틱 태그 사용 (header, main, section, aside, footer 등)</li>
-        <li>CSS Flexbox 또는 Grid로 레이아웃 구성</li>
-        <li>요소 간 일관된 간격 유지 (8px scale)</li>
-        <li>적절한 패딩과 마진 적용</li>
+        <li>Container <code>&lt;div class="scroll-container"&gt;</code></li>
+        <li>5개의 섹션, 각각 전체 화면 높이</li>
+        <li>각 섹션에 다른 배경색과 콘텐츠</li>
       </ul>
 
-      <h3>추가 요구사항</h3>
+      <h3>CSS 레이아웃</h3>
       <ul>
-        <li>모든 인터랙티브 요소에 적절한 hover 효과 적용</li>
-        <li>transition은 0.3s ease 기본값 사용</li>
-        <li>색상은 CSS 변수로 정의하여 일관성 유지</li>
-        <li>8px 간격 시스템 준수</li>
+        <li><strong>Container:</strong> <code>scroll-snap-type: y mandatory;</code></li>
+        <li><strong>Container:</strong> <code>overflow-y: scroll; height: 100vh;</code></li>
+        <li><strong>Section:</strong> <code>scroll-snap-align: start; height: 100vh;</code></li>
+        <li><strong>각 섹션:</strong> Flexbox 중앙 정렬</li>
       </ul>
+
+      <h3>스타일링 세부사항</h3>
+      <ul>
+        <li>Container: 스크롤바 숨김 (선택사항)</li>
+        <li>각 섹션: 다른 배경색 (그라디언트 사용 가능)</li>
+        <li>섹션 콘텐츠: 중앙 정렬, 제목 + 설명</li>
+        <li>Scroll behavior: smooth</li>
+      </ul>
+
+
+
 
       <h3>🎨 인터랙션 상세 요구사항</h3>
       <div style="background: #E0F2FE; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 12px;">
-        <p style="margin-bottom: 12px;"><strong>클릭 가능한 요소 (링크, 버튼) hover 효과</strong></p>
-        <ul style="margin-left: 20px;">
-          <li>마우스 올리면 밑줄 또는 배경색 변화</li>
-          <li>투명도 조정 (<code>opacity: 0.8</code>) 또는 색상 변경</li>
-          <li>부드러운 전환 효과 (<code>transition: 0.3s ease</code>)</li>
-          <li>선택적으로 약간 위로 이동 (<code>transform: translateY(-2px)</code>)</li>
+        <p style="margin-bottom: 12px;"><strong>⚠️ 이 예제에서 반드시 hover 효과를 적용해야 할 요소:</strong></p>
+
+        <h4 style="margin-top: 16px; color: #0369a1;">📌 인터랙션 대상</h4>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>사이드바 링크</strong> (<code>.sticky-sidebar a</code>): 배경색 변경, 좌측 바</li>
         </ul>
-        <pre style="background: #fff; padding: 12px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem;"><code>/* 링크 hover 예시 */
-a:hover {
-  text-decoration: underline;
-  opacity: 0.8;
+
+        <h4 style="margin-top: 16px; color: #0369a1;">💻 구현 코드</h4>
+        <pre style="background: #fff; padding: 16px; border-radius: 4px; margin-top: 12px; font-size: 0.9rem; overflow-x: auto;"><code>.sticky-sidebar a {
   transition: 0.3s ease;
 }
-
-/* 버튼 hover 예시 */
-.btn:hover {
-  background: #3730a3;
-  transform: translateY(-2px);
-  transition: 0.3s ease;
+.sticky-sidebar a:hover {
+  background: rgba(79, 70, 229, 0.1);
+  border-left: 3px solid var(--color-primary);
+  padding-left: 20px;
 }</code></pre>
+
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; padding: 12px; border-radius: 4px; margin-top: 16px;">
+          <strong>💡 팁:</strong> 위 요소들에 <code>transition: 0.3s ease</code>를 먼저 설정한 후 hover 효과를 적용하세요!
+        </div>
       </div>
     </section>
 
     <section class="guide-section">
-      <h2>🎨 스타일 가이드</h2>
+      <h2>🎨 스타일 가이드 (이 예제 전용)</h2>
 
       <h3>색상 팔레트</h3>
-      <div class="color-palette">
-        <div class="color-swatch" style="background: #4F46E5;">#4F46E5</div>
-        <div class="color-swatch" style="background: #10B981;">#10B981</div>
-        <div class="color-swatch" style="background: #FF9800;">#FF9800</div>
-        <div class="color-swatch" style="background: #FFFFFF; border: 2px solid #E5E7EB;">#FFFFFF</div>
-        <div class="color-swatch" style="background: #F3F4F6; color: #222;">#F3F4F6</div>
-        <div class="color-swatch" style="background: #222222; color: #FFF;">#222222</div>
-      </div>
+      <ul>
+        <li><strong>Section 1:</strong> <code>#4F46E5</code> - Primary</li>
+        <li><strong>Section 2:</strong> <code>#10B981</code> - Secondary</li>
+        <li><strong>Section 3:</strong> <code>#FF9800</code> - Accent</li>
+        <li><strong>Section 4:</strong> <code>#EF4444</code> - Red</li>
+        <li><strong>Section 5:</strong> <code>#8B5CF6</code> - Purple</li>
+      </ul>
 
       <h3>타이포그래피</h3>
       <ul>
-        <li>폰트: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif</li>
-        <li>제목 크기: 2.5rem (large), 2rem (medium), 1.5rem (small)</li>
-        <li>본문 크기: 1rem (기본), 0.875rem (작게)</li>
-        <li>행간: 1.6 (본문), 1.2 (제목)</li>
+        <li><strong>Section 제목:</strong> 3rem, 굵게, 흰색</li>
+        <li><strong>Section 설명:</strong> 1.25rem, 흰색 80%</li>
       </ul>
 
-      <h3>간격 시스템 (8px scale)</h3>
+      <h3>간격</h3>
       <ul>
-        <li>8px, 16px, 24px, 32px, 40px, 48px</li>
-        <li>요소 간 간격은 위 값들을 조합하여 사용</li>
+        <li><strong>Section 높이:</strong> 100vh</li>
+        <li><strong>Section 패딩:</strong> 48px</li>
       </ul>
     </section>
 
     <section class="guide-section">
-      <h2>💡 구현 힌트</h2>
-      <ul>
-        <li>먼저 HTML 구조를 시맨틱하게 작성하세요</li>
-        <li>CSS는 레이아웃 → 타이포그래피 → 색상 → 인터랙션 순서로 작성하세요</li>
-        <li>JavaScript가 필요한 경우, 이벤트 리스너를 명확히 분리하세요</li>
-        <li>크롬 개발자 도구로 요소를 검사하며 조정하세요</li>
-        <li>모바일 반응형을 고려하세요 (필요시 미디어 쿼리 사용)</li>
-      </ul>
+      <h2>💡 단계별 구현 가이드</h2>
+
+      <h3>1단계: Scroll Container</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>.scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+/* 스크롤바 숨김 (선택사항) */
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}</code></pre>
+      </div>
+
+      <h3>2단계: Section 스타일</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>.section {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  color: white;
+  text-align: center;
+}</code></pre>
+      </div>
+
+      <h3>3단계: Section 배경색</h3>
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 12px 0;">
+        <pre><code>.section:nth-child(1) { background: #4F46E5; }
+.section:nth-child(2) { background: #10B981; }
+.section:nth-child(3) { background: #FF9800; }
+.section:nth-child(4) { background: #EF4444; }
+.section:nth-child(5) { background: #8B5CF6; }</code></pre>
+      </div>
     </section>
 
     <section class="guide-section">
       <h2>✅ 완성 체크리스트</h2>
       <ul>
-        <li>□ HTML 구조가 시맨틱하고 명확한가?</li>
-        <li>□ CSS 클래스명이 의미있고 일관적인가?</li>
-        <li>□ 레이아웃이 의도한 대로 배치되었는가?</li>
-        <li>□ 모든 인터랙션이 부드럽게 작동하는가?</li>
-        <li>□ 색상과 타이포그래피가 일관적인가?</li>
-        <li>□ 코드가 깔끔하고 주석이 적절한가?</li>
+        <li>□ Container에 scroll-snap-type이 있나요?</li>
+        <li>□ Container 높이가 100vh인가요?</li>
+        <li>□ 각 Section에 scroll-snap-align: start가 있나요?</li>
+        <li>□ 스크롤 시 섹션별로 스냅되나요?</li>
+        <li>□ 각 Section 높이가 100vh인가요?</li>
+        <li>□ 콘텐츠가 섹션 중앙에 정렬되어 있나요?</li>
       </ul>
     </section>
 

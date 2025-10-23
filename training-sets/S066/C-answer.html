@@ -45,21 +45,21 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+.fade-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
 
-    .animated-element {
-      animation: fadeInUp 1s ease;
-    }
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.fade-section:nth-child(1) { transition-delay: 0s; }
+.fade-section:nth-child(2) { transition-delay: 0.1s; }
+.fade-section:nth-child(3) { transition-delay: 0.2s; }
+.fade-section:nth-child(4) { transition-delay: 0.3s; }
 
   </style>
 </head>
@@ -67,13 +67,15 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-
-  <div class="animation-demo" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--color-light);">
-    <div class="animated-element" style="background: var(--color-primary); color: white; padding: var(--spacing-5); border-radius: var(--radius); text-align: center;">
-      <h2>스크롤 페이드 인</h2>
-      <p style="margin-top: var(--spacing-2);">스크롤 시 순차적으로 나타나는 요소</p>
-    </div>
-  </div>
+<section class="fade-section">
+  <h2>첫 번째 섹션</h2>
+  <p>스크롤하면 나타납니다.</p>
+</section>
+<section class="fade-section">
+  <h2>두 번째 섹션</h2>
+  <p>순차적으로 등장합니다.</p>
+</section>
+<!-- 추가 섹션들 -->
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -88,6 +90,22 @@
     // ========================================
     // 완성 예시 JavaScript (필요시)
     // ========================================
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target); // 한 번만 실행
+    }
+  });
+}, {
+  threshold: 0.2, // 20% 보이면 트리거
+  rootMargin: '0px'
+});
+
+// 모든 섹션 관찰
+document.querySelectorAll('.fade-section').forEach(section => {
+  observer.observe(section);
+});
 
     console.log('✅ S066 - 스크롤 페이드 인 완성 예시');
   </script>
