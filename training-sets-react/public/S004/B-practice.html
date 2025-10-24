@@ -45,6 +45,51 @@
       --radius: 8px;
       --transition: 0.3s ease;
     }
+    html,body{
+        min-height: 100vh;
+    }
+    header{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        background-color: var(--color-primary);
+        padding:  var(--spacing-2)  clamp(16px, 5vw, 48px);
+        align-items: center;
+
+    }
+    header>.header-logo{
+        color: var(--color-white);
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin:0 ;
+
+    }
+    header>.header-nav{
+
+        margin: 0 ;
+    }
+    header>.header-nav>ul{
+        list-style: none;
+        display: flex;
+        gap: var(--spacing-3);
+        margin: 0 auto;
+    }
+    header>.header-nav>ul>li>.nav-menu{
+        color: var(--color-white);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+    header>.header-nav>ul>li>.nav-menu:hover,
+    header>.header-nav>ul>li>.nav-menu:focus-visible{
+        opacity: 0.8;
+        outline: none;
+    }
+    main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: var(--spacing-6) var(--spacing-3);
+    }
 
     /* 2. 레이아웃 스타일 */
     /* TODO: 메인 레이아웃 구성 */
@@ -65,6 +110,18 @@
     /* 6. 반응형 (선택사항) */
     @media (max-width: 768px) {
       /* 모바일 스타일 */
+        header{
+            gap: var(--spacing-2);
+            flex-direction: column;
+        }
+        header>.header-nav>ul{
+            gap: var(--spacing-1);
+            flex-direction: column;
+        }
+        .header-nav>ul>li{
+            display: flex;
+            justify-content: center;
+        }
     }
 
   </style>
@@ -86,6 +143,21 @@
   -->
 
   <!-- 여기서부터 코드를 작성하세요 -->
+  <header>
+      <div class="header-logo">MyBrand</div>
+      <nav class="header-nav">
+          <ul>
+              <li><a href="#" class="nav-menu">홈</a></li>
+              <li><a href="#" class="nav-menu">서비스</a></li>
+              <li><a href="#" class="nav-menu">소개</a></li>
+              <li><a href="#" class="nav-menu">연락처</a></li>
+          </ul>
+      </nav>
+  </header>
+  <main>
+      <h1 class="main-title">반응형 헤더 예시</h1>
+      <p class="main-content">화면 크기를 조절해보세요!</p>
+  </main>
 
 
   <!-- 힌트 영역 (완성 후 삭제 가능) -->
