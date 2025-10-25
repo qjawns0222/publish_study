@@ -5,121 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S059 - 통계 대시보드 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.stat-card {
-  background: white;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-.stat-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-}
-.stat-value {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin: 4px 0;
-}
-.stat-label {
-  color: #6B7280;
-  font-size: 1rem;
-}
-.stat-change {
-  font-size: 0.875rem;
-}
-.stat-change.positive {
-  color: #10B981;
-}
-.stat-change.negative {
-  color: #EF4444;
-}
-@media (max-width: 1024px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 640px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
+    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: var(--color-light); padding: var(--spacing-6); }
+    .stats-container { max-width: 1200px; width: 100%; }
+    .stats-container h1 { text-align: center; margin-bottom: var(--spacing-6); color: var(--color-dark); font-size: 2.5rem; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-4); }
+    .stat-card { background: white; padding: var(--spacing-6); border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: var(--transition); }
+    .stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+    .stat-icon { font-size: 3rem; margin-bottom: var(--spacing-3); }
+    .stat-value { font-size: 2rem; font-weight: bold; color: var(--color-dark); margin-bottom: var(--spacing-1); }
+    .stat-label { color: var(--color-gray); margin-bottom: var(--spacing-2); }
+    .stat-change { font-weight: 600; font-size: 0.875rem; }
+    .stat-change.positive { color: var(--color-secondary); }
+    .stat-change.negative { color: #EF4444; }
+    @media (max-width: 1024px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .stats-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<div class="stats-grid">
-  <div class="stat-card">
-    <div class="stat-icon" style="background: #E0E7FF;">
-      <i class="icon-users" style="color: #4F46E5;">👥</i>
-    </div>
-    <div class="stat-info">
-      <p class="stat-label">총 사용자</p>
-      <p class="stat-value">12,567</p>
-      <p class="stat-change positive">▲ 12.5%</p>
+  <div class="stats-container">
+    <h1>통계 대시보드</h1>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <div class="stat-value">12,543</div>
+        <div class="stat-label">총 사용자</div>
+        <div class="stat-change positive">+12.5%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">💰</div>
+        <div class="stat-value">₩8,432,100</div>
+        <div class="stat-label">총 매출</div>
+        <div class="stat-change positive">+23.1%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📦</div>
+        <div class="stat-value">1,234</div>
+        <div class="stat-label">총 주문</div>
+        <div class="stat-change negative">-5.4%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-value">4.8</div>
+        <div class="stat-label">평균 평점</div>
+        <div class="stat-change positive">+0.3</div>
+      </div>
     </div>
   </div>
-  <!-- 추가 통계 카드들 -->
-</div>
-
-  <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S059 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -127,14 +66,7 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-
-
-    console.log('✅ S059 - 통계 대시보드 완성 예시');
-  </script>
+    console.log('✅ S059 - 통계 대시보드 완성 예시');</script>
 </body>
 </html>

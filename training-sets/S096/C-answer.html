@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S096 - 파티클 배경 | 완성 예시</title>
+  <title>S096 - 예제 S096 | 완성 예시</title>
   <style>
     /* 기본 리셋 */
     * {
@@ -46,6 +46,80 @@
        완성 예시 CSS
        ======================================== */
 
+    /* 인터랙티브 3D 카드 */
+    body {
+      background: #0A0E27;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1000px;
+    }
+
+    .card-3d {
+      width: 400px;
+      height: 500px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+    }
+
+    .card-3d:hover {
+      transform: rotateY(10deg) rotateX(10deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 20px;
+      padding: 40px;
+      color: white;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .card-face h2 {
+      font-size: 2rem;
+      margin-bottom: 24px;
+    }
+
+    .card-face p {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .glow {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card-3d:hover .glow {
+      opacity: 1;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .feature-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+    
 
   </style>
 </head>
@@ -53,7 +127,7 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<canvas id="particleCanvas"></canvas>
+  <canvas id="particleCanvas"></canvas>
 <div class="content">
   <h1>파티클 배경 효과</h1>
   <p>마우스를 움직여보세요</p>
@@ -69,9 +143,7 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
+    // 2단계: JavaScript
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -142,7 +214,7 @@ function animate() {
 
 animate();
 
-    console.log('✅ S096 - 파티클 배경 완성 예시');
+    console.log('✅ S096 - 예제 S096 완성 예시');
   </script>
 </body>
 </html>

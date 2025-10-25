@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S084 - 코드 에디터 UI | 완성 예시</title>
+  <title>S084 - 예제 S084 | 완성 예시</title>
   <style>
     /* 기본 리셋 */
     * {
@@ -45,6 +45,59 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+
+.code-editor {
+  display: flex;
+  background: #1E293B;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 14px;
+}
+
+.line-numbers {
+  background: #0F172A;
+  color: #64748B;
+  padding: 16px 8px;
+  text-align: right;
+  user-select: none;
+  min-width: 40px;
+  line-height: 1.5;
+}
+
+#codeInput {
+  flex: 1;
+  background: #1E293B;
+  color: #E2E8F0;
+  border: none;
+  outline: none;
+  padding: 16px;
+  resize: none;
+  line-height: 1.5;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* 구문 하이라이트 색상 */
+.code-keyword {
+  color: #F472B6;
+  font-weight: bold;
+}
+
+.code-string {
+  color: #34D399;
+}
+
+.code-comment {
+  color: #64748B;
+  font-style: italic;
+}
+
+.code-function {
+  color: #60A5FA;
+}
+
+    /* 2단계: CSS */
 .code-editor {
   display: flex;
   background: #1E293B;
@@ -83,7 +136,7 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<div class="code-editor">
+  <div class="code-editor">
   <div class="line-numbers" id="lineNumbers"></div>
   <textarea id="codeInput" spellcheck="false"></textarea>
 </div>
@@ -98,9 +151,7 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
+    // 3단계: JavaScript
 const codeInput = document.getElementById('codeInput');
 const lineNumbers = document.getElementById('lineNumbers');
 
@@ -128,7 +179,7 @@ codeInput.addEventListener('keydown', (e) => {
 
 updateLineNumbers();
 
-    console.log('✅ S084 - 코드 에디터 UI 완성 예시');
+    console.log('✅ S084 - 예제 S084 완성 예시');
   </script>
 </body>
 </html>

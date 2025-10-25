@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S088 - 자동완성 검색 | 완성 예시</title>
+  <title>S088 - 예제 S088 | 완성 예시</title>
   <style>
     /* 기본 리셋 */
     * {
@@ -46,6 +46,77 @@
        완성 예시 CSS
        ======================================== */
 
+    /* 자동완성 검색 */
+    .autocomplete-container {
+      max-width: 600px;
+      margin: 100px auto;
+      padding: 24px;
+    }
+
+    .search-wrapper {
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 16px;
+      border: 2px solid var(--color-light);
+      border-radius: 12px;
+      font-size: 1rem;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--color-primary);
+    }
+
+    /* 자동완성 드롭다운 */
+    .autocomplete-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid var(--color-light);
+      border-radius: 8px;
+      margin-top: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-height: 300px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .autocomplete-dropdown.active {
+      display: block;
+    }
+
+    .autocomplete-item {
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .autocomplete-item:hover {
+      background: var(--color-light);
+    }
+
+    .autocomplete-item.selected {
+      background: #EEF2FF;
+      color: var(--color-primary);
+    }
+
+    .no-results {
+      padding: 16px;
+      text-align: center;
+      color: var(--color-gray);
+    }
+
+    /* 하이라이트 */
+    .highlight {
+      font-weight: bold;
+      color: var(--color-primary);
+    }
+    
 
   </style>
 </head>
@@ -53,7 +124,7 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<div class="autocomplete-search">
+  <div class="autocomplete-search">
   <input type="text" id="searchInput" placeholder="검색어를 입력하세요">
   <ul class="suggestions" id="suggestions"></ul>
 </div>
@@ -68,9 +139,7 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
+    // 2단계: JavaScript
 const searchInput = document.getElementById('searchInput');
 const suggestions = document.getElementById('suggestions');
 
@@ -155,7 +224,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-    console.log('✅ S088 - 자동완성 검색 완성 예시');
+    console.log('✅ S088 - 예제 S088 완성 예시');
   </script>
 </body>
 </html>

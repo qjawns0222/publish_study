@@ -1,0 +1,710 @@
+{
+  "total": 100,
+  "passed": 56,
+  "failed": 44,
+  "details": [
+    {
+      "exampleId": "S001",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing CSS property: display: flex; flex-direction: column; min-height: 100vh;"
+      ]
+    },
+    {
+      "exampleId": "S002",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing CSS property: display: flex; justify-content: center; align-items: center; min-height: 100vh;"
+      ]
+    },
+    {
+      "exampleId": "S003",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing CSS property: display: grid; grid-template-columns: 250px 1fr;"
+      ]
+    },
+    {
+      "exampleId": "S004",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing CSS property: display: flex; justify-content: space-between; align-items: center;"
+      ]
+    },
+    {
+      "exampleId": "S005",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing CSS property: display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;"
+      ]
+    },
+    {
+      "exampleId": "S006",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S007",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S008",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S009",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing CSS property: display: flex; align-items: center; gap: 8px;"
+      ]
+    },
+    {
+      "exampleId": "S010",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing CSS property: display: flex; gap: 24px;"
+      ]
+    },
+    {
+      "exampleId": "S011",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: #E5E7EB (Input 테두리)"
+      ]
+    },
+    {
+      "exampleId": "S012",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: #E5E7EB (Input 테두리)"
+      ]
+    },
+    {
+      "exampleId": "S013",
+      "status": "FAIL",
+      "reason": "3 issue(s) found",
+      "issues": [
+        "Missing color value: #E5E7EB (Input 테두리)",
+        "Missing color value: #999999 (아이콘)",
+        "Missing color value: #999999 (Placeholder)"
+      ]
+    },
+    {
+      "exampleId": "S014",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: #E5E7EB (기본 테두리)"
+      ]
+    },
+    {
+      "exampleId": "S015",
+      "status": "FAIL",
+      "reason": "3 issue(s) found",
+      "issues": [
+        "Missing color value: #E5E7EB (Select 테두리)",
+        "Missing color value: #666666 (화살표)",
+        "Missing color value: #999999 (Placeholder)"
+      ]
+    },
+    {
+      "exampleId": "S016",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: rgba(0, 0, 0, 0.5) (오버레이)"
+      ]
+    },
+    {
+      "exampleId": "S017",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing CSS property: display: grid; grid-template-columns: repeat(3, 1fr);"
+      ]
+    },
+    {
+      "exampleId": "S018",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S019",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: #444444 (저작권 보더)"
+      ]
+    },
+    {
+      "exampleId": "S020",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S021",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: #3730a3 (버튼 hover 배경)"
+      ]
+    },
+    {
+      "exampleId": "S022",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S023",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: transparent (Spinner border (나머지))"
+      ]
+    },
+    {
+      "exampleId": "S024",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Implementation step 1: Missing key element from 1단계: HTML 구조"
+      ]
+    },
+    {
+      "exampleId": "S025",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S026",
+      "status": "FAIL",
+      "reason": "2 issue(s) found",
+      "issues": [
+        "Missing color value: rgba(79, 70, 229, 0.1) (Row hover)",
+        "Missing color value: #E5E7EB (Border)"
+      ]
+    },
+    {
+      "exampleId": "S027",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S028",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S029",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S030",
+      "status": "FAIL",
+      "reason": "2 issue(s) found",
+      "issues": [
+        "Missing color value: #E5E7EB (Tag 배경)",
+        "Missing color value: #999999 (삭제 버튼)"
+      ]
+    },
+    {
+      "exampleId": "S031",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing CSS property: display: grid; grid-template-areas"
+      ]
+    },
+    {
+      "exampleId": "S032",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S033",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing CSS property: display: grid; grid-template-columns: repeat(3, 1fr);"
+      ]
+    },
+    {
+      "exampleId": "S034",
+      "status": "FAIL",
+      "reason": "2 issue(s) found",
+      "issues": [
+        "Missing color value: rgba(255, 255, 255, 0.9) (Header 기본 배경)",
+        "Missing color value: #F3F4F6, #E5E7EB, #D1D5DB (Section 배경들)"
+      ]
+    },
+    {
+      "exampleId": "S035",
+      "status": "FAIL",
+      "reason": "2 issue(s) found",
+      "issues": [
+        "Missing color value: #EF4444 (Section 4)",
+        "Missing color value: #8B5CF6 (Section 5)"
+      ]
+    },
+    {
+      "exampleId": "S036",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: #E5E7EB (Hover 배경)"
+      ]
+    },
+    {
+      "exampleId": "S037",
+      "status": "FAIL",
+      "reason": "2 issue(s) found",
+      "issues": [
+        "Missing color value: #E5E7EB (헤더 hover)",
+        "Missing color value: #D1D5DB (Border)"
+      ]
+    },
+    {
+      "exampleId": "S038",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S039",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: #EF4444 (Close 버튼)"
+      ]
+    },
+    {
+      "exampleId": "S040",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: rgba(0,0,0,0.5) (버튼 배경)"
+      ]
+    },
+    {
+      "exampleId": "S041",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: #3B82F6 (Info)"
+      ]
+    },
+    {
+      "exampleId": "S042",
+      "status": "FAIL",
+      "reason": "2 issue(s) found",
+      "issues": [
+        "Missing color value: #E5E7EB (Hover)",
+        "Missing color value: #D1D5DB (Disabled)"
+      ]
+    },
+    {
+      "exampleId": "S043",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S044",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: #E5E7EB (연결선)"
+      ]
+    },
+    {
+      "exampleId": "S045",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: #E5E7EB (세로선)"
+      ]
+    },
+    {
+      "exampleId": "S046",
+      "status": "FAIL",
+      "reason": "2 issue(s) found",
+      "issues": [
+        "Missing color value: #D1D5DB (Input border)",
+        "Missing color value: #374151 (Label 텍스트)"
+      ]
+    },
+    {
+      "exampleId": "S047",
+      "status": "FAIL",
+      "reason": "2 issue(s) found",
+      "issues": [
+        "Missing color value: #D1D5DB (드롭 영역 border)",
+        "Missing color value: #E0E7FF (Drag over 배경)"
+      ]
+    },
+    {
+      "exampleId": "S048",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: #E5E7EB (트랙 배경)"
+      ]
+    },
+    {
+      "exampleId": "S049",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: #D1D5DB (Off 배경)"
+      ]
+    },
+    {
+      "exampleId": "S050",
+      "status": "FAIL",
+      "reason": "2 issue(s) found",
+      "issues": [
+        "Missing color value: #FCD34D (채워진 별)",
+        "Missing color value: #374151 (평점 텍스트)"
+      ]
+    },
+    {
+      "exampleId": "S051",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: #D1D5DB (Disabled 버튼)"
+      ]
+    },
+    {
+      "exampleId": "S052",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S053",
+      "status": "FAIL",
+      "reason": "2 issue(s) found",
+      "issues": [
+        "Missing color value: #D1D5DB (컨테이너 테두리)",
+        "Missing color value: #EF4444 (삭제 버튼 hover)"
+      ]
+    },
+    {
+      "exampleId": "S054",
+      "status": "FAIL",
+      "reason": "2 issue(s) found",
+      "issues": [
+        "Missing color value: #3B82F6 (오늘)",
+        "Missing color value: #9CA3AF (다른 달)"
+      ]
+    },
+    {
+      "exampleId": "S055",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: #D1D5DB (미리보기 테두리)"
+      ]
+    },
+    {
+      "exampleId": "S056",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: linear-gradient(135deg, #4F46E5, #10B981) (히어로 배경)"
+      ]
+    },
+    {
+      "exampleId": "S057",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S058",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S059",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: #3B82F6 (카드 4 (방문))"
+      ]
+    },
+    {
+      "exampleId": "S060",
+      "status": "FAIL",
+      "reason": "1 issue(s) found",
+      "issues": [
+        "Missing color value: rgba(0,0,0,0.7) (오버레이)"
+      ]
+    },
+    {
+      "exampleId": "S061",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S062",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S063",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S064",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S065",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S066",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S067",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S068",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S069",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S070",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S071",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S072",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S073",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S074",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S075",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S076",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S077",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S078",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S079",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S080",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S081",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S082",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S083",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S084",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S085",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S086",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S087",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S088",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S089",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S090",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S091",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S092",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S093",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S094",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S095",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S096",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S097",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S098",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S099",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    },
+    {
+      "exampleId": "S100",
+      "status": "PASS",
+      "reason": "All requirements met",
+      "issues": []
+    }
+  ]
+}

@@ -5,77 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S051 - 다단계 폼 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-
-
+    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: var(--color-light); padding: var(--spacing-3); }
+    .multistep-container { max-width: 600px; width: 100%; }
+    .progress-bar { height: 6px; background: #E5E7EB; border-radius: 3px; margin-bottom: var(--spacing-6); overflow: hidden; }
+    .progress { height: 100%; background: var(--color-primary); width: 33.33%; transition: width 0.3s ease; }
+    .multistep-form { background: white; padding: var(--spacing-6); border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+    .form-step { display: none; }
+    .form-step.active { display: block; }
+    .form-step h2 { margin-bottom: var(--spacing-4); color: var(--color-dark); }
+    .form-group { margin-bottom: var(--spacing-3); }
+    .form-group label { display: block; margin-bottom: var(--spacing-1); font-weight: 500; color: var(--color-dark); }
+    .form-group input { width: 100%; padding: 12px; border: 2px solid var(--color-light); border-radius: var(--radius); font-size: 1rem; transition: var(--transition); }
+    .form-group input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(79,70,229,0.1); }
+    .form-buttons { display: flex; gap: var(--spacing-2); margin-top: var(--spacing-4); }
+    .form-buttons button { flex: 1; padding: 12px; border: none; border-radius: var(--radius); font-weight: 500; cursor: pointer; transition: var(--transition); }
+    #prevBtn { background: var(--color-light); color: var(--color-dark); }
+    #nextBtn { background: var(--color-primary); color: white; }
+    #prevBtn:hover { background: #E5E7EB; }
+    #nextBtn:hover { background: #3730a3; }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<div class="multi-step-form">
-  <div class="progress-bar">
-    <div class="progress" id="progress"></div>
+  <div class="multistep-container">
+    <div class="progress-bar">
+      <div class="progress" id="progress"></div>
+    </div>
+    <form class="multistep-form">
+      <div class="form-step active">
+        <h2>Step 1: 기본 정보</h2>
+        <div class="form-group">
+          <label>이름</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>이메일</label>
+          <input type="email" required>
+        </div>
+      </div>
+      <div class="form-step">
+        <h2>Step 2: 주소</h2>
+        <div class="form-group">
+          <label>주소</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>도시</label>
+          <input type="text" required>
+        </div>
+      </div>
+      <div class="form-step">
+        <h2>Step 3: 완료</h2>
+        <p>모든 정보가 입력되었습니다.</p>
+      </div>
+      <div class="form-buttons">
+        <button type="button" id="prevBtn" onclick="changeStep(-1)">이전</button>
+        <button type="button" id="nextBtn" onclick="changeStep(1)">다음</button>
+      </div>
+    </form>
   </div>
-
-  <div class="step active" data-step="1">
-    <h2>Step 1: 개인정보</h2>
-    <input type="text" placeholder="이름" required>
-    <input type="email" placeholder="이메일" required>
-  </div>
-
-  <div class="step" data-step="2">
-    <h2>Step 2: 주소</h2>
-    <input type="text" placeholder="주소" required>
-  </div>
-
-  <div class="buttons">
-    <button id="prevBtn" disabled>이전</button>
-    <button id="nextBtn">다음</button>
-  </div>
-</div>
-
-  <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S051 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -83,46 +78,21 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
-  <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-let currentStep = 1;
-const totalSteps = 2;
-const steps = document.querySelectorAll('.step');
-const progress = document.getElementById('progress');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-
-function showStep(step) {
-  steps.forEach((s, i) => {
-    s.classList.toggle('active', i + 1 === step);
-  });
-
-  progress.style.width = `${(step / totalSteps) * 100}%`;
-  prevBtn.disabled = step === 1;
-  nextBtn.textContent = step === totalSteps ? '제출' : '다음';
-}
-
-nextBtn.addEventListener('click', () => {
-  if (currentStep < totalSteps) {
-    currentStep++;
-    showStep(currentStep);
-  } else {
-    // 제출 로직
-    alert('폼 제출!');
-  }
-});
-
-prevBtn.addEventListener('click', () => {
-  if (currentStep > 1) {
-    currentStep--;
-    showStep(currentStep);
-  }
-});
-
-    console.log('✅ S051 - 다단계 폼 완성 예시');
-  </script>
+  <script>    let currentStep = 1;
+    const totalSteps = 3;
+    function changeStep(n) {
+      const steps = document.querySelectorAll('.form-step');
+      currentStep += n;
+      if (currentStep > totalSteps) currentStep = totalSteps;
+      if (currentStep < 1) currentStep = 1;
+      steps.forEach((step, i) => {
+        step.classList.toggle('active', i + 1 === currentStep);
+      });
+      document.getElementById('progress').style.width = ((currentStep / totalSteps) * 100) + '%';
+      document.getElementById('prevBtn').style.display = currentStep === 1 ? 'none' : 'block';
+      document.getElementById('nextBtn').textContent = currentStep === totalSteps ? '완료' : '다음';
+    }
+    changeStep(0);
+    console.log('✅ S051 - 다단계 폼 완성 예시');</script>
 </body>
 </html>

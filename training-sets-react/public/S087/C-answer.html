@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S087 - 위지윅 에디터 | 완성 예시</title>
+  <title>S087 - 예제 S087 | 완성 예시</title>
   <style>
     /* 기본 리셋 */
     * {
@@ -47,13 +47,14 @@
        ======================================== */
 
 
+
   </style>
 </head>
 <body>
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<div class="wysiwyg-editor">
+  <div class="wysiwyg-editor">
   <div class="toolbar">
     <button onclick="format('bold')" title="굵게"><b>B</b></button>
     <button onclick="format('italic')" title="기울임"><i>I</i></button>
@@ -77,9 +78,7 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
+    // 2단계: JavaScript
 function format(command, value = null) {
   document.execCommand(command, false, value);
   document.getElementById('editor').focus();
@@ -116,7 +115,7 @@ function updateToolbar() {
   });
 }
 
-    console.log('✅ S087 - 위지윅 에디터 완성 예시');
+    console.log('✅ S087 - 예제 S087 완성 예시');
   </script>
 </body>
 </html>

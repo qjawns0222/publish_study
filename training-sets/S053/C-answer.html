@@ -5,60 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S053 - 태그 입력 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-
-
+    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: var(--color-light); padding: var(--spacing-3); }
+    .tag-input-box { max-width: 600px; width: 100%; background: white; padding: var(--spacing-6); border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+    .tag-input-box h2 { margin-bottom: var(--spacing-4); color: var(--color-dark); }
+    .tags { display: flex; flex-wrap: wrap; gap: var(--spacing-2); margin-bottom: var(--spacing-3); min-height: 40px; }
+    .tag { display: inline-flex; align-items: center; gap: var(--spacing-1); padding: 8px 12px; background: var(--color-primary); color: white; border-radius: 16px; font-size: 0.875rem; font-weight: 500; }
+    .tag-remove { background: none; border: none; color: white; font-size: 1.125rem; cursor: pointer; padding: 0 4px; }
+    .tag-remove:hover { transform: scale(1.2); }
+    #tagInput { width: 100%; padding: 12px; border: 2px solid var(--color-light); border-radius: var(--radius); font-size: 1rem; transition: var(--transition); }
+    #tagInput:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(79,70,229,0.1); }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<div class="tag-input-container">
-  <div class="tags" id="tags"></div>
-  <input type="text" id="tagInput" placeholder="태그를 입력하세요...">
-</div>
-
-  <!-- 안내 배너 (하단 고정) -->
+  <div class="tag-input-container">
+    <div class="tag-input-box">
+      <h2>태그 입력</h2>
+      <div class="tags" id="tags"></div>
+      <input type="text" id="tagInput" placeholder="태그를 입력하고 Enter를 누르세요">
+    </div>
+  </div>
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S053 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -66,46 +39,30 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
-  <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-const tagInput = document.getElementById('tagInput');
-const tagsContainer = document.getElementById('tags');
-const tags = [];
-
-function addTag(text) {
-  text = text.trim();
-  if (!text || tags.includes(text)) return;
-
-  tags.push(text);
-  renderTags();
-  tagInput.value = '';
-}
-
-function removeTag(index) {
-  tags.splice(index, 1);
-  renderTags();
-}
-
-function renderTags() {
-  tagsContainer.innerHTML = tags.map((tag, i) => `
-    <span class="tag">
-      ${tag}
-      <button onclick="removeTag(${i})" class="remove-tag">&times;</button>
-    </span>
-  `).join('');
-}
-
-tagInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    addTag(e.target.value);
-  }
-});
-
-    console.log('✅ S053 - 태그 입력 완성 예시');
-  </script>
+  <script>    const tagInput = document.getElementById('tagInput');
+    const tagsContainer = document.getElementById('tags');
+    const tags = [];
+    tagInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && tagInput.value.trim()) {
+        e.preventDefault();
+        const tagText = tagInput.value.trim();
+        tags.push(tagText);
+        renderTags();
+        tagInput.value = '';
+      }
+    });
+    function renderTags() {
+      tagsContainer.innerHTML = tags.map((tag, index) => `
+        <span class="tag">
+          ${tag}
+          <button class="tag-remove" onclick="removeTag(${index})">×</button>
+        </span>
+      `).join('');
+    }
+    function removeTag(index) {
+      tags.splice(index, 1);
+      renderTags();
+    }
+    console.log('✅ S053 - 태그 입력 완성 예시');</script>
 </body>
 </html>

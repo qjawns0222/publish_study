@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S086 - 결제 폼 | 완성 예시</title>
+  <title>S086 - 예제 S086 | 완성 예시</title>
   <style>
     /* 기본 리셋 */
     * {
@@ -46,6 +46,93 @@
        완성 예시 CSS
        ======================================== */
 
+    /* 로그인 폼 */
+    body {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-card {
+      background: white;
+      padding: 48px;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .login-card h2 {
+      text-align: center;
+      margin-bottom: 32px;
+      font-size: 1.75rem;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #D1D5DB;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--color-primary);
+    }
+
+    .error {
+      color: #EF4444;
+      font-size: 0.875rem;
+      margin-top: 4px;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .submit-btn:hover {
+      background: #3730a3;
+    }
+
+    .forgot-password {
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .forgot-password a {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+    
 
   </style>
 </head>
@@ -53,7 +140,7 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<form class="payment-form">
+  <form class="payment-form">
   <div class="card-preview">
     <div class="card-number" id="cardNumberDisplay">•••• •••• •••• ••••</div>
     <div class="card-info">
@@ -96,9 +183,7 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
+    // 2단계: JavaScript - 포맷팅
 const cardNumberInput = document.getElementById('cardNumber');
 const expiryInput = document.getElementById('expiry');
 const cvvInput = document.getElementById('cvv');
@@ -164,7 +249,7 @@ document.querySelector('.payment-form').addEventListener('submit', (e) => {
   alert('결제가 완료되었습니다!');
 });
 
-    console.log('✅ S086 - 결제 폼 완성 예시');
+    console.log('✅ S086 - 예제 S086 완성 예시');
   </script>
 </body>
 </html>

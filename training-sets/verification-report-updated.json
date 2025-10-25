@@ -1,0 +1,191 @@
+Starting verification of answer files against custom-guide-data-full.js...
+
+❌ S001: 1 issue(s) found
+   - Missing CSS property: display: flex; flex-direction: column; min-height: 100vh;
+❌ S002: 1 issue(s) found
+   - Missing CSS property: display: flex; justify-content: center; align-items: center; min-height: 100vh;
+❌ S003: 1 issue(s) found
+   - Missing CSS property: display: grid; grid-template-columns: 250px 1fr;
+❌ S004: 1 issue(s) found
+   - Missing CSS property: display: flex; justify-content: space-between; align-items: center;
+❌ S005: 1 issue(s) found
+   - Missing CSS property: display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+✅ S006: All requirements met
+✅ S007: All requirements met
+✅ S008: All requirements met
+❌ S009: 1 issue(s) found
+   - Missing CSS property: display: flex; align-items: center; gap: 8px;
+❌ S010: 1 issue(s) found
+   - Missing CSS property: display: flex; gap: 24px;
+❌ S011: 1 issue(s) found
+   - Missing color value: #E5E7EB (Input 테두리)
+❌ S012: 1 issue(s) found
+   - Missing color value: #E5E7EB (Input 테두리)
+❌ S013: 3 issue(s) found
+   - Missing color value: #E5E7EB (Input 테두리)
+   - Missing color value: #999999 (아이콘)
+   - Missing color value: #999999 (Placeholder)
+❌ S014: 1 issue(s) found
+   - Missing color value: #E5E7EB (기본 테두리)
+❌ S015: 3 issue(s) found
+   - Missing color value: #E5E7EB (Select 테두리)
+   - Missing color value: #666666 (화살표)
+   - Missing color value: #999999 (Placeholder)
+❌ S016: 1 issue(s) found
+   - Missing color value: rgba(0, 0, 0, 0.5) (오버레이)
+❌ S017: 1 issue(s) found
+   - Missing CSS property: display: grid; grid-template-columns: repeat(3, 1fr);
+✅ S018: All requirements met
+❌ S019: 1 issue(s) found
+   - Missing color value: #444444 (저작권 보더)
+✅ S020: All requirements met
+❌ S021: 1 issue(s) found
+   - Missing color value: #3730a3 (버튼 hover 배경)
+✅ S022: All requirements met
+❌ S023: 1 issue(s) found
+   - Missing color value: transparent (Spinner border (나머지))
+❌ S024: 1 issue(s) found
+   - Implementation step 1: Missing key element from 1단계: HTML 구조
+✅ S025: All requirements met
+❌ S026: 2 issue(s) found
+   - Missing color value: rgba(79, 70, 229, 0.1) (Row hover)
+   - Missing color value: #E5E7EB (Border)
+✅ S027: All requirements met
+✅ S028: All requirements met
+✅ S029: All requirements met
+❌ S030: 2 issue(s) found
+   - Missing color value: #E5E7EB (Tag 배경)
+   - Missing color value: #999999 (삭제 버튼)
+❌ S031: 1 issue(s) found
+   - Missing CSS property: display: grid; grid-template-areas
+✅ S032: All requirements met
+❌ S033: 1 issue(s) found
+   - Missing CSS property: display: grid; grid-template-columns: repeat(3, 1fr);
+❌ S034: 2 issue(s) found
+   - Missing color value: rgba(255, 255, 255, 0.9) (Header 기본 배경)
+   - Missing color value: #F3F4F6, #E5E7EB, #D1D5DB (Section 배경들)
+❌ S035: 2 issue(s) found
+   - Missing color value: #EF4444 (Section 4)
+   - Missing color value: #8B5CF6 (Section 5)
+❌ S036: 1 issue(s) found
+   - Missing color value: #E5E7EB (Hover 배경)
+❌ S037: 2 issue(s) found
+   - Missing color value: #E5E7EB (헤더 hover)
+   - Missing color value: #D1D5DB (Border)
+✅ S038: All requirements met
+❌ S039: 1 issue(s) found
+   - Missing color value: #EF4444 (Close 버튼)
+❌ S040: 1 issue(s) found
+   - Missing color value: rgba(0,0,0,0.5) (버튼 배경)
+❌ S041: 1 issue(s) found
+   - Missing color value: #3B82F6 (Info)
+❌ S042: 2 issue(s) found
+   - Missing color value: #E5E7EB (Hover)
+   - Missing color value: #D1D5DB (Disabled)
+✅ S043: All requirements met
+❌ S044: 1 issue(s) found
+   - Missing color value: #E5E7EB (연결선)
+❌ S045: 1 issue(s) found
+   - Missing color value: #E5E7EB (세로선)
+❌ S046: 2 issue(s) found
+   - Missing color value: #D1D5DB (Input border)
+   - Missing color value: #374151 (Label 텍스트)
+❌ S047: 2 issue(s) found
+   - Missing color value: #D1D5DB (드롭 영역 border)
+   - Missing color value: #E0E7FF (Drag over 배경)
+❌ S048: 1 issue(s) found
+   - Missing color value: #E5E7EB (트랙 배경)
+❌ S049: 1 issue(s) found
+   - Missing color value: #D1D5DB (Off 배경)
+❌ S050: 2 issue(s) found
+   - Missing color value: #FCD34D (채워진 별)
+   - Missing color value: #374151 (평점 텍스트)
+❌ S051: 1 issue(s) found
+   - Missing color value: #D1D5DB (Disabled 버튼)
+✅ S052: All requirements met
+❌ S053: 2 issue(s) found
+   - Missing color value: #D1D5DB (컨테이너 테두리)
+   - Missing color value: #EF4444 (삭제 버튼 hover)
+❌ S054: 2 issue(s) found
+   - Missing color value: #3B82F6 (오늘)
+   - Missing color value: #9CA3AF (다른 달)
+❌ S055: 1 issue(s) found
+   - Missing color value: #D1D5DB (미리보기 테두리)
+❌ S056: 1 issue(s) found
+   - Missing color value: linear-gradient(135deg, #4F46E5, #10B981) (히어로 배경)
+✅ S057: All requirements met
+✅ S058: All requirements met
+❌ S059: 1 issue(s) found
+   - Missing color value: #3B82F6 (카드 4 (방문))
+❌ S060: 1 issue(s) found
+   - Missing color value: rgba(0,0,0,0.7) (오버레이)
+✅ S061: All requirements met
+✅ S062: All requirements met
+❌ S063: 2 issue(s) found
+   - Missing color value: #9CA3AF (원가)
+   - Missing color value: #EF4444 (할인가)
+✅ S064: All requirements met
+✅ S065: All requirements met
+✅ S066: All requirements met
+❌ S067: 2 issue(s) found
+   - Missing color value: linear-gradient(#1E3A8A, #3B82F6) (배경 그라디언트)
+   - Missing color value: rgba(0,0,0,0.3) (오버레이)
+✅ S068: All requirements met
+✅ S069: All requirements met
+✅ S070: All requirements met
+✅ S071: All requirements met
+✅ S072: All requirements met
+✅ S073: All requirements met
+✅ S074: All requirements met
+✅ S075: All requirements met
+❌ S076: 2 issue(s) found
+   - Missing color value: #EF4444 (TODO 컬럼)
+   - Missing color value: #F59E0B (DOING 컬럼)
+✅ S077: All requirements met
+✅ S078: All requirements met
+✅ S079: All requirements met
+✅ S080: All requirements met
+❌ S081: 1 issue(s) found
+   - Missing color value: #F59E0B (폴더)
+❌ S082: 2 issue(s) found
+   - Missing color value: #F9FAFB (홀수 행)
+   - Missing color value: #EEF2FF (hover 행)
+✅ S083: All requirements met
+❌ S084: 2 issue(s) found
+   - Missing color value: #F472B6 (키워드)
+   - Missing color value: #34D399 (문자열)
+❌ S085: 1 issue(s) found
+   - Missing color value: rgba(0,0,0,0.5) (오버레이)
+❌ S086: 3 issue(s) found
+   - Missing color value: linear-gradient(135deg, #667eea, #764ba2) (카드 배경)
+   - Missing color value: #D1D5DB (입력 테두리)
+   - Missing color value: #EF4444 (에러)
+✅ S087: All requirements met
+❌ S088: 1 issue(s) found
+   - Missing color value: #EEF2FF (선택 배경)
+❌ S089: 1 issue(s) found
+   - Missing color value: #EF4444 (삭제 버튼)
+❌ S090: 1 issue(s) found
+   - Missing color value: #000000 (선 색상)
+❌ S091: 1 issue(s) found
+   - Missing color value: rgba(0,0,0,0.5) (오버레이)
+✅ S092: All requirements met
+✅ S093: All requirements met
+✅ S094: All requirements met
+✅ S095: All requirements met
+❌ S096: 1 issue(s) found
+   - Missing color value: #0A0E27 (배경)
+✅ S097: All requirements met
+✅ S098: All requirements met
+✅ S099: All requirements met
+✅ S100: All requirements met
+
+================================================================================
+VERIFICATION SUMMARY
+================================================================================
+Total examples checked: 100
+Passed: 43 (43%)
+Failed: 57 (57%)
+================================================================================
+
+Detailed report saved to: verification-report.json

@@ -45,28 +45,34 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-.navbar {
-  display: flex;
-  gap: 24px;
-  padding: 16px 48px;
-  background: #222;
-}
 
+/* Navigation Bar */
+    .navbar {
+      display: flex;
+      gap: var(--spacing-3);
+      padding: var(--spacing-2) var(--spacing-6);
+      background: var(--color-dark);
+    }
+
+    /* Links */
     .navbar a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
-  transition: 0.3s ease;
-}
-.navbar a:hover {
-  color: var(--color-primary);
-}
-.navbar a.active {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
-}
+      color: var(--color-white);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      transition: var(--transition);
+    }
+
+    .navbar a:hover {
+      color: var(--color-primary);
+    }
+
+    .navbar a.active {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+    }
 
   </style>
 </head>
@@ -74,13 +80,13 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<nav class="navbar">
-  <a href="#" class="active">홈</a>
-  <a href="#">소개</a>
-  <a href="#">서비스</a>
-  <a href="#">블로그</a>
-  <a href="#">연락처</a>
-</nav>
+  <nav class="navbar">
+    <a href="#" class="active">홈</a>
+    <a href="#">소개</a>
+    <a href="#">서비스</a>
+    <a href="#">블로그</a>
+    <a href="#">연락처</a>
+  </nav>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -92,9 +98,6 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
 
 
     console.log('✅ S010 - 간단한 네비게이션 바 완성 예시');

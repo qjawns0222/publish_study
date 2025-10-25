@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S069 - 카운터 애니메이션 | 완성 예시</title>
+  <title>S069 - 예제 S069 | 완성 예시</title>
   <style>
     /* 기본 리셋 */
     * {
@@ -45,6 +45,8 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+
+    /* 2단계: CSS 스타일 */
 .stats-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -80,7 +82,7 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<div class="stats-container">
+  <div class="stats-container">
   <div class="stat-card">
     <div class="stat-number" data-target="1000">0</div>
     <p class="stat-label">프로젝트</p>
@@ -105,9 +107,7 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
+    // 3단계: JavaScript - Counter
 function animateCounter(element, target, duration = 2000) {
   const start = 0;
   const increment = target / (duration / 16); // 60fps
@@ -138,7 +138,7 @@ document.querySelectorAll('.stat-number').forEach(stat => {
   observer.observe(stat);
 });
 
-    console.log('✅ S069 - 카운터 애니메이션 완성 예시');
+    console.log('✅ S069 - 예제 S069 완성 예시');
   </script>
 </body>
 </html>

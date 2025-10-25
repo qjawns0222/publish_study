@@ -5,106 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S044 - 멀티 스텝 인디케이터 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-.stepper {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-.step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.step-number {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  border: 2px solid #D1D5DB;
-  background: white;
-}
-.step.completed .step-number {
-  background: #4F46E5;
-  color: white;
-  border-color: #4F46E5;
-}
-.step.active .step-number {
-  border-color: #4F46E5;
-  color: #4F46E5;
-}
-.step-line {
-  flex: 1;
-  height: 2px;
-  background: #E5E7EB;
-}
-
+    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: var(--color-light); padding: var(--spacing-3); }
+    .stepper-container { max-width: 600px; width: 100%; background: white; padding: var(--spacing-6); border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+    .stepper { display: flex; align-items: center; margin-bottom: var(--spacing-6); }
+    .step { display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; }
+    .step-circle { width: 48px; height: 48px; border-radius: 50%; border: 3px solid #D1D5DB; background: white; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #D1D5DB; transition: var(--transition); z-index: 1; }
+    .step.active .step-circle { border-color: var(--color-primary); color: var(--color-primary); }
+    .step.completed .step-circle { border-color: var(--color-primary); background: var(--color-primary); color: white; }
+    .step-label { margin-top: var(--spacing-2); font-size: 0.875rem; color: var(--color-gray); font-weight: 500; }
+    .step.active .step-label { color: var(--color-primary); }
+    .step-line { height: 3px; flex: 1; background: #D1D5DB; margin: 0 -16px; }
+    .step-line.completed { background: var(--color-primary); }
+    .stepper-actions { display: flex; gap: var(--spacing-2); justify-content: center; }
+    .stepper-actions button { padding: 12px 32px; border: none; border-radius: var(--radius); font-weight: 500; cursor: pointer; transition: var(--transition); }
+    .stepper-actions button:first-child { background: var(--color-light); color: var(--color-dark); }
+    .stepper-actions button:last-child { background: var(--color-primary); color: white; }
+    .stepper-actions button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<div class="stepper">
-  <div class="step completed">
-    <div class="step-number">✓</div>
-    <div class="step-label">Step 1</div>
+  <div class="stepper-container">
+    <div class="stepper">
+      <div class="step active completed">
+        <div class="step-circle">1</div>
+        <div class="step-label">개인정보</div>
+      </div>
+      <div class="step-line completed"></div>
+      <div class="step active">
+        <div class="step-circle">2</div>
+        <div class="step-label">계정설정</div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step">
+        <div class="step-circle">3</div>
+        <div class="step-label">완료</div>
+      </div>
+    </div>
+    <div class="stepper-actions">
+      <button onclick="prevStep()">이전</button>
+      <button onclick="nextStep()">다음</button>
+    </div>
   </div>
-  <div class="step-line"></div>
-  <div class="step active">
-    <div class="step-number">2</div>
-    <div class="step-label">Step 2</div>
-  </div>
-  <div class="step-line"></div>
-  <div class="step">
-    <div class="step-number">3</div>
-    <div class="step-label">Step 3</div>
-  </div>
-</div>
-
-  <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S044 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -112,14 +61,30 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
-  <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-
-
-    console.log('✅ S044 - 멀티 스텝 인디케이터 완성 예시');
-  </script>
+  <script>    let currentStep = 2;
+    function nextStep() {
+      if (currentStep < 3) {
+        currentStep++;
+        updateStepper();
+      }
+    }
+    function prevStep() {
+      if (currentStep > 1) {
+        currentStep--;
+        updateStepper();
+      }
+    }
+    function updateStepper() {
+      const steps = document.querySelectorAll('.step');
+      const lines = document.querySelectorAll('.step-line');
+      steps.forEach((step, i) => {
+        step.classList.toggle('active', i + 1 === currentStep);
+        step.classList.toggle('completed', i + 1 < currentStep);
+      });
+      lines.forEach((line, i) => {
+        line.classList.toggle('completed', i + 1 < currentStep);
+      });
+    }
+    console.log('✅ S044 - 멀티 스텝 인디케이터 완성 예시');</script>
 </body>
 </html>

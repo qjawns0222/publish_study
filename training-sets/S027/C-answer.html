@@ -5,93 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S027 - 프로그레스 바 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-.progress {
-  position: relative;
-  max-width: 600px;
-  height: 24px;
-  background: #E5E7EB;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 16px;
-}
-
-    .progress-fill {
-  height: 100%;
-  background: var(--color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: width 0.5s ease;
-}
-.progress-fill span {
-  color: white;
-  font-size: 0.875rem;
-  font-weight: bold;
-}
-
+    .progress-container { display: flex; flex-direction: column; gap: var(--spacing-4); justify-content: center; align-items: center; min-height: 100vh; background: var(--color-light); padding: var(--spacing-6); max-width: 600px; margin: 0 auto; }
+    .progress-item { width: 100%; }
+    .progress-item label { display: block; margin-bottom: var(--spacing-1); font-weight: 500; color: var(--color-dark); }
+    .progress-bar { width: 100%; height: 24px; background: #E5E7EB; border-radius: 12px; overflow: hidden; margin-bottom: var(--spacing-1); }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--color-primary), var(--color-secondary)); border-radius: 12px; transition: width 1s ease; }
+    .progress-item span { font-size: 0.875rem; color: var(--color-gray); font-weight: 500; }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<div class="progress">
-  <div class="progress-fill" style="width: 30%;">
-    <span>30%</span>
+  <div class="progress-container">
+    <div class="progress-item">
+      <label>HTML</label>
+      <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
+      <span>90%</span>
+    </div>
+    <div class="progress-item">
+      <label>CSS</label>
+      <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+      <span>85%</span>
+    </div>
+    <div class="progress-item">
+      <label>JavaScript</label>
+      <div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div>
+      <span>75%</span>
+    </div>
   </div>
-</div>
-<div class="progress">
-  <div class="progress-fill" style="width: 60%;">
-    <span>60%</span>
-  </div>
-</div>
-<div class="progress">
-  <div class="progress-fill" style="width: 90%;">
-    <span>90%</span>
-  </div>
-</div>
-
-  <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S027 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -99,14 +46,7 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-
-
-    console.log('✅ S027 - 프로그레스 바 완성 예시');
-  </script>
+    console.log('✅ S027 - 프로그레스 바 완성 예시');</script>
 </body>
 </html>

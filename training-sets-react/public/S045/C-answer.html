@@ -5,107 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S045 - 타임라인 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-.timeline {
-  position: relative;
-  padding: 40px 0;
-}
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: #E5E7EB;
-}
-.timeline-item {
-  position: relative;
-  margin-bottom: 48px;
-}
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: #4F46E5;
-  border: 3px solid white;
-  box-shadow: 0 0 0 2px #4F46E5;
-}
-.timeline-item:nth-child(odd) .timeline-content {
-  margin-left: auto;
-  margin-right: calc(50% + 30px);
-}
-.timeline-item:nth-child(even) .timeline-content {
-  margin-left: calc(50% + 30px);
-}
-
+    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: var(--color-light); padding: var(--spacing-6); }
+    .timeline-container { max-width: 600px; width: 100%; }
+    .timeline { position: relative; padding-left: 40px; }
+    .timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: var(--color-primary); }
+    .timeline-item { position: relative; margin-bottom: var(--spacing-6); }
+    .timeline-dot { position: absolute; left: -33px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--color-primary); border: 3px solid white; box-shadow: 0 0 0 3px var(--color-primary); }
+    .timeline-content { background: white; padding: var(--spacing-4); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: var(--transition); }
+    .timeline-content:hover { transform: translateX(8px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+    .timeline-content h3 { color: var(--color-primary); margin-bottom: var(--spacing-2); font-size: 1.125rem; }
+    .timeline-content p { color: var(--color-gray); line-height: 1.6; }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<div class="timeline">
-  <div class="timeline-item">
-    <div class="timeline-content">
-      <span class="date">2024.01</span>
-      <h3>이벤트 1</h3>
-      <p>설명 내용...</p>
+  <div class="timeline-container">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>2024년 1월</h3>
+          <p>프로젝트 시작</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>2024년 3월</h3>
+          <p>베타 버전 출시</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>2024년 6월</h3>
+          <p>정식 버전 1.0 출시</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>2024년 12월</h3>
+          <p>버전 2.0 출시 예정</p>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="timeline-item">
-    <div class="timeline-content">
-      <span class="date">2024.02</span>
-      <h3>이벤트 2</h3>
-      <p>설명 내용...</p>
-    </div>
-  </div>
-</div>
-
-  <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S045 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -113,14 +65,7 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-
-
-    console.log('✅ S045 - 타임라인 완성 예시');
-  </script>
+    console.log('✅ S045 - 타임라인 완성 예시');</script>
 </body>
 </html>

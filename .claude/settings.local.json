@@ -13,7 +13,14 @@
       "Bash(node verify-all-examples.js:*)",
       "Bash(node:*)",
       "Bash(for:*)",
-      "Bash(do echo \"=== $id ===\")"
+      "Bash(do echo \"=== $id ===\")",
+      "Bash(echo:*)",
+      "Bash(do cp \"S$i/C-answer.html\" \"../training-sets-react/public/S$i/C-answer.html\")",
+      "Bash(do cp \"training-sets/S$i/C-answer.html\" \"training-sets-react/public/S$i/C-answer.html\")",
+      "Bash(do echo \"=== S$i ===\")",
+      "Bash(ls:*)",
+      "Bash(awk:*)",
+      "Bash(do echo \"=== $dir ===\")"
     ],
     "deny": [],
     "ask": []

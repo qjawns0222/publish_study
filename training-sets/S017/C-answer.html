@@ -5,97 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S017 - 이미지 갤러리 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  padding: 48px;
-  background: #F3F4F6;
-}
-
-    .gallery-item {
-  aspect-ratio: 1 / 1;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: 0.3s ease;
-}
-.gallery-item:hover {
-  transform: scale(1.05);
-}
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-    @media (max-width: 768px) {
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 480px) {
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-}
-
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-3); padding: var(--spacing-6); background: #E5E7EB; min-height: 100vh; }
+    .gallery-item { overflow: hidden; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: var(--transition); }
+    .gallery-item:hover { transform: scale(1.05); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @media (max-width: 768px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .gallery { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<div class="gallery">
-  <div class="gallery-item">
-    <img src="https://via.placeholder.com/400" alt="이미지 1">
+  <div class="gallery">
+    <div class="gallery-item"><img src="https://via.placeholder.com/300x200" alt="Image 1"></div>
+    <div class="gallery-item"><img src="https://via.placeholder.com/300x200" alt="Image 2"></div>
+    <div class="gallery-item"><img src="https://via.placeholder.com/300x200" alt="Image 3"></div>
+    <div class="gallery-item"><img src="https://via.placeholder.com/300x200" alt="Image 4"></div>
+    <div class="gallery-item"><img src="https://via.placeholder.com/300x200" alt="Image 5"></div>
+    <div class="gallery-item"><img src="https://via.placeholder.com/300x200" alt="Image 6"></div>
   </div>
-  <div class="gallery-item">
-    <img src="https://via.placeholder.com/400" alt="이미지 2">
-  </div>
-  <!-- 4개 더 반복 -->
-</div>
-
-  <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S017 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -103,14 +37,7 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-
-
-    console.log('✅ S017 - 이미지 갤러리 완성 예시');
-  </script>
+    console.log('✅ S017 - 이미지 갤러리 완성 예시');</script>
 </body>
 </html>

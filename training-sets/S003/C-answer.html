@@ -45,35 +45,70 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-.container {
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  min-height: 100vh;
-}
 
+/* Grid 레이아웃 */
+    .layout {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      min-height: 100vh;
+    }
+
+    /* Sidebar 스타일링 */
     .sidebar {
-  background: #F3F4F6;
-  padding: 24px;
-}
-.sidebar a {
-  display: block;
-  padding: 12px;
-  margin-bottom: 8px;
-  color: #222;
-  text-decoration: none;
-  transition: 0.3s ease;
-}
-.sidebar a:hover {
-  background: rgba(79, 70, 229, 0.1);
-  color: var(--color-accent);
-  border-left: 3px solid var(--color-accent);
-  padding-left: 20px;
-}
+      background: var(--color-dark);
+      color: var(--color-white);
+      padding: var(--spacing-3);
+    }
 
-    main {
-  padding: 48px;
-  max-width: 800px;
-}
+    .sidebar h2 {
+      font-size: 1.25rem;
+      margin-bottom: var(--spacing-3);
+      padding-bottom: var(--spacing-2);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .sidebar nav {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-1);
+    }
+
+    .sidebar nav a {
+      color: var(--color-white);
+      text-decoration: none;
+      padding: var(--spacing-2);
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+
+    .sidebar nav a:hover {
+      background: rgba(79, 70, 229, 0.1);
+    }
+
+    /* Content 스타일링 */
+    .content {
+      padding: var(--spacing-6);
+      background: var(--color-light);
+    }
+
+    .content h1 {
+      font-size: 2rem;
+      margin-bottom: var(--spacing-3);
+      color: var(--color-dark);
+    }
+
+    .content p {
+      margin-bottom: var(--spacing-2);
+      line-height: 1.6;
+      color: var(--color-gray);
+    }
+
+    /* 반응형 */
+    @media (max-width: 768px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
 
   </style>
 </head>
@@ -81,19 +116,23 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<div class="container">
-  <aside class="sidebar">
-    <nav>
-      <a href="#">메뉴 1</a>
-      <a href="#">메뉴 2</a>
-      <a href="#">메뉴 3</a>
-    </nav>
-  </aside>
-  <main>
-    <h1>메인 콘텐츠</h1>
-    <p>내용...</p>
-  </main>
-</div>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>사이드바</h2>
+      <nav>
+        <a href="#">메뉴 1</a>
+        <a href="#">메뉴 2</a>
+        <a href="#">메뉴 3</a>
+        <a href="#">메뉴 4</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <h1>메인 콘텐츠</h1>
+      <p>2단 컬럼 레이아웃입니다. Grid를 사용하여 Sidebar와 Content 영역을 구성했습니다.</p>
+      <p>Sidebar는 250px 고정 너비, Content는 나머지 공간을 차지합니다.</p>
+    </main>
+  </div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -105,9 +144,6 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
 
 
     console.log('✅ S003 - 2단 컬럼 레이아웃 완성 예시');

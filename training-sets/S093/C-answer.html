@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S093 - 인터랙티브 지도 | 완성 예시</title>
+  <title>S093 - 예제 S093 | 완성 예시</title>
   <style>
     /* 기본 리셋 */
     * {
@@ -45,6 +45,8 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+
+    /* 2단계: CSS */
 .map-container {
   position: relative;
   max-width: 800px;
@@ -82,7 +84,7 @@ svg path.selected {
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<div class="map-container">
+  <div class="map-container">
   <svg id="mapSvg" viewBox="0 0 800 600">
     <path id="region1" d="M 100,100 L 200,100 L 200,200 L 100,200 Z" fill="#D1D5DB" stroke="#FFF" stroke-width="2" data-name="서울"></path>
     <path id="region2" d="M 220,100 L 320,100 L 320,200 L 220,200 Z" fill="#D1D5DB" stroke="#FFF" stroke-width="2" data-name="경기"></path>
@@ -101,9 +103,7 @@ svg path.selected {
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
+    // 3단계: JavaScript
 const paths = document.querySelectorAll('svg path');
 const tooltip = document.getElementById('tooltip');
 
@@ -132,7 +132,7 @@ paths.forEach(path => {
   });
 });
 
-    console.log('✅ S093 - 인터랙티브 지도 완성 예시');
+    console.log('✅ S093 - 예제 S093 완성 예시');
   </script>
 </body>
 </html>

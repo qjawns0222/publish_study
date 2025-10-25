@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S090 - 서명 패드 | 완성 예시</title>
+  <title>S090 - 예제 S090 | 완성 예시</title>
   <style>
     /* 기본 리셋 */
     * {
@@ -46,6 +46,112 @@
        완성 예시 CSS
        ======================================== */
 
+    /* 드로잉 캔버스 */
+    body {
+      background: var(--color-light);
+      margin: 0;
+      padding: 0;
+    }
+
+    .drawing-app {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 24px;
+    }
+
+    /* 툴바 */
+    .toolbar {
+      background: white;
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .tool-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tool-btn {
+      padding: 8px 16px;
+      border: 1px solid var(--color-light);
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .tool-btn.active {
+      background: var(--color-primary);
+      color: white;
+      border-color: var(--color-primary);
+    }
+
+    .color-picker {
+      width: 50px;
+      height: 40px;
+      border: 1px solid var(--color-light);
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .size-slider {
+      width: 150px;
+    }
+
+    /* 캔버스 */
+    .canvas-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 16px;
+    }
+
+    
+.drawing-context {
+  stroke: #000000;
+  fill: #000000;
+}
+
+#drawingCanvas {
+      border: 1px solid var(--color-light);
+      cursor: crosshair;
+      display: block;
+      background: white;
+    }
+
+    /* 컨트롤 */
+    .controls {
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .control-btn {
+      padding: 12px 24px;
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .control-btn:hover {
+      background: #3730a3;
+    }
+
+    .clear-btn {
+      background: #EF4444;
+    }
+
+    .clear-btn:hover {
+      background: #DC2626;
+    }
+    
 
   </style>
 </head>
@@ -53,7 +159,7 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<div class="signature-pad">
+  <div class="signature-pad">
   <canvas id="signatureCanvas" width="500" height="300"></canvas>
   <div class="controls">
     <button onclick="clearSignature()">지우기</button>
@@ -72,9 +178,7 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
+    // 2단계: JavaScript
 const canvas = document.getElementById('signatureCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -175,7 +279,7 @@ function saveSignature() {
   link.click();
 }
 
-    console.log('✅ S090 - 서명 패드 완성 예시');
+    console.log('✅ S090 - 예제 S090 완성 예시');
   </script>
 </body>
 </html>

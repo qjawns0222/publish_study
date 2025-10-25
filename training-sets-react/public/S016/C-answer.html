@@ -5,107 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S016 - 히어로 섹션 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: url('hero-bg.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-    .hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-    .hero-content {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: white;
-}
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 24px;
-}
-.hero p {
-  font-size: 1.25rem;
-  margin-bottom: 32px;
-  line-height: 1.6;
-}
-.cta-btn {
-  padding: 16px 32px;
-  background: var(--color-accent);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-}
-
+.hero { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-size: cover; background-position: center; color: white; text-align: center; padding: var(--spacing-3); }
+    .hero-content h1 { font-size: 3rem; margin-bottom: var(--spacing-3); }
+    .hero-content p { font-size: 1.5rem; margin-bottom: var(--spacing-4); opacity: 0.9; }
+    .cta-button { padding: 16px 48px; background: white; color: #667eea; border: none; border-radius: 32px; font-size: 1.25rem; font-weight: 600; cursor: pointer; transition: var(--transition); }
+    .cta-button:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>웹 퍼블리싱의 시작</h1>
-    <p>누구나 배울 수 있는 HTML, CSS, JavaScript</p>
-    <button class="cta-btn">시작하기</button>
-  </div>
-</section>
-
-  <!-- 안내 배너 (하단 고정) -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>멋진 웹사이트 만들기</h1>
+      <p>퍼블리싱 훈련으로 프론트엔드 개발자가 되어보세요</p>
+      <button class="cta-button">시작하기</button>
+    </div>
+  </section>
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S016 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -113,14 +35,7 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-
-
-    console.log('✅ S016 - 히어로 섹션 완성 예시');
-  </script>
+    console.log('✅ S016 - 히어로 섹션 완성 예시');</script>
 </body>
 </html>

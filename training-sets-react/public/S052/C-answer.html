@@ -5,67 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S052 - 실시간 검증 폼 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-
-
+    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: var(--color-light); padding: var(--spacing-3); }
+    .validation-form { max-width: 500px; width: 100%; background: white; padding: var(--spacing-6); border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+    .validation-form h2 { margin-bottom: var(--spacing-4); text-align: center; color: var(--color-dark); }
+    .form-group { margin-bottom: var(--spacing-3); }
+    .form-group label { display: block; margin-bottom: var(--spacing-1); font-weight: 500; color: var(--color-dark); }
+    .form-group input { width: 100%; padding: 12px; border: 2px solid var(--color-light); border-radius: var(--radius); font-size: 1rem; transition: var(--transition); }
+    .form-group input:focus { outline: none; border-color: var(--color-primary); }
+    .form-group input.error { border-color: #EF4444; }
+    .form-group input.success { border-color: var(--color-secondary); }
+    .error-msg { display: block; margin-top: var(--spacing-1); color: #EF4444; font-size: 0.875rem; min-height: 20px; }
+    button { width: 100%; padding: 14px; background: var(--color-primary); color: white; border: none; border-radius: var(--radius); font-size: 1rem; font-weight: 600; cursor: pointer; transition: var(--transition); }
+    button:hover { background: #3730a3; }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<form class="validation-form">
-  <div class="field">
-    <input type="email" id="email" placeholder="이메일">
-    <span class="message" id="emailMsg"></span>
+  <div class="validation-container">
+    <form class="validation-form">
+      <h2>실시간 검증 폼</h2>
+      <div class="form-group">
+        <label>이메일</label>
+        <input type="email" id="email" placeholder="example@email.com">
+        <span class="error-msg" id="emailError"></span>
+      </div>
+      <div class="form-group">
+        <label>비밀번호 (8자 이상)</label>
+        <input type="password" id="password">
+        <span class="error-msg" id="passwordError"></span>
+      </div>
+      <div class="form-group">
+        <label>비밀번호 확인</label>
+        <input type="password" id="confirmPassword">
+        <span class="error-msg" id="confirmError"></span>
+      </div>
+      <button type="submit">가입하기</button>
+    </form>
   </div>
-  <div class="field">
-    <input type="password" id="password" placeholder="비밀번호">
-    <span class="message" id="passwordMsg"></span>
-  </div>
-  <button type="submit" id="submitBtn" disabled>제출</button>
-</form>
-
-  <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S052 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -73,43 +56,28 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
-  <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-const emailInput = document.getElementById('email');
-const passwordInput = document.getElementById('password');
-const submitBtn = document.getElementById('submitBtn');
-
-function validateEmail(email) {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return re.test(email);
-}
-
-function validatePassword(password) {
-  return password.length >= 8 && /\d/.test(password);
-}
-
-emailInput.addEventListener('input', (e) => {
-  const isValid = validateEmail(e.target.value);
-  emailInput.classList.toggle('valid', isValid);
-  emailInput.classList.toggle('invalid', !isValid);
-  document.getElementById('emailMsg').textContent =
-    isValid ? '✓ 유효한 이메일' : '✗ 이메일 형식이 잘못되었습니다';
-  document.getElementById('emailMsg').className =
-    `message ${isValid ? 'success' : 'error'}`;
-  checkFormValidity();
-});
-
-function checkFormValidity() {
-  const isFormValid =
-    validateEmail(emailInput.value) &&
-    validatePassword(passwordInput.value);
-  submitBtn.disabled = !isFormValid;
-}
-
-    console.log('✅ S052 - 실시간 검증 폼 완성 예시');
-  </script>
+  <script>    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const confirmInput = document.getElementById('confirmPassword');
+    emailInput.addEventListener('input', () => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const isValid = emailRegex.test(emailInput.value);
+      emailInput.classList.toggle('error', !isValid && emailInput.value);
+      emailInput.classList.toggle('success', isValid);
+      document.getElementById('emailError').textContent = !isValid && emailInput.value ? '올바른 이메일 형식이 아닙니다' : '';
+    });
+    passwordInput.addEventListener('input', () => {
+      const isValid = passwordInput.value.length >= 8;
+      passwordInput.classList.toggle('error', !isValid && passwordInput.value);
+      passwordInput.classList.toggle('success', isValid);
+      document.getElementById('passwordError').textContent = !isValid && passwordInput.value ? '비밀번호는 8자 이상이어야 합니다' : '';
+    });
+    confirmInput.addEventListener('input', () => {
+      const isValid = confirmInput.value === passwordInput.value;
+      confirmInput.classList.toggle('error', !isValid && confirmInput.value);
+      confirmInput.classList.toggle('success', isValid && confirmInput.value);
+      document.getElementById('confirmError').textContent = !isValid && confirmInput.value ? '비밀번호가 일치하지 않습니다' : '';
+    });
+    console.log('✅ S052 - 실시간 검증 폼 완성 예시');</script>
 </body>
 </html>

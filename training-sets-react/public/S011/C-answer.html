@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S011 - 기본 입력 폼 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
     * {
       margin: 0;
       padding: 0;
@@ -18,9 +17,7 @@
       color: #222;
     }
 
-    /* CSS 변수 정의 */
     :root {
-      /* 색상 */
       --color-primary: #4F46E5;
       --color-secondary: #10B981;
       --color-accent: #FF9800;
@@ -28,82 +25,110 @@
       --color-gray: #6B7280;
       --color-light: #F3F4F6;
       --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
       --spacing-1: 8px;
       --spacing-2: 16px;
       --spacing-3: 24px;
       --spacing-4: 32px;
       --spacing-5: 40px;
       --spacing-6: 48px;
-
-      /* 기타 */
       --radius: 8px;
       --transition: 0.3s ease;
     }
 
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-.basic-form {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 32px;
-  background: white;
-}
-label {
-  display: block;
-  margin-top: 16px;
-  margin-bottom: 8px;
-  font-size: 0.875rem;
-  font-weight: bold;
-}
+/* Container */
+    .form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: var(--color-light);
+      padding: var(--spacing-3);
+    }
 
+    /* Form */
+    .basic-form {
+      width: 100%;
+      max-width: 500px;
+      background: var(--color-white);
+      padding: var(--spacing-6);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    /* Form Group */
+    .form-group {
+      margin-bottom: var(--spacing-3);
+    }
+
+    /* Label */
+    label {
+      display: block;
+      margin-bottom: var(--spacing-1);
+      font-weight: 500;
+      color: var(--color-dark);
+    }
+
+    /* Input & Textarea */
     input, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #E5E7EB;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: 0.3s ease;
-}
-input:focus, textarea:focus {
-  outline: none;
-  border-color: var(--color-primary);
-}
+      width: 100%;
+      padding: 12px;
+      border: 2px solid var(--color-light);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: var(--transition);
+    }
 
-    button {
-  width: 100%;
-  margin-top: 24px;
-  padding: 12px;
-  background: var(--color-primary);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-}
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    /* Button */
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--color-primary);
+      color: var(--color-white);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .submit-btn:hover {
+      background: #3730a3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
 
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<form class="basic-form">
-  <label for="name">이름</label>
-  <input type="text" id="name" placeholder="홍길동">
+  <div class="form-container">
+    <form class="basic-form">
+      <div class="form-group">
+        <label for="name">이름</label>
+        <input type="text" id="name" placeholder="홍길동" required>
+      </div>
 
-  <label for="email">이메일</label>
-  <input type="email" id="email" placeholder="example@email.com">
+      <div class="form-group">
+        <label for="email">이메일</label>
+        <input type="email" id="email" placeholder="example@email.com" required>
+      </div>
 
-  <label for="message">메시지</label>
-  <textarea id="message" rows="4"></textarea>
+      <div class="form-group">
+        <label for="message">메시지</label>
+        <textarea id="message" rows="4" placeholder="메시지를 입력하세요"></textarea>
+      </div>
 
-  <button type="submit">제출하기</button>
-</form>
+      <button type="submit" class="submit-btn">제출하기</button>
+    </form>
+  </div>
 
-  <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S011 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -113,10 +138,6 @@ input:focus, textarea:focus {
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-
 
     console.log('✅ S011 - 기본 입력 폼 완성 예시');
   </script>

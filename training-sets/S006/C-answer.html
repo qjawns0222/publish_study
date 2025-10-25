@@ -45,44 +45,66 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-.btn {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-.btn:active {
-  transform: scale(0.98);
-}
 
+    /* Container */
+    .button-group {
+      display: flex;
+      gap: var(--spacing-2);
+      padding: var(--spacing-6);
+      background: var(--color-light);
+      min-height: 100vh;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    /* 기본 버튼 스타일 */
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    /* Primary 버튼 */
     .btn-primary {
-  background: var(--color-primary);
-  color: white;
-}
-.btn-primary:hover {
-  background: #3730a3;
-}
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
 
+    .btn-primary:hover {
+      background: #3730a3;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+
+    /* Secondary 버튼 */
     .btn-secondary {
-  background: var(--color-secondary);
-  color: white;
-}
-.btn-secondary:hover {
-  background: #059669;
-}
+      background: var(--color-secondary);
+      color: var(--color-white);
+    }
 
-.btn-outline {
-  background: transparent;
-  border: 2px solid var(--color-primary);
-  color: var(--color-primary);
-}
-.btn-outline:hover {
-  background: var(--color-primary);
-  color: white;
-}
+    .btn-secondary:hover {
+      background: #059669;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    /* Outline 버튼 */
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
 
   </style>
 </head>
@@ -90,11 +112,11 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<div class="button-group">
-  <button class="btn btn-primary">Primary</button>
-  <button class="btn btn-secondary">Secondary</button>
-  <button class="btn btn-outline">Outline</button>
-</div>
+  <div class="button-group">
+    <button class="btn btn-primary">Primary</button>
+    <button class="btn btn-secondary">Secondary</button>
+    <button class="btn btn-outline">Outline</button>
+  </div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -106,11 +128,6 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-
-
     console.log('✅ S006 - 기본 버튼 스타일 완성 예시');
   </script>
 </body>

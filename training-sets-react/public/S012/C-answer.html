@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S012 - 로그인 폼 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
     * {
       margin: 0;
       padding: 0;
@@ -18,9 +17,7 @@
       color: #222;
     }
 
-    /* CSS 변수 정의 */
     :root {
-      /* 색상 */
       --color-primary: #4F46E5;
       --color-secondary: #10B981;
       --color-accent: #FF9800;
@@ -28,91 +25,148 @@
       --color-gray: #6B7280;
       --color-light: #F3F4F6;
       --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
       --spacing-1: 8px;
       --spacing-2: 16px;
       --spacing-3: 24px;
       --spacing-4: 32px;
       --spacing-5: 40px;
       --spacing-6: 48px;
-
-      /* 기타 */
       --radius: 8px;
       --transition: 0.3s ease;
     }
 
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-.login-container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #F3F4F6;
-}
-.login-form {
-  max-width: 400px;
-  padding: 40px;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-}
+/* Container */
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: var(--spacing-3);
+    }
+
+    /* Form */
+    .login-form {
+      width: 100%;
+      max-width: 400px;
+      background: var(--color-white);
+      padding: var(--spacing-6);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
 
     .login-form h2 {
-  text-align: center;
-  margin-bottom: 32px;
-}
-.login-form input[type="email"],
-.login-form input[type="password"] {
-  width: 100%;
-  margin-bottom: 16px;
-  padding: 12px;
-  border: 1px solid #E5E7EB;
-  border-radius: 8px;
-}
+      margin-bottom: var(--spacing-4);
+      text-align: center;
+      color: var(--color-dark);
+    }
 
-    .checkbox-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 16px 0;
-}
-.forgot-link {
-  display: block;
-  margin-top: 16px;
-  text-align: center;
-  font-size: 0.875rem;
-  color: var(--color-primary);
-}
+    /* Form Group */
+    .form-group {
+      margin-bottom: var(--spacing-3);
+    }
+
+    label {
+      display: block;
+      margin-bottom: var(--spacing-1);
+      font-weight: 500;
+      color: var(--color-dark);
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid var(--color-light);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    /* Remember Me */
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-1);
+      margin-bottom: var(--spacing-3);
+    }
+
+    .remember input[type="checkbox"] {
+      width: auto;
+    }
+
+    /* Login Button */
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--color-primary);
+      color: var(--color-white);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .login-btn:hover {
+      background: #3730a3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+
+    /* Signup Link */
+    .signup-link {
+      margin-top: var(--spacing-3);
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--color-gray);
+    }
+
+    .signup-link a {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
 
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<div class="login-container">
-  <form class="login-form">
-    <h2>로그인</h2>
-    <label for="email">이메일</label>
-    <input type="email" id="email" placeholder="example@email.com">
+  <div class="login-container">
+    <form class="login-form">
+      <h2>로그인</h2>
 
-    <label for="password">비밀번호</label>
-    <input type="password" id="password" placeholder="••••••••">
+      <div class="form-group">
+        <label for="email">이메일</label>
+        <input type="email" id="email" placeholder="email@example.com" required>
+      </div>
 
-    <div class="checkbox-wrapper">
-      <input type="checkbox" id="remember">
-      <label for="remember">로그인 유지</label>
-    </div>
+      <div class="form-group">
+        <label for="password">비밀번호</label>
+        <input type="password" id="password" placeholder="••••••••" required>
+      </div>
 
-    <button type="submit">로그인</button>
-    <a href="#" class="forgot-link">비밀번호를 잊으셨나요?</a>
-  </form>
-</div>
+      <div class="remember">
+        <input type="checkbox" id="remember">
+        <label for="remember">로그인 상태 유지</label>
+      </div>
 
-  <!-- 안내 배너 (하단 고정) -->
+      <button type="submit" class="login-btn">로그인</button>
+
+      <p class="signup-link">계정이 없으신가요? <a href="#">회원가입</a></p>
+    </form>
+  </div>
+
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S012 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -122,10 +176,6 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-
 
     console.log('✅ S012 - 로그인 폼 완성 예시');
   </script>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S066 - 스크롤 페이드 인 | 완성 예시</title>
+  <title>S066 - 예제 S066 | 완성 예시</title>
   <style>
     /* 기본 리셋 */
     * {
@@ -45,6 +45,8 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+
+    /* 2단계: CSS 애니메이션 */
 .fade-section {
   opacity: 0;
   transform: translateY(30px);
@@ -67,7 +69,7 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<section class="fade-section">
+  <section class="fade-section">
   <h2>첫 번째 섹션</h2>
   <p>스크롤하면 나타납니다.</p>
 </section>
@@ -87,9 +89,7 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
+    // 3단계: JavaScript - Intersection Observer
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -107,7 +107,7 @@ document.querySelectorAll('.fade-section').forEach(section => {
   observer.observe(section);
 });
 
-    console.log('✅ S066 - 스크롤 페이드 인 완성 예시');
+    console.log('✅ S066 - 예제 S066 완성 예시');
   </script>
 </body>
 </html>

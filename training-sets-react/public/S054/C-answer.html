@@ -5,65 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S054 - 날짜 선택기 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-
-
+    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: var(--color-light); padding: var(--spacing-3); }
+    .datepicker { max-width: 400px; width: 100%; background: white; padding: var(--spacing-4); border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+    .datepicker-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-3); }
+    .datepicker-header button { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-primary); padding: var(--spacing-1); transition: var(--transition); }
+    .datepicker-header button:hover { background: var(--color-light); border-radius: var(--radius); }
+    .datepicker-header span { font-weight: 600; color: var(--color-dark); }
+    .datepicker-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--spacing-1); margin-bottom: var(--spacing-2); }
+    .datepicker-days span { text-align: center; font-weight: 600; color: var(--color-gray); font-size: 0.875rem; padding: var(--spacing-1); }
+    .datepicker-dates { display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--spacing-1); }
+    .date { text-align: center; padding: var(--spacing-2); border-radius: var(--radius); cursor: pointer; transition: var(--transition); }
+    .date:hover { background: var(--color-light); }
+    .date.today { background: var(--color-primary); color: white; font-weight: 600; }
+    .date.selected { background: var(--color-secondary); color: white; }
+    .date.other-month { color: #D1D5DB; }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<div class="datepicker">
-  <div class="calendar-header">
-    <button id="prevMonth">&lt;</button>
-    <span id="currentMonth"></span>
-    <button id="nextMonth">&gt;</button>
+  <div class="datepicker-container">
+    <div class="datepicker">
+      <div class="datepicker-header">
+        <button onclick="changeMonth(-1)">‹</button>
+        <span id="monthYear">2024년 1월</span>
+        <button onclick="changeMonth(1)">›</button>
+      </div>
+      <div class="datepicker-days">
+        <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
+      </div>
+      <div class="datepicker-dates" id="dates"></div>
+    </div>
   </div>
-  <div class="calendar-grid" id="calendar"></div>
-  <div class="selected-date" id="selectedDate">날짜를 선택하세요</div>
-</div>
-
-  <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S054 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -71,65 +50,33 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
-  <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-let currentDate = new Date();
-let selectedDate = null;
-
-function renderCalendar() {
-  const year = currentDate.getFullYear();
-  const month = currentDate.getMonth();
-
-  document.getElementById('currentMonth').textContent =
-    `${year}년 ${month + 1}월`;
-
-  const firstDay = new Date(year, month, 1).getDay();
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-  let html = '<div class="weekdays">';
-  ['일', '월', '화', '수', '목', '금', '토'].forEach(day => {
-    html += `<div>${day}</div>`;
-  });
-  html += '</div><div class="days">';
-
-  for (let i = 0; i < firstDay; i++) {
-    html += '<div class="empty"></div>';
-  }
-
-  for (let day = 1; day <= daysInMonth; day++) {
-    const date = new Date(year, month, day);
-    const isToday = date.toDateString() === new Date().toDateString();
-    html += `<div class="day ${isToday ? 'today' : ''}"
-      onclick="selectDate(${year}, ${month}, ${day})">${day}</div>`;
-  }
-
-  html += '</div>';
-  document.getElementById('calendar').innerHTML = html;
-}
-
-function selectDate(year, month, day) {
-  selectedDate = new Date(year, month, day);
-  document.getElementById('selectedDate').textContent =
-    selectedDate.toLocaleDateString('ko-KR');
-  renderCalendar();
-}
-
-document.getElementById('prevMonth').onclick = () => {
-  currentDate.setMonth(currentDate.getMonth() - 1);
-  renderCalendar();
-};
-
-document.getElementById('nextMonth').onclick = () => {
-  currentDate.setMonth(currentDate.getMonth() + 1);
-  renderCalendar();
-};
-
-renderCalendar();
-
-    console.log('✅ S054 - 날짜 선택기 완성 예시');
-  </script>
+  <script>    let currentDate = new Date();
+    function renderCalendar() {
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+      const firstDay = new Date(year, month, 1).getDay();
+      const lastDate = new Date(year, month + 1, 0).getDate();
+      const prevLastDate = new Date(year, month, 0).getDate();
+      document.getElementById('monthYear').textContent = `${year}년 ${month + 1}월`;
+      let html = '';
+      for (let i = firstDay - 1; i >= 0; i--) {
+        html += `<div class="date other-month">${prevLastDate - i}</div>`;
+      }
+      for (let i = 1; i <= lastDate; i++) {
+        const isToday = i === new Date().getDate() && month === new Date().getMonth();
+        html += `<div class="date ${isToday ? 'today' : ''}" onclick="selectDate(this)">${i}</div>`;
+      }
+      document.getElementById('dates').innerHTML = html;
+    }
+    function changeMonth(n) {
+      currentDate.setMonth(currentDate.getMonth() + n);
+      renderCalendar();
+    }
+    function selectDate(el) {
+      document.querySelectorAll('.date').forEach(d => d.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+    renderCalendar();
+    console.log('✅ S054 - 날짜 선택기 완성 예시');</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S071 - 풀스크린 섹션 스크롤 | 완성 예시</title>
+  <title>S071 - 예제 S071 | 완성 예시</title>
   <style>
     /* 기본 리셋 */
     * {
@@ -45,6 +45,8 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+
+    /* 2단계: CSS - Snap Scroll */
 .snap-container {
   height: 100vh;
   overflow-y: scroll;
@@ -83,7 +85,7 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<div class="snap-container">
+  <div class="snap-container">
   <section class="snap-section section1">
     <h1>첫 번째 섹션</h1>
     <p>풀스크린 스냅 스크롤</p>
@@ -108,9 +110,7 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
+    // 3단계: JavaScript - 섹션 인디케이터 (선택사항)
 // 현재 섹션 표시 (선택사항)
 const container = document.querySelector('.snap-container');
 const sections = document.querySelectorAll('.snap-section');
@@ -125,7 +125,7 @@ container.addEventListener('scroll', () => {
   // 인디케이터 업데이트 로직
 });
 
-    console.log('✅ S071 - 풀스크린 섹션 스크롤 완성 예시');
+    console.log('✅ S071 - 예제 S071 완성 예시');
   </script>
 </body>
 </html>

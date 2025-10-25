@@ -45,39 +45,58 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 70px;
-  padding: 0 48px;
-  background: white;
-  border-bottom: 1px solid #E5E7EB;
-}
 
-    nav {
-  display: flex;
-  gap: 24px;
-}
-nav a {
-  color: #222;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s ease;
-}
-nav a:hover {
-  color: var(--color-primary);
-}
+/* Header 레이아웃 */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--color-white);
+      padding: var(--spacing-3);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-bottom: 1px solid #E5E7EB;
+    }
 
+    /* Logo 스타일링 */
+    .logo h1 {
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      font-weight: bold;
+    }
+
+    /* Navigation 스타일링 */
+    .nav {
+      display: flex;
+      gap: var(--spacing-3);
+    }
+
+    .nav a {
+      color: var(--color-dark);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      padding: var(--spacing-1) var(--spacing-2);
+      border-radius: var(--radius);
+    }
+
+    .nav a:hover {
+      color: var(--color-primary);
+      background: rgba(79,70,229,0.1);
+    }
+
+    /* 반응형 */
     @media (max-width: 768px) {
-  header {
-    padding: 0 24px;
-  }
-  nav {
-    flex-direction: column;
-    gap: 16px;
-  }
-}
+      .header {
+        flex-direction: column;
+        gap: var(--spacing-2);
+      }
+
+      .nav {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+      }
+    }
 
   </style>
 </head>
@@ -85,16 +104,23 @@ nav a:hover {
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<header>
-  <div class="logo">MyLogo</div>
-  <nav>
-    <a href="#">홈</a>
-    <a href="#">소개</a>
-    <a href="#">서비스</a>
-    <a href="#">블로그</a>
-    <a href="#">연락처</a>
-  </nav>
-</header>
+  <header class="header">
+    <div class="logo">
+      <h1>MyLogo</h1>
+    </div>
+
+    <nav class="nav">
+      <a href="#">홈</a>
+      <a href="#">서비스</a>
+      <a href="#">소개</a>
+      <a href="#">연락처</a>
+    </nav>
+  </header>
+
+  <main style="padding: 48px; background: #F3F4F6; min-height: calc(100vh - 80px);">
+    <h2>반응형 헤더 예제</h2>
+    <p>로고와 네비게이션이 있는 반응형 헤더입니다.</p>
+  </main>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -106,9 +132,6 @@ nav a:hover {
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
 
 
     console.log('✅ S004 - 반응형 헤더 완성 예시');

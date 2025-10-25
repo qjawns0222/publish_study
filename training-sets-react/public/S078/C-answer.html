@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S078 - 가상 스크롤 | 완성 예시</title>
+  <title>S078 - 예제 S078 | 완성 예시</title>
   <style>
     /* 기본 리셋 */
     * {
@@ -45,6 +45,8 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+
+    /* 2단계: CSS 스타일 */
 .virtual-scroll-container {
   height: 600px;
   overflow-y: scroll;
@@ -98,7 +100,7 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<div class="virtual-scroll-container" id="container">
+  <div class="virtual-scroll-container" id="container">
   <div class="virtual-scroll-spacer" id="spacer"></div>
   <div class="virtual-scroll-content" id="content"></div>
 </div>
@@ -118,9 +120,7 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
+    // 3단계: JavaScript - Virtual Scroll
 const TOTAL_ITEMS = 10000;
 const ITEM_HEIGHT = 50;
 const CONTAINER_HEIGHT = 600;
@@ -171,7 +171,7 @@ container.addEventListener('scroll', () => {
 // 초기 렌더링
 renderVisibleItems();
 
-    console.log('✅ S078 - 가상 스크롤 완성 예시');
+    console.log('✅ S078 - 예제 S078 완성 예시');
   </script>
 </body>
 </html>

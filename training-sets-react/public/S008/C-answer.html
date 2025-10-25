@@ -45,28 +45,56 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-.badge {
-  display: inline-block;
-  padding: 6px 12px;
-  margin: 0 8px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: white;
-  border-radius: 12px;
-}
 
+/* Container */
+    .badge-container {
+      display: flex;
+      gap: var(--spacing-2);
+      padding: var(--spacing-6);
+      background: var(--color-light);
+      min-height: 100vh;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    /* 기본 배지 스타일 */
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 12px;
+      transition: var(--transition);
+    }
+
+    .badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Success 배지 */
     .badge-success {
-  background: #10B981;
-}
-.badge-warning {
-  background: #FF9800;
-}
-.badge-error {
-  background: #EF4444;
-}
-.badge-info {
-  background: var(--color-primary);
-}
+      background: var(--color-secondary);
+      color: var(--color-white);
+    }
+
+    /* Warning 배지 */
+    .badge-warning {
+      background: var(--color-accent);
+      color: var(--color-white);
+    }
+
+    /* Error 배지 */
+    .badge-error {
+      background: #EF4444;
+      color: var(--color-white);
+    }
+
+    /* Info 배지 */
+    .badge-info {
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
 
   </style>
 </head>
@@ -74,12 +102,12 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<div class="badge-container">
-  <span class="badge badge-success">성공</span>
-  <span class="badge badge-warning">경고</span>
-  <span class="badge badge-error">오류</span>
-  <span class="badge badge-info">정보</span>
-</div>
+  <div class="badge-container">
+    <span class="badge badge-success">성공</span>
+    <span class="badge badge-warning">경고</span>
+    <span class="badge badge-error">오류</span>
+    <span class="badge badge-info">정보</span>
+  </div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -91,9 +119,6 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
 
 
     console.log('✅ S008 - 알림 배지 완성 예시');

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S075 - 이모션 네비게이션 | 완성 예시</title>
+  <title>S075 - 예제 S075 | 완성 예시</title>
   <style>
     /* 기본 리셋 */
     * {
@@ -45,6 +45,8 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+
+    /* 2단계: CSS - Circular Layout */
 .circular-menu {
   position: fixed;
   bottom: 48px;
@@ -132,7 +134,7 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<div class="circular-menu">
+  <div class="circular-menu">
   <button class="menu-toggle" id="menuToggle">+</button>
   <nav class="menu-items" id="menuItems">
     <a href="#" class="menu-item" style="--i: 0">🏠</a>
@@ -153,9 +155,7 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
+    // 3단계: JavaScript - Toggle
 const menuToggle = document.getElementById('menuToggle');
 const menuItems = document.getElementById('menuItems');
 
@@ -172,7 +172,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-    console.log('✅ S075 - 이모션 네비게이션 완성 예시');
+    console.log('✅ S075 - 예제 S075 완성 예시');
   </script>
 </body>
 </html>

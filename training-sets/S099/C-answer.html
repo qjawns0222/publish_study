@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S099 - 모핑 효과 | 완성 예시</title>
+  <title>S099 - 예제 S099 | 완성 예시</title>
   <style>
     /* 기본 리셋 */
     * {
@@ -47,13 +47,14 @@
        ======================================== */
 
 
+
   </style>
 </head>
 <body>
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<svg width="400" height="400" viewBox="0 0 400 400">
+  <svg width="400" height="400" viewBox="0 0 400 400">
   <path id="morphPath" d="M 200,100 A 100,100 0 1,1 199.9,100" fill="#4F46E5"></path>
 </svg>
 <button onclick="morphToSquare()">사각형</button>
@@ -70,9 +71,7 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
+    // 2단계: JavaScript
 const path = document.getElementById('morphPath');
 
 const shapes = {
@@ -115,7 +114,7 @@ function morphWithAnimation(newPath) {
   }, 500);
 }
 
-    console.log('✅ S099 - 모핑 효과 완성 예시');
+    console.log('✅ S099 - 예제 S099 완성 예시');
   </script>
 </body>
 </html>

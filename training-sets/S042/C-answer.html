@@ -5,86 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S042 - 페이지네이션 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-.pagination {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-}
-.page-btn {
-  width: 40px;
-  height: 40px;
-  border: none;
-  background: #F3F4F6;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.page-btn.active {
-  background: #4F46E5;
-  color: white;
-}
-.page-btn:disabled {
-  background: #D1D5DB;
-  cursor: not-allowed;
-}
-
+    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: var(--color-light); flex-direction: column; }
+    .pagination-demo { text-align: center; }
+    .pagination { display: flex; gap: var(--spacing-1); margin-bottom: var(--spacing-3); }
+    .page-btn, .page-num { padding: 12px 16px; background: white; border: 2px solid var(--color-light); color: var(--color-dark); cursor: pointer; font-weight: 500; transition: var(--transition); }
+    .page-btn:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+    .page-btn:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+    .page-num { border-radius: var(--radius); min-width: 48px; }
+    .page-btn:hover, .page-num:hover { background: var(--color-light); border-color: var(--color-primary); }
+    .page-num.active { background: var(--color-primary); color: white; border-color: var(--color-primary); }
+    .page-info { color: var(--color-gray); font-size: 0.875rem; }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<div class="pagination">
-  <button class="page-btn" id="prevBtn">&lt;</button>
-  <button class="page-btn active">1</button>
-  <button class="page-btn">2</button>
-  <button class="page-btn">3</button>
-  <button class="page-btn">4</button>
-  <button class="page-btn">5</button>
-  <button class="page-btn" id="nextBtn">&gt;</button>
-</div>
-
-  <!-- 안내 배너 (하단 고정) -->
+  <div class="pagination-demo">
+    <div class="pagination">
+      <button class="page-btn" onclick="changePage('prev')">‹</button>
+      <button class="page-num active" onclick="changePage(1)">1</button>
+      <button class="page-num" onclick="changePage(2)">2</button>
+      <button class="page-num" onclick="changePage(3)">3</button>
+      <button class="page-num" onclick="changePage(4)">4</button>
+      <button class="page-num" onclick="changePage(5)">5</button>
+      <button class="page-btn" onclick="changePage('next')">›</button>
+    </div>
+    <p class="page-info">Page <span id="currentPage">1</span> of 5</p>
+  </div>
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S042 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -92,33 +45,16 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
-  <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-let currentPage = 1;
-const totalPages = 5;
-const pageBtns = document.querySelectorAll('.page-btn:not(#prevBtn):not(#nextBtn)');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-
-function updatePagination() {
-  pageBtns.forEach((btn, index) => {
-    btn.classList.toggle('active', index + 1 === currentPage);
-  });
-  prevBtn.disabled = currentPage === 1;
-  nextBtn.disabled = currentPage === totalPages;
-}
-
-pageBtns.forEach((btn, index) => {
-  btn.addEventListener('click', () => {
-    currentPage = index + 1;
-    updatePagination();
-  });
-});
-
-    console.log('✅ S042 - 페이지네이션 완성 예시');
-  </script>
+  <script>    let current = 1;
+    function changePage(page) {
+      if (page === 'prev') current = Math.max(1, current - 1);
+      else if (page === 'next') current = Math.min(5, current + 1);
+      else current = page;
+      document.querySelectorAll('.page-num').forEach((btn, i) => {
+        btn.classList.toggle('active', i + 1 === current);
+      });
+      document.getElementById('currentPage').textContent = current;
+    }
+    console.log('✅ S042 - 페이지네이션 완성 예시');</script>
 </body>
 </html>

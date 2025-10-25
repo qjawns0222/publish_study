@@ -5,88 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S038 - 드롭다운 메뉴 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-.has-dropdown {
-  position: relative;
-}
-.dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  min-width: 200px;
-  background: white;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: 0.3s;
-}
-.has-dropdown:hover .dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
+    body { background: var(--color-light); padding-top: 100px; }
+    .dropdown-nav { display: flex; gap: var(--spacing-3); justify-content: center; background: white; padding: var(--spacing-3); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .dropdown { position: relative; }
+    .dropdown-btn { padding: 12px 24px; background: var(--color-primary); color: white; border: none; border-radius: var(--radius); cursor: pointer; font-weight: 500; transition: var(--transition); }
+    .dropdown-btn:hover { background: #3730a3; }
+    .dropdown-menu { position: absolute; top: calc(100% + 8px); left: 0; min-width: 200px; background: white; border-radius: var(--radius); box-shadow: 0 4px 16px rgba(0,0,0,0.15); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 100; }
+    .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dropdown-menu a { display: block; padding: var(--spacing-2) var(--spacing-3); color: var(--color-dark); text-decoration: none; transition: var(--transition); }
+    .dropdown-menu a:hover { background: var(--color-light); color: var(--color-primary); }
+    .dropdown-menu a:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+    .dropdown-menu a:last-child { border-radius: 0 0 var(--radius) var(--radius); }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<nav class="nav">
-  <ul class="menu">
-    <li><a href="#">Home</a></li>
-    <li class="has-dropdown">
-      <a href="#">Products</a>
-      <ul class="dropdown">
-        <li><a href="#">Product 1</a></li>
-        <li><a href="#">Product 2</a></li>
-        <li><a href="#">Product 3</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-
-  <!-- 안내 배너 (하단 고정) -->
+  <nav class="dropdown-nav">
+    <div class="dropdown">
+      <button class="dropdown-btn">Products</button>
+      <div class="dropdown-menu">
+        <a href="#">Web Development</a>
+        <a href="#">Mobile Apps</a>
+        <a href="#">Cloud Services</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-btn">Services</button>
+      <div class="dropdown-menu">
+        <a href="#">Consulting</a>
+        <a href="#">Training</a>
+        <a href="#">Support</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-btn">Company</button>
+      <div class="dropdown-menu">
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </nav>
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S038 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -94,14 +60,7 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-
-
-    console.log('✅ S038 - 드롭다운 메뉴 완성 예시');
-  </script>
+    console.log('✅ S038 - 드롭다운 메뉴 완성 예시');</script>
 </body>
 </html>

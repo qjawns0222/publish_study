@@ -5,88 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S032 - Holy Grail 레이아웃 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-.container {
-  display: grid;
-  grid-template-columns: 200px 1fr 200px;
-  grid-template-rows: auto 1fr auto;
-  grid-template-areas:
-    "header header header"
-    "left main right"
-    "footer footer footer";
-  min-height: 100vh;
-}
-
-    header { grid-area: header; }
-.left-sidebar { grid-area: left; }
-main { grid-area: main; }
-.right-sidebar { grid-area: right; }
-footer { grid-area: footer; }
-
-header, footer {
-  background: var(--color-primary);
-  color: white;
-  padding: 24px;
-}
-.left-sidebar, .right-sidebar {
-  background: #F3F4F6;
-  padding: 24px;
-}
-main {
-  padding: 48px;
-}
-
+    .holy-grail { display: flex; flex-direction: column; min-height: 100vh; }
+    .hg-header { background: var(--color-primary); color: white; padding: var(--spacing-3); text-align: center; }
+    .hg-body { display: flex; flex: 1; }
+    .hg-nav { width: 200px; background: var(--color-light); padding: var(--spacing-3); display: flex; flex-direction: column; gap: var(--spacing-2); }
+    .hg-nav h3 { margin-bottom: var(--spacing-2); color: var(--color-dark); }
+    .hg-nav a { color: var(--color-primary); text-decoration: none; padding: var(--spacing-1); border-radius: var(--radius); transition: var(--transition); }
+    .hg-nav a:hover { background: rgba(79,70,229,0.1); }
+    .hg-main { flex: 1; padding: var(--spacing-4); background: white; }
+    .hg-main h2 { margin-bottom: var(--spacing-3); color: var(--color-dark); }
+    .hg-main p { margin-bottom: var(--spacing-2); color: var(--color-gray); line-height: 1.8; }
+    .hg-aside { width: 250px; background: var(--color-light); padding: var(--spacing-3); }
+    .hg-aside h3 { margin-bottom: var(--spacing-2); color: var(--color-dark); }
+    .hg-footer { background: var(--color-dark); color: white; padding: var(--spacing-3); text-align: center; }
+    @media (max-width: 768px) { .hg-body { flex-direction: column; } .hg-nav, .hg-aside { width: 100%; } }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<div class="container">
-  <div class="left-sidebar"></div>
-  <div class="right-sidebar"></div>
-</div>
-
-  <!-- 안내 배너 (하단 고정) -->
+  <div class="holy-grail">
+    <header class="hg-header">
+      <h1>Holy Grail Layout</h1>
+    </header>
+    <div class="hg-body">
+      <nav class="hg-nav">
+        <h3>Navigation</h3>
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+      </nav>
+      <main class="hg-main">
+        <h2>Main Content</h2>
+        <p>이것은 Holy Grail 레이아웃입니다. 헤더, 푸터, 좌우 사이드바, 그리고 중앙의 메인 컨텐츠 영역으로 구성됩니다.</p>
+        <p>메인 영역은 flex: 1 속성으로 남은 공간을 모두 차지합니다.</p>
+      </main>
+      <aside class="hg-aside">
+        <h3>Sidebar</h3>
+        <p>광고 또는 추가 정보</p>
+      </aside>
+    </div>
+    <footer class="hg-footer">
+      <p>&copy; 2024 Holy Grail Layout</p>
+    </footer>
+  </div>
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S032 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -94,14 +62,7 @@ main {
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-
-
-    console.log('✅ S032 - Holy Grail 레이아웃 완성 예시');
-  </script>
+    console.log('✅ S032 - Holy Grail 레이아웃 완성 예시');</script>
 </body>
 </html>

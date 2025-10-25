@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S076 - 드래그 앤 드롭 보드 | 완성 예시</title>
+  <title>S076 - 예제 S076 | 완성 예시</title>
   <style>
     /* 기본 리셋 */
     * {
@@ -45,6 +45,94 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 24px;
+  min-height: 100vh;
+  background: #F3F4F6;
+}
+
+
+.column.todo {
+  border-top: 4px solid #EF4444;
+}
+
+.column.doing {
+  border-top: 4px solid #F59E0B;
+}
+
+.column.done {
+  border-top: 4px solid var(--color-secondary);
+}
+
+.column {
+  background: #E5E7EB;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.column-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.column[data-status="todo"] .column-title { background: #FEE2E2; color: #DC2626; }
+.column[data-status="doing"] .column-title { background: #FEF3C7; color: #D97706; }
+.column[data-status="done"] .column-title { background: #D1FAE5; color: #059669; }
+
+.cards-container {
+  min-height: 200px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.cards-container.drag-over {
+  background: rgba(79, 70, 229, 0.1);
+  border: 2px dashed #4F46E5;
+}
+
+.card {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: move;
+  transition: opacity 0.3s;
+}
+
+.card.dragging {
+  opacity: 0.5;
+}
+
+.card h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 0.875rem;
+  color: #6B7280;
+  margin-bottom: 12px;
+}
+
+.tag {
+  display: inline-block;
+  background: #EEF2FF;
+  color: #4F46E5;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+}
+
+    /* 2단계: CSS 스타일 */
 .kanban-board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -124,7 +212,7 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<div class="kanban-board">
+  <div class="kanban-board">
   <div class="column" data-status="todo">
     <h2 class="column-title">TODO</h2>
     <div class="cards-container" id="todoCards">
@@ -158,9 +246,7 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
+    // 3단계: JavaScript - Drag and Drop
 let draggedCard = null;
 
 // 모든 카드에 이벤트 리스너
@@ -199,7 +285,7 @@ document.querySelectorAll('.cards-container').forEach(container => {
   });
 });
 
-    console.log('✅ S076 - 드래그 앤 드롭 보드 완성 예시');
+    console.log('✅ S076 - 예제 S076 완성 예시');
   </script>
 </body>
 </html>

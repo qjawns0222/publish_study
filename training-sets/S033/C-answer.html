@@ -5,94 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S033 - 매거진 레이아웃 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-.masonry {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 100px;
-  grid-auto-flow: dense;
-  gap: 16px;
-  padding: 24px;
-  background: #F3F4F6;
-}
-
-    .card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  overflow: hidden;
-}
-.card.short { grid-row: span 2; }
-.card.medium { grid-row: span 3; }
-.card.tall { grid-row: span 4; }
-
-    .card img {
-  width: 100%;
-  height: 60%;
-  object-fit: cover;
-}
-.card-content {
-  padding: 16px;
-}
-.card h3 {
-  margin-bottom: 8px;
-}
-.card p {
-  font-size: 0.875rem;
-  color: #666;
-}
-
+    .magazine { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 250px; gap: var(--spacing-3); padding: var(--spacing-6); background: var(--color-light); min-height: 100vh; }
+    .featured { grid-column: span 2; grid-row: span 2; position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.15); transition: var(--transition); }
+    .featured:hover { transform: scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .featured img { width: 100%; height: 100%; object-fit: cover; }
+    .featured .content { position: absolute; bottom: 0; left: 0; right: 0; padding: var(--spacing-4); background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); color: white; }
+    .featured h2 { font-size: 2rem; margin-bottom: var(--spacing-2); }
+    .secondary { grid-column: span 2; grid-row: span 1; position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: var(--transition); }
+    .secondary:hover { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+    .secondary img { width: 100%; height: 100%; object-fit: cover; }
+    .secondary h3 { position: absolute; bottom: 0; left: 0; right: 0; padding: var(--spacing-3); background: rgba(0,0,0,0.7); color: white; margin: 0; }
+    .tertiary { grid-column: span 1; position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: var(--transition); }
+    .tertiary:hover { transform: translateY(-4px); }
+    .tertiary img { width: 100%; height: 100%; object-fit: cover; }
+    .tertiary h4 { position: absolute; bottom: 0; left: 0; right: 0; padding: var(--spacing-2); background: rgba(0,0,0,0.7); color: white; margin: 0; font-size: 0.875rem; }
+    @media (max-width: 768px) { .magazine { grid-template-columns: 1fr; grid-auto-rows: 200px; } .featured, .secondary, .tertiary { grid-column: span 1; } }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<div class="masonry">
-  <div class="card"></div>
-  <div class="short"></div>
-</div>
-
-  <!-- 안내 배너 (하단 고정) -->
+  <div class="magazine">
+    <article class="featured">
+      <img src="https://via.placeholder.com/800x600" alt="Featured">
+      <div class="content">
+        <h2>Featured Article</h2>
+        <p>메인 스토리 영역입니다</p>
+      </div>
+    </article>
+    <article class="secondary">
+      <img src="https://via.placeholder.com/400x300" alt="Article">
+      <h3>Secondary Story</h3>
+    </article>
+    <article class="secondary">
+      <img src="https://via.placeholder.com/400x300" alt="Article">
+      <h3>Secondary Story</h3>
+    </article>
+    <article class="tertiary">
+      <img src="https://via.placeholder.com/300x200" alt="Small">
+      <h4>Small Article</h4>
+    </article>
+    <article class="tertiary">
+      <img src="https://via.placeholder.com/300x200" alt="Small">
+      <h4>Small Article</h4>
+    </article>
+  </div>
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S033 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -100,14 +63,7 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-
-
-    console.log('✅ S033 - 매거진 레이아웃 완성 예시');
-  </script>
+    console.log('✅ S033 - 매거진 레이아웃 완성 예시');</script>
 </body>
 </html>

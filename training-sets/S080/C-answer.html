@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S080 - 컨텍스트 메뉴 | 완성 예시</title>
+  <title>S080 - 예제 S080 | 완성 예시</title>
   <style>
     /* 기본 리셋 */
     * {
@@ -45,6 +45,8 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+
+    /* 2단계: CSS 스타일 */
 .context-area {
   min-height: 400px;
   background: #F9FAFB;
@@ -117,7 +119,7 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<div class="context-area" id="contextArea">
+  <div class="context-area" id="contextArea">
   <p>이 영역에서 우클릭하세요</p>
 </div>
 
@@ -151,9 +153,7 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
+    // 3단계: JavaScript - Context Menu
 const contextArea = document.getElementById('contextArea');
 const contextMenu = document.getElementById('contextMenu');
 
@@ -221,7 +221,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-    console.log('✅ S080 - 컨텍스트 메뉴 완성 예시');
+    console.log('✅ S080 - 예제 S080 완성 예시');
   </script>
 </body>
 </html>

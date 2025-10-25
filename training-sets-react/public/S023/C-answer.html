@@ -5,83 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S023 - 로딩 스피너 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-    .spinner-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #F3F4F6;
-}
-
-    .spinner {
-  width: 60px;
-  height: 60px;
-  border: 4px solid transparent;
-  border-top-color: var(--color-primary);
-  border-radius: 50%;
-  animation: rotate 1s linear infinite;
-}
-
+    .spinner-container { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; background: var(--color-light); gap: var(--spacing-3); }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .spinner { width: 60px; height: 60px; border: 6px solid rgba(79, 70, 229, 0.1); border-top-color: var(--color-primary); border-radius: 50%; animation: spin 1s linear infinite; }
+    .spinner-container p { font-size: 1.125rem; color: var(--color-gray); font-weight: 500; }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<div class="spinner-container">
-  <div class="spinner"></div>
-</div>
-
-  <!-- 안내 배너 (하단 고정) -->
+  <div class="spinner-container">
+    <div class="spinner"></div>
+    <p>로딩 중...</p>
+  </div>
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S023 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -89,14 +33,7 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-
-
-    console.log('✅ S023 - 로딩 스피너 완성 예시');
-  </script>
+    console.log('✅ S023 - 로딩 스피너 완성 예시');</script>
 </body>
 </html>

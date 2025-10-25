@@ -5,93 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S039 - 모달 팝업 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-.modal-overlay.open {
-  display: flex;
-}
-.modal {
-  background: white;
-  padding: 32px;
-  border-radius: 12px;
-  max-width: 500px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-}
-
+    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: var(--color-light); }
+    .open-modal-btn { padding: 16px 32px; background: var(--color-primary); color: white; border: none; border-radius: var(--radius); font-size: 1rem; font-weight: 500; cursor: pointer; transition: var(--transition); }
+    .open-modal-btn:hover { background: #3730a3; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(79,70,229,0.3); }
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1000; }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+    .modal { background: white; padding: var(--spacing-6); border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); max-width: 500px; width: 90%; position: relative; transform: scale(0.9); transition: transform 0.3s ease; }
+    .modal-overlay.active .modal { transform: scale(1); }
+    .close-btn { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-gray); transition: var(--transition); }
+    .close-btn:hover { color: var(--color-dark); transform: rotate(90deg); }
+    .modal h2 { margin-bottom: var(--spacing-3); color: var(--color-dark); }
+    .modal p { margin-bottom: var(--spacing-4); color: var(--color-gray); line-height: 1.8; }
+    .modal-actions { display: flex; gap: var(--spacing-2); justify-content: flex-end; }
+    .modal-actions button { padding: 12px 24px; border: none; border-radius: var(--radius); font-weight: 500; cursor: pointer; transition: var(--transition); }
+    .btn-cancel { background: var(--color-light); color: var(--color-dark); }
+    .btn-cancel:hover { background: #E5E7EB; }
+    .btn-confirm { background: var(--color-primary); color: white; }
+    .btn-confirm:hover { background: #3730a3; }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<button id="openModal">모달 열기</button>
-
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <div class="modal-header">
-      <h2>모달 제목</h2>
-      <button class="close-btn">&times;</button>
-    </div>
-    <div class="modal-body">
-      <p>모달 콘텐츠...</p>
-    </div>
-    <div class="modal-footer">
-      <button class="btn-primary">확인</button>
+  <div class="modal-demo">
+    <button class="open-modal-btn" onclick="openModal()">모달 열기</button>
+  </div>
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="close-btn" onclick="closeModal()">✕</button>
+      <h2>모달 타이틀</h2>
+      <p>이것은 모달 팝업입니다. 오버레이를 클릭하거나 X 버튼을 눌러 닫을 수 있습니다.</p>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">취소</button>
+        <button class="btn-confirm" onclick="closeModal()">확인</button>
+      </div>
     </div>
   </div>
-</div>
-
-  <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S039 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -99,32 +54,12 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
-  <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-const openBtn = document.getElementById('openModal');
-const overlay = document.getElementById('modalOverlay');
-const closeBtn = document.querySelector('.close-btn');
-
-openBtn.addEventListener('click', () => {
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-});
-
-closeBtn.addEventListener('click', () => {
-  overlay.classList.remove('open');
-  document.body.style.overflow = '';
-});
-
-overlay.addEventListener('click', (e) => {
-  if (e.target === overlay) {
-    overlay.classList.remove('open');
-  }
-});
-
-    console.log('✅ S039 - 모달 팝업 완성 예시');
-  </script>
+  <script>    function openModal() {
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
+    console.log('✅ S039 - 모달 팝업 완성 예시');</script>
 </body>
 </html>

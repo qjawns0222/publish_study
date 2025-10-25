@@ -5,115 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S019 - 푸터 디자인 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-.footer {
-  background: #222;
-  color: white;
-  padding: 48px;
-}
-
-    .footer-content {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 48px;
-}
-.footer-column {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.footer-column h4 {
-  font-size: 1.125rem;
-  margin-bottom: 8px;
-}
-
-    .footer-column a {
-  color: white;
-  opacity: 0.8;
-  text-decoration: none;
-  font-size: 0.875rem;
-  transition: 0.3s ease;
-}
-.footer-column a:hover {
-  opacity: 1;
-  color: var(--color-primary);
-}
-.copyright {
-  margin-top: 32px;
-  padding-top: 32px;
-  border-top: 1px solid #444;
-  text-align: center;
-  font-size: 0.875rem;
-  opacity: 0.6;
-}
-
+.footer { background: var(--color-dark); color: white; padding: var(--spacing-6) var(--spacing-3); }
+    .footer-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-4); max-width: 1200px; margin: 0 auto; margin-bottom: var(--spacing-4); }
+    .footer-section h3 { margin-bottom: var(--spacing-2); color: var(--color-primary); }
+    .footer-section a { display: block; color: rgba(255,255,255,0.8); text-decoration: none; margin-bottom: var(--spacing-1); transition: var(--transition); }
+    .footer-section a:hover { color: white; padding-left: 4px; }
+    .footer-section p { color: rgba(255,255,255,0.7); margin-bottom: var(--spacing-1); }
+    .footer-bottom { text-align: center; padding-top: var(--spacing-3); border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
+    @media (max-width: 768px) { .footer-content { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<footer class="footer">
-  <div class="footer-content">
-    <div class="footer-column">
-      <h4>회사 정보</h4>
-      <p>웹 퍼블리싱 교육 플랫폼</p>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>회사명</h3>
+        <p>최고의 서비스를 제공합니다</p>
+      </div>
+      <div class="footer-section">
+        <h3>링크</h3>
+        <a href="#">회사소개</a>
+        <a href="#">서비스</a>
+        <a href="#">블로그</a>
+      </div>
+      <div class="footer-section">
+        <h3>연락처</h3>
+        <p>Email: info@example.com</p>
+        <p>Tel: 02-1234-5678</p>
+      </div>
     </div>
-    <div class="footer-column">
-      <h4>바로가기</h4>
-      <a href="#">소개</a>
-      <a href="#">강의</a>
-      <a href="#">문의</a>
+    <div class="footer-bottom">
+      <p>&copy; 2024 웹 퍼블리싱 훈련. All rights reserved.</p>
     </div>
-    <div class="footer-column">
-      <h4>소셜 미디어</h4>
-      <a href="#">Facebook</a>
-      <a href="#">Twitter</a>
-    </div>
-  </div>
-  <p class="copyright">&copy; 2024 웹 퍼블리싱. All rights reserved.</p>
-</footer>
-
-  <!-- 안내 배너 (하단 고정) -->
+  </footer>
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S019 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -121,14 +53,7 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-
-
-    console.log('✅ S019 - 푸터 디자인 완성 예시');
-  </script>
+    console.log('✅ S019 - 푸터 디자인 완성 예시');</script>
 </body>
 </html>

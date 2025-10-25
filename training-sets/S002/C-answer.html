@@ -45,35 +45,55 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: var(--color-light);
-}
 
+/* Container 중앙 정렬 */
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: var(--color-light);
+    }
+
+    /* Card 스타일링 */
     .card {
-  max-width: 400px;
-  background: white;
-  padding: 32px;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-}
+      max-width: 400px;
+      background: var(--color-white);
+      padding: var(--spacing-4);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      text-align: center;
+    }
 
+    .card h2 {
+      font-size: 1.75rem;
+      margin-bottom: var(--spacing-2);
+      color: var(--color-dark);
+    }
+
+    .card p {
+      color: var(--color-gray);
+      margin-bottom: var(--spacing-3);
+      line-height: 1.6;
+    }
+
+    /* Button 스타일링 */
     .btn {
-  background: var(--color-primary);
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  transition: 0.3s ease;
-}
-.btn:hover {
-  background: #3730a3;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 12px 24px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn:hover {
+      background: #3730a3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(79,70,229,0.3);
+    }
 
   </style>
 </head>
@@ -81,13 +101,13 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<div class="container">
-  <div class="card">
-    <h2>카드 제목</h2>
-    <p>카드에 대한 설명이 들어갑니다.</p>
-    <button class="btn">버튼</button>
+  <div class="container">
+    <div class="card">
+      <h2>중앙 정렬 카드</h2>
+      <p>Flexbox를 사용하여 화면 중앙에 배치된 카드입니다.</p>
+      <button class="btn">자세히 보기</button>
+    </div>
   </div>
-</div>
 
   <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
@@ -99,9 +119,6 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
 
 
     console.log('✅ S002 - 중앙 정렬 카드 완성 예시');

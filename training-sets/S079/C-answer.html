@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S079 - 리사이즈 가능 패널 | 완성 예시</title>
+  <title>S079 - 예제 S079 | 완성 예시</title>
   <style>
     /* 기본 리셋 */
     * {
@@ -45,6 +45,8 @@
     /* ========================================
        완성 예시 CSS
        ======================================== */
+
+    /* 2단계: CSS 스타일 */
 .resizable-container {
   display: flex;
   height: 100vh;
@@ -106,7 +108,7 @@
   <!-- ========================================
        완성 예시 HTML
        ======================================== -->
-<div class="resizable-container">
+  <div class="resizable-container">
   <div class="panel left-panel" id="leftPanel">
     <h2>왼쪽 패널</h2>
     <p>크기를 조절할 수 있습니다</p>
@@ -130,9 +132,7 @@
   </div>
 
   <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
+    // 3단계: JavaScript - Resize
 const container = document.querySelector('.resizable-container');
 const leftPanel = document.getElementById('leftPanel');
 const rightPanel = document.getElementById('rightPanel');
@@ -167,7 +167,7 @@ document.addEventListener('mouseup', () => {
   }
 });
 
-    console.log('✅ S079 - 리사이즈 가능 패널 완성 예시');
+    console.log('✅ S079 - 예제 S079 완성 예시');
   </script>
 </body>
 </html>

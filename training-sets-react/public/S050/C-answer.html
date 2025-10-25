@@ -5,81 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S050 - 별점 평가 | 완성 예시</title>
   <style>
-    /* 기본 리셋 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    /* CSS 변수 정의 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
     :root {
-      /* 색상 */
-      --color-primary: #4F46E5;
-      --color-secondary: #10B981;
-      --color-accent: #FF9800;
-      --color-dark: #222222;
-      --color-gray: #6B7280;
-      --color-light: #F3F4F6;
-      --color-white: #FFFFFF;
-
-      /* 간격 (8px scale) */
-      --spacing-1: 8px;
-      --spacing-2: 16px;
-      --spacing-3: 24px;
-      --spacing-4: 32px;
-      --spacing-5: 40px;
-      --spacing-6: 48px;
-
-      /* 기타 */
-      --radius: 8px;
-      --transition: 0.3s ease;
+      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
+      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
+      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
+      --radius: 8px; --transition: 0.3s ease;
     }
-
-    /* ========================================
-       완성 예시 CSS
-       ======================================== */
-.rating {
-  display: flex;
-  gap: 4px;
-}
-.star {
-  font-size: 2rem;
-  color: #D1D5DB;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.star.active {
-  color: #FCD34D;
-}
-.star:hover {
-  transform: scale(1.1);
-}
-
+    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: var(--color-light); }
+    .rating-box { max-width: 400px; width: 100%; background: white; padding: var(--spacing-6); border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); text-align: center; }
+    .rating-box h2 { margin-bottom: var(--spacing-4); color: var(--color-dark); }
+    .stars { display: flex; justify-content: center; gap: var(--spacing-2); margin-bottom: var(--spacing-3); }
+    .star { font-size: 3rem; color: #D1D5DB; cursor: pointer; transition: var(--transition); user-select: none; }
+    .star:hover, .star.active { color: #FFB800; transform: scale(1.2); }
+    .rating-text { font-size: 1.25rem; color: var(--color-gray); font-weight: 500; }
+    .rating-text span { color: var(--color-primary); font-weight: bold; font-size: 1.5rem; }
   </style>
 </head>
 <body>
-  <!-- ========================================
-       완성 예시 HTML
-       ======================================== -->
-<div class="rating-container">
-  <div class="rating" id="rating">
-    <span class="star" data-value="1">★</span>
-    <span class="star" data-value="2">★</span>
-    <span class="star" data-value="3">★</span>
-    <span class="star" data-value="4">★</span>
-    <span class="star" data-value="5">★</span>
+  <div class="rating-container">
+    <div class="rating-box">
+      <h2>상품 평가</h2>
+      <div class="stars" id="stars">
+        <span class="star" data-rating="1">★</span>
+        <span class="star" data-rating="2">★</span>
+        <span class="star" data-rating="3">★</span>
+        <span class="star" data-rating="4">★</span>
+        <span class="star" data-rating="5">★</span>
+      </div>
+      <p class="rating-text"><span id="ratingValue">0</span> / 5</p>
+    </div>
   </div>
-  <p class="rating-text">평점: <span id="ratingValue">0</span>/5</p>
-</div>
-
-  <!-- 안내 배너 (하단 고정) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
     <strong>✅ S050 완성 예시</strong>
     <div style="margin-top: 8px;">
@@ -87,41 +44,29 @@
       <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
     </div>
   </div>
-
-  <script>
-    // ========================================
-    // 완성 예시 JavaScript (필요시)
-    // ========================================
-const stars = document.querySelectorAll('.star');
-const ratingValue = document.getElementById('ratingValue');
-let currentRating = 0;
-
-stars.forEach((star, index) => {
-  // 클릭 시 평점 설정
-  star.addEventListener('click', () => {
-    currentRating = index + 1;
-    updateRating(currentRating);
-    ratingValue.textContent = currentRating;
-  });
-
-  // Hover 시 미리보기
-  star.addEventListener('mouseenter', () => {
-    updateRating(index + 1);
-  });
-});
-
-// MouseLeave 시 원래 평점으로 복원
-document.querySelector('.rating').addEventListener('mouseleave', () => {
-  updateRating(currentRating);
-});
-
-function updateRating(rating) {
-  stars.forEach((star, index) => {
-    star.classList.toggle('active', index < rating);
-  });
-}
-
-    console.log('✅ S050 - 별점 평가 완성 예시');
-  </script>
+  <script>    const stars = document.querySelectorAll('.star');
+    const ratingValue = document.getElementById('ratingValue');
+    let rating = 0;
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        rating = parseInt(star.dataset.rating);
+        ratingValue.textContent = rating;
+        stars.forEach((s, i) => {
+          s.classList.toggle('active', i < rating);
+        });
+      });
+      star.addEventListener('mouseenter', () => {
+        const hoverRating = parseInt(star.dataset.rating);
+        stars.forEach((s, i) => {
+          s.classList.toggle('active', i < hoverRating);
+        });
+      });
+    });
+    document.querySelector('.stars').addEventListener('mouseleave', () => {
+      stars.forEach((s, i) => {
+        s.classList.toggle('active', i < rating);
+      });
+    });
+    console.log('✅ S050 - 별점 평가 완성 예시');</script>
 </body>
 </html>
