@@ -16,13 +16,15 @@
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       line-height: 1.6;
       color: #222;
+      background: #F3F4F6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px;
     }
 
-    /* ========================================
-       여기에 CSS를 작성하세요
-       ======================================== */
-
-    /* 1. CSS 변수 정의 */
+    /* CSS 변수 정의 */
     :root {
       /* 색상 */
       --color-primary: #4F46E5;
@@ -32,6 +34,7 @@
       --color-gray: #6B7280;
       --color-light: #F3F4F6;
       --color-white: #FFFFFF;
+      --border-color: #E5E7EB;
 
       /* 간격 (8px scale) */
       --spacing-1: 8px;
@@ -46,68 +49,140 @@
       --transition: 0.3s ease;
     }
 
-    /* 2. 레이아웃 스타일 */
-    /* TODO: 메인 레이아웃 구성 */
+    /* ========================================
+       TODO: 아래 CSS를 작성하세요
+       ======================================== */
 
+    /* 1. 컨테이너 스타일 */
+    .container {
+      /* TODO: 배경, 패딩, 그림자 등 스타일 추가 */
+    }
 
-    /* 3. 컴포넌트 스타일 */
-    /* TODO: 주요 컴포넌트 디자인 */
+    /* 2. 폼 그룹 스타일 */
+    .form-group {
+      /* TODO: 여백 추가 */
+    }
 
+    .form-group h3 {
+      /* TODO: 제목 스타일 */
+    }
 
-    /* 4. 타이포그래피 */
-    /* TODO: 텍스트 스타일 */
+    /* 3. Label 스타일 */
+    label {
+      /* TODO: Flexbox로 정렬, gap 8px, padding 8px, cursor pointer */
+    }
 
+    /* 4. Input 기본 스타일 - appearance: none으로 기본 스타일 제거 */
+    input[type="checkbox"],
+    input[type="radio"] {
+      /* TODO:
+         - appearance: none
+         - 크기: 20px × 20px
+         - border: 2px solid #E5E7EB
+         - transition 추가
+      */
+    }
 
-    /* 5. 인터랙션 */
-    /* TODO: hover, active, focus 등 */
+    /* 5. 체크박스는 사각형 (border-radius: 4px) */
+    input[type="checkbox"] {
+      /* TODO: border-radius 추가 */
+    }
 
+    /* 6. 라디오는 원형 (border-radius: 50%) */
+    input[type="radio"] {
+      /* TODO: border-radius 추가 */
+    }
 
-    /* 6. 반응형 (선택사항) */
-    @media (max-width: 768px) {
-      /* 모바일 스타일 */
+    /* 7. Hover 효과 */
+    input[type="checkbox"]:hover,
+    input[type="radio"]:hover {
+      /* TODO:
+         - border-color: var(--color-primary)
+         - box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1)
+      */
+    }
+
+    /* 8. Checked 상태 - 배경과 테두리 색상 변경 */
+    input[type="checkbox"]:checked,
+    input[type="radio"]:checked {
+      /* TODO: background와 border-color를 Primary로 변경 */
+    }
+
+    /* 9. 체크박스 Checked 시 체크 표시 (✓) */
+    input[type="checkbox"]:checked::after {
+      /* TODO:
+         - content: '✓'
+         - 색상: white
+         - text-align: center
+         - line-height: 16px
+      */
+    }
+
+    /* 10. 라디오 Checked 시 중앙에 작은 점 */
+    input[type="radio"]:checked::after {
+      /* TODO:
+         - content: '' (빈 문자열)
+         - 크기: 8px × 8px
+         - 배경: white
+         - border-radius: 50%
+         - margin: 4px (중앙 정렬)
+      */
     }
 
   </style>
 </head>
 <body>
-  <!-- ========================================
-       여기에 HTML을 작성하세요
-       ======================================== -->
+  <div class="container">
+    <!-- 체크박스 그룹 -->
+    <div class="form-group">
+      <h3>과일 선택 (체크박스)</h3>
+      <label>
+        <input type="checkbox" id="apple">
+        <span>사과</span>
+      </label>
+      <label>
+        <input type="checkbox" id="banana">
+        <span>바나나</span>
+      </label>
+      <label>
+        <input type="checkbox" id="orange">
+        <span>오렌지</span>
+      </label>
+    </div>
 
-  <!--
-    실습 과제: 체크박스와 라디오
-    설명: 커스텀 스타일 체크박스와 라디오 버튼
+    <!-- 라디오 버튼 그룹 -->
+    <div class="form-group">
+      <h3>크기 선택 (라디오)</h3>
+      <label>
+        <input type="radio" name="size" value="s" id="size-s">
+        <span>S</span>
+      </label>
+      <label>
+        <input type="radio" name="size" value="m" id="size-m">
+        <span>M</span>
+      </label>
+      <label>
+        <input type="radio" name="size" value="l" id="size-l">
+        <span>L</span>
+      </label>
+    </div>
+  </div>
 
-    주요 학습 포인트:
-    - 폼 구조
-    - 입력 검증
-    - 사용자 피드백
-    - 접근성
-  -->
-
-  <!-- 여기서부터 코드를 작성하세요 -->
-
-
-  <!-- 힌트 영역 (완성 후 삭제 가능) -->
+  <!-- 힌트 영역 -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #4F46E5; color: white; padding: 16px 24px; border-radius: 12px; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 300px; z-index: 9999;">
     <strong>💡 실습 힌트</strong><br>
-    막힐 때는 A-guide.html을 참고하세요!<br>
-    개발자 도구(F12)로 요소를 검사해보세요.
+    1. appearance: none으로 기본 스타일 제거<br>
+    2. :checked 선택자 활용<br>
+    3. ::after 가상 요소로 체크 표시<br>
+    <div style="margin-top: 8px;">
+      <a href="A-guide.html" style="color: white; text-decoration: underline;">가이드 보기 →</a>
+    </div>
   </div>
 
   <script>
-    // ========================================
-    // 여기에 JavaScript를 작성하세요 (필요시)
-    // ========================================
-
-    // 예시: DOM 요소 선택
-    // const element = document.querySelector('.your-class');
-
-    // 예시: 이벤트 리스너
-    // element.addEventListener('click', function() {
-    //   // 동작 코드
-    // });
-
+    // JavaScript는 이 예제에서 필요하지 않습니다
+    // 모든 기능은 CSS만으로 구현됩니다
+    console.log('✏️ S014 - 체크박스와 라디오 실습');
   </script>
 </body>
 </html>

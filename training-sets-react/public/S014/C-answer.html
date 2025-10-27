@@ -5,45 +5,230 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S014 - 체크박스와 라디오 | 완성 예시</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
-    :root {
-      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
-      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
-      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
-      --radius: 8px; --transition: 0.3s ease;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-.form-container { display: flex; gap: var(--spacing-6); padding: var(--spacing-6); background: var(--color-light); min-height: 100vh; }
-    .form-section { background: white; padding: var(--spacing-4); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    .form-section h3 { margin-bottom: var(--spacing-3); color: var(--color-dark); }
-    .checkbox, .radio { display: flex; align-items: center; gap: var(--spacing-2); margin-bottom: var(--spacing-2); cursor: pointer; }
-    .checkbox input, .radio input { width: 20px; height: 20px; cursor: pointer; }
-    .checkbox:hover, .radio:hover { color: var(--color-primary); }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #222;
+      background: #F3F4F6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    :root {
+      --color-primary: #4F46E5;
+      --color-secondary: #10B981;
+      --color-accent: #FF9800;
+      --color-dark: #222222;
+      --color-gray: #6B7280;
+      --color-light: #F3F4F6;
+      --color-white: #FFFFFF;
+      --border-color: #E5E7EB;
+      --spacing-1: 8px;
+      --spacing-2: 16px;
+      --spacing-3: 24px;
+      --spacing-4: 32px;
+      --spacing-5: 40px;
+      --spacing-6: 48px;
+      --radius: 8px;
+      --transition: 0.3s ease;
+    }
+
+    .container {
+      background: white;
+      padding: var(--spacing-5);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .form-group {
+      margin-bottom: var(--spacing-4);
+    }
+
+    .form-group:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .form-group h3 {
+      margin-bottom: var(--spacing-2);
+      color: var(--color-dark);
+      font-size: 1.125rem;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-1);
+      padding: var(--spacing-1);
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+
+    label:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 기본 input 스타일 - appearance: none으로 기본 스타일 제거 */
+    input[type="checkbox"],
+    input[type="radio"] {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border-color);
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    /* 체크박스는 사각형 */
+    input[type="checkbox"] {
+      border-radius: 4px;
+    }
+
+    /* 라디오는 원형 */
+    input[type="radio"] {
+      border-radius: 50%;
+    }
+
+    /* Hover 효과 */
+    input[type="checkbox"]:hover,
+    input[type="radio"]:hover {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    /* Checked 상태 - 배경색과 테두리 색상 변경 */
+    input[type="checkbox"]:checked,
+    input[type="radio"]:checked {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    /* 체크박스 Checked 시 체크 표시 (✓) */
+    input[type="checkbox"]:checked::after {
+      content: '✓';
+      color: white;
+      display: block;
+      text-align: center;
+      line-height: 16px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    /* 라디오 Checked 시 중앙에 작은 점 */
+    input[type="radio"]:checked::after {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50%;
+      margin: 4px;
+    }
+
+    label span {
+      color: var(--color-dark);
+      font-size: 1rem;
+    }
+
+    /* 완성 배너 */
+    .success-banner {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--color-secondary);
+      color: white;
+      padding: 16px 24px;
+      text-align: center;
+      font-size: 0.875rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      border-radius: 12px;
+      max-width: 400px;
+    }
+
+    .success-banner strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .success-banner a {
+      color: white;
+      text-decoration: none;
+      border: 1px solid white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      display: inline-block;
+      margin: 0 4px;
+      transition: var(--transition);
+    }
+
+    .success-banner a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <div class="form-section">
-      <h3>체크박스</h3>
-      <label class="checkbox"><input type="checkbox"><span>옵션 1</span></label>
-      <label class="checkbox"><input type="checkbox" checked><span>옵션 2</span></label>
-      <label class="checkbox"><input type="checkbox"><span>옵션 3</span></label>
+  <div class="container">
+    <!-- 체크박스 그룹 -->
+    <div class="form-group">
+      <h3>과일 선택 (체크박스)</h3>
+      <label>
+        <input type="checkbox" id="apple">
+        <span>사과</span>
+      </label>
+      <label>
+        <input type="checkbox" id="banana">
+        <span>바나나</span>
+      </label>
+      <label>
+        <input type="checkbox" id="orange">
+        <span>오렌지</span>
+      </label>
     </div>
-    <div class="form-section">
-      <h3>라디오 버튼</h3>
-      <label class="radio"><input type="radio" name="choice" checked><span>선택 1</span></label>
-      <label class="radio"><input type="radio" name="choice"><span>선택 2</span></label>
-      <label class="radio"><input type="radio" name="choice"><span>선택 3</span></label>
+
+    <!-- 라디오 버튼 그룹 -->
+    <div class="form-group">
+      <h3>크기 선택 (라디오)</h3>
+      <label>
+        <input type="radio" name="size" value="s" id="size-s">
+        <span>S</span>
+      </label>
+      <label>
+        <input type="radio" name="size" value="m" id="size-m">
+        <span>M</span>
+      </label>
+      <label>
+        <input type="radio" name="size" value="l" id="size-l">
+        <span>L</span>
+      </label>
     </div>
   </div>
-  <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
+
+  <!-- 완성 배너 -->
+  <div class="success-banner">
     <strong>✅ S014 완성 예시</strong>
-    <div style="margin-top: 8px;">
-      <a href="A-guide.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block; margin-right: 8px;">← 가이드</a>
-      <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
+    <div>
+      <a href="A-guide.html">← 가이드</a>
+      <a href="B-practice.html">실습하기 →</a>
     </div>
   </div>
+
   <script>
-    console.log('✅ S014 - 체크박스와 라디오 완성 예시');</script>
+    console.log('✅ S014 - 체크박스와 라디오 완성 예시');
+  </script>
 </body>
 </html>

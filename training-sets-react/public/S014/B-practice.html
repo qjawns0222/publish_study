@@ -45,6 +45,81 @@
       --radius: 8px;
       --transition: 0.3s ease;
     }
+    label{
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-1);
+        cursor: pointer;
+        padding: var(--spacing-1);
+    }
+    input[type=checkbox]:hover, input[type=radio]:hover {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+    input[type=checkbox]{
+        appearance: none;
+        border: 1px solid var(--color-gray);
+        border-radius: 4px;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+    input[type=checkbox]:checked{
+        background-color: var(--color-primary);
+    }
+    input[type=checkbox]:checked:after{
+        content: "V";
+        color: var(--color-white);
+    }
+
+    input[type=radio]{
+        appearance: none;
+        border: 1px solid var(--color-gray);
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+    input[type=radio]:checked{
+        background-color: var(--color-primary);
+    }
+    input[type=radio]:checked:after{
+        content: "";
+        height: 10px;
+        width: 10px;
+        background-color: var(--color-white);
+        border-radius: 50%;
+    }
+    body{
+        min-height: 100vh;
+        background-color: var(--color-gray) ;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+    }
+    .main-box{
+        border-radius: var(--radius);
+        background-color: var(--color-white);
+        max-width: 500px;
+        width: 100%;
+        padding: var(--spacing-5);
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4);
+
+    }
+    .main-box h2{
+        margin-bottom: var(--spacing-2);
+    }
+
 
     /* 2. 레이아웃 스타일 */
     /* TODO: 메인 레이아웃 구성 */
@@ -86,6 +161,38 @@
   -->
 
   <!-- 여기서부터 코드를 작성하세요 -->
+  <div class="main-box">
+      <div class="check-box">
+          <h2>과일 선택 (체크박스)</h2>
+          <label for="apple">
+              <input id="apple" type="checkbox"/>
+              사과
+          </label>
+          <label for="banana">
+              <input id="banana" type="checkbox"/>
+              바나나
+          </label>
+          <label for="pear">
+              <input id="pear" type="checkbox"/>
+              배
+          </label>
+      </div>
+      <div class="radio-box">
+          <h2>크기 선택 (라디오)</h2>
+          <label for="s">
+              <input id="s" name="size" type="radio"/>
+              S
+          </label>
+          <label for="m">
+              <input id="m" name="size" type="radio"/>
+              M
+          </label>
+          <label for="l">
+              <input id="l" name="size" type="radio"/>
+              L
+          </label>
+      </div>
+  </div>
 
 
   <!-- 힌트 영역 (완성 후 삭제 가능) -->

@@ -45,6 +45,50 @@
       --radius: 8px;
       --transition: 0.3s ease;
     }
+    body{
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--color-gray);
+    }
+    .select-box{
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        border-radius: var(--radius);
+        background-color: var(--color-white);
+        padding: var(--spacing-5);
+    }
+    .select-container{
+        display: flex;
+
+        width: 100%;
+        position: relative;
+    }
+    label{
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+    select{
+        appearance: none;
+        border:2px solid #E5E7EB;
+        border-radius: 12px;
+        font-size: 1rem;
+        padding: 12px;
+        padding-right: 40px;
+        outline: none;
+        width: 100%;
+    }
+    select:focus{
+        border-color: var(--color-primary);
+    }
+    .select-arrow{
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translate(50%,-50%);
+    }
 
     /* 2. 레이아웃 스타일 */
     /* TODO: 메인 레이아웃 구성 */
@@ -86,7 +130,25 @@
   -->
 
   <!-- 여기서부터 코드를 작성하세요 -->
+    <div class="select-box">
+        <div class="select-one">
+            <label for="country">국가 선택</label>
+            <div class="select-container">
+                <select id="country" >
+                    <option disabled selected value="1">국가를 선택하세요</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <span class="select-arrow">▼</span>
+            </div>
+        </div>
 
+
+
+    </div>
 
   <!-- 힌트 영역 (완성 후 삭제 가능) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #4F46E5; color: white; padding: 16px 24px; border-radius: 12px; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 300px; z-index: 9999;">
