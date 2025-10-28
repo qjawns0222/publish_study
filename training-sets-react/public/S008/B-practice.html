@@ -18,6 +18,7 @@
       color: #222;
     }
 
+
     /* ========================================
        여기에 CSS를 작성하세요
        ======================================== */
@@ -45,6 +46,34 @@
       --radius: 8px;
       --transition: 0.3s ease;
     }
+    .badge{
+        display: inline-block;
+        padding: 6px 12px;
+        font-size: 0.875rem;
+        border-radius: 12px;
+        color:var(--color-white);
+        margin-right: 8px;
+        font-weight: 500;
+        transition: var(--transition);
+
+    }
+    .badge:hover{
+        transform: scale(1.1);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .badge-success{
+        background-color: var(--color-secondary);
+    }
+    .badge-warning{
+        background-color: var(--color-accent);
+    }
+    .badge-error{
+        background-color: #EF4444;
+    }
+    .badge-info{
+        background-color: var(--color-primary);
+    }
+
 
     /* 2. 레이아웃 스타일 */
     /* TODO: 메인 레이아웃 구성 */
@@ -86,7 +115,12 @@
   -->
 
   <!-- 여기서부터 코드를 작성하세요 -->
-
+    <div class="container">
+        <span class="badge badge-success">Success </span>
+        <span class="badge badge-warning">Warning </span>
+        <span class="badge badge-error">Error </span>
+        <span class="badge badge-info">Info </span>
+    </div>
 
   <!-- 힌트 영역 (완성 후 삭제 가능) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #4F46E5; color: white; padding: 16px 24px; border-radius: 12px; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 300px; z-index: 9999;">

@@ -45,6 +45,67 @@
       --radius: 8px;
       --transition: 0.3s ease;
     }
+    .container{
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-1);
+    }
+    .btn{
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-1);
+        justify-content: center;
+        padding: 12px 20px;
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        border-radius: var(--radius);
+        border: none;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+    .btn:hover{
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+    .icon:hover{
+        transform: scale(1.1);
+
+    }
+    .btn:not(.icon):hover{
+        background-color:#3730a3;
+        transform: translateY(-4px);
+        color: var(--color-white);
+    }
+    .btn:not(.icon):hover>svg{
+        transition: var(--transition);
+    }
+    .btn:not(.icon):hover>svg{
+        transform: rotate(15deg);
+    }
+    .add{
+        background-color: var(--color-white);
+        color: var(--color-primary);
+        border: 2px solid var(--color-primary);
+    }
+    .check:hover{
+        background-color:#059669;
+    }
+
+    .icon{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        padding: 0 0;
+        background-color: var(--color-white);
+    }
+    .check{
+        background-color: var(--color-secondary);
+
+    }
+    .cancel{
+        background-color: var(--color-accent);
+    }
 
     /* 2. 레이아웃 스타일 */
     /* TODO: 메인 레이아웃 구성 */
@@ -86,7 +147,48 @@
   -->
 
   <!-- 여기서부터 코드를 작성하세요 -->
+    <div class="container">
+        <button class="btn download">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+            다운로드
+        </button>
+        <button class="btn like">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+            </svg>
+            좋아요
+        </button>
+        <button class="btn move">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+            공유
+        </button>
+        <button class="btn add">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12h14"/>
+            </svg>
+            추가
+        </button>
+        <button class="btn icon check">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+            </svg>
 
+        </button>
+        <button class="btn icon cancel">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+    </div>
 
   <!-- 힌트 영역 (완성 후 삭제 가능) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #4F46E5; color: white; padding: 16px 24px; border-radius: 12px; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 300px; z-index: 9999;">
