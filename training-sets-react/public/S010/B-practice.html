@@ -45,6 +45,43 @@
       --radius: 8px;
       --transition: 0.3s ease;
     }
+    nav{
+        display: flex;
+        gap: 24px;
+        background-color: #222;
+        padding: var(--spacing-2) var(--spacing-6)
+    }
+    nav>a{
+        text-decoration: none;
+        font-size: 1rem;
+        border-bottom: 2px solid transparent;
+        font-weight: 500;
+        color: var(--color-white);
+        transition: var(--transition);
+        position: relative;
+    }
+    nav>a.active{
+        color: var(--color-primary);
+        font-size: 1rem;
+        font-weight: 500;
+        border-bottom: 2px solid var(--color-primary);
+    }
+    nav>a:hover{
+        color: var(--color-primary);
+    }
+    nav>a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: var(--color-primary);
+        transition: width 0.3s ease;
+    }
+    nav>a:hover::after {
+        width: 100%;
+    }
 
     /* 2. 레이아웃 스타일 */
     /* TODO: 메인 레이아웃 구성 */
@@ -86,7 +123,13 @@
   -->
 
   <!-- 여기서부터 코드를 작성하세요 -->
-
+    <nav>
+        <a  href="#" class="active">홈</a>
+        <a  href="#">소개</a>
+        <a  href="#">서비스</a>
+        <a  href="#">블로그</a>
+        <a  href="#">연락처</a>
+    </nav>
 
   <!-- 힌트 영역 (완성 후 삭제 가능) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #4F46E5; color: white; padding: 16px 24px; border-radius: 12px; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 300px; z-index: 9999;">

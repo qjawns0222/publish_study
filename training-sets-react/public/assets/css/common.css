@@ -105,6 +105,27 @@ body {
   margin-bottom: var(--spacing-1);
 }
 
+.guide-preview {
+  margin: var(--spacing-2) 0 var(--spacing-1);
+  background: var(--color-gray-100);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.guide-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.guide-preview figcaption {
+  padding: var(--spacing-2);
+  font-size: 0.95rem;
+  color: var(--color-gray-700);
+  background: var(--color-white);
+}
+
 .color-palette {
   display: flex;
   gap: var(--spacing-2);

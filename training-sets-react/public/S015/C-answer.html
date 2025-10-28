@@ -5,42 +5,213 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S015 - 선택 박스 | 완성 예시</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #222; }
-    :root {
-      --color-primary: #4F46E5; --color-secondary: #10B981; --color-accent: #FF9800;
-      --color-dark: #222222; --color-gray: #6B7280; --color-light: #F3F4F6; --color-white: #FFFFFF;
-      --spacing-1: 8px; --spacing-2: 16px; --spacing-3: 24px; --spacing-4: 32px; --spacing-5: 40px; --spacing-6: 48px;
-      --radius: 8px; --transition: 0.3s ease;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-.select-container { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: var(--color-light); }
-    .select-wrapper { width: 300px; }
-    label { display: block; margin-bottom: var(--spacing-1); font-weight: 500; }
-    select { width: 100%; padding: 12px; border: 2px solid var(--color-light); border-radius: var(--radius); font-size: 1rem; background: white; cursor: pointer; transition: var(--transition); }
-    select:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(79,70,229,0.1); }
-    select:hover { border-color: var(--color-primary); }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #222;
+      background: #F3F4F6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    :root {
+      --color-primary: #4F46E5;
+      --color-secondary: #10B981;
+      --color-accent: #FF9800;
+      --color-dark: #222222;
+      --color-gray: #6B7280;
+      --color-light: #F3F4F6;
+      --color-white: #FFFFFF;
+      --border-color: #E5E7EB;
+      --spacing-1: 8px;
+      --spacing-2: 16px;
+      --spacing-3: 24px;
+      --spacing-4: 32px;
+      --spacing-5: 40px;
+      --spacing-6: 48px;
+      --radius: 8px;
+      --transition: 0.3s ease;
+    }
+
+    .container {
+      background: white;
+      padding: var(--spacing-5);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .form-group {
+      margin-bottom: var(--spacing-3);
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: var(--spacing-1);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-dark);
+    }
+
+    /* Select Wrapper - 화살표 배치를 위한 relative 포지션 */
+    .select-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    /* Select 기본 스타일 */
+    select {
+      width: 100%;
+      height: 48px;
+      padding: 12px;
+      padding-right: 40px; /* 화살표 공간 확보 */
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      appearance: none; /* 기본 화살표 제거 */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: white;
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--color-dark);
+    }
+
+    /* Placeholder 스타일 */
+    select option:disabled {
+      color: #999999;
+    }
+
+    /* Focus 상태 */
+    select:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    /* 커스텀 화살표 아이콘 */
+    .select-arrow {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666666;
+      pointer-events: none; /* 클릭이 select로 전달되도록 */
+      font-size: 0.75rem;
+    }
+
+    /* 완성 배너 */
+    .success-banner {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--color-secondary);
+      color: white;
+      padding: 16px 24px;
+      text-align: center;
+      font-size: 0.875rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      border-radius: 12px;
+      max-width: 400px;
+    }
+
+    .success-banner strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .success-banner a {
+      color: white;
+      text-decoration: none;
+      border: 1px solid white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      display: inline-block;
+      margin: 0 4px;
+      transition: var(--transition);
+    }
+
+    .success-banner a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
   </style>
 </head>
 <body>
-  <div class="select-container">
-    <div class="select-wrapper">
+  <div class="container">
+    <!-- 국가 선택 -->
+    <div class="form-group">
       <label for="country">국가 선택</label>
-      <select id="country">
-        <option>대한민국</option>
-        <option>미국</option>
-        <option>일본</option>
-        <option>중국</option>
-      </select>
+      <div class="select-wrapper">
+        <select id="country">
+          <option value="" disabled selected>국가를 선택하세요</option>
+          <option value="kr">대한민국</option>
+          <option value="us">미국</option>
+          <option value="jp">일본</option>
+          <option value="cn">중국</option>
+        </select>
+        <span class="select-arrow">▼</span>
+      </div>
+    </div>
+
+    <!-- 도시 선택 -->
+    <div class="form-group">
+      <label for="city">도시 선택</label>
+      <div class="select-wrapper">
+        <select id="city">
+          <option value="" disabled selected>도시를 선택하세요</option>
+          <option value="seoul">서울</option>
+          <option value="busan">부산</option>
+          <option value="incheon">인천</option>
+          <option value="daegu">대구</option>
+          <option value="gwangju">광주</option>
+        </select>
+        <span class="select-arrow">▼</span>
+      </div>
+    </div>
+
+    <!-- 언어 선택 -->
+    <div class="form-group">
+      <label for="language">언어 선택</label>
+      <div class="select-wrapper">
+        <select id="language">
+          <option value="" disabled selected>언어를 선택하세요</option>
+          <option value="ko">한국어</option>
+          <option value="en">English</option>
+          <option value="ja">日本語</option>
+          <option value="zh">中文</option>
+          <option value="es">Español</option>
+        </select>
+        <span class="select-arrow">▼</span>
+      </div>
     </div>
   </div>
-  <div style="position: fixed; bottom: 24px; right: 24px; background: #10B981; color: white; padding: 16px 24px; text-align: center; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999; border-radius: 12px; max-width: 400px;">
+
+  <!-- 완성 배너 -->
+  <div class="success-banner">
     <strong>✅ S015 완성 예시</strong>
-    <div style="margin-top: 8px;">
-      <a href="A-guide.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block; margin-right: 8px;">← 가이드</a>
-      <a href="B-practice.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 6px 12px; border-radius: 6px; display: inline-block;">실습하기 →</a>
+    <div>
+      <a href="A-guide.html">← 가이드</a>
+      <a href="B-practice.html">실습하기 →</a>
     </div>
   </div>
+
   <script>
-    console.log('✅ S015 - 선택 박스 완성 예시');</script>
+    console.log('✅ S015 - 선택 박스 완성 예시');
+  </script>
 </body>
 </html>
