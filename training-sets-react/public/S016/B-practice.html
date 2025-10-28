@@ -45,6 +45,45 @@
       --radius: 8px;
       --transition: 0.3s ease;
     }
+    body{
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-size: cover;
+        background-position: center;
+    }
+    .hero{
+        text-align: center;
+    }
+    .hero-title{
+        color: var(--color-white);
+        margin-bottom: var(--spacing-3);
+        font-size: 3rem;
+    }
+    .hero-description{
+        font-size: 1.5rem;
+        color: var(--color-white);
+        line-height: 1.6;
+        opacity: 0.9;
+        margin-bottom: var(--spacing-4);
+    }
+    .hero-button{
+        border:none;
+        color: var(--color-primary);
+        background-color: var(--color-white);
+        border-radius: 32px;
+        font-size: 1.25rem;
+        font-weight: 600;
+        cursor: pointer;
+        padding: var(--spacing-2) var(--spacing-6);
+        transition: var(--transition);
+    }
+    .hero-button:hover{
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
 
     /* 2. 레이아웃 스타일 */
     /* TODO: 메인 레이아웃 구성 */
@@ -86,7 +125,11 @@
   -->
 
   <!-- 여기서부터 코드를 작성하세요 -->
-
+    <section class="hero">
+        <h1 class="hero-title">멋진 웹사이트 만들기</h1>
+        <p class="hero-description">퍼블리싱 훈련으로 프론트엔드 개발자가 되어보세요</p>
+        <button class="hero-button">시작하기</button>
+    </section>
 
   <!-- 힌트 영역 (완성 후 삭제 가능) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #4F46E5; color: white; padding: 16px 24px; border-radius: 12px; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 300px; z-index: 9999;">
