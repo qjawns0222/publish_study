@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eef2ff" />
+      <stop offset="100%" stop-color="#e0f2fe" />
+    </linearGradient>
+    <linearGradient id="photo" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+    <linearGradient id="cta" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#34d399" />
+    </linearGradient>
+  </defs>
+
+  <rect width="480" height="360" fill="#e5e7eb" rx="24" />
+  <rect x="24" y="24" width="432" height="312" fill="url(#bg)" rx="20" />
+
+  <g transform="translate(120 64)">
+    <rect width="240" height="260" rx="24" fill="#ffffff" stroke="#dbeafe" stroke-width="2" />
+    <rect x="16" y="16" width="208" height="140" rx="20" fill="url(#photo)" />
+    <circle cx="90" cy="90" r="32" fill="rgba(255,255,255,0.32)" />
+    <circle cx="140" cy="70" r="44" fill="rgba(255,255,255,0.26)" />
+    <rect x="16" y="176" width="120" height="16" rx="8" fill="#1f2937" opacity="0.08" />
+    <rect x="16" y="200" width="160" height="20" rx="10" fill="#1f2937" opacity="0.12" />
+    <rect x="16" y="230" width="80" height="32" rx="16" fill="url(#cta)" />
+    <text x="156" y="236" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="700" fill="#4f46e5">
+      ₩49,900
+    </text>
+  </g>
+
+  <text x="240" y="332" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="22" fill="#1f2937">
+    제품 이미지 + 제목 + 가격이 있는 상품 카드 레이아웃
+  </text>
+</svg>

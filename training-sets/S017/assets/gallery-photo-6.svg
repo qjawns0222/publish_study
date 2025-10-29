@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320">
+  <defs>
+    <linearGradient id="grad6" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444" />
+      <stop offset="100%" stop-color="#f87171" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="320" rx="24" fill="url(#grad6)" />
+  <rect x="80" y="84" width="240" height="152" rx="24" fill="rgba(255,255,255,0.3)" />
+  <rect x="120" y="124" width="160" height="72" rx="18" fill="rgba(255,255,255,0.35)" />
+  <text x="200" y="256" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="36" fill="#fee2e2">
+    Gallery 06
+  </text>
+</svg>

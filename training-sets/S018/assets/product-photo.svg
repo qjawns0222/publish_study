@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="photoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+    <radialGradient id="highlight" cx="30%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.45)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="600" rx="48" fill="url(#photoGradient)" />
+  <circle cx="280" cy="240" r="140" fill="rgba(255,255,255,0.18)" />
+  <circle cx="520" cy="280" r="180" fill="rgba(255,255,255,0.24)" />
+  <circle cx="360" cy="200" r="120" fill="url(#highlight)" />
+
+  <path d="M260 410 Q320 330 400 360 T540 340" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="30" stroke-linecap="round" />
+  <path d="M240 470 Q340 390 420 430 T580 400" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="26" stroke-linecap="round" />
+
+  <g transform="translate(140 100)">
+    <path d="M160 140 C200 100 280 100 320 140 C360 180 360 260 320 300 C280 340 200 340 160 300 C120 260 120 180 160 140 Z" fill="rgba(255,255,255,0.3)" />
+    <circle cx="240" cy="220" r="76" fill="rgba(255,255,255,0.42)" />
+  </g>
+</svg>
