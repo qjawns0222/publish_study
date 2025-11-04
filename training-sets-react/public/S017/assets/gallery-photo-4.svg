@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320">
+  <defs>
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="320" rx="24" fill="url(#grad4)" />
+  <g fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="12" stroke-linecap="round">
+    <path d="M92 190 L160 132 L220 188 L300 120" />
+    <path d="M92 222 L160 164 L220 220 L300 152" />
+  </g>
+  <text x="200" y="256" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="36" fill="#ecfdf5">
+    Gallery 04
+  </text>
+</svg>

@@ -17,7 +17,16 @@
       line-height: 1.6;
       color: #222;
     }
-
+    body,html{
+        min-height: 100vh;
+        height: 100%;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--color-white);
+    }
     /* ========================================
        여기에 CSS를 작성하세요
        ======================================== */
@@ -48,7 +57,73 @@
 
     /* 2. 레이아웃 스타일 */
     /* TODO: 메인 레이아웃 구성 */
+    .side-box{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        position: fixed;
+        top:0;
+        left: 0;
+        pointer-events: none
 
+    }
+    .side-box.active{
+        pointer-events: auto;
+    }
+    .side-bar{
+        height: 100%;
+        background-color: var(--color-white);
+        text-align: end;
+    }
+    .close-btn{
+      margin-top: 16px;
+      margin-right: 16px;
+      border: none;
+      background-color: transparent;
+      font-size: 1.5rem;
+      font-weight: 300;
+      cursor: pointer;
+
+    }
+    .side-bar{
+        transition: var(--transition);
+        transform: translateX(-100%);
+    }
+    .side-bar.active{
+        transform: translateX(0);
+    }
+    .side-bar>nav{
+        display: flex;
+        gap: var(--spacing-2);
+        flex-direction: column;
+        padding: var(--spacing-4);
+        width: 300px;
+
+    }
+    .side-bar>nav>a{
+        padding: var(--spacing-2);
+        text-decoration: none;
+        color: var(--color-dark);
+        border-radius: var(--radius);
+        text-align: start;
+        width: 100%;
+    }
+    .side-bar>nav>a:hover{
+       background-color: var(--color-light);
+        color: var(--color-primary);
+    }
+    .overlay{
+        position: absolute;
+        background-color: var(--color-light);
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        transition: var(--transition);
+        opacity: 0;
+    }
+    .overlay.active{
+        opacity: 1;
+    }
 
     /* 3. 컴포넌트 스타일 */
     /* TODO: 주요 컴포넌트 디자인 */
@@ -86,7 +161,20 @@
   -->
 
   <!-- 여기서부터 코드를 작성하세요 -->
-
+  <button onClick="makeActive()">open</button>
+    <div class="side-box">
+        <div class="side-bar">
+            <button onClick="makeActive()" class="close-btn">X</button>
+            <nav>
+                <a href="#"> 홈</a>
+                <a href="#"> 소개</a>
+                <a href="#">서비스</a>
+                <a href="#">블로그</a>
+                <a href="#">연락처</a>
+            </nav>
+        </div>
+        <div class="overlay"></div>
+    </div>
 
   <!-- 힌트 영역 (완성 후 삭제 가능) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #4F46E5; color: white; padding: 16px 24px; border-radius: 12px; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 300px; z-index: 9999;">
@@ -96,6 +184,13 @@
   </div>
 
   <script>
+
+      const makeActive=()=>{
+          console.log("tefdf")
+          document.getElementsByClassName("overlay")[0].classList.toggle('active')
+          document.getElementsByClassName("side-bar")[0].classList.toggle('active')
+          document.getElementsByClassName("side-box")[0].classList.toggle('active')
+      }
     // ========================================
     // 여기에 JavaScript를 작성하세요 (필요시)
     // ========================================

@@ -17,7 +17,16 @@
       line-height: 1.6;
       color: #222;
     }
-
+    body,html{
+        min-height: 100vh;
+        height: 100%;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--color-light);
+    }
     /* ========================================
        여기에 CSS를 작성하세요
        ======================================== */
@@ -44,6 +53,34 @@
       /* 기타 */
       --radius: 8px;
       --transition: 0.3s ease;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        border-radius: 8px;
+        overflow: hidden;
+        width: 800px;
+    }
+
+    thead{
+        color: var(--color-white);
+        background-color: var(--color-primary);
+
+
+    }
+    td{
+        padding: var(--spacing-2);
+        text-align: start;
+
+    }
+    thead>tr>td{
+        font-weight: bold;
+    }
+    tbody{
+        background-color: var(--color-white);
+    }
+    tbody>tr{
+        border-bottom: 1px solid var(--color-light);
     }
 
     /* 2. 레이아웃 스타일 */
@@ -87,6 +124,33 @@
 
   <!-- 여기서부터 코드를 작성하세요 -->
 
+    <table>
+        <thead>
+            <tr>
+                <td>이름</td>
+                <td>직책</td>
+                <td>이메일</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>김철수</td>
+                <td>개발자</td>
+                <td>kim@example.com</td>
+            </tr>
+            <tr>
+                <td>박민수</td>
+                <td>기획자</td>
+                <td>park@example.com</td>
+            </tr>
+            <tr>
+                <td>이영희</td>
+                <td>디자이너</td>
+                <td>lee@example.com</td>
+            </tr>
+        </tbody>
+
+    </table>
 
   <!-- 힌트 영역 (완성 후 삭제 가능) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #4F46E5; color: white; padding: 16px 24px; border-radius: 12px; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 300px; z-index: 9999;">

@@ -45,6 +45,52 @@
       --radius: 8px;
       --transition: 0.3s ease;
     }
+    body,html{
+        min-height: 100vh;
+        height: 100%;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--color-light);
+    }
+    .container{
+        display: flex;
+        gap:var(--spacing-2);
+    }
+    button{
+        padding: 12px var(--spacing-3);
+        cursor: pointer;
+        transition: var(--transition);
+        font-weight: bold;
+        font-size: 1rem;
+        color: var(--color-white);
+        border-radius: var(--radius);
+        border: none;
+    }
+    button.shadow{
+        background-color: var(--color-primary);
+    }
+    button.shadow:hover{
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(79, 70, 229, 0.4);
+    }
+    button.lightning{
+        background-color: var(--color-secondary);
+    }
+    button.lightning:hover{
+        box-shadow: 0 0 20px var(--color-secondary);
+        transform: scale(1.05);
+    }
+    button.three{
+        background: linear-gradient(to bottom, var(--color-accent), #e68900);
+        box-shadow: 0 4px 0 #c67100;
+    }
+    button.three:hover{
+        transform: translateY(2px);
+        box-shadow: 0 2px 0 #c67100;
+    }
 
     /* 2. 레이아웃 스타일 */
     /* TODO: 메인 레이아웃 구성 */
@@ -86,7 +132,11 @@
   -->
 
   <!-- 여기서부터 코드를 작성하세요 -->
-
+    <div class="container">
+        <button class="shadow">그림자 효과</button>
+        <button class="lightning">빛나는 효과</button>
+        <button class="three">3D 효과</button>
+    </div>
 
   <!-- 힌트 영역 (완성 후 삭제 가능) -->
   <div style="position: fixed; bottom: 24px; right: 24px; background: #4F46E5; color: white; padding: 16px 24px; border-radius: 12px; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 300px; z-index: 9999;">
